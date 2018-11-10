@@ -1,0 +1,70 @@
+# Summary
+
+* [Introduction](README.md)
+
+## 动态规划
+
+
+
+## 字符串
+
+* [循环单词](/string/loop_word.md)
+
+## 枚举
+
+* [好多鱼！](/enumeration/many_fish.md)
+
+## 排序
+
+* [堆排](/sort/heap.md)
+    * [215](/sort/heap/215.md)
+* [快排]()
+    * [75](/sort/quick/75.md)
+
+## 搜索
+
+* [深度优先]()
+    * [39](/research/dfs/39.md)
+    * [40](research/dfs/40.md)
+
+## 动态规划
+
+* [动态规划]()
+    * [70](/dynamic/70.md)
+
+```
+
+#include<iostream>
+using namespace std;
+ 
+int count(int n, int x) {
+    int res = 0, j;
+    for (int i = 1; j = n / i; i *= 10) {
+        int high = j / 10;
+        if (x == 0) {
+            if (high)
+                high--;
+            else
+                break;
+        }
+        res += high * i;
+        int tem = j % 10;
+        if (tem > x)
+            res += i;
+        else if (tem == x)
+            res += n - j * i + 1;
+    }
+    return res;
+}
+ 
+int main(){
+    int n;
+    while (cin >> n){
+        cout << count(n, 0);
+        for (int i = 1; i <= 9; i++)
+            cout << " " << count(n, i);
+    }
+    return 0;
+}
+```
+

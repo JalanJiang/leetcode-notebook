@@ -1,0 +1,102 @@
+{
+  "output": "",
+  "generator": "site",
+  "title": "算法学习与 LeetCode 刷题",
+  "author": "JalanJiang.江子抑 <jjy@meitu.com>",
+  "description": "Laravel 学习点滴记录",
+  "isbn": "",
+  "extension": "",
+
+  "plugins": [
+    "theme-default",
+    "disqus",
+    "prism",
+    "-highlight",
+    "baidu",
+    "tbfed-pagefooter",
+    "github-buttons",
+    "page-toc-button",
+    "back-to-top-button",
+    "sitemap-general",
+    "favicon@^0.0.2",
+    "splitter"
+  ],
+
+  "pluginsConfig": {
+    "fontSettings": {
+      "theme": "sepia",
+      "family": "serif",
+      "size": 2
+    },
+    "disqus": {
+      "shortName": "jalanjiang"
+    },
+    "theme-default": {
+      "showLevel": true
+    },
+    "prism": {
+      "css": [
+        "prismjs/themes/prism.css"
+      ]
+    },
+    "baidu": {
+      "token": "c47c7dbbbbb8b1bd7729048f358cd896"
+    },
+    "tbfed-pagefooter": {
+      "copyright":"JalanJiang.江子抑",
+      "modify_label": "该文件修订时间：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "github-buttons": {
+      "buttons": [{
+        "user": "JalanJiang",
+        "repo": "laravel5.6-notes",
+        "type": "star",
+        "size": "small"
+      }]
+    },
+    "sitemap-general": {
+      "prefix": "http://jalan.space/laravel5.6-notes/"
+    },
+    "favicon": {
+      "shortcut": "favicon.ico",
+      "bookmark": "favicon.ico"
+    }
+  },
+
+
+  "variables": {},
+
+  "links": {
+    "sidebar": {
+      "我的博客": "http://jalan.space"
+    },
+
+    "sharing": {
+      "google": null,
+      "facebook": null,
+      "twitter": null,
+      "weibo": null,
+      "all": null
+    }
+  },
+
+  "pdf": {
+    "pageNumbers": false,
+
+    "fontSize": 12,
+
+    "paperSize": "a4",
+
+    "margin": {
+      "right": 62,
+      "left": 62,
+      "top": 36,
+      "bottom": 36
+    },
+
+    "headerTemplate": null,
+
+    "footerTemplate": null
+  }
+}
