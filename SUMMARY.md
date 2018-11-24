@@ -17,6 +17,10 @@
 
 * [对称二叉树](/tree/cn-101.md)
 
+## 栈
+
+* [两个队列实现栈](/stack/cn-225.md)
+
 ## 枚举
 
 * [好多鱼！](/enumeration/many_fish.md)
