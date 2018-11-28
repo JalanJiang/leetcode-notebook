@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>最长同值路径 · 算法学习与 LeetCode 刷题</title>
+        <title>两数相加 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../stack/cn-225.html" />
+    <link rel="next" href="../enumeration/many_fish.html" />
     
     
-    <link rel="prev" href="cn-101.html" />
+    <link rel="prev" href="../stack/cn-225.html" />
     
 
     
@@ -243,9 +243,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="cn-101.html">
+        <li class="chapter " data-level="5.1" data-path="../tree/cn-101.html">
             
-                <a href="cn-101.html">
+                <a href="../tree/cn-101.html">
             
                     
                         <b>5.1.</b>
@@ -258,9 +258,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.2" data-path="cn-687.html">
+        <li class="chapter " data-level="5.2" data-path="../tree/cn-687.html">
             
-                <a href="cn-687.html">
+                <a href="../tree/cn-687.html">
             
                     
                         <b>5.2.</b>
@@ -302,9 +302,9 @@
         
         
     
-        <li class="chapter " data-level="7.1" data-path="../link_list/cn-2.html">
+        <li class="chapter active" data-level="7.1" data-path="cn-2.html">
             
-                <a href="../link_list/cn-2.html">
+                <a href="cn-2.html">
             
                     
                         <b>7.1.</b>
@@ -549,7 +549,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >最长同值路径</a>
+        <a href=".." >两数相加</a>
     </h1>
 </div>
 
@@ -564,68 +564,74 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="cn-26-&#x6700;&#x957F;&#x540C;&#x503C;&#x8DEF;&#x5F84;">cn-26. &#x6700;&#x957F;&#x540C;&#x503C;&#x8DEF;&#x5F84;</h2>
-<p><a href="https://leetcode-cn.com/problems/longest-univalue-path/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+                                <h2 id="cn-255-&#x7528;&#x961F;&#x5217;&#x5B9E;&#x73B0;&#x6808;">cn-255. &#x7528;&#x961F;&#x5217;&#x5B9E;&#x73B0;&#x6808;</h2>
+<p><a href="https://leetcode-cn.com/problems/add-two-numbers/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
 <h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
-<p>&#x6811;&#x7684;&#x8DEF;&#x5F84;&#x95EE;&#x9898;&#xFF0C;&#x4F7F;&#x7528;&#x9012;&#x5F52;&#x3002;</p>
 <ul>
-<li>&#x5BF9;&#x5DE6;&#x53F3;&#x8282;&#x70B9;&#x8C03;&#x7528;&#x9012;&#x5F52;&#x51FD;&#x6570;&#xFF0C;&#x5206;&#x522B;&#x5F97;&#x5230;&#xFF1A;<ul>
-<li>&#x5DE6;&#x8282;&#x70B9;&#x76F8;&#x540C;&#x503C;&#x8DEF;&#x5F84;</li>
-<li>&#x53F3;&#x8282;&#x70B9;&#x76F8;&#x540C;&#x503C;&#x8DEF;&#x5F84;</li>
+<li>&#x4ECE;&#x94FE;&#x8868;&#x5934;&#x90E8;&#x5F00;&#x59CB;&#xFF0C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x6570;&#x5B57;&#x5404;&#x81EA;&#x76F8;&#x52A0;<ul>
+<li>&#x76F8;&#x52A0;&#x7ED3;&#x679C; &gt; 9&#xFF0C;&#x5219;&#x8FDB;&#x4F4D; 1 &#x7ED9;&#x4E0B;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;%10 &#x7684;&#x503C;&#x8D4B;&#x503C;</li>
+<li>&#x76F8;&#x52A0;&#x7ED3;&#x679C; &lt;= 9&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x8D4B;&#x503C;</li>
 </ul>
 </li>
-<li>&#x540C;&#x503C;&#x8DEF;&#x5F84;&#x8BA1;&#x7B97;&#xFF1A;<ul>
-<li>&#x5DE6;&#x8282;&#x70B9;&#x5B58;&#x5728;&#x4E14;&#x4E0E;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x503C;&#x76F8;&#x540C;&#xFF0C;left++&#xFF1B;&#x4E0D;&#x540C;&#xFF1A;left=0</li>
-<li>&#x53F3;&#x8282;&#x70B9;&#x5B58;&#x5728;&#x4E14;&#x4E0E;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x503C;&#x76F8;&#x540C;&#xFF0C;right++&#xFF1B;&#x4E0D;&#x540C;&#xFF1A;right=0</li>
-<li>&#x7ED3;&#x679C; <code>result = max(result, left + right)</code></li>
+<li>&#x8981;&#x8003;&#x8651;&#x4E00;&#x4E9B;&#x4E71;&#x4E03;&#x516B;&#x7CDF;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4F8B;&#x5982;<ul>
+<li>&#x4E24;&#x4E2A;&#x94FE;&#x8868;&#x957F;&#x5EA6;&#x4E0D;&#x4E00;</li>
 </ul>
 </li>
 </ul>
 <h3 id="python">Python</h3>
-<pre class="language-"><code class="lang-python"><span class="token comment"># Definition for a binary tree node.</span>
-<span class="token comment"># class TreeNode:</span>
+<p>&#x4EE3;&#x7801;&#x5199;&#x7684;&#x8DDF; shi &#x4E00;&#x6837;&#x3002;&#x3002;&#x3002;</p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># Definition for singly-linked list.</span>
+<span class="token comment"># class ListNode:</span>
 <span class="token comment">#     def __init__(self, x):</span>
 <span class="token comment">#         self.val = x</span>
-<span class="token comment">#         self.left = None</span>
-<span class="token comment">#         self.right = None</span>
+<span class="token comment">#         self.next = None</span>
 
-<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    max_length <span class="token operator">=</span> <span class="token number">0</span>
-    <span class="token keyword">def</span> <span class="token function">longestUnivaluePath</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">addTwoNumbers</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type root: TreeNode
-        :rtype: int
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
         &quot;&quot;&quot;</span>
-        <span class="token keyword">if</span> <span class="token operator">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
-        self<span class="token punctuation">.</span>getMaxLen<span class="token punctuation">(</span>root<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>max_length
+        <span class="token builtin">next</span> <span class="token operator">=</span> <span class="token number">0</span>
+        l3 <span class="token operator">=</span> <span class="token boolean">None</span>
+        root <span class="token operator">=</span> <span class="token boolean">None</span>
+        <span class="token keyword">while</span> l1 <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span> <span class="token operator">or</span> <span class="token builtin">next</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">or</span> l2 <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> l1 <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+                n1 <span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                n1 <span class="token operator">=</span> l1<span class="token punctuation">.</span>val
 
+            <span class="token keyword">if</span> l2 <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+                n2 <span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                n2 <span class="token operator">=</span> l2<span class="token punctuation">.</span>val
 
-    <span class="token keyword">def</span> <span class="token function">getMaxLen</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token operator">not</span> root<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
+            n3 <span class="token operator">=</span> n1 <span class="token operator">+</span> n2 <span class="token operator">+</span> <span class="token builtin">next</span>
+            <span class="token keyword">if</span> n3 <span class="token operator">&gt;</span> <span class="token number">9</span><span class="token punctuation">:</span>
+                n3 <span class="token operator">=</span> n3 <span class="token operator">%</span> <span class="token number">10</span>
+                <span class="token builtin">next</span> <span class="token operator">=</span> <span class="token number">1</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token builtin">next</span> <span class="token operator">=</span> <span class="token number">0</span>
 
-        left <span class="token operator">=</span> self<span class="token punctuation">.</span>getMaxLen<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
-        right <span class="token operator">=</span> self<span class="token punctuation">.</span>getMaxLen<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> l3 <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+                l3 <span class="token operator">=</span> ListNode<span class="token punctuation">(</span>n3<span class="token punctuation">)</span>
+                root <span class="token operator">=</span> l3
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                l3<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> ListNode<span class="token punctuation">(</span>n3<span class="token punctuation">)</span>
+                l3 <span class="token operator">=</span> l3<span class="token punctuation">.</span><span class="token builtin">next</span>
+                <span class="token comment">#break</span>
 
-        <span class="token keyword">if</span> root<span class="token punctuation">.</span>left <span class="token operator">and</span> root<span class="token punctuation">.</span>left<span class="token punctuation">.</span>val <span class="token operator">==</span> root<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
-            left <span class="token operator">=</span> left <span class="token operator">+</span> <span class="token number">1</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            left <span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token keyword">if</span> l1 <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+                l1 <span class="token operator">=</span> l1<span class="token punctuation">.</span><span class="token builtin">next</span>
 
-        <span class="token keyword">if</span> root<span class="token punctuation">.</span>right <span class="token operator">and</span> root<span class="token punctuation">.</span>right<span class="token punctuation">.</span>val <span class="token operator">==</span> root<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
-            right <span class="token operator">=</span> right <span class="token operator">+</span> <span class="token number">1</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            right <span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token keyword">if</span> l2 <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+                l2 <span class="token operator">=</span> l2<span class="token punctuation">.</span><span class="token builtin">next</span>
 
-        self<span class="token punctuation">.</span>max_length <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>max_length<span class="token punctuation">,</span> left <span class="token operator">+</span> right<span class="token punctuation">)</span>
-
-        <span class="token comment"># &#x9009;&#x62E9;&#x8F83;&#x5927;&#x8DEF;&#x5F84;&#x503C;&#x4E0E; parent &#x76F8;&#x8FDE;</span>
-        <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> root
 </code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-11-26 23:25:48
+2018-11-28 22:13:03
 </span></footer>
                                 
                                 </section>
@@ -653,12 +659,12 @@
 
             
                 
-                <a href="cn-101.html" class="navigation navigation-prev " aria-label="Previous page: 对称二叉树">
+                <a href="../stack/cn-225.html" class="navigation navigation-prev " aria-label="Previous page: 两个队列实现栈">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../stack/cn-225.html" class="navigation navigation-next " aria-label="Next page: 两个队列实现栈">
+                <a href="../enumeration/many_fish.html" class="navigation navigation-next " aria-label="Next page: 好多鱼！">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -669,7 +675,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"最长同值路径","level":"5.2","depth":1,"next":{"title":"两个队列实现栈","level":"6.1","depth":1,"path":"stack/cn-225.md","ref":"stack/cn-225.md","articles":[]},"previous":{"title":"对称二叉树","level":"5.1","depth":1,"path":"tree/cn-101.md","ref":"tree/cn-101.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"tree/cn-687.md","mtime":"2018-11-26T15:25:48.131Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-28T15:55:55.490Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"两数相加","level":"7.1","depth":1,"next":{"title":"好多鱼！","level":"8.1","depth":1,"path":"enumeration/many_fish.md","ref":"enumeration/many_fish.md","articles":[]},"previous":{"title":"两个队列实现栈","level":"6.1","depth":1,"path":"stack/cn-225.md","ref":"stack/cn-225.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"link_list/cn-2.md","mtime":"2018-11-28T14:13:03.751Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-28T15:55:55.490Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
