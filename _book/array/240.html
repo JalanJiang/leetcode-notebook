@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>堆排 · 算法学习与 LeetCode 刷题</title>
+        <title>搜索二维矩阵 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="heap/215.html" />
+    <link rel="next" href="../string/loop_word.html" />
     
     
-    <link rel="prev" href="../enumeration/many_fish.html" />
+    <link rel="prev" href="485.html" />
     
 
     
@@ -169,9 +169,9 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../array/cn-26.html">
+        <li class="chapter " data-level="3.1" data-path="cn-26.html">
             
-                <a href="../array/cn-26.html">
+                <a href="cn-26.html">
             
                     
                         <b>3.1.</b>
@@ -184,9 +184,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="../array/cn-27.html">
+        <li class="chapter " data-level="3.2" data-path="cn-27.html">
             
-                <a href="../array/cn-27.html">
+                <a href="cn-27.html">
             
                     
                         <b>3.2.</b>
@@ -199,9 +199,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="../array/cn-121.html">
+        <li class="chapter " data-level="3.3" data-path="cn-121.html">
             
-                <a href="../array/cn-121.html">
+                <a href="cn-121.html">
             
                     
                         <b>3.3.</b>
@@ -214,9 +214,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="../array/566.html">
+        <li class="chapter " data-level="3.4" data-path="566.html">
             
-                <a href="../array/566.html">
+                <a href="566.html">
             
                     
                         <b>3.4.</b>
@@ -229,9 +229,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="../array/283.html">
+        <li class="chapter " data-level="3.5" data-path="283.html">
             
-                <a href="../array/283.html">
+                <a href="283.html">
             
                     
                         <b>3.5.</b>
@@ -244,9 +244,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="../array/485.html">
+        <li class="chapter " data-level="3.6" data-path="485.html">
             
-                <a href="../array/485.html">
+                <a href="485.html">
             
                     
                         <b>3.6.</b>
@@ -259,9 +259,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.7" data-path="../array/240.html">
+        <li class="chapter active" data-level="3.7" data-path="240.html">
             
-                <a href="../array/240.html">
+                <a href="240.html">
             
                     
                         <b>3.7.</b>
@@ -406,9 +406,9 @@
         
         
     
-        <li class="chapter active" data-level="9.1" data-path="heap.html">
+        <li class="chapter " data-level="9.1" data-path="../sort/heap.html">
             
-                <a href="heap.html">
+                <a href="../sort/heap.html">
             
                     
                         <b>9.1.</b>
@@ -422,9 +422,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="9.1.1" data-path="heap/215.html">
+        <li class="chapter " data-level="9.1.1" data-path="../sort/heap/215.html">
             
-                <a href="heap/215.html">
+                <a href="../sort/heap/215.html">
             
                     
                         <b>9.1.1.</b>
@@ -458,9 +458,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="9.2.1" data-path="quick/75.html">
+        <li class="chapter " data-level="9.2.1" data-path="../sort/quick/75.html">
             
-                <a href="quick/75.html">
+                <a href="../sort/quick/75.html">
             
                     
                         <b>9.2.1.</b>
@@ -609,7 +609,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >堆排</a>
+        <a href=".." >搜索二维矩阵</a>
     </h1>
 </div>
 
@@ -624,27 +624,85 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x5806;&#x6392;&#x5E8F;">&#x5806;&#x6392;&#x5E8F;</h2>
+                                <h2 id="240-&#x641C;&#x7D22;&#x4E8C;&#x7EF4;&#x77E9;&#x9635;">240. &#x641C;&#x7D22;&#x4E8C;&#x7EF4;&#x77E9;&#x9635;</h2>
+<p><a href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+<h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
+<h4 id="&#x5206;&#x6CBB;">&#x5206;&#x6CBB;</h4>
 <ul>
-<li>&#x6700;&#x5927;&#x5806;<ul>
-<li>&#x8282;&#x70B9;&#x7684;&#x5143;&#x7D20;&#x90FD;&#x8981;&#x4E0D;&#x5C0F;&#x4E8E;&#x5176;&#x5B69;&#x5B50;</li>
-<li>&#x5E38;&#x7528;&#x4E0E;&#x5347;&#x5E8F;&#x6392;&#x5E8F;</li>
+<li>&#x5DE6;&#x4E0B;&#x89D2;&#x7684;&#x5143;&#x7D20;&#x662F;&#x8FD9;&#x4E00;&#x884C;&#x4E2D;&#x6700;&#x5C0F;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x540C;&#x65F6;&#x53C8;&#x662F;&#x8FD9;&#x4E00;&#x5217;&#x4E2D;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;&#x3002;&#x6BD4;&#x8F83;&#x5DE6;&#x4E0B;&#x89D2;&#x5143;&#x7D20;&#x548C;&#x76EE;&#x6807;&#xFF1A; <ul>
+<li>&#x82E5;&#x5DE6;&#x4E0B;&#x89D2;&#x5143;&#x7D20;&#x7B49;&#x4E8E;&#x76EE;&#x6807;&#xFF0C;&#x5219;&#x627E;&#x5230;</li>
+<li>&#x82E5;&#x5DE6;&#x4E0B;&#x89D2;&#x5143;&#x7D20;&#x5927;&#x4E8E;&#x76EE;&#x6807;&#xFF0C;&#x5219;&#x76EE;&#x6807;&#x4E0D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x4E8E;&#x5F53;&#x524D;&#x77E9;&#x9635;&#x7684;&#x6700;&#x540E;&#x4E00;&#x884C;&#xFF0C;&#x95EE;&#x9898;&#x89C4;&#x6A21;&#x53EF;&#x4EE5;&#x51CF;&#x5C0F;&#x4E3A;&#x5728;&#x53BB;&#x6389;&#x6700;&#x540E;&#x4E00;&#x884C;&#x7684;&#x5B50;&#x77E9;&#x9635;&#x4E2D;&#x5BFB;&#x627E;&#x76EE;&#x6807;</li>
+<li>&#x82E5;&#x5DE6;&#x4E0B;&#x89D2;&#x5143;&#x7D20;&#x5C0F;&#x4E8E;&#x76EE;&#x6807;&#xFF0C;&#x5219;&#x76EE;&#x6807;&#x4E0D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x4E8E;&#x5F53;&#x524D;&#x77E9;&#x9635;&#x7684;&#x7B2C;&#x4E00;&#x5217;&#xFF0C;&#x95EE;&#x9898;&#x89C4;&#x6A21;&#x53EF;&#x4EE5;&#x51CF;&#x5C0F;&#x4E3A;&#x5728;&#x53BB;&#x6389;&#x7B2C;&#x4E00;&#x5217;&#x7684;&#x5B50;&#x77E9;&#x9635;&#x4E2D;&#x5BFB;&#x627E;&#x76EE;&#x6807;</li>
 </ul>
 </li>
-<li>&#x6700;&#x5C0F;&#x5806;&#xFF1A;<ul>
-<li>&#x8282;&#x70B9;&#x5143;&#x7D20;&#x90FD;&#x4E0D;&#x5927;&#x4E8E;&#x5176;&#x5DE6;&#x53F3;&#x5B69;&#x5B50;</li>
-<li>&#x5E38;&#x7528;&#x4E8E;&#x964D;&#x5E8F;&#x6392;&#x5E8F;</li>
+<li>&#x82E5;&#x6700;&#x540E;&#x77E9;&#x9635;&#x51CF;&#x5C0F;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x4E0D;&#x5B58;&#x5728;</li>
+</ul>
+<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">searchMatrix</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> matrix<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        &quot;&quot;&quot;</span>
+        m <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> m <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+        i <span class="token operator">=</span> m <span class="token operator">-</span> <span class="token number">1</span>
+        j <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">while</span> i <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">and</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            <span class="token keyword">elif</span> matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">:</span>
+                j <span class="token operator">=</span> j <span class="token operator">+</span> <span class="token number">1</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                i <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+</code></pre>
+<h4 id="&#x4E8C;&#x5206;&#x67E5;&#x627E;">&#x4E8C;&#x5206;&#x67E5;&#x627E;</h4>
+<ul>
+<li>&#x904D;&#x5386;&#x6BCF;&#x4E00;&#x884C;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E00;&#x884C;&#x8FDB;&#x884C;&#x4E8C;&#x5206;&#x67E5;&#x627E;</li>
+<li>&#x521D;&#x59CB;&#x5316;&#xFF1A;left = &#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x4E0B;&#x6807;, right = &#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x4E0B;&#x6807;&#xFF0C;middle = (left + right) // 2<ul>
+<li>&#x5982;&#x679C; matrix[i][middle] = target&#xFF0C;&#x5219;&#x627E;&#x5230;</li>
+<li>&#x5982;&#x679C; matrix[i][middle] &lt; target&#xFF0C;&#x8BF4;&#x660E; target &#x4E0D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x4E8E;&#x6570;&#x7EC4;&#x7684;&#x5DE6;&#x534A;&#x8FB9;&#xFF0C;left = middle + 1</li>
+<li>&#x5982;&#x679C; matrix[i][middle] &gt; target&#xFF0C;&#x8BF4;&#x660E; target &#x4E0D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x4E8E;&#x6570;&#x7EC4;&#x7684;&#x53F3;&#x534A;&#x8FB9;&#xFF0C;right = middle - 1</li>
 </ul>
 </li>
 </ul>
-<h3 id="&#x590D;&#x6742;&#x5EA6;">&#x590D;&#x6742;&#x5EA6;</h3>
-<h3 id="&#x8D44;&#x6599;">&#x8D44;&#x6599;</h3>
-<ul>
-<li><a href="https://www.cnblogs.com/chengxiao/p/6129630.html" target="_blank">&#x56FE;&#x89E3;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;(&#x4E09;)&#x4E4B;&#x5806;&#x6392;&#x5E8F;</a></li>
-<li><a href="https://www.cnblogs.com/0zcl/p/6737944.html" target="_blank">&#x5806;&#x6392;&#x5E8F;&#x8BE6;&#x89E3;</a> </li>
-</ul>
+<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">searchMatrix</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> matrix<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        &quot;&quot;&quot;</span>
+        m <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> m <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+        i <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">while</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">:</span>
+            left <span class="token operator">=</span> <span class="token number">0</span>
+            right <span class="token operator">=</span> n <span class="token operator">-</span> <span class="token number">1</span>
+            <span class="token keyword">while</span> left <span class="token operator">&lt;=</span> right<span class="token punctuation">:</span>
+                middle <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+                <span class="token keyword">if</span> matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> <span class="token boolean">True</span>
+                <span class="token keyword">elif</span> matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>middle<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">:</span>
+                    left <span class="token operator">=</span> middle <span class="token operator">+</span> <span class="token number">1</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    right <span class="token operator">=</span> middle <span class="token operator">-</span> <span class="token number">1</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+</code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-09-16 00:07:21
+2018-12-03 23:27:59
 </span></footer>
                                 
                                 </section>
@@ -672,12 +730,12 @@
 
             
                 
-                <a href="../enumeration/many_fish.html" class="navigation navigation-prev " aria-label="Previous page: 好多鱼！">
+                <a href="485.html" class="navigation navigation-prev " aria-label="Previous page: 最大连续1的个数">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="heap/215.html" class="navigation navigation-next " aria-label="Next page: 215">
+                <a href="../string/loop_word.html" class="navigation navigation-next " aria-label="Next page: 循环单词">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -688,7 +746,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"堆排","level":"9.1","depth":1,"next":{"title":"215","level":"9.1.1","depth":2,"path":"sort/heap/215.md","ref":"sort/heap/215.md","articles":[]},"previous":{"title":"好多鱼！","level":"8.1","depth":1,"path":"enumeration/many_fish.md","ref":"enumeration/many_fish.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"sort/heap.md","mtime":"2018-09-15T16:07:21.102Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-03T15:28:39.077Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"搜索二维矩阵","level":"3.7","depth":1,"next":{"title":"循环单词","level":"4.1","depth":1,"path":"string/loop_word.md","ref":"string/loop_word.md","articles":[]},"previous":{"title":"最大连续1的个数","level":"3.6","depth":1,"path":"array/485.md","ref":"array/485.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"array/240.md","mtime":"2018-12-03T15:27:59.747Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-03T15:28:39.077Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
