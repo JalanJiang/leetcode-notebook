@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>错误的集合 · 算法学习与 LeetCode 刷题</title>
+        <title>数组的度 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="287.html" />
+    <link rel="next" href="766.html" />
     
     
-    <link rel="prev" href="378.html" />
+    <link rel="prev" href="667.html" />
     
 
     
@@ -289,7 +289,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.9" data-path="645.html">
+        <li class="chapter " data-level="3.9" data-path="645.html">
             
                 <a href="645.html">
             
@@ -334,7 +334,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.12" data-path="697.html">
+        <li class="chapter active" data-level="3.12" data-path="697.html">
             
                 <a href="697.html">
             
@@ -699,7 +699,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >错误的集合</a>
+        <a href=".." >数组的度</a>
     </h1>
 </div>
 
@@ -714,61 +714,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="645-&#x9519;&#x8BEF;&#x7684;&#x96C6;&#x5408;">645. &#x9519;&#x8BEF;&#x7684;&#x96C6;&#x5408;</h2>
-<p><a href="https://leetcode-cn.com/problems/set-mismatch/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
-<h3 id="&#x89E3;&#x4E00;">&#x89E3;&#x4E00;</h3>
+                                <h2 id="697-&#x6570;&#x7EC4;&#x7684;&#x5EA6;">697. &#x6570;&#x7EC4;&#x7684;&#x5EA6;</h2>
+<p><a href="https://leetcode-cn.com/problems/degree-of-an-array/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+<h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
+<p>&#x8FD9;&#x9898;&#x571F;&#x529E;&#x6CD5;&#x5F88;&#x591A;&#xFF0C;&#x6700;&#x6015;&#x7684;&#x662F;&#x8D85;&#x65F6;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x5728;&#x6700;&#x5C0F;&#x7684;&#x5FAA;&#x73AF;&#x6B21;&#x6570;&#x4E2D;&#x7ED9;&#x51FA;&#x89E3;&#x7B54;&#x3002;</p>
 <ul>
-<li>&#x5B58;&#x50A8;&#x6BCF;&#x4E2A;&#x6570;&#x5B57;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;</li>
-<li>&#x51FA;&#x73B0; 0 &#x6B21;&#xFF1A;&#x88AB;&#x4EE3;&#x66FF;&#xFF0C;&#x51FA;&#x73B0; 2 &#x6B21;&#xFF1A;&#x91CD;&#x590D;&#x4E86;</li>
+<li>freq_dict &#x5B57;&#x5178;&#x653E;&#x6570;&#x7684;&#x51FA;&#x73B0;&#x9891;&#x7387;</li>
+<li>pos_dict &#x5B57;&#x6BB5;&#x653E;&#x6570;&#x7684;&#x51FA;&#x73B0;&#x4F4D;&#x7F6E;</li>
+<li>&#x5728;&#x4E00;&#x6B21;&#x5FAA;&#x73AF;&#x4E2D;&#xFF0C;&#x4E0D;&#x65AD;&#x8BA1;&#x7B97;&#x9891;&#x7387;&#x7684;&#x6700;&#x5927;&#x503C;&#x4E0E;&#x957F;&#x5EA6;&#x7684;&#x6700;&#x5C0F;&#x503C;</li>
 </ul>
+<h3 id="python">Python</h3>
 <pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">findErrorNums</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">findShortestSubArray</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">&quot;&quot;&quot;
         :type nums: List[int]
-        :rtype: List[int]
+        :rtype: int
         &quot;&quot;&quot;</span>
-        <span class="token builtin">list</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> num <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
-            <span class="token builtin">list</span><span class="token punctuation">[</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">[</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
-        result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> <span class="token builtin">list</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                lost <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
-            <span class="token keyword">if</span> <span class="token builtin">list</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
-                twice <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
-        result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>twice<span class="token punctuation">)</span>
-        result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>lost<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> result
-</code></pre>
-<h3 id="&#x89E3;&#x4E8C;">&#x89E3;&#x4E8C;</h3>
-<ul>
-<li>&#x4EA4;&#x6362;&#x5143;&#x7D20;&#xFF0C;&#x4F7F;&#x5143;&#x7D20;&#x51FA;&#x73B0;&#x5728;&#x6B63;&#x786E;&#x7684;&#x4F4D;&#x7F6E;&#x4E0A; </li>
-<li>&#x518D;&#x5FAA;&#x73AF;&#x6570;&#x7EC4;&#x4E00;&#x904D;&#xFF0C;&#x770B;&#x770B;&#x5404;&#x4F4D;&#x7F6E;&#x5143;&#x7D20;&#x7684;&#x60C5;&#x51B5;</li>
-</ul>
-<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">findErrorNums</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type nums: List[int]
-        :rtype: List[int]
-        &quot;&quot;&quot;</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">while</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">and</span> nums<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>swap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        freq_dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        pos_dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        min_length <span class="token operator">=</span> <span class="token number">5000</span>
+        max_freq <span class="token operator">=</span> <span class="token number">0</span>
 
-        result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
         <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">:</span>
-                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
-                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> result
+            <span class="token keyword">print</span> freq_dict
+            <span class="token keyword">print</span> pos_dict
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">in</span> pos_dict<span class="token punctuation">:</span>
 
-    <span class="token keyword">def</span> <span class="token function">swap</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        tmp <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-        nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-        nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> tmp
+                <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">not</span> <span class="token keyword">in</span> freq_dict<span class="token punctuation">:</span>
+                    freq_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    freq_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> freq_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+
+                cur_length <span class="token operator">=</span> i <span class="token operator">-</span> pos_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+                <span class="token keyword">if</span> freq_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> max_freq<span class="token punctuation">:</span>
+                    max_freq <span class="token operator">=</span> freq_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+                    <span class="token keyword">print</span> max_freq
+                    min_length <span class="token operator">=</span> cur_length
+                <span class="token keyword">elif</span> freq_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">==</span> max_freq<span class="token punctuation">:</span>
+                    <span class="token keyword">if</span> cur_length <span class="token operator">&lt;</span> min_length<span class="token punctuation">:</span>
+                        min_length <span class="token operator">=</span> cur_length
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                pos_dict<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i
+
+        <span class="token keyword">if</span> max_freq <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> min_length
 </code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-12-06 00:22:36
+2018-12-11 20:47:16
 </span></footer>
                                 
                                 </section>
@@ -796,12 +789,12 @@
 
             
                 
-                <a href="378.html" class="navigation navigation-prev " aria-label="Previous page: 有序矩阵中第K小的元素">
+                <a href="667.html" class="navigation navigation-prev " aria-label="Previous page: 优美的排列 II">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="287.html" class="navigation navigation-next " aria-label="Next page: 寻找重复数">
+                <a href="766.html" class="navigation navigation-next " aria-label="Next page: 托普利茨矩阵">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -812,7 +805,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"错误的集合","level":"3.9","depth":1,"next":{"title":"寻找重复数","level":"3.10","depth":1,"path":"array/287.md","ref":"array/287.md","articles":[]},"previous":{"title":"有序矩阵中第K小的元素","level":"3.8","depth":1,"path":"array/378.md","ref":"array/378.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"array/645.md","mtime":"2018-12-05T16:22:36.461Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-11T16:00:55.393Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"数组的度","level":"3.12","depth":1,"next":{"title":"托普利茨矩阵","level":"3.13","depth":1,"path":"array/766.md","ref":"array/766.md","articles":[]},"previous":{"title":"优美的排列 II","level":"3.11","depth":1,"path":"array/667.md","ref":"array/667.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"array/697.md","mtime":"2018-12-11T12:47:16.994Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-11T16:00:55.393Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
