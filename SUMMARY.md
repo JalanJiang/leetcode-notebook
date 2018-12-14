@@ -40,6 +40,9 @@
 * [两数相加](/link_list/cn-2.md)
 * [相交链表](/link_list/160.md)
 * [反转链表](/link_list/206.md)
+* [合并两个有序链表](/link_list/21.md)
+* [删除排序链表中的重复元素](/link_list/83.md)
+* [删除链表的倒数第N个节点](/link_list/19.md)
 
 ## 枚举
 
