@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>合并两个有序链表 · 算法学习与 LeetCode 刷题</title>
+        <title>回文链表 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="83.html" />
+    <link rel="next" href="../enumeration/many_fish.html" />
     
     
-    <link rel="prev" href="206.html" />
+    <link rel="prev" href="445.html" />
     
 
     
@@ -527,7 +527,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="7.4" data-path="21.html">
+        <li class="chapter " data-level="7.4" data-path="21.html">
             
                 <a href="21.html">
             
@@ -602,7 +602,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.9" data-path="234.html">
+        <li class="chapter active" data-level="7.9" data-path="234.html">
             
                 <a href="234.html">
             
@@ -843,7 +843,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >合并两个有序链表</a>
+        <a href=".." >回文链表</a>
     </h1>
 </div>
 
@@ -858,33 +858,44 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="21-&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x6709;&#x5E8F;&#x94FE;&#x8868;">21. &#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x6709;&#x5E8F;&#x94FE;&#x8868;</h2>
-<p><a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
-<h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
-<p>&#x9012;&#x5F52;&#x5457;</p>
-<h3 id="python">Python</h3>
+                                <h2 id="234-&#x56DE;&#x6587;&#x94FE;&#x8868;">234. &#x56DE;&#x6587;&#x94FE;&#x8868;</h2>
+<p><a href="https://leetcode-cn.com/problems/palindrome-linked-list/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+<h3 id="&#x89E3;&#x6CD5;&#x4E00;">&#x89E3;&#x6CD5;&#x4E00;</h3>
+<ul>
+<li>&#x53CD;&#x8F6C;&#x94FE;&#x8868;</li>
+<li>&#x5FAA;&#x73AF;&#x6BD4;&#x8F83;</li>
+<li>&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6; O(n)&#xFF0C;&#x4E0D;&#x662F;&#x5F88;&#x68D2;&#x68D2;</li>
+</ul>
 <pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">isPalindrome</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
+        :type head: ListNode
+        :rtype: bool
         &quot;&quot;&quot;</span>
-        <span class="token keyword">if</span> l1 <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> l2
-        <span class="token keyword">if</span> l2 <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> l1
-        head <span class="token operator">=</span> <span class="token boolean">None</span>
-        <span class="token keyword">if</span> l1<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> l2<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
-            head <span class="token operator">=</span> l1
-            head<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>mergeTwoLists<span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">,</span> l2<span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            head <span class="token operator">=</span> l2
-            head<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>mergeTwoLists<span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> head
+        l <span class="token operator">=</span> head
+        pre <span class="token operator">=</span> <span class="token boolean">None</span>
+        cur <span class="token operator">=</span> <span class="token boolean">None</span>
+        end <span class="token operator">=</span> <span class="token boolean">None</span>
+        <span class="token keyword">while</span> l<span class="token punctuation">:</span>
+            cur <span class="token operator">=</span> ListNode<span class="token punctuation">(</span>l<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+            cur<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> end
+            end <span class="token operator">=</span> cur
+            l <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token builtin">next</span>
+
+        <span class="token keyword">while</span> head<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> head<span class="token punctuation">.</span>val <span class="token operator">!=</span> cur<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+            head <span class="token operator">=</span> head<span class="token punctuation">.</span><span class="token builtin">next</span>
+            cur <span class="token operator">=</span> cur<span class="token punctuation">.</span><span class="token builtin">next</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span>
 </code></pre>
+<h3 id="&#x89E3;&#x6CD5;&#x4E8C;">&#x89E3;&#x6CD5;&#x4E8C;</h3>
+<ul>
+<li>&#x8BBE;&#x7F6E;&#x5FEB;&#x6162;&#x6307;&#x9488;&#xFF0C;&#x5F53;&#x5FEB;&#x6307;&#x9488;&#x8D70;&#x5B8C;&#x65F6;&#xFF0C;&#x6162;&#x6307;&#x9488;&#x521A;&#x597D;&#x8D70;&#x5230;&#x4E2D;&#x70B9;</li>
+<li>&#x539F;&#x5730;&#x5C06;&#x540E;&#x534A;&#x6BB5;&#x53CD;&#x8F6C;&#xFF0C;&#x8FDB;&#x884C;&#x56DE;&#x6587;</li>
+</ul>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-12-14 23:01:44
+2018-12-15 20:44:26
 </span></footer>
                                 
                                 </section>
@@ -912,12 +923,12 @@
 
             
                 
-                <a href="206.html" class="navigation navigation-prev " aria-label="Previous page: 反转链表">
+                <a href="445.html" class="navigation navigation-prev " aria-label="Previous page: 两数相加 II">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="83.html" class="navigation navigation-next " aria-label="Next page: 删除排序链表中的重复元素">
+                <a href="../enumeration/many_fish.html" class="navigation navigation-next " aria-label="Next page: 好多鱼！">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -928,7 +939,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"合并两个有序链表","level":"7.4","depth":1,"next":{"title":"删除排序链表中的重复元素","level":"7.5","depth":1,"path":"link_list/83.md","ref":"link_list/83.md","articles":[]},"previous":{"title":"反转链表","level":"7.3","depth":1,"path":"link_list/206.md","ref":"link_list/206.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"link_list/21.md","mtime":"2018-12-14T15:01:44.037Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-15T12:45:09.226Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"回文链表","level":"7.9","depth":1,"next":{"title":"好多鱼！","level":"8.1","depth":1,"path":"enumeration/many_fish.md","ref":"enumeration/many_fish.md","articles":[]},"previous":{"title":"两数相加 II","level":"7.8","depth":1,"path":"link_list/445.md","ref":"link_list/445.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"link_list/234.md","mtime":"2018-12-15T12:44:26.838Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-15T12:45:09.226Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

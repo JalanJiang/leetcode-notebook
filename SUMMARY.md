@@ -43,6 +43,9 @@
 * [合并两个有序链表](/link_list/21.md)
 * [删除排序链表中的重复元素](/link_list/83.md)
 * [删除链表的倒数第N个节点](/link_list/19.md)
+* [两两交换链表中的节点](/link_list/24.md)
+* [两数相加 II](/link_list/445.md)
+* [回文链表](/link_list/234.md)
 
 ## 枚举
 
