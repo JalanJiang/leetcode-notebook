@@ -46,6 +46,8 @@
 * [两两交换链表中的节点](/link_list/24.md)
 * [两数相加 II](/link_list/445.md)
 * [回文链表](/link_list/234.md)
+* [分隔链表](/link_list/725.md)
+* [奇偶链表](/link_list/328.md)
 
 ## 枚举
 
