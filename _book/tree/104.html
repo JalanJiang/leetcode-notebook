@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>堆排 · 算法学习与 LeetCode 刷题</title>
+        <title>二叉树的最大深度 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="heap/215.html" />
+    <link rel="next" href="110.html" />
     
     
-    <link rel="prev" href="../enumeration/many_fish.html" />
+    <link rel="prev" href="cn-687.html" />
     
 
     
@@ -423,9 +423,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../tree/cn-101.html">
+        <li class="chapter " data-level="5.1" data-path="cn-101.html">
             
-                <a href="../tree/cn-101.html">
+                <a href="cn-101.html">
             
                     
                         <b>5.1.</b>
@@ -438,9 +438,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="../tree/cn-687.html">
+        <li class="chapter " data-level="5.2" data-path="cn-687.html">
             
-                <a href="../tree/cn-687.html">
+                <a href="cn-687.html">
             
                     
                         <b>5.2.</b>
@@ -453,9 +453,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" data-path="../tree/104.html">
+        <li class="chapter active" data-level="5.3" data-path="104.html">
             
-                <a href="../tree/104.html">
+                <a href="104.html">
             
                     
                         <b>5.3.</b>
@@ -468,9 +468,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.4" data-path="../tree/110.html">
+        <li class="chapter " data-level="5.4" data-path="110.html">
             
-                <a href="../tree/110.html">
+                <a href="110.html">
             
                     
                         <b>5.4.</b>
@@ -483,9 +483,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.5" data-path="../tree/543.html">
+        <li class="chapter " data-level="5.5" data-path="543.html">
             
-                <a href="../tree/543.html">
+                <a href="543.html">
             
                     
                         <b>5.5.</b>
@@ -498,9 +498,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.6" data-path="../tree/226.html">
+        <li class="chapter " data-level="5.6" data-path="226.html">
             
-                <a href="../tree/226.html">
+                <a href="226.html">
             
                     
                         <b>5.6.</b>
@@ -513,9 +513,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.7" data-path="../tree/617.html">
+        <li class="chapter " data-level="5.7" data-path="617.html">
             
-                <a href="../tree/617.html">
+                <a href="617.html">
             
                     
                         <b>5.7.</b>
@@ -528,9 +528,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.8" data-path="../tree/112.html">
+        <li class="chapter " data-level="5.8" data-path="112.html">
             
-                <a href="../tree/112.html">
+                <a href="112.html">
             
                     
                         <b>5.8.</b>
@@ -766,9 +766,9 @@
         
         
     
-        <li class="chapter active" data-level="9.1" data-path="heap.html">
+        <li class="chapter " data-level="9.1" data-path="../sort/heap.html">
             
-                <a href="heap.html">
+                <a href="../sort/heap.html">
             
                     
                         <b>9.1.</b>
@@ -782,9 +782,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="9.1.1" data-path="heap/215.html">
+        <li class="chapter " data-level="9.1.1" data-path="../sort/heap/215.html">
             
-                <a href="heap/215.html">
+                <a href="../sort/heap/215.html">
             
                     
                         <b>9.1.1.</b>
@@ -818,9 +818,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="9.2.1" data-path="quick/75.html">
+        <li class="chapter " data-level="9.2.1" data-path="../sort/quick/75.html">
             
-                <a href="quick/75.html">
+                <a href="../sort/quick/75.html">
             
                     
                         <b>9.2.1.</b>
@@ -963,7 +963,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >堆排</a>
+        <a href=".." >二叉树的最大深度</a>
     </h1>
 </div>
 
@@ -978,27 +978,24 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x5806;&#x6392;&#x5E8F;">&#x5806;&#x6392;&#x5E8F;</h2>
-<ul>
-<li>&#x6700;&#x5927;&#x5806;<ul>
-<li>&#x8282;&#x70B9;&#x7684;&#x5143;&#x7D20;&#x90FD;&#x8981;&#x4E0D;&#x5C0F;&#x4E8E;&#x5176;&#x5B69;&#x5B50;</li>
-<li>&#x5E38;&#x7528;&#x4E0E;&#x5347;&#x5E8F;&#x6392;&#x5E8F;</li>
-</ul>
-</li>
-<li>&#x6700;&#x5C0F;&#x5806;&#xFF1A;<ul>
-<li>&#x8282;&#x70B9;&#x5143;&#x7D20;&#x90FD;&#x4E0D;&#x5927;&#x4E8E;&#x5176;&#x5DE6;&#x53F3;&#x5B69;&#x5B50;</li>
-<li>&#x5E38;&#x7528;&#x4E8E;&#x964D;&#x5E8F;&#x6392;&#x5E8F;</li>
-</ul>
-</li>
-</ul>
-<h3 id="&#x590D;&#x6742;&#x5EA6;">&#x590D;&#x6742;&#x5EA6;</h3>
-<h3 id="&#x8D44;&#x6599;">&#x8D44;&#x6599;</h3>
-<ul>
-<li><a href="https://www.cnblogs.com/chengxiao/p/6129630.html" target="_blank">&#x56FE;&#x89E3;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;(&#x4E09;)&#x4E4B;&#x5806;&#x6392;&#x5E8F;</a></li>
-<li><a href="https://www.cnblogs.com/0zcl/p/6737944.html" target="_blank">&#x5806;&#x6392;&#x5E8F;&#x8BE6;&#x89E3;</a> </li>
-</ul>
+                                <h2 id="104-&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;">104. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;</h2>
+<p><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+<h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
+<p>&#x9012;&#x5F52;&#x6C42;&#x89E3;~</p>
+<p>&#x53D6;&#x5DE6;&#x53F3;&#x5B50;&#x6811;&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#x503C; + 1&#xFF08;1 &#x4E3A;&#x5230; root &#x8282;&#x70B9;&#x7684;&#x6DF1;&#x5EA6;&#xFF09;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        :type root: TreeNode
+        :rtype: int
+        &quot;&quot;&quot;</span>
+        <span class="token keyword">if</span> root <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>maxDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>maxDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
+</code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-09-16 00:07:21
+2018-12-17 19:45:30
 </span></footer>
                                 
                                 </section>
@@ -1026,12 +1023,12 @@
 
             
                 
-                <a href="../enumeration/many_fish.html" class="navigation navigation-prev " aria-label="Previous page: 好多鱼！">
+                <a href="cn-687.html" class="navigation navigation-prev " aria-label="Previous page: 最长同值路径">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="heap/215.html" class="navigation navigation-next " aria-label="Next page: 215">
+                <a href="110.html" class="navigation navigation-next " aria-label="Next page: 平衡二叉树">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1042,7 +1039,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"堆排","level":"9.1","depth":1,"next":{"title":"215","level":"9.1.1","depth":2,"path":"sort/heap/215.md","ref":"sort/heap/215.md","articles":[]},"previous":{"title":"好多鱼！","level":"8.1","depth":1,"path":"enumeration/many_fish.md","ref":"enumeration/many_fish.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"sort/heap.md","mtime":"2018-09-15T16:07:21.102Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-17T14:08:47.582Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"二叉树的最大深度","level":"5.3","depth":1,"next":{"title":"平衡二叉树","level":"5.4","depth":1,"path":"tree/110.md","ref":"tree/110.md","articles":[]},"previous":{"title":"最长同值路径","level":"5.2","depth":1,"path":"tree/cn-687.md","ref":"tree/cn-687.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"tree/104.md","mtime":"2018-12-17T11:45:30.694Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-17T14:08:47.582Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

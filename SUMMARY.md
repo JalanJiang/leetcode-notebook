@@ -30,6 +30,12 @@
 
 * [对称二叉树](/tree/cn-101.md)
 * [最长同值路径](/tree/cn-687.md)
+* [二叉树的最大深度](/tree/104.md)
+* [平衡二叉树](/tree/110.md)
+* [二叉树的直径](/tree/543.md)
+* [翻转二叉树](/tree/226.md)
+* [合并二叉树](/tree/617.md)
+* [路径总和](/tree/112.md)
 
 ## 栈
 
@@ -71,40 +77,4 @@
 * [70](/dynamic/70.md)
 * [比特位计数](/dynamic/338.md)
     
-
-```
-
-#include<iostream>
-using namespace std;
- 
-int count(int n, int x) {
-    int res = 0, j;
-    for (int i = 1; j = n / i; i *= 10) {
-        int high = j / 10;
-        if (x == 0) {
-            if (high)
-                high--;
-            else
-                break;
-        }
-        res += high * i;
-        int tem = j % 10;
-        if (tem > x)
-            res += i;
-        else if (tem == x)
-            res += n - j * i + 1;
-    }
-    return res;
-}
- 
-int main(){
-    int n;
-    while (cin >> n){
-        cout << count(n, 0);
-        for (int i = 1; i <= 9; i++)
-            cout << " " << count(n, i);
-    }
-    return 0;
-}
-```
 
