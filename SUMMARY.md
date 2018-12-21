@@ -25,6 +25,8 @@
 ## 字符串
 
 * [循环单词](/string/loop_word.md)
+* [有效的字母异位词](/string/242.md)
+* [最长回文串](/string/409.md)
 
 ## 树
 
