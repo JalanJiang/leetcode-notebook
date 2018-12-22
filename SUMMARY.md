@@ -27,6 +27,10 @@
 * [循环单词](/string/loop_word.md)
 * [有效的字母异位词](/string/242.md)
 * [最长回文串](/string/409.md)
+* [同构字符串](/string/205.md)
+* [回文子串](/string/647.md)
+* [回文数](/string/9.md)
+* [计数二进制子串](/string/696.md)
 
 ## 树
 
