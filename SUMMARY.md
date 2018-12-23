@@ -21,6 +21,7 @@
 * [托普利茨矩阵](array/766.md)
 * [数组嵌套](array/565.md)
 * [最多能完成排序的块](array/769.md)
+* [缺失数字](/array/268.md)
 
 ## 字符串
 
@@ -96,3 +97,21 @@
 
 * [70](/dynamic/70.md)
 * [比特位计数](/dynamic/338.md)
+
+----
+
+# 字节跳动专题
+
+## 字符串
+
+* [无重复字符的最长子串](/byte_dance/string/3.md)
+* [最长公共前缀](/byte_dance/string/14.md)
+* [字符串的排列](/byte_dance/string/567.md)
+* [字符串相乘](/byte_dance/string/43.md)
+* [翻转字符串里的单词](/byte_dance/string/151.md)
+* [简化路径](/byte_dance/string/71.md)
+* [复原 ip 地址](/byte_dance/string/93.md)
+
+## 数字
+
+* [三数之和](/byte_dance/array/15.md)
