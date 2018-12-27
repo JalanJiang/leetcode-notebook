@@ -81,6 +81,11 @@
 * [分隔链表](/link_list/725.md)
 * [奇偶链表](/link_list/328.md)
 
+## 哈希表
+
+* [两数之和](/hash/1.md)
+* [存在重复元素](/hash/217.md)
+
 ## 枚举
 
 * [好多鱼！](/enumeration/many_fish.md)
