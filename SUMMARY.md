@@ -24,6 +24,7 @@
 * [缺失数字](/array/268.md)
 * [存在重复元素 II](/array/219.md)
 * [两数之和 II - 输入有序数组](/array/167.md)
+* [合并两个有序数组](/array/88.md)
 
 ## 字符串
 
@@ -35,6 +36,7 @@
 * [回文数](/string/9.md)
 * [计数二进制子串](/string/696.md)
 * [反转字符串中的元音字母](/string/345.md)
+* [验证回文字符串 Ⅱ](/string/680.md)
 
 ## 树
 
@@ -84,6 +86,7 @@
 * [分隔链表](/link_list/725.md)
 * [奇偶链表](/link_list/328.md)
 * [复制带随机指针的链表](/link_list/138.md)
+* [环形链表](/link_list/141.md)
 
 ## 哈希表
 
@@ -108,6 +111,8 @@
 * [深度优先]()
     * [39](/research/dfs/39.md)
     * [40](research/dfs/40.md)
+* [二分查找]()
+    * [x 的平方根](/research/binary_search/69.md)
 
 ## 动态规划
 
