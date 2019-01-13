@@ -128,6 +128,7 @@
 ## 剑指 offer 系列
 
 * [数组中重复的数字](/offer/array-repeat.md)
+* [二维数组中的查找](/offer/array-find-two-demen.md)
 * [顺时针打印数组](/offer/array-clockwise.md)
 
 ----
