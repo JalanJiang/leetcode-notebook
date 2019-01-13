@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>最小栈 · 算法学习与 LeetCode 刷题</title>
+        <title>数组中重复的数字 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="20.html" />
+    <link rel="next" href="array-clockwise.html" />
     
     
-    <link rel="prev" href="232.html" />
+    <link rel="prev" href="../math/633.html" />
     
 
     
@@ -958,9 +958,9 @@
         
         
     
-        <li class="chapter " data-level="6.1" data-path="cn-225.html">
+        <li class="chapter " data-level="6.1" data-path="../stack/cn-225.html">
             
-                <a href="cn-225.html">
+                <a href="../stack/cn-225.html">
             
                     
                         <b>6.1.</b>
@@ -973,9 +973,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.2" data-path="232.html">
+        <li class="chapter " data-level="6.2" data-path="../stack/232.html">
             
-                <a href="232.html">
+                <a href="../stack/232.html">
             
                     
                         <b>6.2.</b>
@@ -988,9 +988,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="6.3" data-path="155.html">
+        <li class="chapter " data-level="6.3" data-path="../stack/155.html">
             
-                <a href="155.html">
+                <a href="../stack/155.html">
             
                     
                         <b>6.3.</b>
@@ -1003,9 +1003,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.4" data-path="20.html">
+        <li class="chapter " data-level="6.4" data-path="../stack/20.html">
             
-                <a href="20.html">
+                <a href="../stack/20.html">
             
                     
                         <b>6.4.</b>
@@ -1018,9 +1018,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.5" data-path="739.html">
+        <li class="chapter " data-level="6.5" data-path="../stack/739.html">
             
-                <a href="739.html">
+                <a href="../stack/739.html">
             
                     
                         <b>6.5.</b>
@@ -1033,9 +1033,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.6" data-path="503.html">
+        <li class="chapter " data-level="6.6" data-path="../stack/503.html">
             
-                <a href="503.html">
+                <a href="../stack/503.html">
             
                     
                         <b>6.6.</b>
@@ -1578,9 +1578,9 @@
         
         
     
-        <li class="chapter " data-level="14.1" data-path="../offer/array-repeat.html">
+        <li class="chapter active" data-level="14.1" data-path="array-repeat.html">
             
-                <a href="../offer/array-repeat.html">
+                <a href="array-repeat.html">
             
                     
                         <b>14.1.</b>
@@ -1593,9 +1593,9 @@
             
         </li>
     
-        <li class="chapter " data-level="14.2" data-path="../offer/array-clockwise.html">
+        <li class="chapter " data-level="14.2" data-path="array-clockwise.html">
             
-                <a href="../offer/array-clockwise.html">
+                <a href="array-clockwise.html">
             
                     
                         <b>14.2.</b>
@@ -1807,7 +1807,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >最小栈</a>
+        <a href=".." >数组中重复的数字</a>
     </h1>
 </div>
 
@@ -1822,62 +1822,50 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="155-&#x6700;&#x5C0F;&#x6808;">155. &#x6700;&#x5C0F;&#x6808;</h2>
-<p><a href="https://leetcode-cn.com/problems/min-stack/submissions/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+                                <h2 id="&#x6570;&#x7EC4;&#x4E2D;&#x91CD;&#x590D;&#x7684;&#x6570;&#x5B57;">&#x6570;&#x7EC4;&#x4E2D;&#x91CD;&#x590D;&#x7684;&#x6570;&#x5B57;</h2>
+<p><a href="https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&amp;tqId=11203&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
 <h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
-<ul>
-<li>&#x6BCF;&#x6B21;&#x5165;&#x6808;&#x4E24;&#x4E2A;&#x503C;&#xFF1A;&#x5F53;&#x524D;&#x5165;&#x6808;&#x5143;&#x7D20;&#x3001;&#x6808;&#x5185;&#x6700;&#x5C0F;&#x503C;&#xFF0C;&#x4FDD;&#x8BC1;&#x6808;&#x5185;&#x6700;&#x5C0F;&#x503C;&#x6C38;&#x8FDC;&#x5728;&#x6808;&#x9876;</li>
-</ul>
-<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">MinStack</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        initialize your data structure here.
-        &quot;&quot;&quot;</span>
-        self<span class="token punctuation">.</span>stack <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-
-    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type x: int
-        :rtype: void
-        &quot;&quot;&quot;</span>
-        <span class="token keyword">if</span> self<span class="token punctuation">.</span>stack<span class="token punctuation">:</span>
-            top <span class="token operator">=</span> self<span class="token punctuation">.</span>stack<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>stack<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
-            <span class="token keyword">if</span> x <span class="token operator">&gt;</span> top<span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-                self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>top<span class="token punctuation">)</span>
+<p>&#x8981;&#x6C42; O(n) &#x590D;&#x6742;&#x5EA6;&#x548C; O(1) &#x7A7A;&#x95F4;&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x5728; <code>[0, n-1]</code> &#x8303;&#x56F4;&#x5185;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x503C;&#x4E3A; i &#x7684;&#x5143;&#x7D20;&#x8C03;&#x6574;&#x5230;&#x7B2C; i &#x4E2A;&#x4F4D;&#x7F6E;&#x4E0A;&#x3002;</p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># -*- coding:utf-8 -*-</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token comment"># &#x8FD9;&#x91CC;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;~&#x627E;&#x5230;&#x4EFB;&#x610F;&#x91CD;&#x590D;&#x7684;&#x4E00;&#x4E2A;&#x503C;&#x5E76;&#x8D4B;&#x503C;&#x5230;duplication[0]</span>
+    <span class="token comment"># &#x51FD;&#x6570;&#x8FD4;&#x56DE;True/False</span>
+    <span class="token keyword">def</span> <span class="token function">duplicate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> numbers<span class="token punctuation">,</span> duplication<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># write code here</span>
+        n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            a <span class="token operator">=</span> numbers<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            <span class="token keyword">if</span> a <span class="token operator">==</span> i<span class="token punctuation">:</span>
+                i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-                self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-            self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-
-
-    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :rtype: void
-        &quot;&quot;&quot;</span>
-        self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-
-    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :rtype: int
-        &quot;&quot;&quot;</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stack<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>stack<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span>
-
-
-    <span class="token keyword">def</span> <span class="token function">getMin</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :rtype: int
-        &quot;&quot;&quot;</span>
-        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stack<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>stack<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+                b <span class="token operator">=</span> numbers<span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+                <span class="token keyword">if</span> b <span class="token operator">==</span> a<span class="token punctuation">:</span>
+                    duplication<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> a
+                    <span class="token keyword">return</span> <span class="token boolean">True</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    numbers<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> b
+                    numbers<span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">=</span> a
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+</code></pre>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8003;&#x8651;&#x7A7A;&#x95F4;&#x60C5;&#x51B5;&#xFF0C;&#x53EF;&#x4EE5;&#x54C8;&#x5E0C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># -*- coding:utf-8 -*-</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token comment"># &#x8FD9;&#x91CC;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;~&#x627E;&#x5230;&#x4EFB;&#x610F;&#x91CD;&#x590D;&#x7684;&#x4E00;&#x4E2A;&#x503C;&#x5E76;&#x8D4B;&#x503C;&#x5230;duplication[0]</span>
+    <span class="token comment"># &#x51FD;&#x6570;&#x8FD4;&#x56DE;True/False</span>
+    <span class="token keyword">def</span> <span class="token function">duplicate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> numbers<span class="token punctuation">,</span> duplication<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># write code here</span>
+        tmp_dict <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> num <span class="token keyword">in</span> numbers<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> num <span class="token keyword">in</span> tmp_dict<span class="token punctuation">:</span>
+                duplication<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> num
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                tmp_dict<span class="token punctuation">[</span>num<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
 </code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-12-25 23:24:20
+2019-01-13 13:15:25
 </span></footer>
                                 
                                 </section>
@@ -1905,12 +1893,12 @@
 
             
                 
-                <a href="232.html" class="navigation navigation-prev " aria-label="Previous page: 用栈实现队列">
+                <a href="../math/633.html" class="navigation navigation-prev " aria-label="Previous page: 平方数之和">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="20.html" class="navigation navigation-next " aria-label="Next page: 有效的括号">
+                <a href="array-clockwise.html" class="navigation navigation-next " aria-label="Next page: 顺时针打印数组">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1921,7 +1909,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"最小栈","level":"6.3","depth":1,"next":{"title":"有效的括号","level":"6.4","depth":1,"path":"stack/20.md","ref":"stack/20.md","articles":[]},"previous":{"title":"用栈实现队列","level":"6.2","depth":1,"path":"stack/232.md","ref":"stack/232.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"stack/155.md","mtime":"2018-12-25T15:24:20.900Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-13T05:15:41.934Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"数组中重复的数字","level":"14.1","depth":1,"next":{"title":"顺时针打印数组","level":"14.2","depth":1,"path":"offer/array-clockwise.md","ref":"offer/array-clockwise.md","articles":[]},"previous":{"title":"平方数之和","level":"13.1","depth":1,"path":"math/633.md","ref":"math/633.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"offer/array-repeat.md","mtime":"2019-01-13T05:15:25.619Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-13T05:15:41.934Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
