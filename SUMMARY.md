@@ -131,6 +131,7 @@
 * [二维数组中的查找](/offer/array-find-two-demen.md)
 * [顺时针打印数组](/offer/array-clockwise.md)
 * [替换空格](/offer/string-move-space.md)
+* [从尾到头打印链表](/offer/link-reverse-print.md)
 
 ----
 
