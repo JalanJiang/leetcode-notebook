@@ -25,6 +25,7 @@
 * [存在重复元素 II](/array/219.md)
 * [两数之和 II - 输入有序数组](/array/167.md)
 * [合并两个有序数组](/array/88.md)
+* [搜索旋转排序数组](/array/33.md)
 
 ## 字符串
 
@@ -132,6 +133,7 @@
 * [顺时针打印数组](/offer/array-clockwise.md)
 * [替换空格](/offer/string-move-space.md)
 * [从尾到头打印链表](/offer/link-reverse-print.md)
+* [二叉树的下一个节点](/offer/tree-sequential-traversal-next-node.md)
 
 ----
 
