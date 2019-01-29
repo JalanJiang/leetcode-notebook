@@ -11,4 +11,5 @@
 # Acknowledgments
 
 - [LeetCode 中国](https://leetcode-cn.com/)
-- 陪我一起变厉害的 [Csming](https://csming1995.github.io/)
+- 陪我一起披荆斩棘的 [Csming](https://csming1995.github.io/)
+- 陪我一起喝酒吃肉的 [mymmon](https://segmentfault.com/u/mymmon)
