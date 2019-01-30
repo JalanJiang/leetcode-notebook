@@ -135,6 +135,7 @@
 * [替换空格](/offer/string-move-space.md)
 * [从尾到头打印链表](/offer/link-reverse-print.md)
 * [二叉树的下一个节点](/offer/tree-sequential-traversal-next-node.md)
+* [旋转数组的最小数字](/offer/array-find-two-demen.md)
 
 ----
 
