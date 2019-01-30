@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>堆排 · 算法学习与 LeetCode 刷题</title>
+        <title>旋转数组的最小数字 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="heap/215.html" />
     
-    
-    <link rel="prev" href="../enumeration/many_fish.html" />
+    <link rel="prev" href="tree-sequential-traversal-next-node.html" />
     
 
     
@@ -1376,9 +1374,9 @@
         
         
     
-        <li class="chapter active" data-level="10.1" data-path="heap.html">
+        <li class="chapter " data-level="10.1" data-path="../sort/heap.html">
             
-                <a href="heap.html">
+                <a href="../sort/heap.html">
             
                     
                         <b>10.1.</b>
@@ -1392,9 +1390,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="10.1.1" data-path="heap/215.html">
+        <li class="chapter " data-level="10.1.1" data-path="../sort/heap/215.html">
             
-                <a href="heap/215.html">
+                <a href="../sort/heap/215.html">
             
                     
                         <b>10.1.1.</b>
@@ -1428,9 +1426,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="10.2.1" data-path="quick/75.html">
+        <li class="chapter " data-level="10.2.1" data-path="../sort/quick/75.html">
             
-                <a href="quick/75.html">
+                <a href="../sort/quick/75.html">
             
                     
                         <b>10.2.1.</b>
@@ -1608,9 +1606,9 @@
         
         
     
-        <li class="chapter " data-level="14.1" data-path="../offer/array-repeat.html">
+        <li class="chapter " data-level="14.1" data-path="array-repeat.html">
             
-                <a href="../offer/array-repeat.html">
+                <a href="array-repeat.html">
             
                     
                         <b>14.1.</b>
@@ -1623,9 +1621,9 @@
             
         </li>
     
-        <li class="chapter " data-level="14.2" data-path="../offer/array-find-two-demen.html">
+        <li class="chapter " data-level="14.2" data-path="array-find-two-demen.html">
             
-                <a href="../offer/array-find-two-demen.html">
+                <a href="array-find-two-demen.html">
             
                     
                         <b>14.2.</b>
@@ -1638,9 +1636,9 @@
             
         </li>
     
-        <li class="chapter " data-level="14.3" data-path="../offer/array-clockwise.html">
+        <li class="chapter " data-level="14.3" data-path="array-clockwise.html">
             
-                <a href="../offer/array-clockwise.html">
+                <a href="array-clockwise.html">
             
                     
                         <b>14.3.</b>
@@ -1653,9 +1651,9 @@
             
         </li>
     
-        <li class="chapter " data-level="14.4" data-path="../offer/string-move-space.html">
+        <li class="chapter " data-level="14.4" data-path="string-move-space.html">
             
-                <a href="../offer/string-move-space.html">
+                <a href="string-move-space.html">
             
                     
                         <b>14.4.</b>
@@ -1668,9 +1666,9 @@
             
         </li>
     
-        <li class="chapter " data-level="14.5" data-path="../offer/link-reverse-print.html">
+        <li class="chapter " data-level="14.5" data-path="link-reverse-print.html">
             
-                <a href="../offer/link-reverse-print.html">
+                <a href="link-reverse-print.html">
             
                     
                         <b>14.5.</b>
@@ -1683,9 +1681,9 @@
             
         </li>
     
-        <li class="chapter " data-level="14.6" data-path="../offer/tree-sequential-traversal-next-node.html">
+        <li class="chapter " data-level="14.6" data-path="tree-sequential-traversal-next-node.html">
             
-                <a href="../offer/tree-sequential-traversal-next-node.html">
+                <a href="tree-sequential-traversal-next-node.html">
             
                     
                         <b>14.6.</b>
@@ -1698,9 +1696,9 @@
             
         </li>
     
-        <li class="chapter " data-level="14.7" data-path="../offer/array-rotate-min-num.html">
+        <li class="chapter active" data-level="14.7" data-path="array-rotate-min-num.html">
             
-                <a href="../offer/array-rotate-min-num.html">
+                <a href="array-rotate-min-num.html">
             
                     
                         <b>14.7.</b>
@@ -1955,7 +1953,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >堆排</a>
+        <a href=".." >旋转数组的最小数字</a>
     </h1>
 </div>
 
@@ -1970,27 +1968,30 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x5806;&#x6392;&#x5E8F;">&#x5806;&#x6392;&#x5E8F;</h2>
-<ul>
-<li>&#x6700;&#x5927;&#x5806;<ul>
-<li>&#x8282;&#x70B9;&#x7684;&#x5143;&#x7D20;&#x90FD;&#x8981;&#x4E0D;&#x5C0F;&#x4E8E;&#x5176;&#x5B69;&#x5B50;</li>
-<li>&#x5E38;&#x7528;&#x4E0E;&#x5347;&#x5E8F;&#x6392;&#x5E8F;</li>
-</ul>
-</li>
-<li>&#x6700;&#x5C0F;&#x5806;&#xFF1A;<ul>
-<li>&#x8282;&#x70B9;&#x5143;&#x7D20;&#x90FD;&#x4E0D;&#x5927;&#x4E8E;&#x5176;&#x5DE6;&#x53F3;&#x5B69;&#x5B50;</li>
-<li>&#x5E38;&#x7528;&#x4E8E;&#x964D;&#x5E8F;&#x6392;&#x5E8F;</li>
-</ul>
-</li>
-</ul>
-<h3 id="&#x590D;&#x6742;&#x5EA6;">&#x590D;&#x6742;&#x5EA6;</h3>
-<h3 id="&#x8D44;&#x6599;">&#x8D44;&#x6599;</h3>
-<ul>
-<li><a href="https://www.cnblogs.com/chengxiao/p/6129630.html" target="_blank">&#x56FE;&#x89E3;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;(&#x4E09;)&#x4E4B;&#x5806;&#x6392;&#x5E8F;</a></li>
-<li><a href="https://www.cnblogs.com/0zcl/p/6737944.html" target="_blank">&#x5806;&#x6392;&#x5E8F;&#x8BE6;&#x89E3;</a> </li>
-</ul>
+                                <h2 id="&#x65CB;&#x8F6C;&#x6570;&#x7EC4;&#x7684;&#x6700;&#x5C0F;&#x6570;&#x5B57;">&#x65CB;&#x8F6C;&#x6570;&#x7EC4;&#x7684;&#x6700;&#x5C0F;&#x6570;&#x5B57;</h2>
+<p><a href="https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&amp;tqId=11159&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+<h2 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h2>
+<p>&#x4E8C;&#x5206;&#x6CD5;&#xFF1A;</p>
+<pre class="language-"><code class="lang-python"><span class="token comment"># -*- coding:utf-8 -*-</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">minNumberInRotateArray</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> rotateArray<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># write code here</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>rotateArray<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+
+        l <span class="token operator">=</span> <span class="token number">0</span>
+        r <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>rotateArray<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+
+        <span class="token keyword">while</span> l <span class="token operator">&lt;</span> r<span class="token punctuation">:</span>
+            mid <span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">+</span> r<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+            <span class="token keyword">if</span> rotateArray<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> rotateArray<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                r <span class="token operator">=</span> mid
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                l <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> rotateArray<span class="token punctuation">[</span>l<span class="token punctuation">]</span>
+</code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-09-16 00:07:21
+2019-01-30 20:59:56
 </span></footer>
                                 
                                 </section>
@@ -2018,14 +2019,10 @@
 
             
                 
-                <a href="../enumeration/many_fish.html" class="navigation navigation-prev " aria-label="Previous page: 好多鱼！">
+                <a href="tree-sequential-traversal-next-node.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 二叉树的下一个节点">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="heap/215.html" class="navigation navigation-next " aria-label="Next page: 数组中的第K个最大元素">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -2034,7 +2031,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"堆排","level":"10.1","depth":1,"next":{"title":"数组中的第K个最大元素","level":"10.1.1","depth":2,"path":"sort/heap/215.md","ref":"sort/heap/215.md","articles":[]},"previous":{"title":"好多鱼！","level":"9.1","depth":1,"path":"enumeration/many_fish.md","ref":"enumeration/many_fish.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"sort/heap.md","mtime":"2018-09-15T16:07:21.102Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-30T13:38:35.081Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"旋转数组的最小数字","level":"14.7","depth":1,"next":{"title":"第 121 场周赛","level":"15.1","depth":1,"ref":"","articles":[{"title":"不含 AAA 或 BBB 的字符串","level":"15.1.1","depth":2,"path":"weekly/984.md","ref":"weekly/984.md","articles":[]}]},"previous":{"title":"二叉树的下一个节点","level":"14.6","depth":1,"path":"offer/tree-sequential-traversal-next-node.md","ref":"offer/tree-sequential-traversal-next-node.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"offer/array-rotate-min-num.md","mtime":"2019-01-30T12:59:56.272Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-30T13:38:35.081Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
