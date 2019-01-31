@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>39 · 算法学习与 LeetCode 刷题</title>
+        <title>删除链表中的节点 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -78,8 +78,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
-    
-    <link rel="next" href="40.html" />
     
     
 
@@ -1469,9 +1467,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="11.1.1" data-path="39.html">
+        <li class="chapter " data-level="11.1.1" data-path="../../research/dfs/39.html">
             
-                <a href="39.html">
+                <a href="../../research/dfs/39.html">
             
                     
                         <b>11.1.1.</b>
@@ -1484,9 +1482,9 @@
             
         </li>
     
-        <li class="chapter " data-level="11.1.2" data-path="40.html">
+        <li class="chapter " data-level="11.1.2" data-path="../../research/dfs/40.html">
             
-                <a href="40.html">
+                <a href="../../research/dfs/40.html">
             
                     
                         <b>11.1.2.</b>
@@ -1520,9 +1518,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="11.2.1" data-path="../binary_search/69.html">
+        <li class="chapter " data-level="11.2.1" data-path="../../research/binary_search/69.html">
             
-                <a href="../binary_search/69.html">
+                <a href="../../research/binary_search/69.html">
             
                     
                         <b>11.2.1.</b>
@@ -1749,9 +1747,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="15.1.1" data-path="../../primary/link/237.html">
+        <li class="chapter active" data-level="15.1.1" data-path="237.html">
             
-                <a href="../../primary/link/237.html">
+                <a href="237.html">
             
                     
                         <b>15.1.1.</b>
@@ -2011,7 +2009,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >39</a>
+        <a href="../.." >删除链表中的节点</a>
     </h1>
 </div>
 
@@ -2026,55 +2024,31 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="39-combination-sum">39. Combination Sum</h2>
-<p><a href="https://leetcode.com/problems/combination-sum/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
-<h3 id="&#x9898;&#x76EE;">&#x9898;&#x76EE;</h3>
-<p>Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.</p>
-<p>The same repeated number may be chosen from candidates unlimited number of times.</p>
-<p>Note:</p>
+                                <h2 id="237-&#x5220;&#x9664;&#x94FE;&#x8868;&#x4E2D;&#x7684;&#x8282;&#x70B9;">237. &#x5220;&#x9664;&#x94FE;&#x8868;&#x4E2D;&#x7684;&#x8282;&#x70B9;</h2>
+<p><a href="https://leetcode-cn.com/explore/featured/card/top-interview-questions-easy/6/linked-list/41/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+<h2 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h2>
 <ul>
-<li>All numbers (including target) will be positive integers.</li>
-<li>The solution set must not contain duplicate combinations.</li>
+<li>&#x9898;&#x76EE;&#x7ED9;&#x51FA;&#x7684; node &#x5C31;&#x662F;&#x9700;&#x8981;&#x5220;&#x9664;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x8003;&#x8651;&#x6709;&#x6CA1;&#x6709; head</li>
+<li>&#x628A;&#x4E0B;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x503C;&#x8D4B;&#x7ED9; node</li>
+<li>&#x628A; node &#x6307;&#x5411; node &#x7684;&#x4E0B;&#x4E0B;&#x4E2A;&#x8282;&#x70B9;</li>
 </ul>
-<p>Example 1:</p>
-<pre class="language-"><code>Input: candidates = [2,3,6,7], target = 7,
-A solution set is:
-[
-  [7],
-  [2,2,3]
-]
-</code></pre><p>Example 2:</p>
-<pre class="language-"><code>Input: candidates = [2,3,5], target = 8,
-A solution set is:
-[
-  [2,2,2,2],
-  [2,3,3],
-  [3,5]
-]
-</code></pre><h2 id="python">Python</h2>
-<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">combinationSum</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> candidates<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type candidates: List[int]
-        :type target: int
-        :rtype: List[List[int]]
-        &quot;&quot;&quot;</span>
-        res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        candidates<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>dfs<span class="token punctuation">(</span>target<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> candidates<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> res
+<pre class="language-"><code class="lang-python"><span class="token comment"># Definition for singly-linked list.</span>
+<span class="token comment"># class ListNode(object):</span>
+<span class="token comment">#     def __init__(self, x):</span>
+<span class="token comment">#         self.val = x</span>
+<span class="token comment">#         self.next = None</span>
 
-    <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> target<span class="token punctuation">,</span> index<span class="token punctuation">,</span> tmp_list<span class="token punctuation">,</span> res<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> target <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span>
-        <span class="token keyword">if</span> target <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>tmp_list<span class="token punctuation">)</span>
-            <span class="token keyword">return</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">xrange</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>dfs<span class="token punctuation">(</span>target <span class="token operator">-</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> tmp_list <span class="token operator">+</span> <span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> nums<span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">deleteNode</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        &quot;&quot;&quot;</span>
+        node<span class="token punctuation">.</span>val <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span>val
+        node<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">.</span><span class="token builtin">next</span>
 </code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2018-09-16 18:00:49
+2019-01-31 15:05:54
 </span></footer>
                                 
                                 </section>
@@ -2103,10 +2077,6 @@ A solution set is:
             
                 
                 
-                <a href="40.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 40">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
             
         
     </div>
@@ -2114,7 +2084,7 @@ A solution set is:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"39","level":"11.1.1","depth":2,"next":{"title":"40","level":"11.1.2","depth":2,"path":"research/dfs/40.md","ref":"research/dfs/40.md","articles":[]},"previous":{"title":"深度优先","level":"11.1","depth":1,"ref":"","articles":[{"title":"39","level":"11.1.1","depth":2,"path":"research/dfs/39.md","ref":"research/dfs/39.md","articles":[]},{"title":"40","level":"11.1.2","depth":2,"path":"research/dfs/40.md","ref":"research/dfs/40.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"research/dfs/39.md","mtime":"2018-09-16T10:00:49.290Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-31T07:10:20.936Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"删除链表中的节点","level":"15.1.1","depth":2,"next":{"title":"第 121 场周赛","level":"16.1","depth":1,"ref":"","articles":[{"title":"不含 AAA 或 BBB 的字符串","level":"16.1.1","depth":2,"path":"weekly/984.md","ref":"weekly/984.md","articles":[]}]},"previous":{"title":"链表","level":"15.1","depth":1,"ref":"","articles":[{"title":"删除链表中的节点","level":"15.1.1","depth":2,"path":"primary/link/237.md","ref":"primary/link/237.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/laravel5.6-notes/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Laravel 学习点滴记录","extension":""},"file":{"path":"primary/link/237.md","mtime":"2019-01-31T07:05:54.031Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-31T07:10:20.936Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
