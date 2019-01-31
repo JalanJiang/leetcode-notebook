@@ -136,7 +136,7 @@
 * [从尾到头打印链表](/offer/link-reverse-print.md)
 * [二叉树的下一个节点](/offer/tree-sequential-traversal-next-node.md)
 * [旋转数组的最小数字](/offer/array-rotate-min-num.md)
-* [矩阵中的路径](/offer/array-find-two-demen.md)
+* [矩阵中的路径](/offer/array-search-words.md)
 
 ----
 
