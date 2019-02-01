@@ -137,6 +137,7 @@
 * [二叉树的下一个节点](/offer/tree-sequential-traversal-next-node.md)
 * [旋转数组的最小数字](/offer/array-rotate-min-num.md)
 * [矩阵中的路径](/offer/array-search-words.md)
+* [剪绳子](/offer/cut-rope.md)
 
 ----
 
