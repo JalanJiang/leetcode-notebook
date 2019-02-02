@@ -139,6 +139,8 @@
 * [旋转数组的最小数字](/offer/array-rotate-min-num.md)
 * [矩阵中的路径](/offer/array-search-words.md)
 * [剪绳子](/offer/cut-rope.md)
+* [二进制中 1 的个数](/offer/one-of-binary.md)
+* [数值的整数次方](/offer/num-pow.md)
 
 ----
 
