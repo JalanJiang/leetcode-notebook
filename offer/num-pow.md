@@ -1,6 +1,7 @@
 ## 数值的整数次方
 
 [原题链接](https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&tqId=11165&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+[leetcode](https://leetcode-cn.com/problems/powx-n/submissions/)
 
 ## 思路
 
