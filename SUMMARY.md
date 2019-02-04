@@ -142,6 +142,7 @@
 * [二进制中 1 的个数](/offer/one-of-binary.md)
 * [数值的整数次方](/offer/num-pow.md)
 * [树的子结构](/offer/is-subtree.md)
+* [二叉树的镜像](/offer/is-mirror-tree.md)
 
 ----
 
