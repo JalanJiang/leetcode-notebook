@@ -3,6 +3,7 @@
 - LeetCode 刷题记录
 - 人生苦短，我用 Python
 - 愿所有的热爱都能一直长久地燃烧下去
+- 我的 [Leetcode 主页](https://leetcode-cn.com/jalan/)
 
 # Built With
 
