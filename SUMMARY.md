@@ -1,6 +1,6 @@
 # Summary
 
-* [Introduction](README.md)
+* [简介](README.md)
 
 ## 动态规划
 
@@ -143,6 +143,7 @@
 * [数值的整数次方](/offer/num-pow.md)
 * [树的子结构](/offer/is-subtree.md)
 * [二叉树的镜像](/offer/is-mirror-tree.md)
+* [从上往下打印二叉树](/offer/tree-bfs.md)
 
 ----
 
