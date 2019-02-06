@@ -145,6 +145,9 @@
 * [树的子结构](/offer/is-subtree.md)
 * [二叉树的镜像](/offer/is-mirror-tree.md)
 * [从上往下打印二叉树](/offer/tree-bfs.md)
+* [二叉树的深度](/offer/tree-depth.md)
+* [两个链表的第一个公共节点](/offer/link-public-node.md)
+* [对称的二叉树](/offer/tree-is-sym.md)
 
 ----
 
