@@ -148,6 +148,7 @@
 * [二叉树的深度](/offer/tree-depth.md)
 * [两个链表的第一个公共节点](/offer/link-public-node.md)
 * [对称的二叉树](/offer/tree-is-sym.md)
+* [把二叉树打印成多行](/offer/tree-bfs-print.md)
 
 ----
 
