@@ -155,6 +155,7 @@
 * [把二叉树打印成多行](/offer/tree-bfs-print.md)
 * [最小的 K 个数](/offer/sort-min-kth.md)
 * [复杂链表的复制](/offer/link-copy-random.md)
+* [字符串的排列](/offer/string-permutation.md)
 
 ----
 
