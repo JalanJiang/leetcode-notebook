@@ -154,6 +154,7 @@
 * [对称的二叉树](/offer/tree-is-sym.md)
 * [把二叉树打印成多行](/offer/tree-bfs-print.md)
 * [最小的 K 个数](/offer/sort-min-kth.md)
+* [复杂链表的复制](/offer/link-copy-random.md)
 
 ----
 
