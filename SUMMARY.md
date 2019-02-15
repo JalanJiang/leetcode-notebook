@@ -156,6 +156,7 @@
 * [最小的 K 个数](/offer/sort-min-kth.md)
 * [复杂链表的复制](/offer/link-copy-random.md)
 * [字符串的排列](/offer/string-permutation.md)
+* [二叉搜索树的后序遍历序列](/offer/tree-squence-of-bst.md)
 
 ----
 

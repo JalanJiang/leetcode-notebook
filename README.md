@@ -1,4 +1,4 @@
-<p align="center"><img width="100px" src="https://static.leetcode-cn.com/cn-legacy-assets/images/LeetCode_Cup.png"></p>
+<p align="center"><img width="100px" src="https://www.easyicon.net/api/resizeApi.php?id=1141865&size=128"></p>
 
 ## LeetCode Notebook
 

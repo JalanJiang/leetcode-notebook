@@ -56,7 +56,7 @@
       }]
     },
     "sitemap-general": {
-      "prefix": "http://jalan.space/laravel5.6-notes/"
+      "prefix": "http://jalan.space/leetcode-notebook/"
     },
     "favicon": {
       "shortcut": "favicon.ico",
