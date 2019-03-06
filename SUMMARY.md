@@ -40,6 +40,7 @@
 * [罗马数字转整数](/string/13.md)
 * [最后一个单词的长度](/string/58.md)
 * [重复的子字符串](/string/459.md)
+* [实现strStr()](/string/28.md)
 
 ## 树
 
