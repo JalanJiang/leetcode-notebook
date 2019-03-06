@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cd85f845-9b0f-4a56-be99-479a9fa983f8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dynamic/53.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/string/58.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/167.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/167.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/219.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/219.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/240.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/240.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/268.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/268.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/283.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/283.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/287.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/287.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/33.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/33.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/378.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/378.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/485.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/485.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/565.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/565.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/566.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/566.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/645.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/645.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/667.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/667.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/697.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/697.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/766.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/766.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/769.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/769.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/80.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/80.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/88.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/88.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/cn-121.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/cn-121.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/cn-26.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/cn-26.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/array/cn-27.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/cn-27.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/array/15.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/array/15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/string/14.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/string/14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/string/151.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/string/151.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/string/3.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/string/3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/string/43.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/string/43.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/string/567.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/string/567.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/string/71.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/string/71.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/byte_dance/string/93.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/byte_dance/string/93.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/dynamic/338.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/dynamic/338.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/dynamic/70.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/dynamic/70.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/enumeration/many_fish.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/enumeration/many_fish.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/greedy/122.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/greedy/122.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/hash/1.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/hash/1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/hash/128.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/hash/128.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/hash/217.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/hash/217.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/hash/594.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/hash/594.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/138.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/138.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/141.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/141.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/160.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/160.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/19.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/206.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/206.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/21.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/21.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/234.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/234.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/24.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/24.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/328.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/328.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/445.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/445.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/725.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/725.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/83.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/83.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/link_list/cn-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/cn-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/math/633.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/math/633.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/array-appear-once.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/array-appear-once.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/array-clockwise.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/array-clockwise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/array-find-two-demen.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/array-find-two-demen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/array-odd-even.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/array-odd-even.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/array-repeat.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/array-repeat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/array-rotate-min-num.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/array-rotate-min-num.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/array-search-words.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/array-search-words.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/cut-rope.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/cut-rope.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/is-mirror-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/is-mirror-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/is-subtree.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/is-subtree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/link-copy-random.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/link-copy-random.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/link-public-node.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/link-public-node.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/link-reverse-print.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/link-reverse-print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/num-pow.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/num-pow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/one-of-binary.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/one-of-binary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/sort-min-kth.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/sort-min-kth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/string-move-space.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/string-move-space.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/string-permutation.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/string-permutation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-balance-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-balance-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-bfs-print.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-bfs-print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-bfs.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-bfs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-build.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-build.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-depth.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-depth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-is-sym.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-is-sym.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-sequential-traversal-next-node.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-sequential-traversal-next-node.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/offer/tree-squence-of-bst.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/offer/tree-squence-of-bst.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/primary/link/237.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/primary/link/237.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/research/binary_search/69.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/research/binary_search/69.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/research/dfs/39.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/research/dfs/39.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/research/dfs/40.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/research/dfs/40.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/search_index.json" beforeDir="false" afterPath="$PROJECT_DIR$/_book/search_index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sitemap.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/sort/heap.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sort/heap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/sort/heap/215.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sort/heap/215.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/sort/quick/75.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sort/quick/75.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/stack/155.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/stack/155.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/stack/20.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/stack/20.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/stack/232.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/stack/232.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/stack/503.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/stack/503.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/stack/739.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/stack/739.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/stack/cn-225.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/stack/cn-225.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/13.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/205.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/205.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/242.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/242.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/345.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/345.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/409.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/409.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/647.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/647.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/680.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/680.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/696.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/696.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/9.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/string/loop_word.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/string/loop_word.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/104.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/104.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/110.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/110.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/111.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/111.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/112.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/112.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/144.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/144.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/145.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/145.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/226.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/226.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/337.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/337.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/437.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/437.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/513.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/513.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/543.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/543.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/617.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/617.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/637.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/637.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/671.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/671.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/94.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/94.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/98.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/98.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/cn-101.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/cn-101.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/tree/cn-687.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/tree/cn-687.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/121/984.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/121/984.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/122.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/122.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/122/985.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/122/985.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/122/986.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/122/986.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/122/988.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/122/988.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/124.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/124.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/124/993.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/124/993.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_book/weekly/124/994.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/weekly/124/994.html" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SUMMARY.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="1296">
+                <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/string/58.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor>
+                <caret column="16" selection-start-column="7" selection-end-column="16" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dynamic/53.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="513">
+                <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/divide/53.md" />
+        <option value="$PROJECT_DIR$/string/58.md" />
+        <option value="$PROJECT_DIR$/dynamic/53.md" />
+        <option value="$PROJECT_DIR$/SUMMARY.md" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="963" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="leetcode-notebook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leetcode-notebook" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leetcode-notebook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leetcode-notebook" type="462c0819:PsiDirectoryNode" />
+              <item name="string" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dynamic" />
+      <recent name="$PROJECT_DIR$/divide" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd85f845-9b0f-4a56-be99-479a9fa983f8" name="Default Changelist" comment="" />
+      <created>1551850487588</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551850487588</updated>
+      <workItem from="1551850490187" duration="905000" />
+      <workItem from="1551855568965" duration="1505000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2410000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="963" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20940171" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/dynamic/53.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="513">
+            <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/string/58.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="16" selection-start-column="7" selection-end-column="16" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SUMMARY.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1296">
+            <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
