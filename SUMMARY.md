@@ -124,6 +124,7 @@
 * [爬楼梯](/dynamic/70.md)
 * [比特位计数](/dynamic/338.md)
 * [最大子序和](/dynamic/53.md)
+* [最长回文子串](/dynamic/5.md)
 
 ## 贪心
 
