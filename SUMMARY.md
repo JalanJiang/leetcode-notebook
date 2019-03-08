@@ -164,6 +164,7 @@
 * [二叉搜索树的后序遍历序列](/offer/tree-squence-of-bst.md)
 * [平衡二叉树](/offer/tree-balance-tree.md)
 * [数组中只出现一次的数字](/offer/array-appear-once.md)
+* [栈的压入、弹出序列](/offer/stack-append-pop.md)
 
 ----
 
