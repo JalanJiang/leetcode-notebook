@@ -134,40 +134,6 @@
 
 * [平方数之和](/math/633.md)
 
-----
-
-## 剑指 offer 系列
-
-* [数组中重复的数字](/offer/array-repeat.md)
-* [二维数组中的查找](/offer/array-find-two-demen.md)
-* [顺时针打印数组](/offer/array-clockwise.md)
-* [替换空格](/offer/string-move-space.md)
-* [从尾到头打印链表](/offer/link-reverse-print.md)
-* [重建二叉树](/offer/tree-build.md)
-* [二叉树的下一个节点](/offer/tree-sequential-traversal-next-node.md)
-* [旋转数组的最小数字](/offer/array-rotate-min-num.md)
-* [矩阵中的路径](/offer/array-search-words.md)
-* [剪绳子](/offer/cut-rope.md)
-* [二进制中 1 的个数](/offer/one-of-binary.md)
-* [数值的整数次方](/offer/num-pow.md)
-* [调整数组顺序使奇数位于偶数前面](/offer/array-odd-even.md)
-* [树的子结构](/offer/is-subtree.md)
-* [二叉树的镜像](/offer/is-mirror-tree.md)
-* [从上往下打印二叉树](/offer/tree-bfs.md)
-* [二叉树的深度](/offer/tree-depth.md)
-* [两个链表的第一个公共节点](/offer/link-public-node.md)
-* [对称的二叉树](/offer/tree-is-sym.md)
-* [把二叉树打印成多行](/offer/tree-bfs-print.md)
-* [最小的 K 个数](/offer/sort-min-kth.md)
-* [复杂链表的复制](/offer/link-copy-random.md)
-* [字符串的排列](/offer/string-permutation.md)
-* [二叉搜索树的后序遍历序列](/offer/tree-squence-of-bst.md)
-* [平衡二叉树](/offer/tree-balance-tree.md)
-* [数组中只出现一次的数字](/offer/array-appear-once.md)
-* [栈的压入、弹出序列](/offer/stack-append-pop.md)
-
-----
-
 ## 初级算法专题
 
 * 链表
