@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd85f845-9b0f-4a56-be99-479a9fa983f8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dynamic/152.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/SUMMARY.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +17,8 @@
         <entry file="file://$PROJECT_DIR$/SUMMARY.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-80">
-                <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
+              <first_editor relative-caret-position="375">
+                <caret line="127" column="27" selection-start-line="127" selection-start-column="27" selection-end-line="127" selection-end-column="27" />
               </first_editor>
               <second_editor />
             </state>
@@ -25,11 +26,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/offer/stack-append-pop.md">
+        <entry file="file://$PROJECT_DIR$/dynamic/152.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="702">
-                <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+              <first_editor>
+                <caret column="15" lean-forward="true" selection-start-column="8" selection-end-column="15" />
               </first_editor>
               <second_editor />
             </state>
@@ -146,14 +147,14 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/special/2018_interview/136.md" />
         <option value="$PROJECT_DIR$/offer/stack-append-pop.md" />
+        <option value="$PROJECT_DIR$/dynamic/152.md" />
         <option value="$PROJECT_DIR$/SUMMARY.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
-    <option name="height" value="963" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -170,7 +171,7 @@
             <path>
               <item name="leetcode-notebook" type="b2602c69:ProjectViewProjectNode" />
               <item name="leetcode-notebook" type="462c0819:PsiDirectoryNode" />
-              <item name="primary" type="462c0819:PsiDirectoryNode" />
+              <item name="dynamic" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -214,15 +215,15 @@
       <updated>1551850487588</updated>
       <workItem from="1551850490187" duration="905000" />
       <workItem from="1551855568965" duration="11555000" />
-      <workItem from="1552141249667" duration="560000" />
+      <workItem from="1552141249667" duration="1114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13020000" />
+    <option name="totallyTimeSpent" value="13574000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16788767" />
@@ -337,11 +338,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dynamic/152.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="15" lean-forward="true" selection-start-column="8" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SUMMARY.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-80">
-            <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
+          <first_editor relative-caret-position="375">
+            <caret line="127" column="27" selection-start-line="127" selection-start-column="27" selection-end-line="127" selection-end-column="27" />
           </first_editor>
           <second_editor />
         </state>
