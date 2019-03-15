@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd85f845-9b0f-4a56-be99-479a9fa983f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/array/189.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/189.md" beforeDir="false" afterPath="$PROJECT_DIR$/array/189.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,24 +12,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SUMMARY.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="695">
-                <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+              <first_editor relative-caret-position="-3254">
+                <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/array/189.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor>
-                <caret column="8" selection-start-column="8" selection-end-column="12" />
+              <first_editor relative-caret-position="55">
+                <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
               </first_editor>
               <second_editor />
             </state>
@@ -149,8 +148,8 @@
         <option value="$PROJECT_DIR$/offer/stack-append-pop.md" />
         <option value="$PROJECT_DIR$/dynamic/152.md" />
         <option value="$PROJECT_DIR$/array/169.md" />
-        <option value="$PROJECT_DIR$/array/189.md" />
         <option value="$PROJECT_DIR$/SUMMARY.md" />
+        <option value="$PROJECT_DIR$/array/189.md" />
       </list>
     </option>
   </component>
@@ -218,12 +217,12 @@
       <updated>1551850487588</updated>
       <workItem from="1551850490187" duration="905000" />
       <workItem from="1551855568965" duration="11555000" />
-      <workItem from="1552141249667" duration="4849000" />
+      <workItem from="1552141249667" duration="4962000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17309000" />
+    <option name="totallyTimeSpent" value="17422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-950" y="0" width="950" height="1080" extended-state="0" />
@@ -361,21 +360,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/array/189.md">
+    <entry file="file://$PROJECT_DIR$/SUMMARY.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor>
-            <caret column="8" selection-start-column="8" selection-end-column="12" />
+          <first_editor relative-caret-position="-3254">
+            <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SUMMARY.md">
+    <entry file="file://$PROJECT_DIR$/array/189.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="695">
-            <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <first_editor relative-caret-position="55">
+            <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
           </first_editor>
           <second_editor />
         </state>
