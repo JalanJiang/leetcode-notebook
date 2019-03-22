@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>二叉树的堂兄弟节点 · 算法学习与 LeetCode 刷题</title>
+        <title>验证回文串 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,6 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="994.html" />
-    
-    
-    <link rel="prev" href="../124.html" />
     
 
     
@@ -1847,9 +1843,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="15.1.1" data-path="../../special/2018_interview/136.html">
+        <li class="chapter " data-level="15.1.1" data-path="136.html">
             
-                <a href="../../special/2018_interview/136.html">
+                <a href="136.html">
             
                     
                         <b>15.1.1.</b>
@@ -1883,9 +1879,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="15.2.1" data-path="../../special/2018_interview/125.html">
+        <li class="chapter active" data-level="15.2.1" data-path="125.html">
             
-                <a href="../../special/2018_interview/125.html">
+                <a href="125.html">
             
                     
                         <b>15.2.1.</b>
@@ -1926,9 +1922,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="16.1.1" data-path="../121/984.html">
+        <li class="chapter " data-level="16.1.1" data-path="../../weekly/121/984.html">
             
-                <a href="../121/984.html">
+                <a href="../../weekly/121/984.html">
             
                     
                         <b>16.1.1.</b>
@@ -1946,9 +1942,9 @@
             
         </li>
     
-        <li class="chapter " data-level="16.2" data-path="../122.html">
+        <li class="chapter " data-level="16.2" data-path="../../weekly/122.html">
             
-                <a href="../122.html">
+                <a href="../../weekly/122.html">
             
                     
                         <b>16.2.</b>
@@ -1962,9 +1958,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="16.2.1" data-path="../122/985.html">
+        <li class="chapter " data-level="16.2.1" data-path="../../weekly/122/985.html">
             
-                <a href="../122/985.html">
+                <a href="../../weekly/122/985.html">
             
                     
                         <b>16.2.1.</b>
@@ -1977,9 +1973,9 @@
             
         </li>
     
-        <li class="chapter " data-level="16.2.2" data-path="../122/988.html">
+        <li class="chapter " data-level="16.2.2" data-path="../../weekly/122/988.html">
             
-                <a href="../122/988.html">
+                <a href="../../weekly/122/988.html">
             
                     
                         <b>16.2.2.</b>
@@ -1992,9 +1988,9 @@
             
         </li>
     
-        <li class="chapter " data-level="16.2.3" data-path="../122/986.html">
+        <li class="chapter " data-level="16.2.3" data-path="../../weekly/122/986.html">
             
-                <a href="../122/986.html">
+                <a href="../../weekly/122/986.html">
             
                     
                         <b>16.2.3.</b>
@@ -2027,9 +2023,9 @@
             
         </li>
     
-        <li class="chapter " data-level="16.3" data-path="../124.html">
+        <li class="chapter " data-level="16.3" data-path="../../weekly/124.html">
             
-                <a href="../124.html">
+                <a href="../../weekly/124.html">
             
                     
                         <b>16.3.</b>
@@ -2043,9 +2039,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="16.3.1" data-path="993.html">
+        <li class="chapter " data-level="16.3.1" data-path="../../weekly/124/993.html">
             
-                <a href="993.html">
+                <a href="../../weekly/124/993.html">
             
                     
                         <b>16.3.1.</b>
@@ -2058,9 +2054,9 @@
             
         </li>
     
-        <li class="chapter " data-level="16.3.2" data-path="994.html">
+        <li class="chapter " data-level="16.3.2" data-path="../../weekly/124/994.html">
             
-                <a href="994.html">
+                <a href="../../weekly/124/994.html">
             
                     
                         <b>16.3.2.</b>
@@ -2292,7 +2288,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >二叉树的堂兄弟节点</a>
+        <a href="../.." >验证回文串</a>
     </h1>
 </div>
 
@@ -2307,106 +2303,40 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="993-&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x5802;&#x5144;&#x5F1F;&#x8282;&#x70B9;">993. &#x4E8C;&#x53C9;&#x6811;&#x7684;&#x5802;&#x5144;&#x5F1F;&#x8282;&#x70B9;</h2>
-<p><a href="https://leetcode-cn.com/contest/weekly-contest-124/problems/cousins-in-binary-tree/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
-<h2 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h2>
-<h3 id="&#x89E3;&#x6CD5;&#x4E00;">&#x89E3;&#x6CD5;&#x4E00;</h3>
-<ul>
-<li>&#x9012;&#x5F52;&#x6C42;&#x51FA;&#x5BF9;&#x5E94;&#x8282;&#x70B9;&#x7684;&#x6DF1;&#x5EA6;</li>
-<li>&#x9012;&#x5F52;&#x5224;&#x65AD;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#x662F;&#x5426;&#x5C5E;&#x4E8E;&#x540C;&#x4E2A;&#x7236;&#x8282;&#x70B9;</li>
-</ul>
-<pre class="language-"><code class="lang-python"><span class="token comment"># Definition for a binary tree node.</span>
-<span class="token comment"># class TreeNode(object):</span>
-<span class="token comment">#     def __init__(self, x):</span>
-<span class="token comment">#         self.val = x</span>
-<span class="token comment">#         self.left = None</span>
-<span class="token comment">#         self.right = None</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">isCousins</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                                <h2 id="&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x4E32;">&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x4E32;</h2>
+<p><a href="https://leetcode-cn.com/problems/valid-palindrome/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+<h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
+<p>&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x7684;&#x601D;&#x8DEF;&#xFF1A;&#x5934;&#x5C3E;&#x53CC;&#x6307;&#x9488;&#xFF0C;&#x9A8C;&#x8BC1;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x76F8;&#x7B49;&#x3002;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">isPalindrome</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type root: TreeNode
-        :type x: int
-        :type y: int
+        :type s: str
         :rtype: bool
         &quot;&quot;&quot;</span>
-        <span class="token comment"># get depth</span>
-        x_depth <span class="token operator">=</span> self<span class="token punctuation">.</span>getDepth<span class="token punctuation">(</span>root<span class="token punctuation">,</span> x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-        y_depth <span class="token operator">=</span> self<span class="token punctuation">.</span>getDepth<span class="token punctuation">(</span>root<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-
-        <span class="token comment">#print x_depth</span>
-        <span class="token comment">#print y_depth</span>
-
-        <span class="token keyword">if</span> x_depth <span class="token operator">!=</span> y_depth <span class="token operator">or</span> x_depth <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">or</span> y_depth <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token boolean">False</span>
-
-        <span class="token comment"># get parent</span>
-        parent <span class="token operator">=</span> self<span class="token punctuation">.</span>isParent<span class="token punctuation">(</span>root<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
-        <span class="token keyword">if</span> parent <span class="token operator">==</span> <span class="token boolean">False</span><span class="token punctuation">:</span>
+        s_length <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> s_length <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">:</span>
             <span class="token keyword">return</span> <span class="token boolean">True</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token boolean">False</span>
 
+        i <span class="token operator">=</span> <span class="token number">0</span>
+        j <span class="token operator">=</span> s_length <span class="token operator">-</span> <span class="token number">1</span>
 
-    <span class="token keyword">def</span> <span class="token function">getDepth</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> target<span class="token punctuation">,</span> depth<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> root <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token comment">#print root.val</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>val <span class="token operator">==</span> target<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> depth
+        <span class="token keyword">while</span> i <span class="token operator">&lt;=</span> j<span class="token punctuation">:</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>isalpha<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token boolean">True</span> <span class="token operator">and</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token operator">and</span> i <span class="token operator">&lt;</span> j<span class="token punctuation">:</span>
+                i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>isalpha<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token boolean">True</span> <span class="token operator">and</span> s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token operator">and</span> j <span class="token operator">&gt;</span> i<span class="token punctuation">:</span>
+                j <span class="token operator">=</span> j <span class="token operator">-</span> <span class="token number">1</span>
+
+            <span class="token keyword">if</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>getDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> target<span class="token punctuation">,</span> depth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>getDepth<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> target<span class="token punctuation">,</span> depth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+                j <span class="token operator">=</span> j <span class="token operator">-</span> <span class="token number">1</span>
 
-    <span class="token keyword">def</span> <span class="token function">isParent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> root <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token boolean">False</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> root<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span> <span class="token operator">and</span> root<span class="token punctuation">.</span>right <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">.</span>val <span class="token operator">==</span> x <span class="token operator">and</span> root<span class="token punctuation">.</span>right<span class="token punctuation">.</span>val <span class="token operator">==</span> y<span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">.</span>val <span class="token operator">==</span> y <span class="token operator">and</span> root<span class="token punctuation">.</span>right<span class="token punctuation">.</span>val <span class="token operator">==</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    <span class="token keyword">return</span> <span class="token boolean">True</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    <span class="token keyword">return</span> self<span class="token punctuation">.</span>isParent<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token operator">or</span> self<span class="token punctuation">.</span>isParent<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">return</span> self<span class="token punctuation">.</span>isParent<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token operator">or</span> self<span class="token punctuation">.</span>isParent<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
-</code></pre>
-<h3 id="&#x89E3;&#x6CD5;&#x4E8C;">&#x89E3;&#x6CD5;&#x4E8C;</h3>
-<p>&#x53C2;&#x7167;&#xFF1A;<a href="../../offer/tree-bfs.html">&#x4ECE;&#x4E0A;&#x5F80;&#x4E0B;&#x6253;&#x5370;&#x4E8C;&#x53C9;&#x6811;</a></p>
-<p>&#x501F;&#x52A9;&#x961F;&#x5217;&#xFF0C;&#x4E00;&#x5C42;&#x4E00;&#x5C42;&#x904D;&#x5386;&#x3002;</p>
-<pre class="language-"><code class="lang-python"><span class="token comment"># Definition for a binary tree node.</span>
-<span class="token comment"># class TreeNode(object):</span>
-<span class="token comment">#     def __init__(self, x):</span>
-<span class="token comment">#         self.val = x</span>
-<span class="token comment">#         self.left = None</span>
-<span class="token comment">#         self.right = None</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">isCousins</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type root: TreeNode
-        :type x: int
-        :type y: int
-        :rtype: bool
-        &quot;&quot;&quot;</span>
-        <span class="token keyword">def</span> <span class="token function">find</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            q<span class="token operator">=</span>collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            q<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token keyword">while</span> q<span class="token punctuation">:</span>
-                node<span class="token punctuation">,</span> p<span class="token punctuation">,</span> d <span class="token operator">=</span> q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">if</span> node<span class="token punctuation">.</span>val <span class="token operator">==</span> x<span class="token punctuation">:</span>
-                    <span class="token keyword">return</span> p<span class="token punctuation">,</span> d
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    <span class="token keyword">if</span> node<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-                        q<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">,</span> node<span class="token punctuation">,</span> d<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    <span class="token keyword">if</span> node<span class="token punctuation">.</span>right <span class="token keyword">is</span> <span class="token operator">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-                        q<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">,</span> node<span class="token punctuation">,</span> d<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        px<span class="token punctuation">,</span> dx <span class="token operator">=</span> find<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-        py<span class="token punctuation">,</span> dy <span class="token operator">=</span> find<span class="token punctuation">(</span>y<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> dx <span class="token operator">==</span> dy <span class="token operator">and</span> px <span class="token operator">!=</span> py
+        <span class="token keyword">return</span> <span class="token boolean">True</span>
 </code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2019-03-06 13:13:02
+2019-03-22 22:12:45
 </span></footer>
                                 
                                 </section>
@@ -2434,14 +2364,6 @@
 
             
                 
-                <a href="../124.html" class="navigation navigation-prev " aria-label="Previous page: 第 124 场周赛">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="994.html" class="navigation navigation-next " aria-label="Next page: 腐烂的橘子">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -2450,7 +2372,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"二叉树的堂兄弟节点","level":"16.3.1","depth":2,"next":{"title":"腐烂的橘子","level":"16.3.2","depth":2,"path":"weekly/124/994.md","ref":"weekly/124/994.md","articles":[]},"previous":{"title":"第 124 场周赛","level":"16.3","depth":1,"path":"weekly/124.md","ref":"weekly/124.md","articles":[{"title":"二叉树的堂兄弟节点","level":"16.3.1","depth":2,"path":"weekly/124/993.md","ref":"weekly/124/993.md","articles":[]},{"title":"腐烂的橘子","level":"16.3.2","depth":2,"path":"weekly/124/994.md","ref":"weekly/124/994.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode 刷题本","extension":""},"file":{"path":"weekly/124/993.md","mtime":"2019-03-06T05:13:02.903Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T14:29:55.878Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"验证回文串","level":"15.2.1","depth":2,"next":{"title":"第 121 场周赛","level":"16.1","depth":1,"ref":"","articles":[{"title":"不含 AAA 或 BBB 的字符串","level":"16.1.1","depth":2,"path":"weekly/121/984.md","ref":"weekly/121/984.md","articles":[]}]},"previous":{"title":"字符串","level":"15.2","depth":1,"ref":"","articles":[{"title":"验证回文串","level":"15.2.1","depth":2,"path":"special/2018_interview/125.md","ref":"special/2018_interview/125.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode 刷题本","extension":""},"file":{"path":"special/2018_interview/125.md","mtime":"2019-03-22T14:12:45.920Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-22T14:29:55.878Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

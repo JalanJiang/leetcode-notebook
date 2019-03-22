@@ -149,6 +149,8 @@
 
 * 开始之前
     * [只出现一次的数字](/special/2018_interview/136.md)
+* 字符串
+    * [验证回文串](/special/2018_interview/125.md)
 
 ----
 
