@@ -149,6 +149,7 @@
     * [合并两个有序数组](/array/88.md)
 * 字符串
     * [验证回文串](/special/2018_interview/125.md)
+    * [反转字符串](/special/2018_interview/344.md)
 * 数组
     * [乘积最大子序列](/dynamic/152.md)
     * [旋转数组](/array/189.md)
