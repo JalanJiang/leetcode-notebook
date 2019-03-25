@@ -89,6 +89,7 @@
     * [存在重复元素](/hash/217.md)
     * [最长和谐子序列](/hash/594.md)
     * [最长连续序列](/hash/128.md)
+    * [两个数组的交集 II](/hash/350.md)
 * 枚举
     * [好多鱼！](/enumeration/many_fish.md)
 * 排序
