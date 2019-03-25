@@ -89,7 +89,6 @@
     * [存在重复元素](/hash/217.md)
     * [最长和谐子序列](/hash/594.md)
     * [最长连续序列](/hash/128.md)
-    * [两个数组的交集 II](/hash/350.md)
 * 枚举
     * [好多鱼！](/enumeration/many_fish.md)
 * 排序
@@ -136,6 +135,8 @@
     * [旋转数组](/array/189.md)
     * [存在重复元素 II](/array/219.md)
     * [移动零](array/283.md)
+    * [两个数组的交集 II](/hash/350.md)
+    * [递增的三元子序列](/special/2018_interview/334.md)
 
 ----
 
