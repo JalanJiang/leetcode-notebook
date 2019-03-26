@@ -130,6 +130,7 @@
 * 字符串
     * [验证回文串](/special/2018_interview/125.md)
     * [反转字符串](/special/2018_interview/344.md)
+    * [字符串中的第一个唯一字符](/special/2018_interview/387.md)
 * 数组
     * [乘积最大子序列](/dynamic/152.md)
     * [旋转数组](/array/189.md)
