@@ -6,7 +6,7 @@
 
 - LeetCode 刷题记录
 - 人生苦短，我用 Python
-- 我的 [Leetcode 主页](https://leetcode-cn.com/jalan/)，已解答：`130 / 835`
+- 我的 [Leetcode 主页](https://leetcode-cn.com/jalan/)，已解答：`130`
 - 在线阅读：http://jalan.space/leetcode-notebook/
 
 ## Built With
