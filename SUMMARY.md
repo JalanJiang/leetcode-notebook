@@ -140,6 +140,8 @@
     * [两个数组的交集 II](/hash/350.md)
     * [递增的三元子序列](/special/2018_interview/334.md)
     * [除自身以外数组的乘积](/special/2018_interview/238.md)
+* 哈希表与映射
+    * [四数相加 II](/special/2018_interview/454.md)
 
 ----
 
