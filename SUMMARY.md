@@ -11,7 +11,6 @@
     * [搜索二维矩阵](array/240.md)
     * [有序矩阵中第K小的元素](array/378.md)
     * [错误的集合](array/645.md)
-    * [寻找重复数](array/287.md)
     * [优美的排列 II](array/667.md)
     * [数组的度](array/697.md)
     * [托普利茨矩阵](array/766.md)
@@ -144,6 +143,7 @@
     * [四数相加 II](/special/2018_interview/454.md)
 * 排序与检索
     * [寻找峰值](/special/2018_interview/162.md)
+    * [寻找重复数](array/287.md)
 
 ----
 
