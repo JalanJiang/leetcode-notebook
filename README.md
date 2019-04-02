@@ -2,6 +2,10 @@
 
 > 愿所有的热爱都能一直长久地燃烧下去。
 
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
+[![HitCount](http://hits.dwyl.io/JalanJiang/JalanJiang/leetcode-notebook.svg)](http://hits.dwyl.io/JalanJiang/JalanJiang/leetcode-notebook)
+
 ## LeetCode Notebook
 
 - LeetCode 刷题记录
