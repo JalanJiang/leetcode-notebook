@@ -40,6 +40,7 @@
     * [重复的子字符串](/string/459.md)
     * [实现strStr()](/string/28.md)
     * [比较版本号](/string/165.md)
+    * [字符串](/string/7.md)
 * 树
     * [对称二叉树](/tree/cn-101.md)
     * [最长同值路径](/tree/cn-687.md)
