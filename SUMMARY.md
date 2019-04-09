@@ -73,6 +73,7 @@
     * [有效的括号](/stack/20.md)
     * [每日温度](/stack/739.md)
     * [下一个更大元素 II](/stack/503.md)
+    * [最短无序连续子数组](/stack/581.md)
 * 链表
     * [两数相加](/link_list/cn-2.md)
     * [相交链表](/link_list/160.md)
