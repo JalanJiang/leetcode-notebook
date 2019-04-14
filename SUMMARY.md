@@ -115,6 +115,7 @@
     * [比特位计数](/dynamic/338.md)
     * [最大子序和](/dynamic/53.md)
     * [最长回文子串](/dynamic/5.md)
+    * [跳跃游戏](/dynamic/55.md)
 * 贪心
     * [买卖股票的最佳时机 II](/greedy/122.md)
 * 位运算
