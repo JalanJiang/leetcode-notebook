@@ -43,6 +43,7 @@
     * [比较版本号](/string/165.md)
     * [字符串](/string/7.md)
     * [报数](/string/38.md)
+    * [字符串转换整数 (atoi)](/string/8.md)
 * 树
     * [对称二叉树](/tree/cn-101.md)
     * [最长同值路径](/tree/cn-687.md)
