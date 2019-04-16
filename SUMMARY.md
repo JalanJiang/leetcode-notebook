@@ -113,6 +113,7 @@
     * [二分查找]()
         * [x 的平方根](/research/binary_search/69.md)
         * [搜索插入位置](/research/binary_search/35.md)
+        * [第一个错误的版本](/research/binary_search/278.md)
 * 动态规划
     * [爬楼梯](/dynamic/70.md)
     * [比特位计数](/dynamic/338.md)
