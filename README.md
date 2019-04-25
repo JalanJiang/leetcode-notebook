@@ -5,12 +5,13 @@
 
 > 愿所有的热爱都能一直长久地燃烧下去。
 
+在线阅读：http://jalan.space/leetcode-notebook/
+
 ## LeetCode Notebook
 
-- LeetCode 题解
-- 人生苦短，我用 Python
+- LeetCode 题解。人生苦短，我用 Python
 - 我的 [Leetcode 主页](https://leetcode-cn.com/jalan/)，目前已完成 `164`
-- 在线阅读：http://jalan.space/leetcode-notebook/，使用 [Gitbook](https://www.gitbook.com/?t=7) 构建
+- 使用 [Gitbook](https://www.gitbook.com/?t=7) 构建，教程可参考 [《搭建 GitBook 并托管到 git pages》](http://jalan.space/2018/04/22/2018/2018-04-22-gitbook-and-git-pages/)
 - 每日更新，欢迎点击 `Watch` 进行订阅~
 
 ## 题解分类
