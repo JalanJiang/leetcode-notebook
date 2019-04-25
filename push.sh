@@ -1,6 +1,6 @@
 #cur_date=$(date +%Y-%m-%d)
 message=$1
-echo message
+echo $message
 sudo gitbook build
 git add *
 git commit -m "$message"
