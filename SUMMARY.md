@@ -1,9 +1,6 @@
 # Summary
 
 * [简介](README.md)
-
-* [题号索引](INDEX.md)
-
 * 数组
     * [删除排序数组中的重复项](/array/cn-26.md)
     * [删除排序数组中的重复项](/array/cn-27.md)
