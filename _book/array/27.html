@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>买卖股票的最佳时机 · 算法学习与 LeetCode 刷题</title>
+        <title>删除排序数组中的重复项 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="566.html" />
+    <link rel="next" href="121.html" />
     
     
-    <link rel="prev" href="cn-27.html" />
+    <link rel="prev" href="26.html" />
     
 
     
@@ -171,9 +171,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="cn-26.html">
+        <li class="chapter " data-level="1.2.1" data-path="26.html">
             
-                <a href="cn-26.html">
+                <a href="26.html">
             
                     
                         <b>1.2.1.</b>
@@ -186,9 +186,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="cn-27.html">
+        <li class="chapter active" data-level="1.2.2" data-path="27.html">
             
-                <a href="cn-27.html">
+                <a href="27.html">
             
                     
                         <b>1.2.2.</b>
@@ -201,9 +201,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.3" data-path="cn-121.html">
+        <li class="chapter " data-level="1.2.3" data-path="121.html">
             
-                <a href="cn-121.html">
+                <a href="121.html">
             
                     
                         <b>1.2.3.</b>
@@ -3311,7 +3311,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >买卖股票的最佳时机</a>
+        <a href=".." >删除排序数组中的重复项</a>
     </h1>
 </div>
 
@@ -3326,58 +3326,44 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="121-&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;&#x673A;">121. &#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x4F73;&#x65F6;&#x673A;</h2>
-<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+                                <h2 id="27-&#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;">27. &#x5220;&#x9664;&#x6392;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x9879;</h2>
+<p><a href="https://leetcode-cn.com/problems/remove-element/description/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
 <h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
+<p>&#x53CC;&#x6307;&#x9488; i, j&#x3002;</p>
 <ul>
-<li>&#x5FAA;&#x73AF;&#x4E0D;&#x65AD;&#x627E;&#x5BFB;&#xFF1A;<ul>
-<li>&#x53EF;&#x4E70;&#x5165;&#x7684;&#x6700;&#x5C0F;&#x503C;</li>
-<li>&#x53EF;&#x629B;&#x51FA;&#x7684;&#x6700;&#x5927;&#x503C;</li>
+<li>&#x521D;&#x59CB;&#xFF1A;<code>i = 0, j = 0</code></li>
+<li>&#x82E5; <code>nums[j] != val</code><ul>
+<li><code>nums[i] = nums[j]</code></li>
+<li>&#x540C;&#x6B65;&#x589E;&#x957F;&#x53CC;&#x6307;&#x9488;</li>
+</ul>
+</li>
+<li>&#x82E5; <code>nums[j] == val</code><ul>
+<li>j &#x53D8;&#x4E3A;&#x5FEB;&#x6307;&#x9488;&#xFF1A;<code>j = j + 1</code></li>
 </ul>
 </li>
 </ul>
 <h3 id="python">Python</h3>
-<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prices<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="language-"><code class="lang-python"><span class="token comment"># python3</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">removeElement</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type prices: List[int]
+        :type nums: List[int]
+        :type val: int
         :rtype: int
         &quot;&quot;&quot;</span>
-        day <span class="token operator">=</span> <span class="token number">0</span>
-        res <span class="token operator">=</span> <span class="token number">0</span>
-        <span class="token keyword">for</span> p <span class="token keyword">in</span> prices<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> day <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                pre <span class="token operator">=</span> p
+        length <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+        i <span class="token operator">=</span> <span class="token number">0</span>
+        j <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">while</span> j <span class="token operator">&lt;</span> length<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">!=</span> val<span class="token punctuation">:</span>
+                nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+                i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+                j <span class="token operator">=</span> j <span class="token operator">+</span> <span class="token number">1</span>
             <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> p <span class="token operator">&gt;</span> pre<span class="token punctuation">:</span>
-                    res <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> p <span class="token operator">-</span> pre<span class="token punctuation">)</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    pre <span class="token operator">=</span> p
-            day <span class="token operator">=</span> day <span class="token operator">+</span> <span class="token number">1</span>
+                j <span class="token operator">=</span> j <span class="token operator">+</span> <span class="token number">1</span>
+        res <span class="token operator">=</span> length <span class="token operator">-</span> <span class="token punctuation">(</span>j <span class="token operator">-</span> i<span class="token punctuation">)</span>
         <span class="token keyword">return</span> res
-</code></pre>
-<h3 id="&#x590D;&#x76D8;">&#x590D;&#x76D8;</h3>
-<p>2019.01.05 &#x590D;&#x76D8;&#x6253;&#x5361;</p>
-<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">maxProfit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prices<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type prices: List[int]
-        :rtype: int
-        &quot;&quot;&quot;</span>
-        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>prices<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
-
-        pre <span class="token operator">=</span> prices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-        max_val <span class="token operator">=</span> <span class="token number">0</span>
-
-        <span class="token keyword">for</span> price <span class="token keyword">in</span> prices<span class="token punctuation">:</span>
-
-            <span class="token keyword">if</span> price <span class="token operator">&gt;=</span> pre<span class="token punctuation">:</span>
-                max_val <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>max_val<span class="token punctuation">,</span> price <span class="token operator">-</span> pre<span class="token punctuation">)</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                pre <span class="token operator">=</span> price
-
-        <span class="token keyword">return</span> max_val
 </code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
 2019-03-06 13:13:02
@@ -3408,12 +3394,12 @@
 
             
                 
-                <a href="cn-27.html" class="navigation navigation-prev " aria-label="Previous page: 删除排序数组中的重复项">
+                <a href="26.html" class="navigation navigation-prev " aria-label="Previous page: 删除排序数组中的重复项">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="566.html" class="navigation navigation-next " aria-label="Next page: 重塑矩阵">
+                <a href="121.html" class="navigation navigation-next " aria-label="Next page: 买卖股票的最佳时机">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -3424,7 +3410,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"买卖股票的最佳时机","level":"1.2.3","depth":2,"next":{"title":"重塑矩阵","level":"1.2.4","depth":2,"path":"array/566.md","ref":"array/566.md","articles":[]},"previous":{"title":"删除排序数组中的重复项","level":"1.2.2","depth":2,"path":"array/cn-27.md","ref":"array/cn-27.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode 刷题本","extension":""},"file":{"path":"array/cn-121.md","mtime":"2019-03-06T05:13:02.537Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-25T15:23:53.906Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"删除排序数组中的重复项","level":"1.2.2","depth":2,"next":{"title":"买卖股票的最佳时机","level":"1.2.3","depth":2,"path":"array/121.md","ref":"array/121.md","articles":[]},"previous":{"title":"删除排序数组中的重复项","level":"1.2.1","depth":2,"path":"array/26.md","ref":"array/26.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","baidu","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanjiang"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"laravel5.6-notes","type":"star","size":"small"}]},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode 刷题本","extension":""},"file":{"path":"array/27.md","mtime":"2019-03-06T05:13:02.538Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-26T14:58:29.292Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
