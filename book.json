@@ -3,7 +3,7 @@
   "generator": "site",
   "title": "算法学习与 LeetCode 刷题",
   "author": "JalanJiang.江子抑 <jjy@meitu.com>",
-  "description": "Leetcode 刷题本",
+  "description": "Leetcode Python 题解，每日更新。",
   "isbn": "",
   "extension": "",
 
@@ -12,14 +12,14 @@
     "disqus",
     "prism",
     "-highlight",
-    "baidu",
     "tbfed-pagefooter",
     "github-buttons",
     "page-toc-button",
     "back-to-top-button",
     "sitemap-general",
     "favicon@^0.0.2",
-    "splitter"
+    "splitter",
+    "baiduana"
   ],
 
   "pluginsConfig": {
