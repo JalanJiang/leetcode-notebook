@@ -125,6 +125,7 @@
     * [最长回文子串](/dynamic/5.md)
     * [跳跃游戏](/dynamic/55.md)
     * [打家劫舍](/dynamic/198.md)
+    * [不同的二叉搜索树](/dynamic/96.md)
 * 贪心
     * [买卖股票的最佳时机 II](/greedy/122.md)
 * 位运算
