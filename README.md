@@ -1,5 +1,6 @@
 <p align="center"><img width="100px" src="https://www.easyicon.net/api/resizeApi.php?id=1141865&size=128"></p>
 
+[![LICENSE](https://img.shields.io/badge/License-CC%20BY%203.0%20CN-lightgrey.svg)](https://creativecommons.org/licenses/by/3.0/cn/)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
 
