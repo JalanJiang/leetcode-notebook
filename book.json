@@ -50,7 +50,7 @@
     "github-buttons": {
       "buttons": [{
         "user": "JalanJiang",
-        "repo": "laravel5.6-notes",
+        "repo": "leetcode-notebook",
         "type": "star",
         "size": "small"
       }]
