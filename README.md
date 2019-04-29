@@ -55,8 +55,8 @@
 | 33 | [搜索旋转排序数组](/array/33.md) | 中等 |
 | 38 | [报数](/string/38.md) | 简单 |
 | 35 | [搜索插入位置](/research/binary_search/35.md) | 简单 |
-| 39 | [39](/research/dfs/39.md) | 中等 |
-| 40 | [40](/research/dfs/40.md) | 中等 |
+| 39 | [Combination Sum](/research/dfs/39.md) | 中等 |
+| 40 | [Combination Sum II](research/dfs/40.md) | 中等 |
 | 49 | [字母异位词分组](/array/49.md) | 中等 |
 | 53 | [最大子序和](/dynamic/53.md) | 简单 |
 | 55 | [跳跃游戏](/dynamic/55.md) | 中等 |
@@ -64,7 +64,7 @@
 | 66 | [加一](/array/66.md) | 简单 |
 | 69 | [x 的平方根](/research/binary_search/69.md) | 简单 |
 | 70 | [爬楼梯](/dynamic/70.md) | 简单 |
-| 75 | [75](/sort/quick/75.md) | 中等 |
+| 75 | [Sort Colors](/sort/quick/75.md) | 中等 |
 | 80 | [删除排序数组中的重复项 II](/array/80.md) | 中等 |
 | 83 | [删除排序链表中的重复元素](/link_list/83.md) | 简单 |
 | 88 | [合并两个有序数组](/array/88.md) | 简单 |
