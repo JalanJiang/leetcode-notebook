@@ -26,6 +26,15 @@
     * [查找常用字符](/array/1002.md)
     * [字谜分组]()
     * [三数之和](/array/15.md)
+    * [寻找重复数](array/287.md)
+    * [求众数](/array/169.md)
+    * [合并两个有序数组](/array/88.md)
+    * [旋转数组](/array/189.md)
+    * [存在重复元素 II](/array/219.md)
+    * [移动零](array/283.md)
+    * [递增的三元子序列](/array/334.md)
+    * [除自身以外数组的乘积](/array/238.md)
+    * [接雨水](/array/42.md)
 * 字符串
     * [循环单词](/string/loop_word.md)
     * [有效的字母异位词](/string/242.md)
@@ -44,6 +53,15 @@
     * [字符串](/string/7.md)
     * [报数](/string/38.md)
     * [字符串转换整数 (atoi)](/string/8.md)
+    * [验证回文串](/string/125.md)
+    * [反转字符串](/string/344.md)
+    * [字符串中的第一个唯一字符](/string/387.md)
+    * [单词拆分](/string/139.md)
+    * [无重复字符的最长子串](/string/3.md)
+    * [最长公共前缀](/string/14.md)
+    * [字符串的排列](/string/567.md)
+    * [字符串相乘](/string/43.md)
+    * [翻转字符串里的单词](/string/151.md)
 * 树
     * [对称二叉树](/tree/cn-101.md)
     * [最长同值路径](/tree/cn-687.md)
@@ -101,6 +119,8 @@
     * [存在重复元素](/hash/217.md)
     * [最长和谐子序列](/hash/594.md)
     * [最长连续序列](/hash/128.md)
+    * [两个数组的交集 II](/hash/350.md)
+    * [四数相加 II](/hash/454.md)
 * 枚举
     * [好多鱼！](/enumeration/many_fish.md)
 * 排序
@@ -121,6 +141,7 @@
         * [第一个错误的版本](/research/binary_search/278.md)
         * [寻找两个有序数组的中位数](/research/binary_search/4.md)
         * [在排序数组中查找元素的第一个和最后一个位置](/research/binary_search/34.md)
+        * [寻找峰值](/research/binary_search/162.md)
 * 动态规划
     * [爬楼梯](/dynamic/70.md)
     * [比特位计数](/dynamic/338.md)
@@ -134,48 +155,23 @@
     * [完全平方数](/dynamic/279.md)
     * [最长上升子序列](/dynamic/300.md)
     * [至少有K个重复字符的最长子串](/dynamic/395.md)
+    * [乘积最大子序列](/dynamic/152.md)
 * 贪心
     * [买卖股票的最佳时机 II](/greedy/122.md)
 * 位运算
     * [汉明距离](/bit/461.md)
     * [位1的个数](/bit/191.md)
     * [颠倒二进制位](/bit/190.md)
+    * [只出现一次的数字](/bit/136.md)
 * 数学题
     * [平方数之和](/math/633.md)
     * [3的幂](/math/326.md)
     * [Fizz Buzz](/math/412.md)
     * [计数质数](/math/204.md)
     * [快乐数](/math/202.md)
-    
-----
-
-## 2018 年力扣高频算法面试题汇总
-
-* 开始之前
-    * [只出现一次的数字](/special/2018_interview/136.md)
-    * [求众数](/array/169.md)
-    * [合并两个有序数组](/array/88.md)
-* 字符串
-    * [验证回文串](/special/2018_interview/125.md)
-    * [反转字符串](/special/2018_interview/344.md)
-    * [字符串中的第一个唯一字符](/special/2018_interview/387.md)
-    * [单词拆分](/special/2018_interview/139.md)
-* 数组
-    * [乘积最大子序列](/dynamic/152.md)
-    * [旋转数组](/array/189.md)
-    * [存在重复元素 II](/array/219.md)
-    * [移动零](array/283.md)
-    * [两个数组的交集 II](/hash/350.md)
-    * [递增的三元子序列](/special/2018_interview/334.md)
-    * [除自身以外数组的乘积](/special/2018_interview/238.md)
-* 哈希表与映射
-    * [四数相加 II](/special/2018_interview/454.md)
-* 排序与检索
-    * [寻找峰值](/special/2018_interview/162.md)
-    * [寻找重复数](array/287.md)
 * 其他
     * [打乱数组](/other/384.md)
-
+    
 ----
 
 ## 竞赛系列
@@ -216,19 +212,3 @@
 * 第 136 场周赛
     * [困于环中的机器人](/weekly/136/5055.md)
     * [不邻接植花](/weekly/136/5056.md)
-
-----
-
-## 字节跳动专题
-
-* 字符串
-    * [无重复字符的最长子串](/byte_dance/string/3.md)
-    * [最长公共前缀](/byte_dance/string/14.md)
-    * [字符串的排列](/byte_dance/string/567.md)
-    * [字符串相乘](/byte_dance/string/43.md)
-    * [翻转字符串里的单词](/byte_dance/string/151.md)
-    * [简化路径](/byte_dance/string/71.md)
-    * [复原 ip 地址](/byte_dance/string/93.md)
-* 数组
-    * [三数之和](/byte_dance/array/15.md)
-    * [接雨水](/byte_dance/array/42.md)
