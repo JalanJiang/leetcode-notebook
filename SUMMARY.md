@@ -120,6 +120,7 @@
         * [搜索插入位置](/research/binary_search/35.md)
         * [第一个错误的版本](/research/binary_search/278.md)
         * [寻找两个有序数组的中位数](/research/binary_search/4.md)
+        * [在排序数组中查找元素的第一个和最后一个位置](/research/binary_search/34.md)
 * 动态规划
     * [爬楼梯](/dynamic/70.md)
     * [比特位计数](/dynamic/338.md)

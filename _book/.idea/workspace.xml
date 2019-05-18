@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cd85f845-9b0f-4a56-be99-479a9fa983f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/research/binary_search/4.md" beforeDir="false" afterPath="$PROJECT_DIR$/research/binary_search/4.md" afterDir="false" />
-    </list>
+    <list default="true" id="cd85f845-9b0f-4a56-be99-479a9fa983f8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/research/binary_search/4.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="207">
+              <first_editor relative-caret-position="1046">
                 <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
               </first_editor>
               <second_editor />
@@ -207,7 +205,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1840" />
     <option name="y" value="23" />
     <option name="width" value="1840" />
@@ -219,17 +217,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="leetcode-notebook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leetcode-notebook" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -278,16 +266,15 @@
       <workItem from="1554734354115" duration="17763000" />
       <workItem from="1556287723187" duration="20917000" />
       <workItem from="1557627757181" duration="3699000" />
-      <workItem from="1558017591290" duration="1246000" />
+      <workItem from="1558017591290" duration="1694000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96299000" />
+    <option name="totallyTimeSpent" value="96747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1840" y="23" width="1840" height="1057" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11012236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -776,7 +763,7 @@
     <entry file="file://$PROJECT_DIR$/research/binary_search/4.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="207">
+          <first_editor relative-caret-position="1046">
             <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
           </first_editor>
           <second_editor />
