@@ -8,10 +8,11 @@
 
 在线阅读：http://jalan.space/leetcode-notebook/
 
-## LeetCode Notebook
+## Rum
 
-- LeetCode 题解。人生苦短，我用 Python
-- 我的 [Leetcode 主页](https://leetcode-cn.com/jalan/)，目前已完成 `166`
+- LeetCode Notebook，代号 [Rum](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)，鸡尾酒的热带气息基酒，暗指“算法是程序员的基底”
+- 人生苦短，我用 Python
+- 我的 [LeetCode 主页](https://leetcode-cn.com/jalan/)，目前已完成题解 `183`，竞赛 `10` 次
 - 使用 [Gitbook](https://www.gitbook.com/?t=7) 构建，教程可参考 [《搭建 GitBook 并托管到 git pages》](http://jalan.space/2018/04/22/2018/2018-04-22-gitbook-and-git-pages/)
 - 每日更新，欢迎点击 `Watch` 进行订阅~
 
