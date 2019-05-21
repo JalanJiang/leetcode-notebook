@@ -41,6 +41,7 @@
 | 3 | [无重复字符的最长子串](/string/3.md) | 中等 |
 | 4 | [寻找两个有序数组的中位数](/research/binary_search/4.md) | 困难 |
 | 5 | [最长回文子串](/dynamic/5.md) | 中等 |
+| 6 | [Z 字形变换](/string/6.md) | 中等 |
 | 7 | [字符串](/string/7.md) | 简单 |
 | 8 | [字符串转换整数 (atoi)](/string/8.md) | 中等 |
 | 9 | [回文数](/string/9.md) | 简单 |
