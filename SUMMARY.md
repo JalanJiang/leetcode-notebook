@@ -170,6 +170,7 @@
     * [Fizz Buzz](/math/412.md)
     * [计数质数](/math/204.md)
     * [快乐数](/math/202.md)
+    * [完美数](/math/507.md)
 * 其他
     * [打乱数组](/other/384.md)
     
