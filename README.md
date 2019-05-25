@@ -70,6 +70,7 @@
 | 66 | [加一](/array/66.md) | 简单 |
 | 69 | [x 的平方根](/research/binary_search/69.md) | 简单 |
 | 70 | [爬楼梯](/dynamic/70.md) | 简单 |
+| 73 | [矩阵置零](/array/73.md) | 中等 |
 | 75 | [Sort Colors](/sort/quick/75.md) | 中等 |
 | 80 | [删除排序数组中的重复项 II](/array/80.md) | 中等 |
 | 83 | [删除排序链表中的重复元素](/link_list/83.md) | 简单 |

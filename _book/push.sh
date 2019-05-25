@@ -1,7 +1,7 @@
 #cur_date=$(date +%Y-%m-%d)
 message=$1
 echo $message
-sudo gitbook build
+gitbook build
 git add *
 git commit -m "$message"
 git push origin master
