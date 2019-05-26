@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="539d5556-bd95-4413-8c42-8f3b6857b749" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/array/73.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/SUMMARY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/push.sh" beforeDir="false" afterPath="$PROJECT_DIR$/push.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/weekly/138.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/weekly/138/1051.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/weekly/138/1052.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +44,40 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="260">
-                <caret line="72" column="7" lean-forward="true" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="27" />
+                <caret line="72" column="7" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="27" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/push.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/weekly/138.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="216">
+                <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/weekly/138/1051.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="43">
+                <caret line="2" column="82" selection-start-line="2" selection-start-column="82" selection-end-line="2" selection-end-column="82" />
               </first_editor>
               <second_editor />
             </state>
@@ -52,10 +85,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/push.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="8" column="51" lean-forward="true" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+        <entry file="file://$PROJECT_DIR$/weekly/138/1052.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-350">
+                <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/weekly/137.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="189">
+                <caret line="7" lean-forward="true" selection-end-line="14" selection-end-column="14" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -65,7 +113,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor>
-                <caret column="11" lean-forward="true" selection-start-column="3" selection-end-column="11" />
+                <caret column="11" selection-start-column="3" selection-end-column="11" />
               </first_editor>
               <second_editor />
             </state>
@@ -87,6 +135,9 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/SUMMARY.md" />
         <option value="$PROJECT_DIR$/push.sh" />
+        <option value="$PROJECT_DIR$/weekly/138.md" />
+        <option value="$PROJECT_DIR$/weekly/138/1051.md" />
+        <option value="$PROJECT_DIR$/weekly/138/1052.md" />
       </list>
     </option>
   </component>
@@ -112,6 +163,17 @@
               <item name="leetcode-notebook" type="b2602c69:ProjectViewProjectNode" />
               <item name="leetcode-notebook" type="462c0819:PsiDirectoryNode" />
               <item name="array" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leetcode-notebook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leetcode-notebook" type="462c0819:PsiDirectoryNode" />
+              <item name="weekly" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="leetcode-notebook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="leetcode-notebook" type="462c0819:PsiDirectoryNode" />
+              <item name="weekly" type="462c0819:PsiDirectoryNode" />
+              <item name="138" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -147,12 +209,12 @@
       <updated>1558448719050</updated>
       <workItem from="1558448720213" duration="114000" />
       <workItem from="1558533045648" duration="3753000" />
-      <workItem from="1558790490301" duration="802000" />
+      <workItem from="1558790490301" duration="2326000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4669000" />
+    <option name="totallyTimeSpent" value="6193000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1840" y="23" width="1840" height="1057" extended-state="0" />
@@ -227,7 +289,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor>
-            <caret column="11" lean-forward="true" selection-start-column="3" selection-end-column="11" />
+            <caret column="11" selection-start-column="3" selection-end-column="11" />
           </first_editor>
           <second_editor />
         </state>
@@ -237,7 +299,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="260">
-            <caret line="72" column="7" lean-forward="true" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="27" />
+            <caret line="72" column="7" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="27" />
           </first_editor>
           <second_editor />
         </state>
@@ -255,8 +317,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/push.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="51" lean-forward="true" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+        <state relative-caret-position="243">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/weekly/137.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="189">
+            <caret line="7" lean-forward="true" selection-end-line="14" selection-end-column="14" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/weekly/138.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="216">
+            <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/weekly/138/1051.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="43">
+            <caret line="2" column="82" selection-start-line="2" selection-start-column="82" selection-end-line="2" selection-end-column="82" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/weekly/138/1052.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-350">
+            <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
