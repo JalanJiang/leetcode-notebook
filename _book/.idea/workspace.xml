@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="539d5556-bd95-4413-8c42-8f3b6857b749" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_book/tree/105.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tree/105.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/SUMMARY.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_book/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_book/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/array/1002.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/1002.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/array/118.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/118.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/array/119.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/array/119.html" afterDir="false" />
@@ -66,7 +60,6 @@
       <change beforePath="$PROJECT_DIR$/_book/hash/454.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/hash/454.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/hash/594.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/hash/594.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/heap/295.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/heap/295.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_book/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/link_list/138.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/138.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/link_list/141.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/141.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/link_list/160.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/link_list/160.html" afterDir="false" />
@@ -98,8 +91,6 @@
       <change beforePath="$PROJECT_DIR$/_book/research/binary_search/69.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/research/binary_search/69.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/research/dfs/39.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/research/dfs/39.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/research/dfs/40.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/research/dfs/40.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_book/search_index.json" beforeDir="false" afterPath="$PROJECT_DIR$/_book/search_index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_book/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sitemap.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/sort/179.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sort/179.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/sort/315.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sort/315.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_book/sort/324.html" beforeDir="false" afterPath="$PROJECT_DIR$/_book/sort/324.html" afterDir="false" />
@@ -213,19 +204,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="464">
-                <caret line="93" column="41" lean-forward="true" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="41" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="349">
-                <caret line="80" column="46" lean-forward="true" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
+                <caret line="93" column="41" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="41" />
               </first_editor>
               <second_editor />
             </state>
@@ -233,10 +212,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="453">
+                <caret line="80" column="24" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="24" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/push.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="47" />
+              <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-end-line="7" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -258,7 +249,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor>
-                <caret column="23" lean-forward="true" selection-start-column="8" selection-end-column="23" />
+                <caret column="23" selection-start-column="8" selection-end-column="23" />
               </first_editor>
               <second_editor />
             </state>
@@ -402,18 +393,17 @@
       <updated>1558448719050</updated>
       <workItem from="1558448720213" duration="114000" />
       <workItem from="1558533045648" duration="3753000" />
-      <workItem from="1558790490301" duration="5590000" />
+      <workItem from="1558790490301" duration="5978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9457000" />
+    <option name="totallyTimeSpent" value="9845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1859" y="23" width="1859" height="1057" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2526142" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2526142" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -426,7 +416,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32982087" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32982087" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -538,13 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/push.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/math/29.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -559,7 +542,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor>
-            <caret column="23" lean-forward="true" selection-start-column="8" selection-end-column="23" />
+            <caret column="23" selection-start-column="8" selection-end-column="23" />
           </first_editor>
           <second_editor />
         </state>
@@ -569,7 +552,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="464">
-            <caret line="93" column="41" lean-forward="true" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="41" />
+            <caret line="93" column="41" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="41" />
           </first_editor>
           <second_editor />
         </state>
@@ -578,10 +561,17 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="349">
-            <caret line="80" column="46" lean-forward="true" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
+          <first_editor relative-caret-position="453">
+            <caret line="80" column="24" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="24" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/push.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-end-line="7" selection-end-column="47" />
         </state>
       </provider>
     </entry>
