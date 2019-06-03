@@ -69,6 +69,7 @@
 | 53 | [最大子序和](/dynamic/53.md) | 简单 |
 | 55 | [跳跃游戏](/dynamic/55.md) | 中等 |
 | 58 | [最后一个单词的长度](/string/58.md) | 简单 |
+| 62 | [不同路径](/dynamic/62.md) | 中等 |
 | 66 | [加一](/array/66.md) | 简单 |
 | 69 | [x 的平方根](/research/binary_search/69.md) | 简单 |
 | 70 | [爬楼梯](/dynamic/70.md) | 简单 |
