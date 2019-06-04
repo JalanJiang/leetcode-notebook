@@ -64,7 +64,8 @@
 | 39 | [Combination Sum](/research/dfs/39.md) | 中等 |
 | 40 | [Combination Sum II](research/dfs/40.md) | 中等 |
 | 43 | [字符串相乘](/string/43.md) | 中等 |
-| 42 | [接雨水](/array/42.md) | 困难 |
+| 42 | [接雨水](/array/42.md) | 困难 | 
+| 48 | [旋转图像](/array/48.md) | 中等 |
 | 49 | [字母异位词分组](/array/49.md) | 中等 |
 | 53 | [最大子序和](/dynamic/53.md) | 简单 |
 | 55 | [跳跃游戏](/dynamic/55.md) | 中等 |

@@ -36,6 +36,7 @@
     * [除自身以外数组的乘积](/array/238.md)
     * [接雨水](/array/42.md)
     * [矩阵置零](/array/73.md)
+    * [旋转图像](/array/48.md)
 * 字符串
     * [循环单词](/string/loop_word.md)
     * [有效的字母异位词](/string/242.md)
