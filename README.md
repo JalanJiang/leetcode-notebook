@@ -61,6 +61,7 @@
 | 38 | [报数](/string/38.md) | 简单 | 
 | 34 | [在排序数组中查找元素的第一个和最后一个位置](/research/binary_search/34.md) | 中等 |
 | 35 | [搜索插入位置](/research/binary_search/35.md) | 简单 |
+| 36 | [有效的数独](/array/36.md) | 中等 |
 | 39 | [Combination Sum](/research/dfs/39.md) | 中等 |
 | 40 | [Combination Sum II](research/dfs/40.md) | 中等 |
 | 43 | [字符串相乘](/string/43.md) | 中等 |
