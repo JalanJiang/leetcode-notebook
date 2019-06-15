@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>括号生成 · 算法学习与 LeetCode 刷题</title>
+        <title>全排列 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="46.html" />
     
-    
-    <link rel="prev" href="17.html" />
+    <link rel="prev" href="22.html" />
     
 
     
@@ -2826,7 +2824,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.14.2" data-path="22.html">
+        <li class="chapter " data-level="1.14.2" data-path="22.html">
             
                 <a href="22.html">
             
@@ -2841,7 +2839,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.14.3" data-path="46.html">
+        <li class="chapter active" data-level="1.14.3" data-path="46.html">
             
                 <a href="46.html">
             
@@ -3927,7 +3925,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >括号生成</a>
+        <a href=".." >全排列</a>
     </h1>
 </div>
 
@@ -3942,50 +3940,65 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="22-&#x62EC;&#x53F7;&#x751F;&#x6210;">22. &#x62EC;&#x53F7;&#x751F;&#x6210;</h2>
-<p><a href="https://leetcode-cn.com/problems/generate-parentheses/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+                                <h2 id="46-&#x5168;&#x6392;&#x5217;">46. &#x5168;&#x6392;&#x5217;</h2>
+<p><a href="https://leetcode-cn.com/problems/permutations/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
 <h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
-<p><a href="https://zh.wikipedia.org/wiki/%E5%9B%9E%E6%BA%AF%E6%B3%95" target="_blank">&#x56DE;&#x6EAF;&#x6CD5;</a>&#x3002;</p>
-<p>&#x6839;&#x636E;&#x9898;&#x76EE;&#x8981;&#x6C42;&#xFF0C;&#x5148;&#x6765;&#x601D;&#x8003;&#x4E00;&#x4E0B;<strong>&#x6709;&#x6548;&#x62EC;&#x53F7;</strong>&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x3002;n = 3 &#x65F6;&#x9898;&#x76EE;&#x7ED9;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<pre class="language-"><code>[
-  &quot;((()))&quot;,
-  &quot;(()())&quot;,
-  &quot;(())()&quot;,
-  &quot;()(())&quot;,
-  &quot;()()()&quot;
-]
-</code></pre><p>&#x89C2;&#x5BDF;&#x540E;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF1A;<strong>&#x6BCF;&#x4E00;&#x4E2A;&#x5DE6;&#x62EC;&#x53F7; <code>(</code> &#x7684;&#x540E;&#x9762;&#x90FD;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x53F3;&#x62EC;&#x53F7; <code>)</code> &#x4E0E;&#x4E4B;&#x76F8;&#x5339;&#x914D;</strong>&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x5730;&#x5B89;&#x6392;&#x62EC;&#x53F7;&#xFF0C;&#x663E;&#x7136;&#x5B89;&#x6392;&#x53F3;&#x62EC;&#x53F7; <code>)</code> &#x7684;&#x65F6;&#x5019;&#x662F;&#x6709;&#x538B;&#x529B;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x770B;&#x770B;&#x5B83;&#x7684;&#x5DE6;&#x8FB9;&#x80FD;&#x4E0D;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x548C;&#x5B83;&#x914D;&#x5BF9;&#x7684;&#x5DE6;&#x62EC;&#x53F7; <code>(</code>&#x3002;</p>
-<p>&#x603B;&#x800C;&#x8A00;&#x4E4B;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x6765;&#x8BF4;&#xFF0C;&#x4E0D;&#x662F;&#x653E;&#x5DE6;&#x62EC;&#x53F7; <code>(</code> &#x5C31;&#x662F;&#x653E;&#x53F3;&#x62EC;&#x53F7; <code>)</code>&#xFF1A;</p>
+<p>&#x5148;&#x770B;&#x770B;&#x751F;&#x6210;&#x5168;&#x6392;&#x5217;&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x3002;&#x4F8B;&#x5982; <code>[1, 2, 3]</code> &#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#xFF0C;&#x9996;&#x5148;&#x7B2C;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x6709; 1&#xFF0C;2&#xFF0C;3 &#x4E09;&#x79CD;&#x9009;&#x62E9;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5BF9;&#x5E8F;&#x5217;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF1A;</p>
 <ul>
-<li>&#x5DE6;&#x62EC;&#x53F7;&#xFF1A;&#x6CA1;&#x6709;&#x538B;&#x529B;&#xFF0C;&#x53EA;&#x8981;&#x8FD8;&#x6709;&#x5269;&#xFF0C;&#x90A3;&#x5C31;&#x968F;&#x4FBF;&#x653E;&#xFF01;</li>
-<li>&#x53F3;&#x62EC;&#x53F7;&#xFF1A;&#x6709;&#x538B;&#x529B;&#xFF0C;&#x573A;&#x4E0A;&#x6CA1;&#x6709;&#x53EF;&#x4EE5;&#x914D;&#x5BF9;&#x7684;&#x5DE6;&#x62EC;&#x53F7;&#x5C31;&#x5C34;&#x5C2C;&#x4E86;&#xFF0C;&#x5148;&#x770B;&#x770B;<strong>&#x573A;&#x4E0A;&#x53F3;&#x62EC;&#x53F7;&#x7684;&#x6570;&#x91CF;&#x662F;&#x5426;&#x5C11;&#x4E8E;&#x5DE6;&#x62EC;&#x53F7;</strong>&#xFF0C;&#x5982;&#x679C;&#x8FD8;&#x6709;&#x5269;&#x4E0B;&#x53EF;&#x4EE5;&#x914D;&#x5BF9;&#x7684;&#x5DE6;&#x62EC;&#x53F7;&#xFF0C;&#x6211;&#x5C31;&#x4E0A;&#xFF01;</li>
+<li>&#x9009;&#x62E9; 1: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[2, 3]</code><ul>
+<li>&#x9009;&#x62E9; 2: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[3]</code></li>
+<li>&#x9009;&#x62E9; 3: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[2]</code></li>
 </ul>
-<p>&#x7528;&#x9012;&#x5F52;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x5F53;&#x6240;&#x6709;&#x62EC;&#x53F7;&#x90FD;&#x5206;&#x914D;&#x5B8C;&#x65F6;&#x5C31;&#x53EF;&#x4EE5;&#x7ED3;&#x675F;&#x9012;&#x5F52;&#x8FC7;&#x7A0B;&#x3002;</p>
-<pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">generateParenthesis</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+</li>
+<li>&#x9009;&#x62E9; 2: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[1, 3]</code><ul>
+<li>&#x9009;&#x62E9; 1: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[3]</code></li>
+<li>&#x9009;&#x62E9; 3: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[1]</code></li>
+</ul>
+</li>
+<li>&#x9009;&#x62E9; 3: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[1, 2]</code><ul>
+<li>&#x9009;&#x62E9; 1: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[2]</code></li>
+<li>&#x9009;&#x62E9; 2: &#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A; <code>[1]</code></li>
+</ul>
+</li>
+</ul>
+<p>&#x5982;&#x56FE;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x5206;&#x652F;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x6392;&#x5217;&#xFF1A;</p>
+<p><img src="https://pic.leetcode-cn.com/de9ad9645ae973777995b75c72da4178533bbf1fbb60af42652fccf386bd0d45-range.png" alt="range.png"></p>
+<p>&#x601D;&#x8DEF;&#xFF1A;</p>
+<ol>
+<li>&#x5BF9;&#x73B0;&#x6709;&#x5E8F;&#x5217; <code>x</code> &#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x62FF;&#x5230;&#x6BCF;&#x4E00;&#x4E2A;&#x904D;&#x5386;&#x503C;&#x653E;&#x5728;&#x5F53;&#x524D;&#x4F4D;&#x4E0A;</li>
+<li>&#x5C06;&#x8BE5;&#x904D;&#x5386;&#x5230;&#x7684;&#x503C;&#x62BD;&#x79BB;&#x5E8F;&#x5217; <code>x</code>&#xFF0C;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5E8F;&#x5217; <code>y</code></li>
+<li>&#x7EE7;&#x7EED;&#x5BF9;&#x5E8F;&#x5217; <code>y</code> &#x6267;&#x884C;&#x8FD9;&#x4E00;&#x8FC7;&#x7A0B;</li>
+</ol>
+<p>&#x9012;&#x5F52;&#x5B9E;&#x73B0;&#xFF0C;&#x5F53;&#x5269;&#x4E0B;&#x7684;&#x5E8F;&#x5217;&#x4E3A;&#x7A7A;&#x65F6;&#x53EF;&#x7ED3;&#x675F;&#x9012;&#x5F52;&#x3002;</p>
+<pre class="language-"><code class="lang-python"><span class="token keyword">import</span> copy
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>res <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">permute</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type n: int
-        :rtype: List[str]
+        :type nums: List[int]
+        :rtype: List[List[int]]
         &quot;&quot;&quot;</span>
-        res <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>backtrack<span class="token punctuation">(</span><span class="token string">&apos;&apos;</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> res
+        cur <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>backtrack<span class="token punctuation">(</span>cur<span class="token punctuation">,</span> nums<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>res
 
-
-    <span class="token keyword">def</span> <span class="token function">backtrack</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> cur<span class="token punctuation">,</span> n<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>n <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">backtrack</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> cur<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur<span class="token punctuation">)</span>
             <span class="token keyword">return</span>
 
-        <span class="token comment"># &#x5DE6;&#x62EC;&#x53F7;&#x8FD8;&#x6709;&#x5269;&#x4F59;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x653E;&#x7F6E;&#x5DE6;&#x62EC;&#x53F7;</span>
-        <span class="token keyword">if</span> left <span class="token operator">&lt;</span> n<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>backtrack<span class="token punctuation">(</span>cur <span class="token operator">+</span> <span class="token string">&apos;(&apos;</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> left <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> right<span class="token punctuation">,</span> res<span class="token punctuation">)</span>
-        <span class="token comment"># &#x5DF2;&#x653E;&#x7F6E;&#x7684;&#x53F3;&#x62EC;&#x53F7;&#x6BD4;&#x5DE6;&#x62EC;&#x53F7;&#x5C11;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x653E;&#x7F6E;&#x53F3;&#x62EC;&#x53F7;</span>
-        <span class="token keyword">if</span> right <span class="token operator">&lt;</span> left<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>backtrack<span class="token punctuation">(</span>cur <span class="token operator">+</span> <span class="token string">&apos;)&apos;</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            num <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            now <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>cur<span class="token punctuation">)</span>
+            now<span class="token punctuation">.</span>append<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>backtrack<span class="token punctuation">(</span>now<span class="token punctuation">,</span> nums<span class="token punctuation">[</span><span class="token punctuation">:</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 </code></pre>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2019-06-15 00:58:33
+2019-06-15 23:34:32
 </span></footer>
                                 
                                 </section>
@@ -4013,14 +4026,10 @@
 
             
                 
-                <a href="17.html" class="navigation navigation-prev " aria-label="Previous page: 电话号码的字母组合">
+                <a href="22.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 括号生成">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="46.html" class="navigation navigation-next " aria-label="Next page: 全排列">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -4029,7 +4038,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"括号生成","level":"1.14.2","depth":2,"next":{"title":"全排列","level":"1.14.3","depth":2,"path":"backtrack/46.md","ref":"backtrack/46.md","articles":[]},"previous":{"title":"电话号码的字母组合","level":"1.14.1","depth":2,"path":"backtrack/17.md","ref":"backtrack/17.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter","baiduana"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanspace"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"leetcode-notebook","type":"star","size":"small"}]},"baiduana":{},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode Python 题解，每日更新。","extension":""},"file":{"path":"backtrack/22.md","mtime":"2019-06-14T16:58:33.446Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-15T15:35:30.225Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"全排列","level":"1.14.3","depth":2,"next":{"title":"位运算","level":"1.15","depth":1,"ref":"","articles":[{"title":"汉明距离","level":"1.15.1","depth":2,"path":"bit/461.md","ref":"bit/461.md","articles":[]},{"title":"位1的个数","level":"1.15.2","depth":2,"path":"bit/191.md","ref":"bit/191.md","articles":[]},{"title":"颠倒二进制位","level":"1.15.3","depth":2,"path":"bit/190.md","ref":"bit/190.md","articles":[]},{"title":"只出现一次的数字","level":"1.15.4","depth":2,"path":"bit/136.md","ref":"bit/136.md","articles":[]},{"title":"两整数之和","level":"1.15.5","depth":2,"path":"bit/371.md","ref":"bit/371.md","articles":[]}]},"previous":{"title":"括号生成","level":"1.14.2","depth":2,"path":"backtrack/22.md","ref":"backtrack/22.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter","baiduana"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanspace"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"leetcode-notebook","type":"star","size":"small"}]},"baiduana":{},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode Python 题解，每日更新。","extension":""},"file":{"path":"backtrack/46.md","mtime":"2019-06-15T15:34:32.593Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-15T15:35:30.225Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
