@@ -174,6 +174,7 @@
     * [括号生成](/backtrack/22.md)
     * [全排列](/backtrack/46.md)
     * [子集](/backtrack/78.md)
+    * [单词搜索](/backtrack/79.md)
 * 位运算
     * [汉明距离](/bit/461.md)
     * [位1的个数](/bit/191.md)
