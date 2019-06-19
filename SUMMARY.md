@@ -134,6 +134,7 @@
 * 排序
     * [堆排](/sort/heap.md)
         * [数组中的第K个最大元素](/sort/heap/215.md)
+        * [前K个高频元素](/sort/heap/347.md)
     * [快排]()
         * [Sort Colors](/sort/quick/75.md)
     * [最大数](/sort/179.md)

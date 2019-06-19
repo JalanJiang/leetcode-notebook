@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>数组中的第K个最大元素 · 算法学习与 LeetCode 刷题</title>
+        <title>前K个高频元素 · 算法学习与 LeetCode 刷题</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -79,10 +79,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="347.html" />
     
-    
-    <link rel="prev" href="../heap.html" />
+    <link rel="prev" href="215.html" />
     
 
     
@@ -2203,7 +2201,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.10.1.1" data-path="215.html">
+        <li class="chapter " data-level="1.10.1.1" data-path="215.html">
             
                 <a href="215.html">
             
@@ -2218,7 +2216,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.1.2" data-path="347.html">
+        <li class="chapter active" data-level="1.10.1.2" data-path="347.html">
             
                 <a href="347.html">
             
@@ -3972,7 +3970,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >数组中的第K个最大元素</a>
+        <a href="../.." >前K个高频元素</a>
     </h1>
 </div>
 
@@ -3987,107 +3985,78 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="215-kth-largest-element-in-an-array">215. Kth Largest Element in an Array</h2>
-<p><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/comments/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
+                                <h2 id="347-&#x524D;k&#x4E2A;&#x9AD8;&#x9891;&#x5143;&#x7D20;">347. &#x524D;K&#x4E2A;&#x9AD8;&#x9891;&#x5143;&#x7D20;</h2>
+<p><a href="https://leetcode-cn.com/problems/top-k-frequent-elements/" target="_blank">&#x539F;&#x9898;&#x94FE;&#x63A5;</a></p>
 <h3 id="&#x601D;&#x8DEF;">&#x601D;&#x8DEF;</h3>
-<ul>
-<li>&#x5806;&#x6392;</li>
-<li>&#x5728;&#x91CD;&#x65B0;&#x8C03;&#x6574;&#x5806;&#x65F6;&#x5F39;&#x51FA;&#x7B2C; k &#x4E2A;&#x5143;&#x7D20;</li>
-<li>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6; O(NlogK)&#xFF0C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6; O(K)</li>
-</ul>
+<ol>
+<li>&#x4F7F;&#x7528;&#x54C8;&#x5E0C;&#x8868;&#x5BF9;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;</li>
+<li>&#x6839;&#x636E;&#x5143;&#x7D20;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x5904;&#x7406;</li>
+</ol>
+<p>&#x6839;&#x636E;&#x9898;&#x76EE;&#x5BF9;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x8981;&#x6C42;&#xFF0C;&#x9009;&#x62E9;&#x4E86;&#x5806;&#x6392;&#x5E8F;&#x3002;&#x9700;&#x8981;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x5927;&#x9876;&#x5806;&#x3002;</p>
 <pre class="language-"><code class="lang-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">topKFrequent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token triple-quoted-string string">&quot;&quot;&quot;
         :type nums: List[int]
         :type k: int
-        :rtype: int
+        :rtype: List[int]
         &quot;&quot;&quot;</span>
-        length <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-        <span class="token comment"># &#x6784;&#x5EFA;&#x5927;&#x9876;&#x5806;</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>adjustHeap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> length<span class="token punctuation">)</span>
+        count_dict <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> n <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
+            count_dict<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> count_dict<span class="token punctuation">.</span>get<span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
 
+        count_list <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> key <span class="token keyword">in</span> count_dict<span class="token punctuation">:</span>
+            count_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> count_dict<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        length <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>count_list<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>length<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>adjust_heap<span class="token punctuation">(</span>count_list<span class="token punctuation">,</span> i<span class="token punctuation">,</span> length<span class="token punctuation">)</span>
+
+        res <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         count <span class="token operator">=</span> <span class="token number">0</span>
-        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            count <span class="token operator">=</span> count <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>count_list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token comment"># &#x5C06;&#x5806;&#x9876;&#x5143;&#x7D20;&#x5F39;&#x51FA;</span>
+            self<span class="token punctuation">.</span>swap<span class="token punctuation">(</span>count_list<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span>
             <span class="token keyword">if</span> count <span class="token operator">==</span> k<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-            self<span class="token punctuation">.</span>swap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span>
-            length <span class="token operator">=</span> length <span class="token operator">-</span> <span class="token number">1</span>
-            self<span class="token punctuation">.</span>adjustHeap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span>
+                <span class="token keyword">return</span> res
+            <span class="token comment"># &#x7EF4;&#x62A4;&#x5806;</span>
+            length <span class="token operator">-=</span> <span class="token number">1</span>
+            self<span class="token punctuation">.</span>adjust_heap<span class="token punctuation">(</span>count_list<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span>
 
-
-    <span class="token keyword">def</span> <span class="token function">adjustHeap</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">adjust_heap</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        &#x7EF4;&#x62A4;&#x5806;
+        &quot;&quot;&quot;</span>
         <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-            k <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token comment">#left node</span>
+            k <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
             <span class="token keyword">if</span> k <span class="token operator">&gt;=</span> length<span class="token punctuation">:</span>
                 <span class="token keyword">return</span>
-            <span class="token keyword">if</span> k <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> length <span class="token operator">and</span> nums<span class="token punctuation">[</span>k<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                k <span class="token operator">=</span> k <span class="token operator">+</span> <span class="token number">1</span>
-            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">&gt;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>swap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+            <span class="token comment"># &#x5DE6;&#x53F3;&#x8282;&#x70B9;&#x53D6;&#x8F83;&#x5C0F;&#x6570;</span>
+            <span class="token keyword">if</span> k <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> length <span class="token operator">and</span> nums<span class="token punctuation">[</span>k <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                k <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>swap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> k<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
                 i <span class="token operator">=</span> k
             <span class="token keyword">else</span><span class="token punctuation">:</span>
                 <span class="token keyword">return</span>
 
     <span class="token keyword">def</span> <span class="token function">swap</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        temp <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        &#x5143;&#x7D20;&#x4EA4;&#x6362;
+        &quot;&quot;&quot;</span>
+        tmp <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
         nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
-        nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp
+        nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> tmp
 </code></pre>
-<p>&#x4E4B;&#x524D;&#x50BB;&#x903C;&#x4E86;&#xFF0C;&#x5168;&#x90E8;&#x6392;&#x5E8F;&#x5B8C;&#x624D;&#x5F39;&#x51FA;&#x3002;</p>
-<pre class="language-"><code class="lang-python"><span class="token comment"># -*- coding: utf-8 -*-</span>
-<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        &quot;&quot;&quot;</span>
-        <span class="token comment"># &#x6784;&#x5EFA;&#x5806;</span>
-        length <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> length<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            nums <span class="token operator">=</span> self<span class="token punctuation">.</span>adjustHeap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> length<span class="token punctuation">)</span>
-        <span class="token comment"># &#x4EA4;&#x6362;&#x5143;&#x7D20;</span>
-        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">reversed</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            nums <span class="token operator">=</span> self<span class="token punctuation">.</span>swap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> j<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
-            length <span class="token operator">=</span> length <span class="token operator">-</span> <span class="token number">1</span>
-            nums <span class="token operator">=</span> self<span class="token punctuation">.</span>adjustHeap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> nums<span class="token punctuation">[</span><span class="token operator">-</span>k<span class="token punctuation">]</span>
-
-    <span class="token keyword">def</span> <span class="token function">adjustHeap</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> i<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :type nums: List[int] heap
-        :type i: int &#x5F53;&#x524D;&#x8282;&#x70B9;
-        :type length: int heap&#x957F;&#x5EA6;
-        &quot;&quot;&quot;</span>
-        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-            k <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
-            <span class="token keyword">if</span> k <span class="token operator">&gt;=</span> length<span class="token punctuation">:</span>
-                <span class="token keyword">break</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> length<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>k <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                k <span class="token operator">=</span> k <span class="token operator">+</span> <span class="token number">1</span>
-            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">&gt;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>swap<span class="token punctuation">(</span>nums<span class="token punctuation">,</span> k<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
-                i <span class="token operator">=</span> k
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">break</span>
-        <span class="token keyword">return</span> nums
-
-    <span class="token keyword">def</span> <span class="token function">swap</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">&quot;&quot;&quot;
-        :param nums: List[int] heap
-        :param a: int
-        :param b: int
-        :return: List[int]
-        &quot;&quot;&quot;</span>
-        temp <span class="token operator">=</span> nums<span class="token punctuation">[</span>a<span class="token punctuation">]</span>
-        nums<span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>b<span class="token punctuation">]</span>
-        nums<span class="token punctuation">[</span>b<span class="token punctuation">]</span> <span class="token operator">=</span> temp
-        <span class="token keyword">return</span> nums
-</code></pre>
+<h3 id="&#x590D;&#x6742;&#x5EA6;">&#x590D;&#x6742;&#x5EA6;</h3>
+<ul>
+<li>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF1A;<code>O(nlogn)</code></li>
+<li>&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF1A;<code>O(n)</code> </li>
+</ul>
 <footer class="page-footer"><span class="copyright">JalanJiang.&#x6C5F;&#x5B50;&#x6291; all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2019-05-24 23:01:25
+2019-06-19 23:43:15
 </span></footer>
                                 
                                 </section>
@@ -4115,14 +4084,10 @@
 
             
                 
-                <a href="../heap.html" class="navigation navigation-prev " aria-label="Previous page: 堆排">
+                <a href="215.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 数组中的第K个最大元素">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="347.html" class="navigation navigation-next " aria-label="Next page: 前K个高频元素">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -4131,7 +4096,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"数组中的第K个最大元素","level":"1.10.1.1","depth":3,"next":{"title":"前K个高频元素","level":"1.10.1.2","depth":3,"path":"sort/heap/347.md","ref":"sort/heap/347.md","articles":[]},"previous":{"title":"堆排","level":"1.10.1","depth":2,"path":"sort/heap.md","ref":"sort/heap.md","articles":[{"title":"数组中的第K个最大元素","level":"1.10.1.1","depth":3,"path":"sort/heap/215.md","ref":"sort/heap/215.md","articles":[]},{"title":"前K个高频元素","level":"1.10.1.2","depth":3,"path":"sort/heap/347.md","ref":"sort/heap/347.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter","baiduana"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanspace"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"leetcode-notebook","type":"star","size":"small"}]},"baiduana":{},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode Python 题解，每日更新。","extension":""},"file":{"path":"sort/heap/215.md","mtime":"2019-05-24T15:01:25.747Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-19T15:45:02.507Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"前K个高频元素","level":"1.10.1.2","depth":3,"next":{"title":"快排","level":"1.10.2","depth":2,"ref":"","articles":[{"title":"Sort Colors","level":"1.10.2.1","depth":3,"path":"sort/quick/75.md","ref":"sort/quick/75.md","articles":[]}]},"previous":{"title":"数组中的第K个最大元素","level":"1.10.1.1","depth":3,"path":"sort/heap/215.md","ref":"sort/heap/215.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","disqus","prism","-highlight","tbfed-pagefooter","github-buttons","page-toc-button","back-to-top-button","sitemap-general","favicon@^0.0.2","splitter","baiduana"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"JalanJiang.江子抑","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism.css"]},"disqus":{"useIdentifier":false,"shortName":"jalanspace"},"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sitemap-general":{"prefix":"http://jalan.space/leetcode-notebook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"theme":"sepia","family":"serif","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"page-toc-button":{},"back-to-top-button":{},"github-buttons":{"buttons":[{"user":"JalanJiang","repo":"leetcode-notebook","type":"star","size":"small"}]},"baiduana":{},"baidu":{"token":"c47c7dbbbbb8b1bd7729048f358cd896"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","author":"JalanJiang.江子抑 <jjy@meitu.com>","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"算法学习与 LeetCode 刷题","links":{"sidebar":{"我的博客":"http://jalan.space"},"sharing":{"google":null,"facebook":null,"twitter":null,"weibo":null,"all":null}},"gitbook":"*","description":"Leetcode Python 题解，每日更新。","extension":""},"file":{"path":"sort/heap/347.md","mtime":"2019-06-19T15:43:15.537Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-19T15:45:02.507Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
