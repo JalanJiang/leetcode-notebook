@@ -12,7 +12,7 @@
 
 - 🍸 LeetCode Notebook，代号 [Rum](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)。[朗姆酒](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)，鸡尾酒的热带气息基酒，暗指“算法与数据结构是程序员的基底”
 - 👩‍💻 人生苦短，我用 Python
-- ⚔️ 使用 [Gitbook](https://www.gitbook.com/?t=7) 构建，教程可参考 [《搭建 GitBook 并托管到 git pages》](http://jalan.space/2018/04/22/2018/2018-04-22-gitbook-and-git-pages/)
+- ⚔️ 使用 [docsify](https://docsify.js.org/#/) 构建
 - 🛎 每日更新，欢迎点击 `Watch` 进行订阅~
 
 ## 关于我
