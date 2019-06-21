@@ -1,9 +1,13 @@
-#cur_date=$(date +%Y-%m-%d)
 message=$1
-echo $message
-gitbook build
-git add *
+
+# 更新 master
+git add .
 git commit -m "$message"
-git push origin master
-git subtree push --prefix=_book origin gh-pages
-# git push origin `git subtree split --prefix=_book master`:gh-pages --force
+git push -f git@github.com:JalanJiang/leetcode-notebook.git master
+
+# 更新 gh-pages
+cd docs/
+git init
+git add -A
+git commit -m "$message"
+git push -f git@github.com:JalanJiang/leetcode-notebook.git master:gh-pages
