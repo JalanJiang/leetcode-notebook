@@ -1611,6 +1611,72 @@ class Solution:
         return m
 ```
 
+## 498. 对角线遍历
+
+[原题链接](https://leetcode-cn.com/problems/diagonal-traverse/)
+
+### 解一
+
+模拟整个过程。下一条对角线上的元素可以通过当前对角线推出 —— 向右走一格或向下走一格。
+
+建立了几个变量用来记录中间值：
+
+- `forward_flag`：判断此时对角线是从下往上走还是从上往下走
+- `mark`：二维数组，用来标记某个位置是否已经处理过
+- `stack`：用来装已经处理过的元素，便于推断出下一条对角线上的元素
+
+代码写的非常不优雅……
+
+```python
+class Solution(object):
+    def findDiagonalOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        m = len(matrix)
+        if m == 0:
+            return []
+        n = len(matrix[0])
+        
+        mark = [[0 for _ in range(n)] for _ in range(m)]
+        
+        stack = list()
+        stack.append((0, 0))
+        forward_flag = -1 #从上往下
+        res = []
+        res.append(matrix[0][0])
+        while len(stack) > 0:
+            new_stack = list()
+            # print stack
+            for x in range(len(stack) - 1, -1, -1):
+                i, j = stack[x][0], stack[x][1]
+                if forward_flag == -1:
+                    if j + 1 < n and mark[i][j+1] == 0:
+                        mark[i][j+1] = 1
+                        new_stack.append((i, j + 1))
+                        res.append(matrix[i][j+1])
+                        
+                    if i + 1 < m and mark[i+1][j] == 0:
+                        mark[i+1][j] = 1
+                        new_stack.append((i + 1, j))
+                        res.append(matrix[i+1][j])
+                elif forward_flag == 1:
+                    
+                    if i + 1 < m and mark[i+1][j] == 0:
+                        mark[i+1][j] = 1
+                        new_stack.append((i + 1, j))
+                        res.append(matrix[i+1][j])
+                        
+                    if j + 1 < n and mark[i][j+1] == 0:
+                        mark[i][j+1] = 1
+                        new_stack.append((i, j + 1))
+                        res.append(matrix[i][j+1])
+            stack = new_stack
+            forward_flag = -1 * forward_flag
+            
+        return res
+```
 
 ## 547. 朋友圈
 
