@@ -1678,6 +1678,57 @@ class Solution(object):
         return res
 ```
 
+### 解二
+
+通过坐标元素 (x, y) 的和 `x + y` 来判断对角线的走向：
+
+- 奇数：向下走
+- 偶数：向上走
+
+```
+class Solution(object):
+    def findDiagonalOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if not matrix:
+            return []
+        # m 行
+        m = len(matrix)
+        # n 列
+        n = len(matrix[0])
+        r = 0
+        c = 0
+        res = []
+        
+        for i in range(m * n):
+            # print r, c
+            res.append(matrix[r][c])
+            if (r + c) % 2 == 0:
+                # 偶数，向上走
+                if c == n - 1: 
+                    # 注意判断条件的顺序：先判断上边界
+                    # 因为出现右上角 (0, 2) 时需要向下走一格 
+                    r += 1
+                elif r == 0:
+                    c += 1
+                else:
+                    r -= 1
+                    c += 1
+            else:
+                # 奇数，向下走
+                if r == m - 1:
+                    c += 1
+                elif c == 0:
+                    r += 1
+                else:
+                    r += 1
+                    c -= 1
+        return res
+                
+```
+  
 ## 547. 朋友圈
 
 [原题链接](https://leetcode-cn.com/problems/friend-circles/comments/)
