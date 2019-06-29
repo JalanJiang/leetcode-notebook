@@ -22,6 +22,7 @@
     * [广度优先](algorithm/research/bfs/)
     * [二分查找](algorithm/research/binary-search/)
   * [动态规划](algorithm/dynamic/)
+  * [分治](algorithm/divide-and-conquer/)
   * [贪心](algorithm/greedy/)
   * [位运算](algorithm/bit/)
   * [数学题](algorithm/math/)
