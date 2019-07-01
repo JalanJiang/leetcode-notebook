@@ -714,6 +714,61 @@ class Solution(object):
         return res
 ```
 
+## 67. 二进制求和
+
+[原题链接](https://leetcode-cn.com/problems/add-binary/)
+
+### 解法一
+
+Python 内置函数懒蛋解法。
+
+```python
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        return bin(int(a, 2) + int(b, 2))[2:]
+```
+
+### 解法二
+
+把较短的字符串前端用零补齐。然后两个字符串按位相加。
+
+```python
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        dis_length = len(a) - len(b)
+        if dis_length < 0:
+            a = -(dis_length) * '0' + a
+        else:
+            b = dis_length * '0' + b
+            
+        res = ''
+        pre = 0
+        for i in range(len(a) - 1, -1, -1):
+            a_c = a[i]
+            b_c = b[i]
+            cur = int(a_c) + int(b_c) + pre
+            if cur >= 2:
+                pre = 1
+                cur %= 2
+            else:
+                pre = 0
+            res = str(cur) + res
+            
+        if pre > 0:
+            res = '1' + res
+        
+        return res
+```
 
 ## 71. 简化路径
 
@@ -748,7 +803,6 @@ class Solution(object):
             res_path += "/"+item + ""
         return res_path
 ```
-
 
 ## 93. 复原IP地址
 
