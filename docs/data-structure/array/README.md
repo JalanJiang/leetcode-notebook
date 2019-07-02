@@ -1771,6 +1771,31 @@ class Solution(object):
                 self.data[n]= self.data[j]  
 ```
 
+## 561. 数组拆分 I
+
+[原题链接](https://leetcode-cn.com/problems/array-partition-i/)
+
+### 思路
+
+对题目概括一下就是：把长度为 2n 的数组分为 n 份，每份两个元素，希望得到每份中**较小元素**相加和最大。
+
+所以我们希望这个**较小元素**是每个组合中的较小元素，确是整个数组中的较大元素。
+
+所以：
+
+1. 对数组进行排序
+2. 间隔取奇数位数，然后相加
+
+```python
+class Solution(object):
+    def arrayPairSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums = sorted(nums)
+        return sum(nums[::2])
+```
 
 ## 565. 数组嵌套
 
