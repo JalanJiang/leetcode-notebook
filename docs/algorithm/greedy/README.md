@@ -1,3 +1,61 @@
+## 45. 跳跃游戏 II
+
+[原题链接](https://leetcode-cn.com/problems/jump-game-ii/)
+
+妈个鸡和少棉一起做这道题做了快一个小时。。。
+
+### 解法一：动态规划（超时）
+
+第一个想到的方法是动态规划。
+
+假设跳到 `x` 位置的最少次数为 `dp[x]`，再假设我们能跳到 `x` 位置的坐标为 `n1, n2, ..., nx`，那么很容易得到公式：
+
+```
+dp[x] = min(dp[n1], dp[n2], ..., dp[nx]) + 1
+```
+
+```python
+
+```
+
+### 解法二：贪心
+
+主要思想：每次都要跳到**能跳到更远位置**的点上。
+
+```
+class Solution(object):
+    def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        length = len(nums)
+        if length == 1:
+            return 0
+        res = 0
+        i = 0
+        
+        while i < length:
+            num = nums[i]
+            if i + num >= length - 1:
+                res += 1
+                break
+                
+            tmp = nums[i+1:i+num+1]
+            max_num = nums[i + 1] + i + 1
+            max_index = 0
+            # 找能跳到最远距离的数
+            for j in range(len(tmp)):
+                if tmp[j] + j + i >= max_num:
+                    max_index = j
+                    max_num = tmp[j] + j + i
+            
+            i = max_index + i + 1
+            res += 1
+                                    
+        return res
+```
+
 ## 122. 买卖股票的最佳时机 II
 
 [原题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
