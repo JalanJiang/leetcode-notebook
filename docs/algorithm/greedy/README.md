@@ -15,14 +15,32 @@ dp[x] = min(dp[n1], dp[n2], ..., dp[nx]) + 1
 ```
 
 ```python
-
+class Solution(object):
+    def jump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        length = len(nums)
+        dp = [0 for _ in range(length)]
+        
+        for i in range(length):
+            num = nums[i]
+            for j in range(1, num + 1):
+                if i + j < length:
+                    if dp[i + j] == 0:
+                        dp[i + j] = dp[i] + 1
+                    else:
+                        dp[i + j] = min(dp[i] + 1, dp[i + j])
+                                        
+        return dp[length - 1]
 ```
 
 ### 解法二：贪心
 
 主要思想：每次都要跳到**能跳到更远位置**的点上。
 
-```
+```python
 class Solution(object):
     def jump(self, nums):
         """
