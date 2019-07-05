@@ -173,3 +173,40 @@ class Solution(object):
         return res if res >= length else length
 ```
 
+## 376. 摆动序列
+
+[原题链接](https://leetcode-cn.com/problems/wiggle-subsequence/)
+
+### 解法一：贪心
+
+**摆动序列**的特点为：所有数连成折线图，折线图出现**折点**时则发生摆动。
+
+因此：
+
+- 用变量 `forward` 表示此时折线图的走向趋势
+- 用变量 `diff` 表示当前出现点的走向趋势
+
+如果折线图向上走，此时出现的点向下走，那么就会出现**折点**，此时把结果 +1。
+
+```python
+class Solution(object):
+    def wiggleMaxLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        length = len(nums)
+        if length < 2:
+            return length
+        
+        forward = nums[1] - nums[0]
+        res = 1 if forward == 0 else 2
+        
+        for i in range(1, length):
+            diff = nums[i] - nums[i - 1]
+            if (diff > 0 and forward <= 0) or (diff < 0 and forward >= 0):
+                res += 1
+                forward = diff
+            
+        return res
+```
