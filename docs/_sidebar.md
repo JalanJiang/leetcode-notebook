@@ -27,6 +27,7 @@
   * [位运算](algorithm/bit/)
   * [数学题](algorithm/math/)
   * [回溯](algorithm/backtrack/)
+  * [双指针](algorithm/double-pointer/)
   * [其他](algorithm/other/)
 * 周赛
   * [第 121 场周赛](weekly/121/)
