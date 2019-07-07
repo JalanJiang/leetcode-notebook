@@ -11,14 +11,14 @@
 ## Rum
 
 - 🍸 LeetCode Notebook，代号 [Rum](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)。[朗姆酒](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)，鸡尾酒的热带气息基酒，暗指“算法与数据结构是程序员的基底”
-- 👩‍💻 人生苦短，我用 Python
+- 👩‍💻 人生苦短，我用 Python / Swift 初学者
 - ⚔️ 使用 [docsify](https://docsify.js.org/#/) 构建，搭建教程见 [docsify 入坑指南与我放弃 Gitbook 的那些理由](http://jalan.space/2019/06/21/2019/begin-docsify/)
 - 🛎 每日更新，欢迎点击 `Watch` 进行订阅~
 
 ## 关于我
 
 - 我的 [LeetCode 主页](https://leetcode-cn.com/jalan/)
-  - 完成题解 `215`
+  - 完成题解 `216`
   - 参与竞赛 `12` 次
 - 我的博客：[忘归](http://jalan.space)
 
@@ -39,6 +39,7 @@
   - 贪心
   - 位运算
   - 数学题
+  - 双指针
   - 其他
 - 周赛
 
