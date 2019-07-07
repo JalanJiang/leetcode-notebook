@@ -25,19 +25,37 @@ class Solution(object):
         i = 0
         j = 0
         
-        while i < s_length:
-            s_c = s[i]
-            has = False
-            while j < t_length:
-                t_c = t[j]
-                j += 1
-                if s_c == t_c:
-                    i += 1
-                    has = True
-                    break
-                
-            if has == False:
-                return False
+        while i < s_length and j < t_length:
+            if s[i] == t[j]:
+                i += 1
+            j += 1
             
-        return True
+        return i == s_length
+```
+
+```swift
+class Solution {
+    func isSubsequence(_ s: String, _ t: String) -> Bool {
+        var sLength = s.count
+        var tLength = t.count
+        
+        var i = 0
+        var j = 0
+        
+        var sArray = Array(s)
+        var tArray = Array(t)
+        
+        while i < sLength && j < tLength {
+            var sc = sArray[i]
+            var tc = tArray[j]
+            
+            if sc == tc {
+                i += 1
+            }
+            j += 1
+        }
+        
+        return i == sLength
+    }
+}
 ```
