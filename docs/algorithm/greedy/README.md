@@ -229,6 +229,76 @@ class Solution(object):
         return res
 ```
 
+## 402. 移掉K位数字
+
+[原题链接](https://leetcode-cn.com/problems/remove-k-digits/)
+
+### 解一：贪心
+
+如果要剩下的数字最小，那么数字从左开始的每一位都要尽可能地小，因此我们要从剩余数字的高位开始，在**有效范围**内找到最小的数字。
+
+何为有效范围？
+
+比如这个栗子：
+
+```
+输入: num = "1432219", k = 3
+```
+
+要求删除 3 位数字，留下 4 位数字。那么第 1 位数字的查找有效范围是 `1432`，即下标 `0 ~ 3`。因为如果我们再往后选择，比如选择第 5 位数字 2，那么我们就无法完整地凑齐 4 位数字了。
+
+可以观察到规律：
+
+- 第 1 位数字有效范围：下标 `0 ~ 3`
+- 第 2 位数字有效范围：下标 `1 ~ 4`
+- 第 3 位数字有效范围：下标 `2 ~ 5`
+- ……
+
+假设我们要从长度为 `length` 的字符串 `num` 中删除 `k` 位数字，那么第 `x` 个数字的有效查找范围是下标 `x-1 ~ k+x-1`。
+
+整理一下思路：
+
+1. 从高位开始逐一查找每一位数字尽可能小的取值。其中，第 `x` 位数字的有效取值范围是 `x-1 ~ k+x-1`
+2. 找到最小值后记录最小值 `min_num` 以及对应的下标 `min_index`
+3. 设置下一轮的查找开始位置为 `min_index + 1` 
+4. 循环此过程，直到完成所有数字的查找
+
+```python
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        num_length = len(num)
+        if num_length <= k:
+            return "0"
+        
+        left_count = num_length - k
+        res = ""
+        count = 0
+        begin = 0
+        
+        while count < left_count:
+            min_index = 0
+            min_num = float('inf')
+            for i in range(begin, k + count + 1):
+                # 找到最小数
+                if int(num[i]) < min_num:
+                    min_index = i
+                    min_num = int(num[i])
+            # 把找到的最小数加入结果列表
+            res += str(min_num)
+            # 设置下一轮查找范围的起点
+            begin = min_index + 1
+            count += 1
+            
+        return "0" if len(res) == 0 else str(int(res))
+```
+
+
+
+### 踩坑
+
+- [Swift String 转数组](https://stackoverflow.com/questions/39299782/cannot-invoke-initializer-for-type-with-an-argument-list-of-type-element)
+
+
 ## 955. 删列造序 II
 
 [原题链接](https://leetcode-cn.com/problems/delete-columns-to-make-sorted-ii/)
