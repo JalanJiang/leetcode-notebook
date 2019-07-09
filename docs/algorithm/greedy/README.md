@@ -292,11 +292,43 @@ class Solution:
         return "0" if len(res) == 0 else str(int(res))
 ```
 
-
-
 ### 踩坑
 
 - [Swift String 转数组](https://stackoverflow.com/questions/39299782/cannot-invoke-initializer-for-type-with-an-argument-list-of-type-element)
+
+## 406. 根据身高重建队列
+
+[原题链接](https://leetcode-cn.com/problems/queue-reconstruction-by-height/)
+
+### 思路
+
+先对原数组按 `h` 降序、`k` 升序排序。然后遍历数组，根据元素的 `k` 值进行「插队操作」：直接把元素插入数组下标为 `k` 的位置。
+
+这样排序的理由是：
+
+1. `k` 值表示排在这个人前面且身高大于或等于 `h` 的人数，按 `h` 降序排序可以确定身高更高者的人数
+2. 按 `k` 降序排序则先处理排在更前面的数，避免更多的元素交换操作
+
+```python
+class Solution:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        # 对 people 排序：按 h 降序，k 升序
+        people.sort(key=lambda x: (-x[0], x[1]))
+        length = len(people)
+        
+        i = 0
+        while i < length:
+            cur_people = people[i]
+            k = cur_people[1]
+            if k < i:
+                # 从后往前遍历，进行「插队」步骤的元素交换
+                for j in range(i , k, -1):
+                    people[j] = people[j - 1]
+                people[k] = cur_people
+            i += 1
+        
+        return people
+```
 
 
 ## 955. 删列造序 II
