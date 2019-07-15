@@ -1402,4 +1402,63 @@ class Solution(object):
         return result
 ```
 
+## 1108. IP 地址无效化
 
+[原题链接](https://leetcode-cn.com/problems/defanging-an-ip-address/)
+
+对字符串的考察。
+
+### Python
+
+```python
+class Solution:
+    def defangIPaddr(self, address: str) -> str:
+        res = ''
+        for c in address:
+            if c == ".":
+                res += '[.]'
+            else:
+                res += c
+        return res
+```
+
+### Swift
+
+```swift
+class Solution {
+    func defangIPaddr(_ address: String) -> String {
+        var res = ""
+        for c in address {
+            if c == "." {
+                res += "[.]"
+            } else {
+                res += String(c)
+            }
+        }
+        return res
+    }
+}
+```
+
+### PHP
+
+```php
+class Solution {
+
+    /**
+     * @param String $address
+     * @return String
+     */
+    function defangIPaddr($address) {
+        $res = '';
+        for ($i = 0; $i < strlen($address); $i++) {
+            if ($address[$i] == '.') {
+                $res .= "[.]";
+            } else {
+                $res .= $address[$i];
+            }
+        }
+        return $res;
+    }
+}
+```
