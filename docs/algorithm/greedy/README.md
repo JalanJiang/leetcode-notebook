@@ -479,33 +479,6 @@ class Solution:
         return "Dire" if len(rq) == 0 else "Radiant"
 ```
 
-## 714. 买卖股票的最佳时机含手续费
-
-[原题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
-
-### 思路
-
-```python
-class Solution(object):
-    def maxProfit(self, prices, fee):
-        """
-        :type prices: List[int]
-        :type fee: int
-        :rtype: int
-        """
-        # cash：不持有
-        cash = 0
-        # hold：持有
-        hold = -prices[0]
-        for i in range(1, len(prices)):
-            p = prices[i]
-            # 选择卖出或不变
-            cash = max(cash, hold + prices[i] - fee)
-            # 选择买入或不变
-            hold = max(hold, cash - prices[i])
-        return cash
-```
-
 ## 955. 删列造序 II
 
 [原题链接](https://leetcode-cn.com/problems/delete-columns-to-make-sorted-ii/)
