@@ -726,3 +726,25 @@ class Solution(object):
             hold = max(hold, cash - prices[i])
         return cash
 ```
+
+## 898. 子数组按位或操作
+
+[原题链接](https://leetcode-cn.com/problems/bitwise-ors-of-subarrays/)
+
+### 思路
+
+动态规划，`dp[i]` 存储所有以 `i` 结尾的子数组的或结果（集合）。
+
+由于数据规模为 `1 <= A.length <= 50000`，因此无法使用 `O(n^2)` 的算法。参考 [花花酱 LeetCode 898. Bitwise ORs of Subarrays - 刷题找工作 EP222](https://www.bilibili.com/video/av31142168) 的讲解，说的非常详细了，也大致了解到如何根据问题规模确定复杂度了。
+
+```python
+class Solution:
+    def subarrayBitwiseORs(self, A: List[int]) -> int:
+        cur = set()
+        res = set()
+        # cur 存储以 a 结尾的所有子数组的或结果
+        for a in A:
+            cur = {n | a for n in cur} | {a}
+            res |= cur
+        return len(res)
+```
