@@ -276,6 +276,48 @@ class Solution(object):
 - 时间复杂度：`O(m*n)`
 - 空间复杂度：`O(2n)`
 
+## 64. 最小路径和
+
+[原题链接](https://leetcode-cn.com/problems/minimum-path-sum/)
+
+### 思路
+
+动态规划。
+
+只能通过该点的左边或是上边到达某个点，因此 `dp[x][y] = min(dp[x - 1][y], dp[x][y - 1]) + grid[x][y]`。
+
+注意边界处理。
+
+```python
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m = len(grid)
+        if m == 0:
+            return 0
+        n = len(grid[0])
+        
+        dp = [[0 for _ in range(n)] for _ in range(m)]
+        
+        for i in range(m):
+            for j in range(n):
+                if i == 0 and j == 0:
+                    dp[i][j] = grid[i][j]
+                    continue
+                
+                if i == 0:
+                    dp[i][j] = dp[i][j-1] + grid[i][j]
+                elif j == 0:
+                    dp[i][j] = dp[i-1][j] + grid[i][j]
+                else:
+                    dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+                    
+        return dp[m-1][n-1]
+```
+
+### 复杂度
+
+- 时间复杂度 `O(m*n)`
+- 空间复杂度：`O(m*n)`（如果复用 `grid` 的话也可以达到 `O(1)`）
 
 ## 70. 爬楼梯
 
