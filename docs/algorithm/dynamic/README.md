@@ -769,6 +769,46 @@ class Solution(object):
         return cash
 ```
 
+## 740. 删除与获得点数
+
+[原题链接](https://leetcode-cn.com/problems/delete-and-earn/)
+
+### 思路
+
+太困了，题解明天补充。
+
+```python
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        nums_map = dict()
+        for num in nums:
+            nums_map[num] = nums_map.get(num, 0) + 1
+        # 去重 + 排序
+        nums_list = sorted(list(set(nums)))
+        dp = dict()
+        dp[nums_list[0]] = nums_list[0] * nums_map[nums_list[0]]
+        
+        for i in range(1, len(nums_list)):
+            num = nums_list[i]
+            points = nums_map.get(num, 0) * num
+            pre_num = nums_list[i - 1]
+            if i == 1:
+                if pre_num == num - 1:
+                    dp[num] = max(dp[pre_num], points)
+                else:
+                    dp[num] = dp[pre_num] + points
+            else:
+                ppre_num = nums_list[i - 2]
+                if pre_num == num - 1:
+                    dp[num] = max(dp.get(ppre_num, 0) + nums_map.get(num, 0) * num, dp.get(pre_num, 0))
+                else:
+                    dp[num] = dp[pre_num] + points
+                
+        return dp[nums_list[-1]]
+```
+
 ## 898. 子数组按位或操作
 
 [原题链接](https://leetcode-cn.com/problems/bitwise-ors-of-subarrays/)
