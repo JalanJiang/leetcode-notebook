@@ -276,6 +276,48 @@ class Solution(object):
 - 时间复杂度：`O(m*n)`
 - 空间复杂度：`O(2n)`
 
+## 64. 最小路径和
+
+[原题链接](https://leetcode-cn.com/problems/minimum-path-sum/)
+
+### 思路
+
+动态规划。
+
+只能通过该点的左边或是上边到达某个点，因此 `dp[x][y] = min(dp[x - 1][y], dp[x][y - 1]) + grid[x][y]`。
+
+注意边界处理。
+
+```python
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m = len(grid)
+        if m == 0:
+            return 0
+        n = len(grid[0])
+        
+        dp = [[0 for _ in range(n)] for _ in range(m)]
+        
+        for i in range(m):
+            for j in range(n):
+                if i == 0 and j == 0:
+                    dp[i][j] = grid[i][j]
+                    continue
+                
+                if i == 0:
+                    dp[i][j] = dp[i][j-1] + grid[i][j]
+                elif j == 0:
+                    dp[i][j] = dp[i-1][j] + grid[i][j]
+                else:
+                    dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+                    
+        return dp[m-1][n-1]
+```
+
+### 复杂度
+
+- 时间复杂度 `O(m*n)`
+- 空间复杂度：`O(m*n)`（如果复用 `grid` 的话也可以达到 `O(1)`）
 
 ## 70. 爬楼梯
 
@@ -698,4 +740,93 @@ class Solution(object):
             List1 = List1+List2
  
         return List1[:num+1]
+```
+
+## 714. 买卖股票的最佳时机含手续费
+
+[原题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
+
+### 思路
+
+```python
+class Solution(object):
+    def maxProfit(self, prices, fee):
+        """
+        :type prices: List[int]
+        :type fee: int
+        :rtype: int
+        """
+        # cash：不持有
+        cash = 0
+        # hold：持有
+        hold = -prices[0]
+        for i in range(1, len(prices)):
+            p = prices[i]
+            # 选择卖出或不变
+            cash = max(cash, hold + prices[i] - fee)
+            # 选择买入或不变
+            hold = max(hold, cash - prices[i])
+        return cash
+```
+
+## 740. 删除与获得点数
+
+[原题链接](https://leetcode-cn.com/problems/delete-and-earn/)
+
+### 思路
+
+太困了，题解明天补充。
+
+```python
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        nums_map = dict()
+        for num in nums:
+            nums_map[num] = nums_map.get(num, 0) + 1
+        # 去重 + 排序
+        nums_list = sorted(list(set(nums)))
+        dp = dict()
+        dp[nums_list[0]] = nums_list[0] * nums_map[nums_list[0]]
+        
+        for i in range(1, len(nums_list)):
+            num = nums_list[i]
+            points = nums_map.get(num, 0) * num
+            pre_num = nums_list[i - 1]
+            if i == 1:
+                if pre_num == num - 1:
+                    dp[num] = max(dp[pre_num], points)
+                else:
+                    dp[num] = dp[pre_num] + points
+            else:
+                ppre_num = nums_list[i - 2]
+                if pre_num == num - 1:
+                    dp[num] = max(dp.get(ppre_num, 0) + nums_map.get(num, 0) * num, dp.get(pre_num, 0))
+                else:
+                    dp[num] = dp[pre_num] + points
+                
+        return dp[nums_list[-1]]
+```
+
+## 898. 子数组按位或操作
+
+[原题链接](https://leetcode-cn.com/problems/bitwise-ors-of-subarrays/)
+
+### 思路
+
+动态规划，`dp[i]` 存储所有以 `i` 结尾的子数组的或结果（集合）。
+
+由于数据规模为 `1 <= A.length <= 50000`，因此无法使用 `O(n^2)` 的算法。参考 [花花酱 LeetCode 898. Bitwise ORs of Subarrays - 刷题找工作 EP222](https://www.bilibili.com/video/av31142168) 的讲解，说的非常详细了，也大致了解到如何根据问题规模确定复杂度了。
+
+```python
+class Solution:
+    def subarrayBitwiseORs(self, A: List[int]) -> int:
+        cur = set()
+        res = set()
+        # cur 存储以 a 结尾的所有子数组的或结果
+        for a in A:
+            cur = {n | a for n in cur} | {a}
+            res |= cur
+        return len(res)
 ```
