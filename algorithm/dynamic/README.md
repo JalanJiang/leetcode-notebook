@@ -843,6 +843,12 @@ class Solution(object):
 
 因为符号要么全正，要么全负，所以 `j` 的取值范围是 `-sum(nums) ~ sum(nums)`。
 
+状态转移公式：
+
+```
+dp[i][j] = dp[i - 1][j + nums[i]] + dp[i - 1][j - nums[i]]
+```
+
 ```python
 class Solution:
     def findTargetSumWays(self, nums: List[int], S: int) -> int:
