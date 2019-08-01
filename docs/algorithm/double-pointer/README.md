@@ -1,3 +1,38 @@
+## 16. 最接近的三数之和
+
+[原题链接](https://leetcode-cn.com/problems/3sum-closest/)
+
+### 思路
+
+排序 + 双指针。
+
+```python
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        length = len(nums)
+        if length < 3:
+            return 0
+        # 排序
+        nums.sort()
+        ans = nums[0] + nums[1] + nums[2]
+        for i in range(length):
+            num = nums[i]
+            start = i + 1
+            end = length - 1
+            while start < end:
+                s = num + nums[start] + nums[end]
+                # 如果计算出的和 s 更接近 target，则更新 ans
+                if abs(s - target) < abs(ans - target):
+                    ans = s
+                if s < target:
+                    start += 1
+                elif s > target:
+                    end -= 1
+                else:
+                    return ans
+        return ans
+```
+
 ## 392. 判断子序列
 
 [原题链接](https://leetcode-cn.com/problems/is-subsequence/)
