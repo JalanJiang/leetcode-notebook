@@ -33,6 +33,45 @@ class Solution:
         return ans
 ```
 
+```php
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer
+     */
+    function threeSumClosest($nums, $target) {
+        $length = count($nums);
+        if ($length < 3) {
+            return 0;
+        }
+        sort($nums);
+        $ans = $nums[0] + $nums[1] + $nums[2];
+        $sum = 0;
+        for ($i = 0; $i < $length; $i++) {
+            $num = $nums[$i];
+            $start = $i + 1;
+            $end = $length - 1;
+            while($start < $end) {
+                $sum = $num + $nums[$start] + $nums[$end];
+                if(abs($sum - $target) < abs($ans - $target)) {
+                    $ans = $sum;
+                }
+                if ($sum < $target) {
+                    $start++;
+                } elseif ($sum > $target) {
+                    $end--;
+                } else {
+                    return $ans;
+                }
+            }
+        }
+        return $ans;
+    }
+}
+```
+
 ## 392. 判断子序列
 
 [原题链接](https://leetcode-cn.com/problems/is-subsequence/)
