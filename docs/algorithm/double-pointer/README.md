@@ -72,6 +72,77 @@ class Solution {
 }
 ```
 
+## 18. 四数之和
+
+[原题链接](https://leetcode-cn.com/problems/4sum/)
+
+### 思路
+
+和三数之和思路差不多，只不过改为固定两个位置，然后再加上双指针。
+
+注意一些枝剪条件，可以让算法更快。
+
+```python
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        length = len(nums)
+        if length < 4:
+            return []
+        nums.sort()
+        res = []
+        # 双重循环固定两个数
+        # 外层循环，固定第一个数
+        for i in range(length - 3):
+            
+            # 枝剪 1：第一个数字遇到重复值时跳出循环，防止出现重复结果
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            # 枝剪 2: 最小的和大于 target 跳出循环
+            if nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target:
+                break
+            # 枝剪 3: 当前 i 还太小，寻找下一个
+            if nums[i] + nums[length - 1] + nums[length - 2] + nums[length - 3] < target:
+                continue
+                
+            a = nums[i]
+            # 内层循环，固定第二个数
+            for j in range(i + 1, length - 2):
+                
+                # 枝剪 1
+                if j - i > 1 and nums[j] == nums[j - 1]:
+                    continue
+                # 枝剪 2
+                if nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target:
+                    break
+                # 枝剪 3
+                if nums[i] + nums[j] + nums[length - 1] + nums[length - 2] < target:
+                    continue
+                
+                b = nums[j]
+                # 双指针
+                left = j + 1
+                right = length - 1
+                
+                while left < right:
+                    s = a + b + nums[left] + nums[right]
+                    # 结果等于目标值
+                    if s == target:
+                        res.append([a, b, nums[left], nums[right]])
+                        # 继续缩小两指针范围，寻找下一个目标
+                        while left < right and nums[left] == nums[left + 1]:
+                            left += 1
+                        while left < right and nums[right] == nums[right - 1]:
+                            right -= 1
+                        left += 1
+                        right -= 1
+                    elif s > target:
+                        right -= 1
+                    else:
+                        left += 1
+                        
+        return res
+```
+
 ## 392. 判断子序列
 
 [原题链接](https://leetcode-cn.com/problems/is-subsequence/)
