@@ -75,7 +75,7 @@ class Solution(object):
 
 无奈复杂度太高，`O(n^3)` 直接超时。
 
-```
+```python
 #
 # @lc app=leetcode.cn id=15 lang=python
 #
@@ -221,7 +221,6 @@ class Solution(object):
 
 ```
 
-
 ## 26. 删除排序数组中的重复项
 
 [原题链接](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/description/)
@@ -261,11 +260,7 @@ class Solution:
             return i + 1
 ```
 
-
-
-
-
-## 27. 删除排序数组中的重复项
+## 27. 移除元素
 
 [原题链接](https://leetcode-cn.com/problems/remove-element/description/)
 
@@ -2086,7 +2081,6 @@ class Solution(object):
                  cnt += self.dfs(grid,p,q)
          return cnt
 ```
-
 
 ## 697. 数组的度
 
