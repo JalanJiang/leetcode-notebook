@@ -558,6 +558,68 @@ class Solution(object):
 
 - [Python中collections.defaultdict()使用](https://www.jianshu.com/p/26df28b3bfc8)
 
+## 54. 螺旋矩阵
+
+[原题链接](https://leetcode-cn.com/problems/spiral-matrix/)
+
+### 思路
+
+面探探的时候被问过这题，《剑指 Offer》里面好像也有。
+
+先定好矩阵的上下左右边界，然后用四个单独的循环分别走四个边。当上界限小于下界线或左界线大于右界线时跳出循环。
+
+```python
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        res = list()
+        m = len(matrix)
+        if m == 0:
+            return res
+        n = len(matrix[0])
+        left = 0
+        right = n - 1
+        top = 0
+        bottom = m - 1
+        
+        while left <= right and top <= bottom:
+            i = top
+            # 上边：从左到右
+            for j in range(left, right + 1):
+                res.append(matrix[i][j])
+            top += 1
+            if top > bottom:
+                break
+            
+            # 右边：从上到下
+            for i in range(top, bottom + 1):
+                res.append(matrix[i][j])
+            right -= 1
+            if left > right:
+                break
+            
+            i = bottom
+            # 下边：从右到左
+            for j in range(right, left - 1, -1):
+                res.append(matrix[i][j])
+            bottom -= 1
+            if top > bottom:
+                break
+            
+            # 左边：从下到上
+            for i in range(bottom, top - 1, -1):
+                res.append(matrix[i][j])
+                #print(i, j)
+            left += 1
+            if left > right:
+                break
+                
+        return res
+```
+
+### 复杂度
+
+- 时间复杂度：要把每个元素放置到数组中，所以为 O(n)
+- 空间复杂度：O(n)
 
 ## 56. 合并区间
 
