@@ -15,6 +15,7 @@
     * [栈](data-structure/stack/)
     * [哈希表](data-structure/hash/)
   * 3.2 算法思想
+    * [递归](algorithm/recursion/)
     * 排序
       * [堆排序](algorithm/sort/heap/)
       * [快速排序](algorithm/sort/quick/)
