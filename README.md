@@ -18,7 +18,7 @@
 ## 关于我
 
 - 我的 [LeetCode 主页](https://leetcode-cn.com/jalan/)
-  - 完成题解 `242`
+  - 完成题解 `250`
   - 参与竞赛 `12` 次
 - 我的博客：[忘归](http://jalan.space)
 
