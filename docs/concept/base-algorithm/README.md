@@ -31,7 +31,7 @@ int func(传入数值) {
 }
 ```
 
-### 联系
+### 练习
 
 - 经典问题：归并排序
 - [LeetCode 递归练习](https://leetcode-cn.com/tag/recursion/)
