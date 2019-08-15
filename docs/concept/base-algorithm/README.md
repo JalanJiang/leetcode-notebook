@@ -35,4 +35,4 @@ int func(传入数值) {
 
 - 经典问题：归并排序
 - [LeetCode 递归练习](https://leetcode-cn.com/tag/recursion/)
-- [递归题解](http://jalan.space/leetcode-notebook/#/algorithm/recursion/)
+- [递归题解](algorithm/recursion/)
