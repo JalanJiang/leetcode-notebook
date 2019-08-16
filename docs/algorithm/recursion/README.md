@@ -111,6 +111,40 @@ class Solution:
         return self.val
 ```
 
+### 解二
+
+二叉搜索树的重要特性：**中序遍历结果为升序排列**。
+
+利用该特性先生成一个有序排列，之后计算差值。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def minDiffInBST(self, root: TreeNode) -> int:
+        
+        def dfs(arr, root):
+            if root is None:
+                return
+            dfs(arr, root.left)
+            arr.append(root.val)
+            dfs(arr, root.right)
+            
+        arr = []
+        dfs(arr, root)
+        res = float('inf')
+        for i in range(1, len(arr)):
+            diff = arr[i] - arr[i - 1]
+            res = min(res, diff)
+            
+        return res
+```
+
 ## 938. 二叉搜索树的范围和
 
 [原题链接](https://leetcode-cn.com/problems/range-sum-of-bst/)
