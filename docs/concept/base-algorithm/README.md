@@ -37,3 +37,29 @@ int func(传入数值) {
 - [LeetCode 递归练习](https://leetcode-cn.com/tag/recursion/)
 - [递归题解](algorithm/recursion/)
 - [树：递归题解](data-structure/tree/recursion)
+
+## 分治
+
+分治算法的三个步骤：分解 -> 解决 -> 合并。
+
+1. 分解原问题为结构相同的子问题
+2. 分解到某个容易求解的边界之后，进行递归求解
+3. 将子问题的解合并成原问题的解
+
+### 归并排序
+
+[归并排序](http://jalan.space/interview/algorithm/base/sort/merge-sort.html) 是典型的分治算法。
+
+```
+void merge_sort(一个数组) {
+  if (可以很容易处理) return;
+  merge_sort(左半个数组);
+  merge_sort(右半个数组);
+  merge(左半个数组, 右半个数组);
+}
+```
+
+### 练习
+
+- [LeetCode 分治练习](https://leetcode-cn.com/tag/divide-and-conquer/?utm_source=LCUS&utm_medium=banner_redirect&utm_campaign=transfer2china)
+- [分治题解](algorithm/divide-and-conquer/)
