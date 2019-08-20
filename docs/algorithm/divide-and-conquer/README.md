@@ -1,3 +1,41 @@
+## 241. 为运算表达式设计优先级
+
+[原题链接](https://leetcode-cn.com/problems/different-ways-to-add-parentheses/)
+
+### 思路
+
+分治 + 递归。
+
+遇到运算符时：
+
+1. 计算运算符左边的结果集
+2. 计算运算符右边的结果集
+
+```python
+class Solution:
+    def diffWaysToCompute(self, input: str) -> List[int]:
+        # 如果只有数字，直接返回
+        if input.isdigit():
+            return [int(input)]
+        
+        res = []
+        for i, char in enumerate(input):
+            if char in ['+', '-', '*']:
+                # 遇到运算符，计算左右两侧的结果集
+                left = self.diffWaysToCompute(input[:i])
+                right = self.diffWaysToCompute(input[i+1:])
+                for l in left:
+                    for r in right:
+                        if char == '+':
+                            res.append(l + r)
+                        elif char == '-':
+                            res.append(l - r)
+                        else:
+                            res.append(l * r)
+                            
+        return res
+```
+
 ## 395. 至少有K个重复字符的最长子串
 
 [原题链接](https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/)
