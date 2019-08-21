@@ -88,3 +88,22 @@ class Solution(object):
         
         return find(s, k, 0, len(s) - 1)
 ```
+
+## 932. 漂亮数组
+
+[原题链接](https://leetcode-cn.com/problems/beautiful-array/)
+
+### 思路
+
+```python
+class Solution:
+    def beautifulArray(self, N: int) -> List[int]:
+        m = {1: [1]}
+        def f(N):
+            if N not in m:
+                odds = f((N + 1) // 2)
+                evens = f(N // 2)
+                m[N] = [2 * x - 1 for x in odds] + [2 * x for x in evens]
+            return m[N]
+        return f(N)
+```
