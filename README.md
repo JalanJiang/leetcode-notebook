@@ -12,7 +12,7 @@
 
 - 🐱 LeetCode 解题本，基于**算法与数据结构**，对做过的 LeetCode 练习题进行归纳与总结
 - 🍸 项目代号 [Rum](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)（[朗姆酒](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)），鸡尾酒的热带气息基酒，暗指「算法与数据结构是程序员的基底」
-- 👩‍💻 人生苦短，我用 Python
+- 👩‍💻 人生苦短，我们用 Python/Java/JavaScript/PHP/Swift/Kotlin ……
 - ⚔️ 使用 [docsify](https://docsify.js.org/#/) 构建，搭建教程见 [《docsify 入坑指南与我放弃 Gitbook 的那些理由》](http://jalan.space/2019/06/21/2019/begin-docsify/)
 - 🛎 每日更新，欢迎点击 [Watch](https://github.com/JalanJiang/leetcode-notebook) 进行订阅~
 - 🐔 菜鸡一枚，有不足之处或有更好的解法欢迎各位大佬 issue 或 Pull Request，感恩~
