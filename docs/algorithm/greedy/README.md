@@ -548,6 +548,10 @@ class Solution:
 
 ### 实现
 
+<!-- tabs:start -->
+
+#### ** Python **
+
 ```python
 class Solution(object):
     def minDeletionSize(self, A):
@@ -584,6 +588,8 @@ class Solution(object):
         return res
 ```
 
+#### ** Swift **
+
 ```swift
 class Solution {
     func minDeletionSize(_ A: [String]) -> Int {
@@ -619,3 +625,5 @@ class Solution {
     }
 }
 ```
+
+<!-- tabs:end -->

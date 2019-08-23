@@ -1408,7 +1408,9 @@ class Solution(object):
 
 对字符串的考察。
 
-### Python
+<!-- tabs:start -->
+
+#### ** Python **
 
 ```python
 class Solution:
@@ -1422,25 +1424,7 @@ class Solution:
         return res
 ```
 
-### Swift
-
-```swift
-class Solution {
-    func defangIPaddr(_ address: String) -> String {
-        var res = ""
-        for c in address {
-            if c == "." {
-                res += "[.]"
-            } else {
-                res += String(c)
-            }
-        }
-        return res
-    }
-}
-```
-
-### PHP
+#### ** PHP **
 
 ```php
 class Solution {
@@ -1462,3 +1446,23 @@ class Solution {
     }
 }
 ```
+
+#### ** Swift **
+
+```swift
+class Solution {
+    func defangIPaddr(_ address: String) -> String {
+        var res = ""
+        for c in address {
+            if c == "." {
+                res += "[.]"
+            } else {
+                res += String(c)
+            }
+        }
+        return res
+    }
+}
+```
+
+<!-- tabs:end -->

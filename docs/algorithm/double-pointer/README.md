@@ -6,6 +6,10 @@
 
 排序 + 双指针。
 
+<!-- tabs:start -->
+
+#### ** Python **
+
 ```python
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
@@ -32,6 +36,8 @@ class Solution:
                     return ans
         return ans
 ```
+
+#### ** PHP **
 
 ```php
 class Solution {
@@ -71,6 +77,8 @@ class Solution {
     }
 }
 ```
+
+<!-- tabs:end -->
 
 ## 18. 四数之和
 
@@ -156,6 +164,10 @@ class Solution:
 - 如果 `s[i] != t[j]`：`j = j + 1`，继续比对下一个字符
 - 如果 `s[i] == t[j]`：`i = i + 1`，`j = j + 1`，继续进行下一个 `s[i]` 的查找
 
+<!-- tabs:start -->
+
+#### ** Python **
+
 ```python
 class Solution(object):
     def isSubsequence(self, s, t):
@@ -177,6 +189,8 @@ class Solution(object):
             
         return i == s_length
 ```
+
+#### ** Swift **
 
 ```swift
 class Solution {
@@ -204,3 +218,5 @@ class Solution {
     }
 }
 ```
+
+<!-- tabs:end -->
