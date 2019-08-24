@@ -211,6 +211,40 @@ class FileSystem:
 
 #### ** Java **
 
+```java
+class FileSystem {
+
+    private Map<String, Integer> map;
+
+    public FileSystem() {
+        map = new HashMap<>();
+    }
+
+    public boolean create(String path, int value) {
+        boolean isChild = path.indexOf('/') != path.lastIndexOf('/');
+
+        if (!isChild) {
+            if (map.containsKey(path)) return false;
+            map.put(path, value);
+            return true;
+        }
+
+        String parent = path.substring(0, path.lastIndexOf('/'));
+        if (map.containsKey(parent)) {
+            if (map.containsKey(path)) return false;
+            map.put(path, value);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int get(String path) {
+        return map.getOrDefault(path, -1);
+    }
+}
+```
+
 <!-- tabs:end -->
 
 ### 5062. 连接棒材的最低费用
