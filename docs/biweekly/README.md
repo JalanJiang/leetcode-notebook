@@ -83,3 +83,49 @@ class Solution(object):
 
 - 时间 `O(n)`
 - 空间 `O(n)`
+
+----
+
+## 第 7 场双周赛
+
+[点击前往](https://leetcode-cn.com/contest/biweekly-contest-7)
+
+### 5059. 单行键盘
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-7/problems/single-row-keyboard/)
+
+#### 思路
+
+1. 记录字母在 `keyboard` 中对应的下标
+2. 循环 `word`，将相邻字母对应的下标相减结果全部相加
+
+<!-- tabs:start -->
+#### ** Python **
+
+```python
+class Solution:
+    def calculateTime(self, keyboard: str, word: str) -> int:
+        d = dict()
+        for i in range(len(keyboard)):
+            key = keyboard[i]
+            d[key] = i
+        res = 0
+        pre = 0
+        for i in range(len(word)):
+            w = word[i]
+            res += abs(pre - int(d[w]))
+            pre = d[w]
+        return res
+```
+
+#### ** Java **
+
+<!-- tabs:end -->
+
+### 5061. 设计文件系统
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-7/problems/design-file-system/)
+
+### 5062. 连接棒材的最低费用
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-7/problems/minimum-cost-to-connect-sticks/)
