@@ -211,6 +211,40 @@ class FileSystem:
 
 #### ** Java **
 
+```java
+class FileSystem {
+
+    private Map<String, Integer> map;
+
+    public FileSystem() {
+        map = new HashMap<>();
+    }
+
+    public boolean create(String path, int value) {
+        boolean isChild = path.indexOf('/') != path.lastIndexOf('/');
+
+        if (!isChild) {
+            if (map.containsKey(path)) return false;
+            map.put(path, value);
+            return true;
+        }
+
+        String parent = path.substring(0, path.lastIndexOf('/'));
+        if (map.containsKey(parent)) {
+            if (map.containsKey(path)) return false;
+            map.put(path, value);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int get(String path) {
+        return map.getOrDefault(path, -1);
+    }
+}
+```
+
 <!-- tabs:end -->
 
 ### 5062. 连接棒材的最低费用
@@ -228,11 +262,11 @@ class FileSystem:
 
 那么排序后的 `棒材` 为： [1, 3, 5, 8]。
 
-1.第一次，取出 1、 3 两个 `棒材` 拼接，得到长度为 4 的 `棒材`，当前总花费为： 4。放回堆中之后，堆里的数据为：[4, 5, 8]。
+1. 第一次，取出 1、 3 两个 `棒材` 拼接，得到长度为 4 的 `棒材`，当前总花费为： 4。放回堆中之后，堆里的数据为：[4, 5, 8]。
 
-2.第二次，取出 4、5 两个 `棒材` 拼接，得到长度为 9 的 `棒材`， 当前总花费为： 4 + 9 = 13。放回堆中之后，堆里的数据为：[8, 9]。
+2. 第二次，取出 4、5 两个 `棒材` 拼接，得到长度为 9 的 `棒材`， 当前总花费为： 4 + 9 = 13。放回堆中之后，堆里的数据为：[8, 9]。
 
-3.第三次，取出最后的 8、9 两个 `棒材` 拼接，得到长度为 17 的 `棒材`，当前总花费为： 13 + 17 = 30。得到最终的结果。
+3. 第三次，取出最后的 8、9 两个 `棒材` 拼接，得到长度为 17 的 `棒材`，当前总花费为： 13 + 17 = 30。得到最终的结果。
 
 <!-- tabs:start -->
 #### ** Python **
