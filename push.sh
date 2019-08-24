@@ -13,6 +13,8 @@ git push git@github.com:JalanJiang/leetcode-notebook.git master
 
 # 更新 gh-pages
 cd docs/
+# 拉取更新
+git pull
 git init
 git add -A
 git commit -m "$message"
