@@ -156,3 +156,57 @@ class Solution {
 ### 5062. 连接棒材的最低费用
 
 [原题链接](https://leetcode-cn.com/contest/biweekly-contest-7/problems/minimum-cost-to-connect-sticks/)
+
+根据贪心的思想：每次选择当前数据中最小的两个 `棒材` 进行拼接，那么当前需要支付的费用是最少的。然后, 将拼接完的 `棒材` 放回到数据中, 依次类推操作。则，我们每次拼接 `棒材` 所需要支付的费用都是当前最少的。
+
+由于， 每次我们都需要取最小的两个 `棒材` 进行拼接，拼接完后需要把拼接后的 `棒材` 放回数据中。所以需要每次都进行排序。那么，我们可以考虑用堆来维护这个数据组。
+
+下面来看一个实例：
+
+- 输入：sticks = [1,8,3,5]
+- 输出：30
+
+那么排序后的 `棒材` 为： [1, 3, 5, 8]。
+
+1.第一次，取出 1、 3 两个 `棒材` 拼接，得到长度为 4 的 `棒材`，当前总花费为： 4。放回堆中之后，堆里的数据为：[4, 5, 8]。
+2.第二次，取出 4、5 两个 `棒材` 拼接，得到长度为 9 的 `棒材`， 当前总花费为： 4 + 9 = 13。放回堆中之后，堆里的数据为：[8, 9]。
+3.第三次，取出最后的 8、9 两个 `棒材` 拼接，得到长度为 17 的 `棒材`，当前总花费为： 13 + 17 = 30。得到最终的结果。
+
+<!-- tabs:start -->
+#### ** Python **
+
+```python
+
+```
+
+#### ** Java **
+
+```java
+class Solution {
+    public int connectSticks(int[] sticks) {
+        // 边界值处理
+        if (sticks == null || sticks.length <= 0) return 0;
+        if (sticks.length <= 1) return sticks[0];
+
+        // 用优先队列作为堆
+        Queue<Integer> priority = new PriorityQueue<>();
+
+        // 现将数据存放到堆中
+        for (int stick : sticks) {
+            priority.add(stick);
+        }
+
+        int result = 0;
+        while (priority.size() >= 2) {
+            // 每次从堆中取出两个最小的数据进行求和
+            int sum = priority.poll() + priority.poll();
+            // 结果放回堆中
+            priority.add(sum);
+            result += sum;
+        }
+        return result;
+    }
+}
+```
+
+<!-- tabs:end -->
