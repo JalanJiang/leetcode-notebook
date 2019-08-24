@@ -188,6 +188,14 @@ class Solution:
 - 如果 `left_length >= K`，最小的 `K` 个值均在左侧，因此下轮递归只需对左侧部分进行排序
 - 如果 `left_length < K`，我们已经获得了 `left_length` 个最小值，因此下轮递归只需对右侧部分进行排序
 
+该算法的时间复杂度为 O(n), 空间复杂度为 O(1):
+
+1.空间复杂度不用多说， 我们直接在原数组上做操作，所以不用开出多余的空间，故空间复杂度为O(1)
+
+2.时间复杂度为 O(n): 在理想的情况下，我们每次定位到的 `pivot` 都为 end - start 的一半的话。那么下一次查找 `pivot` 的时间就为上一次的 1/2。
+
+那么，最终的时间复杂度就为： O(n + n/2 + n/4 + ... + 1) ， 约等于 O(n)。
+
 <!-- tabs:start -->
 #### ** Python **
 
@@ -288,6 +296,56 @@ class Solution {
     // 计算欧几里得距离
     function getDistance($points, $x) {
         return $points[$x][0]*$points[$x][0] + $points[$x][1] * $points[$x][1];
+    }
+}
+```
+
+#### ** Java **
+
+```java
+class Solution {
+     public int[][] kClosest(int[][] points, int K) {
+        int start = 0;
+        int end = points.length - 1;
+        while (start < end) {
+            # 计算欧几里得距离
+            int index = patition(points, start, end);
+            if (index == K) {
+                break;
+            } else if (index < K) {
+                start = index + 1;
+            } else {
+                end = index - 1;
+            }
+        }
+
+        return Arrays.copyOf(points, K);
+    }
+
+    private int patition(int[][] points, int start, int end) {
+        int i = start;
+        int j = end + 1;
+        int mid = distance(points[i][0], points[i][1]);
+        while (true) {
+            while (distance(points[++i][0], points[i][1]) < mid && i < end);
+            while (distance(points[--j][0], points[j][1]) > mid && j > start);
+            if (i >= j) {
+                break;
+            }
+            swap(points, i, j);
+        }
+        swap(points, start, j);
+        return j;
+    }
+
+    private int distance(int a, int b) {
+        return a * a + b * b;
+    }
+
+    private void swap(int[][] points, int a, int b) {
+        int[] temp = points[a];
+        points[a] = points[b];
+        points[b] = temp;
     }
 }
 ```
