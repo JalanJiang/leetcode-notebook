@@ -3,10 +3,13 @@ message=$1
 # 复制 README.md
 cp README.md docs/README.md
 
+# 拉取更新
+git pull
+
 # 更新 master
 git add .
 git commit -m "$message"
-git push -f git@github.com:JalanJiang/leetcode-notebook.git master
+git push git@github.com:JalanJiang/leetcode-notebook.git master
 
 # 更新 gh-pages
 cd docs/
