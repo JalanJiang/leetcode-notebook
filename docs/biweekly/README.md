@@ -238,7 +238,60 @@ class FileSystem:
 #### ** Python **
 
 ```python
-
+class Solution:
+    def connectSticks(self, sticks: List[int]) -> int:
+        length = len(sticks)
+        for i in reversed(range(0, length // 2)):
+            self.adjustHeap(sticks, i, length)
+        
+        count = 0
+        res = 0
+        # for j in reversed(range(0, length)):
+        j = length - 1
+        while j != 0:
+            # print(sticks[0])
+            if count == 0:
+                # 拿出第一个节点
+                # print("first = ", sticks[0])
+                first = sticks[0]
+                sticks[0], sticks[j] = sticks[j], sticks[0]
+                length -= 1
+                j -= 1
+            elif count == 1:
+                # print("second = ", sticks[0])
+                tmp = first + sticks[0]
+                res += tmp
+                # tmp 入队
+                sticks[0] = tmp
+            else:
+                # 取两个点
+                f = sticks[0]
+                sticks[0], sticks[j] = sticks[j], sticks[0]
+                length -= 1
+                j -= 1
+                self.adjustHeap(sticks, 0, length)
+                s = sticks[0]
+                tmp = f + s
+                res += tmp
+                sticks[0] = tmp
+            count += 1
+            # 调整堆
+            self.adjustHeap(sticks, 0, length)
+        return res
+            
+    
+    def adjustHeap(self, nums, i, length):
+        while True:
+            k = i * 2 + 1
+            if k >= length:
+                return 
+            if k + 1 < length and nums[k + 1] < nums[k]:
+                k = k + 1
+            if nums[k] < nums[i]:
+                nums[i], nums[k] = nums[k], nums[i]
+                i = k
+            else:
+                return
 ```
 
 #### ** Java **
