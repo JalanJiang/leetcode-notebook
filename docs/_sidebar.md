@@ -33,18 +33,6 @@
     * [回溯](algorithm/backtrack/)
     * [双指针](algorithm/double-pointer/)
     * [其他](algorithm/other/)
-  * 3.3 周赛
-    * [第 121 场周赛](weekly/121/)
-    * [第 122 场周赛](weekly/122/)
-    * [第 124 场周赛](weekly/124/)
-    * [第 129 场周赛](weekly/129/)
-    * [第 130 场周赛](weekly/130/)
-    * [第 131 场周赛](weekly/131/)
-    * [第 133 场周赛](weekly/133/)
-    * [第 134 场周赛](weekly/134/)
-    * [第 136 场周赛](weekly/136/)
-    * [第 137 场周赛](weekly/137/)
-    * [第 138 场周赛](weekly/138/)
-    * [第 143 场周赛](weekly/143)
-  * 3.4 双周赛
-    * [第 3 场双周赛](biweekly/3/)
+  * 3.3 竞赛
+    * [周赛](weekly/)
+    * [双周赛](biweekly/)
