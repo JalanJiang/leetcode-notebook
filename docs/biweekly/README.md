@@ -120,6 +120,33 @@ class Solution:
 
 #### ** Java **
 
+```java
+class Solution {
+    public int calculateTime(String keyboard, String word) {
+        if (keyboard == null || keyboard.length() != 26) return 0;
+        if (word == null || word.length() <= 0) return 0;
+        if (word.length() <= 1) return 1;
+
+        int[] chars = new int[26];
+
+        for (int i = 0; i < keyboard.length(); i++) {
+            chars[keyboard.charAt(i) - 'a'] = i;
+        }
+
+        int result = 0;
+        int lastIndex = 0;
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            int index = chars[c - 'a'];
+            result += Math.abs(index - lastIndex);
+            lastIndex = index;
+        }
+
+        return result;
+    }
+}
+```
+
 <!-- tabs:end -->
 
 ### 5061. 设计文件系统
