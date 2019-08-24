@@ -60,12 +60,19 @@
 * [双指针](algorithm/double-pointer/)
 * [其他](algorithm/other/)
 
-## 关于我
+## 关于我们
 
-- 我的 [LeetCode 主页](https://leetcode-cn.com/jalan/)
-  - 完成题解 `253`
-  - 参与竞赛 `12` 次
-- 我的博客：[忘归](http://jalan.space)
+### Jalan
+
+- 输出 Python/PHP/Swift 题解
+- [LeetCode 主页](https://leetcode-cn.com/jalan/)：完成题解 `253`，参与竞赛 `12` 次
+- 博客：[忘归](http://jalan.space)
+
+### Csming
+
+- 输出 Java 题解
+- [LeetCode 主页](https://leetcode-cn.com/u/csming1995/)：完成题解 `298`，参与竞赛 `14` 次
+- 博客：[Csming](https://csming1995.github.io/)
 
 ## 特别鸣谢
 
