@@ -293,3 +293,24 @@ class Solution {
 ```
 
 <!-- tabs:end -->
+
+### 解三：堆排序
+
+这个问题的本质其实就是对于点到原点的距离，求 Top K 元素。那么，除了排序的方法，以及快速排序以外，还可以利用 `堆` 来得到 Top K 的元素。
+
+```java
+class Solution {
+    public int[][] kClosest(int[][] points, int K) {
+        // 在 `Java` 里面，可以利用优先队列：PriorityQueue 来处理，其内部实现是堆。
+        Queue<int[]> priorityQueue = new PriorityQueue<>(K, (o1, o2) -> o1[0] * o1[0] + o1[1] * o1[1] - o2[0] * o2[0] - o2[1] * o2[1]);
+        for (int[] point : points) {
+            priorityQueue.add(point);
+        }
+        int[][] result = new int[K][2];
+        for (int i = 0; i < K; i++) {
+            result[i] = priorityQueue.poll();
+        }
+        return result;
+    }
+}
+```
