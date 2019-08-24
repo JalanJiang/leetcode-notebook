@@ -126,6 +126,66 @@ class Solution:
 
 [原题链接](https://leetcode-cn.com/contest/biweekly-contest-7/problems/design-file-system/)
 
+#### 思路
+
+- `create` 方法：
+    1. 判断传入路径的所有父路径是否存在，若有不存在的父路径：返回 `false`
+    2. 判断当前传入路径是否存在
+        - 存在：返回 `false`
+        - 不存在：设置路径对应的 `value` 值
+- `get` 方法：
+  - 路径存在：返回 `value`
+  - 路径不存在：返回 `-1ß`
+
+<!-- tabs:start -->
+#### ** Python **
+
+```python
+class FileSystem:
+
+    def __init__(self):
+        self.path_val = dict()
+
+    def create(self, path: str, value: int) -> bool:
+        path_list = path.split("/")[1:]
+        
+        if len(path_list) == 0:
+            # 非法路径
+            return False
+        elif len(path_list) == 1:
+            # 不存在父路径，直接验证是否存在
+            if path in self.path_val:
+                return False
+            else:
+                self.path_val[path] = value
+                return True
+        else:
+            # 验证父路径是否存在
+            parent_path = ''
+            for i in range(len(path_list) - 1):
+                parent_path += '/' + path_list[i]
+                # 父路径不存在，返回 False
+                if parent_path not in self.path_val:
+                    return False
+            self.path_val[path] = value
+            return True
+
+    def get(self, path: str) -> int:
+        if path in self.path_val:
+            return self.path_val[path]
+        return -1
+
+
+# Your FileSystem object will be instantiated and called as such:
+# obj = FileSystem()
+# param_1 = obj.create(path,value)
+# param_2 = obj.get(path)
+```
+
+#### ** Java **
+
+<!-- tabs:end -->
+
 ### 5062. 连接棒材的最低费用
 
 [原题链接](https://leetcode-cn.com/contest/biweekly-contest-7/problems/minimum-cost-to-connect-sticks/)
