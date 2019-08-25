@@ -84,6 +84,9 @@ class Solution(object):
 
 挺简单的，最终的结果不需要每次依次相加，在原来的基础上加上或减去就好。
 
+<!-- tabs:start -->
+#### ** Python **
+
 ```python
 class Solution(object):
     def sumEvenAfterQueries(self, A, queries):
@@ -113,6 +116,43 @@ class Solution(object):
         
         return answer
 ```
+
+#### ** Java **
+
+```java
+class Solution {
+    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+        int[] result = new int[queries.length];
+        int init = 0;
+        for (int value: A) {
+            if ((value & 1) == 0) {
+                init += value;
+            }
+        }
+        for (int i = 0; i < queries.length; i++) {
+            int val = queries[i][0];
+            int index = queries[i][1];
+            int pre = A[index];
+            A[index] = pre + val;
+            if ((pre & 1) == 0) {
+                if ((A[index] & 1) == 0) {
+                    init = init - pre + A[index];
+                } else {
+                    init -= pre;
+                }
+            } else {
+                if ((A[index] & 1) == 0) {
+                    init += A[index];
+                }
+            }
+            result[i] = init;
+        }
+        return result;
+    }
+}
+```
+
+<!-- tabs:end -->
 
 ### 986. 区间列表的交集
 
