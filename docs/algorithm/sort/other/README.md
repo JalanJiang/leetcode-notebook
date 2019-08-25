@@ -356,6 +356,10 @@ class Solution {
 
 这个问题的本质其实就是对于点到原点的距离，求 Top K 元素。那么，除了排序的方法，以及快速排序以外，还可以利用 `堆` 来得到 Top K 的元素。
 
+<!-- tabs:start -->
+
+#### ** Java **
+
 ```java
 class Solution {
     public int[][] kClosest(int[][] points, int K) {
@@ -372,3 +376,26 @@ class Solution {
     }
 }
 ```
+
+#### ** Python **
+
+```python
+from heapq import heappush, heappop 
+
+class Solution:
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        queue = []
+        distance = lambda x: points[x][0]**2 + points[x][1]**2
+        length = len(points)
+        for i in range(length):
+            heappush(queue, (distance(i), points[i]))
+        res = []
+        for i in range(K):
+            res.append(heappop(queue)[1])
+        return res
+```
+
+知识点：[python 堆排序 heapq](https://www.jianshu.com/p/e003872fa7b9)
+
+<!-- tabs:end -->
+
