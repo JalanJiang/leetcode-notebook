@@ -164,6 +164,9 @@ class Solution {
 
 这题 debug 了两三次，漏了一些情况导致答案错误。
 
+<!-- tabs:start -->
+#### ** Python **
+
 ```python
 # Definition for an interval.
 # class Interval(object):
@@ -222,6 +225,49 @@ class Solution(object):
                     res.append(i)
         return res
 ```
+
+#### ** Java **
+
+```java
+class Solution {
+    public Interval[] intervalIntersection(Interval[] A, Interval[] B) {
+        List<Interval> result = new ArrayList<Interval>();
+        for (Interval a: A) {
+            for (Interval b: B) {
+                if (a.start > b.end || a.end < b.start) {
+                    continue;
+                }
+                if (a.start >= b.start && a.end <= b.end) {
+                    Interval value = new Interval(a.start, a.end);
+                    result.add(value);
+                    continue;
+                } 
+                
+                if (a.start <= b.start && a.end >= b.end) {
+                    Interval value = new Interval(b.start, b.end);
+                    result.add(value);
+                    continue;
+                }
+                
+                if (a.start >= b.start) {
+                    Interval value = new Interval(a.start, b.end);
+                    result.add(value);
+                    continue;
+                }
+                
+                if (a.start <= b.start) {
+                    Interval value = new Interval(b.start, a.end);
+                    result.add(value);
+                }
+            }
+        }
+        Interval[] res = new Interval[result.size()];
+        return result.toArray(res);
+    }
+}
+```
+
+<!-- tabs:end -->
 
 ### 988. 从叶结点开始的最小字符串
 
