@@ -359,3 +359,99 @@ class Solution {
 ```
 
 <!-- tabs:end -->
+
+### 1168. 水资源分配优化
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-7/problems/optimize-water-distribution-in-a-village/)
+
+使用最小生成树，把**挖水井看作房子和 0 号房子的连线**。
+
+#### 最小生成树基本概念
+
+如果连通图是一个带权图，则其生成树中的边也带权，生成树中**所有边的权值之和称为生成树的代价**。
+
+最小生成树(Minimum Spanning Tree) ：**带权连通图中代价最小的生成树称为最小生成树**。
+
+#### Kruskal 算法主要思想
+
+1. 将图的边按权值大小**从小到大**依次选取
+2. 选取权值最小的边 edge，假设构成该边的两个点为 `(point1, point2)`，如果 `point1` 和 `point2` 
+已在一个连通图中，则舍弃该边；否则讲该边加入最小生成树中
+3. 重复步骤 2，直到构成最小生成树为止
+
+#### 初始化辅助空间
+
+初始化两个字典：
+
+1. 定义字典 `v`，`v[i] = x` 表示第 `i` 号房的**连通分量**为 `x`。若两个房子的连通分量相同，则说明这两个房子在一个图中
+2. 定义字典 `r`，`r[j] = y` 表示连通分量 `j` 对应的连通等级为 `y`。**作为连接末端时等级需要 +1**
+
+#### 定义函数
+
+1. `init_set()`：用于初始化辅助空间
+  - 房子的初始连通分量等于房号：`v[house_num] = house_num`
+  - 房子的初始连通等级等于 0：`r[house_num] = 0`
+2. `find(house)`：用于获取房子的连通分量
+  - 当 `v[house] != house` 时，即房子的连通分量不等于房号时，说明该房子已连入某连通图内，需要**沿着该连通分量找到该连通图的末端**，因此进行回调 `find(v[house])`，直到找到末端为止
+3. `merge(house1, house2)`：用于将两个房子合并到一个连通图中
+  - 如果 `v[house1] != v[house2]`，即两个房子的连通分量不同，说明两个房子不在一个连通图里，此时可以合并
+  - 若可以合并，记 `v[house1]` 为 `v1`，记 `v[house2]` 为 `v2`，此时需要比较两个房子的连通等级 `r[v1]` 与 `r[v2]`
+    - 若 `r[v1] > r[v2]`，即持有连通分量 `v1` 的顶点数量更多，则赋值 `v[v2] = v[v1]`
+    - 若 `r[v1] < r[v2]`，即持有连通分量 `v2` 的顶点数量更多，则赋值 `v[v1] = v[v2]`
+    - 若 `r[v1] == r[v2]`，`v[v2] = v[v1]` 与 `v[v1] = v[v2]` 皆可，但**需要把被赋值放的连通等级 +1**（`r[v1] += 1` 或 `r[v2] += 1`）
+
+#### 实现
+
+```python
+class Solution:
+    def minCostToSupplyWater(self, n: int, wells: List[int], pipes: List[List[int]]) -> int:
+        
+        # 记录节点的连通分量
+        v = dict()
+        # 记录节点的连通等级
+        r = dict()
+        
+        # 初始化
+        def init_set():
+            for house in range(n + 1):
+                v[house] = house
+                r[house] = 0 # 初始连通等级都是0
+                
+        # 查找节点的连通分量
+        def find(house):
+            if v[house] != house:
+                # 如果连通分量不等于节点本身，表示已被其他连通分量覆盖了，继续寻找整个连通图的连通分量
+                v[house] = find(v[house])
+            return v[house]
+        
+        # 合并节点
+        def merge(house1, house2):
+            v1 = find(house1)
+            v2 = find(house2)
+            # 连通分量不相等，可以合并
+            if v1 != v2:
+                if r[v1] > r[v2]: # 2 被合并到 1 中
+                    # 等级高的覆盖等级低的
+                    v[v2] = v[v1]
+                else: # 1 被合并到 2 中
+                    v[v1] = v[v2]
+                    # 该 else 分支的细分
+                    if r[v1] == r[v2]:
+                        r[v2] += 1
+        
+        init_set()
+        # 把挖水井当作和 house0 相连
+        for i in range(n):
+            pipes.append([0, i + 1, wells[i]])
+        # 按边长排序
+        pipes.sort(key=lambda x: x[2])
+        res = 0
+        
+        for p in pipes:
+            house1, house2, edge = p
+            if find(house1) != find(house2):
+                merge(house1, house2)
+                res += edge
+
+        return res
+```
