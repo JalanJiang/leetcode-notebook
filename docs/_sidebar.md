@@ -1,6 +1,7 @@
 * [一、简介](/)
 * 二、概念
   * [2.1 基础算法](concept/base-algorithm/)
+  * [2.2 数据结构](concept/data-structure/)
 * 三、例题
   * 3.1 数据结构
     * [数组](data-structure/array/)
