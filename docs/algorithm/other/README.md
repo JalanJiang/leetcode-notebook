@@ -101,8 +101,6 @@ class Solution(object):
 数组中所有的数字被使用尽，且未发现无法组成连续子数组的情况，那么返回 true。
 
 ```java
-import random
-
 public class Solution {
 
     public static void main(String[] args) {
