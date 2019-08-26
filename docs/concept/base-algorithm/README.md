@@ -6,6 +6,8 @@
 2. 减少枚举空间
 3. 选择合适的枚举顺序
 
+----
+
 ## 递归
 
 > 递推的思维是正常人的思维，总是看着眼前的问题思考对策，解决问题是将来时；递归的思维，逼迫我们倒着思考，看到问题的尽头，把解决问题的过程看做过去时。
@@ -38,6 +40,8 @@ int func(传入数值) {
 - [递归题解](algorithm/recursion/)
 - [树：递归题解](data-structure/tree/recursion)
 
+----
+
 ## 分治
 
 分治算法的三个步骤：分解 -> 解决 -> 合并。
@@ -63,3 +67,21 @@ void merge_sort(一个数组) {
 
 - [LeetCode 分治练习](https://leetcode-cn.com/tag/divide-and-conquer/?utm_source=LCUS&utm_medium=banner_redirect&utm_campaign=transfer2china)
 - [分治题解](algorithm/divide-and-conquer/)
+
+----
+
+## 贪心
+
+- 模拟「贪心」的人做出的决策
+- 每次都按照某种指标选取最优的操作
+- **只关注眼前，不考虑以后可能造成的影响**
+
+常见做法有：
+
+1. **离线**：按某顺序排序，并按某顺序处理（例如从大到小）
+2. **在线**：每次取范围内最大/最小的东西，并更新范围数据
+
+### 练习
+
+- [LeetCode 贪心练习](https://leetcode-cn.com/tag/greedy/)
+- [贪心题解](algorithm/greedy/)
