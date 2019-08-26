@@ -12,10 +12,11 @@
 
 - 🐱 LeetCode 解题本，基于**算法与数据结构**，对做过的 LeetCode 练习题进行归纳与总结
 - 🍸 项目代号 [Rum](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)（[朗姆酒](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)），鸡尾酒的热带气息基酒，暗指「算法与数据结构是程序员的基底」
-- 👩‍💻 人生苦短，我们用 Python/Java/JavaScript/PHP/Swift/Kotlin ……
+- 👩‍💻 人生苦短，我们用 Python / Java / PHP / Swift ……
 - ⚔️ 使用 [docsify](https://docsify.js.org/#/) 构建，搭建教程见 [《docsify 入坑指南与我放弃 Gitbook 的那些理由》](http://jalan.space/2019/06/21/2019/begin-docsify/)
-- 🛎 每日更新，欢迎点击 [Watch](https://github.com/JalanJiang/leetcode-notebook) 进行订阅~
-- 🐔 菜鸡一枚，有不足之处或有更好的解法欢迎各位大佬 issue 或 Pull Request，感恩~
+- 🛎 每日更新，欢迎点击 [Watch](https://github.com/JalanJiang/leetcode-notebook) 进行订阅，一起成长一起变强~
+- 💪 项目相关规范见 [Wiki](https://github.com/JalanJiang/leetcode-notebook/wiki)
+- 🐔 菜鸡一枚，有不足之处或有更好的解法欢迎各位大佬 issue 或 Pull Request，感恩！
 
 ### 基本概念
 
@@ -62,13 +63,13 @@
 
 ## 关于我们
 
-### Jalan
+### 🐱Jalan 
 
 - 输出 Python/PHP/Swift 题解
 - [LeetCode 主页](https://leetcode-cn.com/jalan/)：完成题解 **260**，参与竞赛 **13** 次
 - 博客：[忘归](http://jalan.space)
 
-### Csming
+### 🎃Csming
 
 - 输出 Java 题解
 - [LeetCode 主页](https://leetcode-cn.com/u/csming1995/)：完成题解 **301**，参与竞赛 **15** 次
