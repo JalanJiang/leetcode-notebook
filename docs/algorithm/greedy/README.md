@@ -594,6 +594,11 @@ class Solution:
         return int("".join(nums))
 ```
 
+### 复杂度
+
+- 时间复杂度：`O(n)`
+- 空间复杂度：`O(n)`
+
 ## 955. 删列造序 II
 
 [原题链接](https://leetcode-cn.com/problems/delete-columns-to-make-sorted-ii/)
