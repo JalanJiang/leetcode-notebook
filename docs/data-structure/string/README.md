@@ -1282,6 +1282,27 @@ class Solution(object):
         return False
 ```
 
+## 557. 反转字符串中的单词 III
+
+[原题链接](https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/)
+
+### 思路
+
+1. 按空格分割出单词
+2. 将每个单词翻转
+3. 拼接所有翻转的结果
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        return " ".join([string[::-1] for string in s.split(" ")])
+```
+
+相关知识点：
+
+- 翻转的切片方法为 `[::-1]`
+- 分割方法为 `string.split(" ")`
+
 
 ## 567. 字符串的排列
 
