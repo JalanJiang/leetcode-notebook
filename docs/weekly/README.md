@@ -1889,3 +1889,153 @@ class Solution:
             mark[i][j] += 1
         return res
 ```
+
+----
+
+## 第 152 场周赛
+
+[点击前往第 152 场周赛](https://leetcode-cn.com/contest/weekly-contest-152)
+
+### 5173. 质数排列
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-152/problems/prime-arrangements/)
+
+#### 思路
+
+找到 n 以内的质数个数，假设为 `x`。题目所要求的结果其实就是：**`x` 个质数在 `x` 个位置上的全排列和 `n - x` 个非质数在 `n - x` 个位置上全排列的和**。
+
+```python
+class Solution:
+    def numPrimeArrangements(self, n: int) -> int:
+        def is_prime(n):
+            if n == 1:
+                return False
+            if n == 2:
+                return True
+            for i in range(2, n):
+                if n % i == 0:
+                    return False
+            return True
+        
+        def get_multi(n):
+            multi = 1
+            for i in range(1, n + 1):
+                multi *= i
+            return multi
+        
+        prime_count = 0
+        for j in range(1, n + 1):
+            if is_prime(j):
+                prime_count += 1
+        
+        return (get_multi(prime_count) * get_multi(n - prime_count)) % (10**9 + 7)
+```
+
+### 5174. 健身计划评估
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-152/problems/diet-plan-performance/)
+
+#### 思路
+
+一开始误解了题目的意思，直接把 `calories` 分成了 `length / k` 份，计算每份的和，再与 `lower` 和 `upper` 进行比较。
+
+然而正确的姿势应该是：`1 ~ k` 天为第一个周期，`2 ~ k + 1` 天为第二个周期……
+
+```python
+class Solution:
+    def dietPlanPerformance(self, calories: List[int], k: int, lower: int, upper: int) -> int:
+        c_length = len(calories)
+        n = c_length // k
+        score = 0
+        s = sum(calories[:k])
+        if s > upper:
+            score += 1
+        if s < lower:
+            score -= 1
+        
+        for i in range(k, c_length):
+            s = s + calories[i] - calories[i - k]
+            if s > upper:
+                score += 1
+            if s < lower:
+                score -= 1
+                
+        return score
+```
+
+### 5175. 构建回文串检测
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-152/problems/can-make-palindrome-from-substring/)
+
+#### 思路
+
+比赛的时候写这道题超时了，因为每次遍历 `queries` 都将截取的字符串所包含的字母进行了计算，这样复杂度到达了 `O(n^2)`，而题目的数据范围是 `1 <= s.length, queries.length <= 10^5`，显然无法通过。
+
+优化方案是：把 26 个字母出现的次数通过遍历一次 `s` 进行计算，用一个辅助二维数组 `c_count` 进行存储。`c_count[i][j]` 代表从字符串开始处到位置 `i` 处第 `j` 个（按字母表顺序）字母出现的次数。
+
+那么如果我们截取一个 `[left, right]` 字符串，我们显然可以得到位置 `j` 的字母出现的次数为：`c_count[right][j] - c_count[left - 1][i]`。
+
+根据一个字符串中字母出现的次数，我们可以判断出这个字符串是否为回文字符串。
+
+- 字符串长度为偶数：出现的字母必须都要是偶数次
+- 字符串长度为奇数：允许其中一个字母出现奇数次，其余字母都要出现偶数次
+
+```python
+class Solution:
+    def canMakePaliQueries(self, s: str, queries: List[List[int]]) -> List[bool]:
+        s_length = len(s)
+        q_length = len(queries)
+        # 预留一个位置放置 0
+        c_count = [[0 for _ in range(26)] for _ in range(s_length + 1)]
+        
+        # 计算字母出现的个数
+        for i in range(s_length):
+            c = s[i]
+            if i != 0:
+                # 浅拷贝
+                c_count[i + 1] = c_count[i][:]
+            tmp = ord(c) - ord('a')
+            c_count[i + 1][tmp] += 1
+            
+        answer = [False for _ in range(q_length)]
+        # 遍历 queries
+        for i in range(q_length):
+            # 要减去的是 left 左移一位的数
+            left = queries[i][0]
+            right = queries[i][1]
+            length = right - left + 1
+            k = queries[i][2]
+            # 如果只有一个字母，肯定是回文
+            if left == right:
+                answer[i] = True
+                continue
+            right += 1
+            
+            odd = 0 #奇数
+            even = 0 #偶数
+            for j in range(26):
+                tmp = c_count[right][j] - c_count[left][j]
+                if tmp == 0:
+                    continue
+                if tmp % 2 == 0:
+                    even += 1
+                else:
+                    odd += 1
+            
+            if length % 2 == 0:
+                # 长度是偶数
+                if odd == 0:
+                    answer[i] = True
+                else:
+                    if odd // 2 + odd % 2 <= k:
+                        answer[i] = True
+            else:
+                # 长度是奇数
+                if odd == 1:
+                    answer[i] = True
+                else:
+                    if odd // 2 <= k:
+                        answer[i] = True
+            
+        return answer
+```
