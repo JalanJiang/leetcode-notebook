@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 def main():
-    print("伪装成一个 Python 项目")
+    print("Hello, World!")
 
 if __name__ == '__main__':
     main()
