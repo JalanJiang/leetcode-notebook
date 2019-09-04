@@ -11,6 +11,10 @@
 1. 计算运算符左边的结果集
 2. 计算运算符右边的结果集
 
+<!-- tabs:start -->
+
+#### ** Python **
+
 ```python
 class Solution:
     def diffWaysToCompute(self, input: str) -> List[int]:
@@ -35,6 +39,44 @@ class Solution:
                             
         return res
 ```
+
+#### ** Java **
+
+```java
+class Solution {
+    public List<Integer> diffWaysToCompute(String input) {
+        return partition(input);
+    }
+
+    private List<Integer> partition(String input) {
+        List<Integer> result = new LinkedList<>();
+        if (!input.contains("+") && !input.contains("-") && !input.contains("*")) {
+            result.add(Integer.valueOf(input));
+            return result;
+        }
+
+        for (int i = 0; i < input.length(); i++) {
+            char value = input.charAt(i);
+            if (value == '+' || value == '-' || value == '*') {
+                for (int a: partition(input.substring(0, i))) {
+                    for (int b: partition(input.substring(i + 1))) {
+                        if (value == '+') {
+                            result.add(a + b);
+                        } else if (value == '-') {
+                            result.add(a - b);
+                        } else {
+                            result.add(a * b);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
+```
+
+<!-- tabs:end -->
 
 ## 395. 至少有K个重复字符的最长子串
 
