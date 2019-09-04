@@ -372,6 +372,10 @@ class Solution(object):
 
 本质就是一个在 `1 ~ n` 范围内查找某个特定数的过程，用二分来做。
 
+<!-- tabs:start -->
+
+#### ** Python **
+
 ```python
 # The guess API is already defined for you.
 # @param num, your guess
@@ -400,3 +404,34 @@ class Solution(object):
                 # 猜对了
                 return mid
 ```
+
+#### ** Java **
+
+```java
+/* The guess API is defined in the parent class GuessGame.
+   @param num, your guess
+   @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
+      int guess(int num); */
+
+public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+        int start = 1;
+        int end = n;
+        while(start < end) {
+            int mid = start + (end - start) / 2;
+            int result = guess(mid);
+            if (result == 0) {
+                return mid;
+            } else if (result == -1) {
+                end = mid - 1;
+            } else if (result == 1) {
+                start = mid + 1;
+            }
+        }
+        
+        return end;
+    }
+}
+```
+
+<!-- tabs:end -->
