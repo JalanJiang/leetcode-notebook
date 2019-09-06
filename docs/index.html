@@ -10,7 +10,7 @@
   <style>
     :root {
       --docsifytabs-border-color: #ededed;
-      --docsifytabs-tab-highlight-color: purple;
+      --docsifytabs-tab-highlight-color: #F77F00;
     }
   </style>
 </head>
@@ -43,6 +43,30 @@
         tabComments: true,
         tabHeadings: true,
       },
+      // 更新日期
+      formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}:{ss}',
+      // 插件
+      plugins: [
+        function(hook, vm) {
+          // 底部
+          hook.beforeEach(function(content) {
+            var url ='https://github.com/JalanJiang/leetcode-notebook/tree/master/docs/' + vm.route.file;
+            var editHtml = '> 🧐发现错误，想一起完善？[在 Github 编辑此页](' + url +')！\n'
+
+            var footer = [
+              '----',
+              '> Last modified {docsify-updated}.',
+              '> [Jalan](http://jalan.space/), [Csming](https://csming1995.github.io/) &copy;2019. Proudly published with [docsify](https://github.com/docsifyjs/docsify) and powered by love.', 
+            ].join("\n");
+
+            return editHtml
+              + "\n----\n"
+              + content 
+              + "\n\n" 
+              + footer
+          })
+        },
+      ]
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
