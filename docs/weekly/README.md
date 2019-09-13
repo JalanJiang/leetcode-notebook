@@ -2039,3 +2039,41 @@ class Solution:
             
         return answer
 ```
+
+### 1178. 猜字谜
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-152/problems/number-of-valid-words-for-each-puzzle/)
+
+#### 思路
+
+一般会想到的思路：遍历 `puzzles`，在每次遍历中再遍历 `words`，寻找到可行的谜底。但 `1 <= words.length <= 10^5` 且 `1 <= puzzles.length <= 10^4`，这样做的话显然是会超时的。
+
+我们注意到 `puzzles[i].length == 7`，那么 `puzzles[i]` 的谜底不会超过 2^7 = 128 因此我们可以直接枚举出 `puzzles[i]` 对应的谜底，然后遍历所有的谜底，看该谜底是否在 `words` 出现。
+
+```python
+class Solution:
+    def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:
+        # word 统计
+        word_dict = dict()
+        for word in words:
+            tmp = ''.join(sorted(list(set(word))))
+            if len(tmp) <= 7:
+                word_dict[tmp] = word_dict.get(tmp, 0) + 1
+        
+        p_length = len(puzzles)
+        answer = [0 for _ in range(p_length)]
+        p_list = [[] for _ in range(p_length)]
+        # 算出 puzzle 对应的谜面集合
+        for i in range(p_length):
+            puzzle = puzzles[i]
+            p_list[i] = [puzzle[0]]
+            for c in puzzle[1:]:
+                p_list[i] += [''.join(sorted(s + c)) for s in p_list[i]]
+        
+        for i in range(p_length):
+            answers = p_list[i]
+            for ans in answers:
+                answer[i] += word_dict.get(ans, 0)
+                
+        return answer      
+```
