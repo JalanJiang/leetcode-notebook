@@ -2050,6 +2050,10 @@ class Solution:
 
 我们注意到 `puzzles[i].length == 7`，那么 `puzzles[i]` 的谜底不会超过 2^7 = 128 因此我们可以直接枚举出 `puzzles[i]` 对应的谜底，然后遍历所有的谜底，看该谜底是否在 `words` 出现。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:
@@ -2077,3 +2081,90 @@ class Solution:
                 
         return answer      
 ```
+
+#### **Go**
+
+```go
+import (
+    "sort"
+    "fmt"
+    "strings"
+)
+
+func findNumOfValidWords(words []string, puzzles []string) []int {
+    wordMap := make(map[string]int)
+    // 处理 words
+    for _, word := range words {
+        // 分配内存
+        wordTemp := make(map[string]bool)
+        // 去重
+        for i := 0; i < len(word); i++ {
+            c := string(word[i])
+            //fmt.Println(c)
+            if _, ok := wordTemp[c]; !ok {
+                wordTemp[c] = true
+            }
+        }
+        // 转为 slice
+        wordSlice := make([]string, 26)
+        for key, _ := range(wordTemp) {
+            wordSlice = append(wordSlice, key)
+        }
+        // 排序
+        sort.Strings(wordSlice)
+        // 拼接为字符
+        wordString := strings.Join(wordSlice, "")
+        if len(wordString) <= 7 {
+            _, ok := wordMap[wordString]
+            if ok {
+                wordMap[wordString] += 1
+            } else {
+                wordMap[wordString] = 1
+            }
+        }
+    }
+        
+    // 计算 puzzles 谜面集合
+    puzzlesLength := len(puzzles)
+    puzzlesAnswer := make([][]string, puzzlesLength)
+    for i := 0; i < puzzlesLength; i++ {
+        //puzzlesAnswer[i] = make([]string)
+        puzzle := puzzles[i]
+        puzzlesAnswer[i] = append(puzzlesAnswer[i], string(puzzle[0])) // 放入第一个字母
+        for j := 1; j < len(puzzle); j++ {
+            p := puzzle[j]
+            // 遍历已存在的答案集，进行拼接
+            aLength := len(puzzlesAnswer[i])
+            for k := 0; k < aLength; k++ {
+                pAnswer := puzzlesAnswer[i][k]
+                tmpString := string(p) + string(pAnswer)
+                //fmt.Printf("p = %s, pAnswer = %s \n", string(p), string(pAnswer))
+                // fmt.Println(tmpString)
+                tmpSlice := make([]string, 26)
+                for _, tmpC := range tmpString {
+                    tmpSlice = append(tmpSlice, string(tmpC))
+                }
+                sort.Strings(tmpSlice)
+                tmpString = strings.Join(tmpSlice, "")
+                puzzlesAnswer[i] = append(puzzlesAnswer[i], tmpString)
+            }
+        }
+    }
+            
+    // 计算最终结果
+    answer := make([]int, puzzlesLength)
+    for i := 0; i < puzzlesLength; i++ {
+        answer[i] = 0
+        for j := 0; j < len(puzzlesAnswer[i]); j++ {
+            val, ok := wordMap[puzzlesAnswer[i][j]]
+            if ok {
+                answer[i] += val
+            }
+        }
+    }
+    
+    return answer
+}
+```
+
+<!-- tabs:end -->
