@@ -298,6 +298,30 @@ func distributeCandies(candies []int) int {
 }
 ```
 
+#### **Java**
+
+```java
+class Solution {
+    public int distributeCandies(int[] candies) {
+        if (candies == null || candies.length <= 0) return 0;
+        Map<Integer, Integer> type = new HashMap<Integer, Integer>();
+        int typeCount = 0;
+        for (int i = 0; i < candies.length; i++) {
+            if (!type.containsKey(candies[i])) {
+                type.put(candies[i], 1);
+                typeCount++;
+            }
+        }
+        
+        if (typeCount >= candies.length / 2) {
+            return candies.length / 2;
+        } else {
+            return typeCount;
+        }
+    }
+}
+```
+
 <!-- tabs:end -->
 
 - 时间复杂度 O(n)
