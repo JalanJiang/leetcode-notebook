@@ -560,6 +560,10 @@ class Solution:
 
 ### 实现
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def monotoneIncreasingDigits(self, N: int) -> int:
@@ -593,6 +597,36 @@ class Solution:
                     
         return int("".join(nums))
 ```
+
+#### **Java**
+
+```java
+class Solution {
+    public int monotoneIncreasingDigits(int N) {
+        String numStr = String.valueOf(N);
+        if (N < 10) return N;
+        int last = numStr.charAt(0) - '0';
+        int maxIndex = 0;
+        for (int i = 1; i < numStr.length(); i++) {
+            int num = numStr.charAt(i) - '0';
+            if (num > last) {
+                maxIndex = i;
+            } else if (num < last) {
+                break;
+            }
+            last = num;
+        }
+        // 计算出取零的位数
+        int tens = (int) Math.pow(10, numStr.length() - 1 - maxIndex);
+        if (tens == 1) {
+            return N;
+        }
+        return (N / tens) * tens - 1;
+    }
+}
+```
+
+<!-- tabs:end -->
 
 ### 复杂度
 
