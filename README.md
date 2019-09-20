@@ -35,6 +35,7 @@
   * [递归](data-structure/tree/recursion/)
   * [层次遍历（BFS）](data-structure/tree/bfs/)
   * [前中后序遍历（DFS）](data-structure/tree/dfs/)
+  * [字典树](data-struct/tree/trie/)
   * [其他](data-structure/tree/other/)
 * [堆](data-structure/heap/)
 * [栈](data-structure/stack/)
@@ -65,14 +66,14 @@
 
 ### 🐱Jalan 
 
-- 输出 Python/PHP/Swift 题解
-- [LeetCode 主页](https://leetcode-cn.com/jalan/)：完成题解 **269**，参与竞赛 **14** 次
+- 输出 Python（主）/PHP/Go/Swift 题解
+- [LeetCode 主页](https://leetcode-cn.com/jalan/)：完成题解 **272**，参与竞赛 **14** 次
 - 博客：[忘归](http://jalan.space)
 
 ### 🎃Csming
 
 - 输出 Java 题解
-- [LeetCode 主页](https://leetcode-cn.com/u/csming1995/)：完成题解 **303**，参与竞赛 **15** 次
+- [LeetCode 主页](https://leetcode-cn.com/u/csming1995/)：完成题解 **305**，参与竞赛 **15** 次
 - 博客：[Csming](https://csming1995.github.io/)
 
 ## 特别鸣谢
