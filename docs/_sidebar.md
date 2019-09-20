@@ -11,6 +11,7 @@
       * [递归](data-structure/tree/recursion/)
       * [层次遍历（BFS）](data-structure/tree/bfs/)
       * [前中后序遍历（DFS）](data-structure/tree/dfs/)
+      * [字典树](data-structure/tree/trie/)
       * [其他](data-structure/tree/other/)
     * [堆](data-structure/heap/)
     * [栈](data-structure/stack/)
