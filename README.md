@@ -67,13 +67,13 @@
 ### 🐱Jalan 
 
 - 输出 Python（主）/PHP/Go/Swift 题解
-- [LeetCode 主页](https://leetcode-cn.com/jalan/)：完成题解 **272**，参与竞赛 **14** 次
+- [LeetCode 主页](https://leetcode-cn.com/jalan/)：完成题解 **276**，参与竞赛 **15** 次
 - 博客：[忘归](http://jalan.space)
 
 ### 🎃Csming
 
 - 输出 Java 题解
-- [LeetCode 主页](https://leetcode-cn.com/u/csming1995/)：完成题解 **305**，参与竞赛 **15** 次
+- [LeetCode 主页](https://leetcode-cn.com/u/csming1995/)：完成题解 **308**，参与竞赛 **16** 次
 - 博客：[Csming](https://csming1995.github.io/)
 
 ## 特别鸣谢
