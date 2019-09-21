@@ -36,8 +36,7 @@ class Solution:
             return
         for k, node in root.dict.items():
             self.get_trie_node_count(node, cnt + 1) 
-        
-        
+
 """
 字典数 Node
 """
@@ -45,6 +44,9 @@ class TrieNode:
     def __init__(self):
         self.dict = dict()
 ```
+
+- 时间复杂度：$O(\sum w_{i})$（$w_{i}$ 为 `words[i]` 的长度）
+- 空间复杂度：$O(\sum w_{i})$，所有后缀存储的空间开销
 
 ### 解二：暴力破解
 
@@ -68,6 +70,9 @@ class Solution:
                 word_unique.discard(word[i:])
         return sum(len(word) + 1 for word in word_unique)
 ```
+
+- 时间复杂度：$O(\sum w_{i}^2)$（$w_{i}$ 为 `words[i]` 的长度），遍历每个单词 + 截取后缀
+- 空间复杂度：$O(\sum w_{i})$，所有后缀存储的空间开销
 
 #### **Java**
 
