@@ -455,3 +455,117 @@ class Solution:
 
         return res
 ```
+
+## 第 9 场双周赛
+
+[点击前往第 9 场双周赛](https://leetcode-cn.com/contest/biweekly-contest-9)
+
+### 5072. 最多可以买到的苹果数量
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-9/problems/how-many-apples-can-you-put-into-the-basket/)
+
+#### 思路
+
+1. 排序
+2. 遍历排序结果，将苹果重量依次相加：
+    - 如果相加和小于 5000，则把这个苹果放入袋子
+    - 如果相加和大于 5000，跳出遍历循环
+
+```python
+class Solution:
+    def maxNumberOfApples(self, arr: List[int]) -> int:
+        arr.sort()
+        res = 0
+        s = 0
+        for n in arr:
+            s += n
+            if s > 5000:
+                break
+            else:
+                res += 1
+        return res
+```
+
+### 5073. 进击的骑士
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-9/problems/minimum-knight-moves/)
+
+#### 思路
+
+BFS，需要进行枝剪，否则会超时。
+
+骑士所走的 8 个方向具有对称性，所以我们只要保留 `x > 0 && y > 0` 方向即可。这里借用了队列来实现 BFS。
+
+```python
+class Solution:
+    def minKnightMoves(self, x: int, y: int) -> int:
+        if x == 0 and y == 0:
+            return 0
+        
+        dx = [2, 2, -2, -2, 1, 1, -1, -1]
+        dy = [1, -1, 1, -1, 2, -2, 2, -2]
+        # 对称性
+        x = -x if x < 0 else x
+        y = -y if y < 0 else y
+        
+        # 初始化队列
+        q = list()
+        mark = dict()
+        mark[0] = True
+        q.append([0, 0])
+        M = 10000
+        
+        res = 0
+        while len(q):
+            q_length = len(q)
+            res += 1
+            # 遍历队列现有元素
+            while q_length:
+                px, py = q[0][0], q[0][1]
+                # 取出队列头部元素
+                del(q[0])
+                q_length -= 1
+                
+                for i in range(len(dx)):
+                    pdx = px + dx[i]
+                    pdy = py + dy[i]
+                    # 对称性枝剪
+                    if pdx < 0 or pdy < 0:
+                        continue
+                    if abs(pdx) + abs(pdy) > 300:
+                        continue
+                    # 是否为要求的值
+                    if pdx == x and pdy == y:
+                        return res
+                    # 是否已记录
+                    tmp = pdx * M + pdy
+                    if tmp in mark:
+                        continue
+                    mark[tmp] = True
+                    q.append([pdx, pdy])
+```
+
+### 5071. 找出所有行中最小公共元素
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-9/problems/find-smallest-common-element-in-all-rows/)
+
+#### 思路
+
+1. 用字典 `key` 存储每行中存在的元素，`value` 值为元素个数
+2. 从小到大遍历字典 `key` 所代表的元素，若 `value` 值等于 `len(mat)`（代表每行都出线了这个元素），则返回该元素
+
+```python
+class Solution:
+    def smallestCommonElement(self, mat: List[List[int]]) -> int:
+        mat_num = len(mat)
+        mat_map = dict()
+        for nums in mat:
+            for num in nums:
+                mat_map[num] = mat_map.get(num, 0) + 1
+                
+        key_list = sorted([x for x in mat_map])
+        for k in key_list:
+            if mat_map.get(k, 0) == mat_num:
+                return k
+        return -1
+```
