@@ -569,3 +569,44 @@ class Solution:
                 return k
         return -1
 ```
+
+### 5091. 建造街区的最短时间
+
+[原题链接](https://leetcode-cn.com/contest/biweekly-contest-9/problems/minimum-time-to-build-blocks/)
+
+#### 思路
+
+<!-- tabs:start -->
+
+#### **Python**
+
+一个工人只能使用一次，所以如果有 N 个街区，那么必须召唤出 N 个工人。
+
+1. 将 `blocks` 转为堆结构
+2. 每次取出堆中最小的两个元素 `b1` 和 `b2`
+3. 计算 `split + max(b1, b2)`，表示**复制一个工人的耗时 + 并行修两个街区的最大耗时**，并加入堆
+
+借用 Python `heapq` 模块完成堆排序功能：
+
+- `heapq.heapify(blocks)`：将数组转为堆结构
+- `heapq.heappop(blocks)`：弹出最小元素
+- `heapq.heappush(blocks, tmp)`：加入新元素
+
+```python
+import heapq
+
+class Solution:
+    def minBuildTime(self, blocks: List[int], split: int) -> int:
+        heapq.heapify(blocks)
+        
+        while len(blocks) > 1:
+            # 弹出最小的两个任务
+            b1 = heapq.heappop(blocks)
+            b2 = heapq.heappop(blocks)
+            # N 个街区必须召唤 N 个工人
+            heapq.heappush(blocks, split + max(b1, b2))
+        
+        return blocks[0]
+```
+
+<!-- tabs:end -->
