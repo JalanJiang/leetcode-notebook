@@ -85,3 +85,17 @@ void merge_sort(一个数组) {
 
 - [LeetCode 贪心练习](https://leetcode-cn.com/tag/greedy/)
 - [贪心题解](algorithm/greedy/)
+
+----
+
+## 二分查找
+
+- 用来在一个有序数组中查找某一元素
+- 对于一个长度为 n 的数组，至多会进行 $O(log_n)$ 次查找
+
+⚠️注：这里的有序是广义的有序，如果一个数组中的左侧或者右侧都满足某一种条件，而另一侧都不满足这种条件，也可以看作是一种有序。
+
+### 练习
+
+- [LeetCode 练习](https://leetcode-cn.com/tag/binary-search/)
+- [二分题解](algorithm/research/binary-search/)
