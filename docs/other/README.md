@@ -236,3 +236,118 @@ class Solution:
                         
         return max(dp)
 ```
+
+### 5. 发 LeetCoin
+
+[原题链接](https://leetcode-cn.com/contest/season/2019-fall/problems/coin-bonus/)
+
+把题中所有上级下级关系转化为一棵树。如果每次操作和查询都挨个遍历树的所有子节点是不现实的，分分钟超出时间限制。为了节省时间，我们需要对每个节点单独记录几个属性：
+
+1. 节点的父节点（用于向上更新父节点值）`parent`
+2. 节点和其子节点的 coin 总数 `coin`
+3. 通过操作 2 操作该节点时下发的 coin 数量 `children_coin`
+4. 该节点包含的子节点数 `count`
+
+假设我们对节点 `node` 执行以下操作：
+
+#### 操作 1
+
+操作 1 发放 `val` 数量的 LeetCoin：
+
+1. 更新 `node` 节点的 `coin += val`
+2. 更新其所有父节点的 `coin += val`
+
+#### 操作 2
+
+操作 2 发放 `val` 数量的 LeetCoin，节点 `node` 共有 `node.count` 个子节点，因此共加上 LeetCoin `all_coin = node.count * val` 个：
+
+1. 更新 `node` 节点的 `coin += all_coin`
+2. 更新 `node` 节点的所有父节点 `coin += all_coin`
+3. 更新 `node` 节点的 `children_coin += val`
+
+#### 操作 3
+
+`node` 节点与其子节点的所有 LeetCoin 和为：
+
+```
+node.coin + (node.parent.children_coin * node.count + node.parent.parnet.children_coin * node.count ......)
+```
+
+因为每个节点的 `children_coin` 代表对子节点产生的 LeetCoin 影响，因此计算每个节点与其子节点的 LeetCoin 之和时，需要往前遍历它的所有父节点，并加上 `children_coin * node.count`。
+
+#### 实现
+
+```python
+class Node:
+    def __init__(self):
+        self.parent = None # 父节点
+        self.children = [] # 子节点数组
+        self.coin = 0 # 子树总coin
+        self.children_coin = 0 # 2 操作分配的 coin（影响到所有子树）
+        self.count = 1 # 子树节点数
+
+class Solution:
+    def bonus(self, n: int, leadership: List[List[int]], operations: List[List[int]]) -> List[int]:
+        # 初始化数据
+        nodes = dict()
+        for i in range(1, n + 1):
+            nodes[i] = Node()
+        
+        # 记录从属关系
+        for leader, worker in leadership:
+            lnode = nodes[leader]
+            wnode = nodes[worker]
+            lnode.children.append(wnode)
+            wnode.parent = lnode
+            
+        """
+        计算 count
+        """
+        def cal_count(root):
+            for child in root.children:
+                cal_count(child)
+                root.count += child.count
+            return
+          
+        """ 
+        更新父项
+        """
+        def update_parents(node, coin):
+            while node:
+                node.coin += coin
+                node = node.parent
+        
+        """
+        获取查询结果
+        """
+        def get_res(node):
+            res = node.coin
+            node_count = node.count
+            parent = node.parent
+            while parent:
+                res += parent.children_coin * node_count
+                parent = parent.parent
+            return res
+        
+        # 计算 count
+        cal_count(nodes[1])
+        
+        res = []
+        for op in operations:
+            worker = op[1]
+            if op[0] == 1:
+                # 操作 1：个人发放
+                nodes[worker].coin += op[2]
+                update_parents(nodes[worker].parent, op[2]) # 更新它的所有父节点
+            elif op[0] == 2:
+                # 操作 2：团队发放
+                all_coin = nodes[worker].count * op[2]
+                # 当前节点加上数量
+                nodes[worker].children_coin += op[2]
+                nodes[worker].coin += all_coin
+                # 更新父节点
+                update_parents(nodes[worker].parent, all_coin)
+            else:
+                res.append((get_res(nodes[worker])) % (10**9 + 7))
+        return res
+```
