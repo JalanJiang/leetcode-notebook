@@ -2168,3 +2168,189 @@ func findNumOfValidWords(words []string, puzzles []string) []int {
 ```
 
 <!-- tabs:end -->
+
+----
+
+## 第 157 场周赛
+
+[点击前往第 157 场周赛](https://leetcode-cn.com/contest/weekly-contest-157)
+
+### 5213. 玩筹码
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-157/problems/play-with-chips/)
+
+#### 暴力破解
+
+```python
+class Solution:
+    def minCostToMoveChips(self, chips: List[int]) -> int:
+        chip_set = set(chips)
+        res = float("inf")
+        for s in chip_set:
+            tmp = 0
+            for chip in chips:
+                if chip > s:
+                    if (chip - s) % 2 == 1:
+                        tmp += 1
+                elif chip < s:
+                    if (s - chip) % 2 == 1:
+                        tmp += 1
+                else:
+                    pass
+            if tmp <= res:
+                res = tmp
+        return res
+```
+
+#### 统计奇偶
+
+移动 2 位是无代价的，移动 1 位是有代价的，因此奇数位移动到奇数位或偶数位移动到偶数位是无代价移动，偶数位移动到奇数位或奇数位移动到偶数位需要花费代价 1。所以只要统计奇数位的筹码数和偶数位的筹码数，将少的一方移到多的一方即可。
+
+```python
+class Solution:
+    def minCostToMoveChips(self, chips: List[int]) -> int:
+        odd = 0
+        even = 0
+        
+        for chip in chips:
+            if chip % 2 == 0:
+                even += 1
+            else:
+                odd += 1
+        
+        return min(odd, even)
+```
+
+### 5214. 最长定差子序列
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-157/problems/longest-arithmetic-subsequence-of-given-difference/)
+
+把每一个数**当前位置能构成的最长定差子序列长度**用字典 `dp` 记录下来，遍历 `arr` 时，根据 `difference` 求出在定差子序列中该数的前一个数 `pre = a - difference`，若 `pre` 存在 `dp` 中（已能构成定差子序列），则有 `dp[a] = max(dp[a], dp[pre] + 1)`，否则令 `dp[a] = 1`。
+
+```python
+class Solution:
+    def longestSubsequence(self, arr: List[int], difference: int) -> int:
+        dp = dict()
+        for a in arr:
+            pre = a - difference
+            if pre in dp:
+                dp[a] = max(dp.get(a, 0), dp[pre] + 1)
+            else:
+                dp[a] = 1
+        return max([x for _, x in dp.items()])
+```
+
+### 5215. 黄金矿工
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-157/problems/path-with-maximum-gold/)
+
+DFS 暴力挖矿。对挖过的格子进行标记，走到一个格子后，判断该格子四个方向的格子是否满足要求：
+
+1. 不超过 `grid` 边界
+2. 黄金数目不为 `0`
+3. 没有被挖过
+
+如果满足上述条件就继续 DFS 挖下去。
+
+伪代码大概长这样：
+
+```
+dfs(v) // v 可以是 grid 的一个坑
+  在 v 上打访问标记
+  for u in v 的四个相邻坑位
+    if (u 没有越界) and (u 有黄金) and (u 没有被挖过) then
+      dfs(i)
+```
+
+具体实现：
+
+```python
+class Solution:
+    
+    ans = 0
+    
+    def getMaximumGold(self, grid: List[List[int]]) -> int:
+        
+        n = len(grid)
+        m = len(grid[0])
+        
+        """
+        获取方向
+        """
+        def get_directions(i, j, mark):
+            directions = []
+            if i - 1 >= 0 and grid[i - 1][j] != 0 and (not mark[i - 1][j]):
+                directions.append([i - 1, j])
+            if i + 1 < n and grid[i + 1][j] != 0 and (not mark[i + 1][j]):
+                directions.append([i + 1, j])
+            if j - 1 >= 0 and grid[i][j - 1] != 0 and (not mark[i][j - 1]):
+                directions.append([i, j - 1])
+            if j + 1 < m and grid[i][j + 1] != 0 and (not mark[i][j + 1]):
+                directions.append([i, j + 1])
+                
+            return directions
+        
+        """
+        DFS
+        """
+        def dfs(i, j, mark, count):
+            # 打上访问标记
+            mark[i][j] = True
+            # 获得可走方向
+            directions = get_directions(i, j, mark)
+            # 无路可走时返回
+            if len(directions) == 0:
+                self.ans = max(self.ans, count)
+                return
+            # 遍历方向
+            for direction in directions:
+                dfs(direction[0], direction[1], [x[:] for x in mark], count + grid[direction[0]][direction[1]]) # dfs
+                    
+        for i in range(n):
+            for j in range(m):
+                # 任意一个有黄金的单元格出发
+                if grid[i][j] != 0:
+                    mark = [[False for _ in range(m)] for _ in range(n)]
+                    dfs(i, j, mark, grid[i][j])
+
+        return self.ans
+```
+
+### 5216. 统计元音字母序列的数目
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-157/problems/count-vowels-permutation/)
+
+长度为 `x` 的字符串是由**长度为 `x - 1` 的合法字符串**，根据其最后一个字母，追加一个符合规则的字母构成的。
+
+因此，如果我们要求长度为 `x` 的字符串个数，只需要知道长度为 `x - 1` 的字符串中所有字符串最后一个字母的情况，从 `n = 1` 开始一直推算到 `n = x`。
+
+```python
+class Solution:
+    def countVowelPermutation(self, n: int) -> int:
+        
+        if n == 1:
+            return 5
+        
+        map_dict = {"a": ["e"], "e": ["a", "i"], "i": ["a", "e", "o", "u"], "o": ["i", "u"], "u": ["a"]}
+        index = {"a": 0, "e": 1, "i": 2, "o": 3, "u": 4}
+        c = {0: "a", 1: "e", 2: "i", 3: "o", 4: "u"}
+        
+        # aeiou 对应的个数
+        pre = [1, 1, 1, 1, 1]
+        
+        res = 0
+        
+        for i in range(2, n + 1):
+            cur = [0 for _ in range(5)]
+            for j in range(len(pre)):
+                cur_c = c[j] # 当前字母
+                cur_c_count = pre[j] # 当前字母数量
+                for map_c in map_dict[cur_c]: # 遍历可以跟随的字母
+                    map_c_index = index[map_c]
+                    cur[map_c_index] += cur_c_count
+            pre = cur
+            
+        res = sum(cur)
+        
+        return res % (10**9 + 7)
+```
