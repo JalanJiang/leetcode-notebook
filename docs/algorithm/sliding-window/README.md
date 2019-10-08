@@ -112,5 +112,43 @@ class Solution:
 - 在 s2 上放置 "滑动窗口"，计算与 s1 等长的字串是否拥有与 s1 相同的字符数
 
 ```python
-
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        s1_length = len(s1)
+        s2_length = len(s2)
+        if s1_length > s2_length:
+            return False
+        
+        count1 = [0 for _ in range(26)]
+        count2 = [0 for _ in range(26)]
+        ord_a = ord('a')
+        
+        # s1 字符个数记录
+        for c in s1:
+            count1[ord(c) - ord_a] += 1
+                    
+        # s2 第一个窗口字符记录
+        for i in range(s1_length):
+            count2[ord(s2[i]) - ord_a] += 1
+            
+        """
+        是否匹配
+        """
+        def is_match(count1, count2):
+            for i in range(len(count1)):
+                if count1[i] != count2[i]:
+                    return False
+            return True
+        
+        if is_match(count1, count2):
+            return True
+            
+        for i in range(s1_length, s2_length):
+            left = ord(s2[i - s1_length]) - ord_a
+            count2[left] -= 1
+            count2[ord(s2[i]) - ord_a] += 1
+            if is_match(count1, count2):
+                return True
+        
+        return False
 ```
