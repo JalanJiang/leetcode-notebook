@@ -1157,41 +1157,6 @@ class Solution:
         return nums[j]
 ```
 
-
-## 219. 存在重复元素 II
-
-[原题链接](https://leetcode-cn.com/problems/contains-duplicate-ii/)
-
-### 思路
-
-- 滑动窗口
-
-```python
-class Solution(object):
-    def containsNearbyDuplicate(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: bool
-        """
-        if len(nums) <= 1 or k <= 0:
-            return False
-        
-        record = set()
-        for i in range(len(nums)):
-            num = nums[i]
-            
-            if num in record:
-                return True
-            
-            record.add(num)
-            if len(record) >= k + 1:
-                record.remove(nums[i - k])
-            
-        return False
-```
-
-
 ## 238. 除自身以外数组的乘积
 
 [原题链接](https://leetcode-cn.com/problems/product-of-array-except-self/)

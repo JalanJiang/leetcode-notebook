@@ -35,6 +35,7 @@
     * [数学题](algorithm/math/)
     * [回溯](algorithm/backtrack/)
     * [双指针](algorithm/double-pointer/)
+    * [滑动窗口](algorithm/sliding-window/)
     * [其他](algorithm/other/)
   * 3.3 竞赛
     * [周赛](weekly/)

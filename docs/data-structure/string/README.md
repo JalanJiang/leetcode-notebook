@@ -1303,23 +1303,6 @@ class Solution:
 - 翻转的切片方法为 `[::-1]`
 - 分割方法为 `string.split(" ")`
 
-
-## 567. 字符串的排列
-
-[原题链接](https://leetcode-cn.com/problems/permutation-in-string/)
-
-### 思路
-
-计算 s2 中是否存在子串与 s1 拥有相同字母数
-
-- 先计算 s1 每个字母出现次数
-- 在 s2 上放置 "滑动窗口"，计算与 s1 等长的字串是否拥有与 s1 相同的字符数
-
-```python
-
-```
-
-
 ## 647. 回文子串
 
 [原题连接](https://leetcode-cn.com/problems/palindromic-substrings/submissions/)
@@ -1478,7 +1461,7 @@ class Solution:
 class Solution:
     def shiftingLetters(self, S: str, shifts: List[int]) -> str:
         length = len(shifts)
-        
+
         # 每个字母要移动的总次数
         num = [0 for _ in range(length)]
         num[length - 1] = shifts[length - 1]
