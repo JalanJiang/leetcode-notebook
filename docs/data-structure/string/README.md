@@ -1457,6 +1457,10 @@ class Solution:
 
 越靠前的字母需要移动次数越多，可以算出每个字母需要移动的总次数，然后再对字母进行统一移动处理。时间复杂度为 $O(n)$。
 
+<!-- tabs:start -->
+
+#### ** Python **
+
 ```python
 class Solution:
     def shiftingLetters(self, S: str, shifts: List[int]) -> str:
@@ -1481,6 +1485,32 @@ class Solution:
         
         return "".join(s_list)
 ```
+
+#### ** Java **
+
+```java
+class Solution {
+    public String shiftingLetters(String S, int[] shifts) {
+        char[] chars = S.toCharArray();
+
+        for (int i = 0; i < S.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                shifts[j] = (shifts[i] + shifts[j]) % 26;
+            }
+        }
+
+        for (int i = 0; i < S.length(); i++) {
+            int index = chars[i] - 'a';
+            int finalIndex = (index + shifts[i]) % 26;
+            chars[i] = (char) ('a' + finalIndex);
+        }
+
+        return new String(chars);
+    }
+}
+```
+
+<!-- tabs:end -->
 
 ## 1108. IP 地址无效化
 
