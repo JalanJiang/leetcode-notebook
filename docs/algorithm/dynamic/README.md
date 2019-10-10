@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @version: v1.0
- * @Author: JalanJiang
- * @Date: 2019-08-06 22:00:39
- * @LastEditTime: 2019-08-11 21:36:00
- -->
 ## 5. 最长回文子串
 
 - [原题链接](https://leetcode-cn.com/problems/longest-palindromic-substring/)
@@ -1095,3 +1088,83 @@ class Solution:
             res |= cur
         return len(res)
 ```
+
+## 1137. 第 N 个泰波那契数
+
+[原题链接](https://leetcode-cn.com/problems/n-th-tribonacci-number/)
+
+### 动态规划
+
+```
+dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+```
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def tribonacci(self, n: int) -> int:
+        dp = [0 for _ in range(38)]
+        dp[1] = 1
+        dp[2] = 1
+        
+        for i in range(3, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+        
+        return dp[n]
+```
+
+<!-- tabs:end -->
+
+### 迭代
+
+<!-- tabs:start -->
+
+#### **Java**
+
+```java
+class Solution {
+    public int tribonacci(int n) {
+        int[] topThree = new int[]{0, 1, 1};
+
+        if (n < 3) return topThree[n];
+
+        for (int i = 3; i <= n; i++) {
+            int temp = topThree[0] + topThree[1] + topThree[2];
+            topThree[0] = topThree[1];
+            topThree[1] = topThree[2];
+            topThree[2] = temp;
+        }
+        return topThree[2];
+    }
+}
+```
+
+<!-- tabs:end -->
+
+### 递归
+
+<!-- tabs:start -->
+
+#### **Python**
+
+- [Python 缓存机制与 functools.lru_cache](http://kuanghy.github.io/2016/04/20/python-cache)
+
+```python
+import functools
+
+class Solution:
+    @functools.lru_cache(None)
+    def tribonacci(self, n: int) -> int:
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        if n == 2:
+            return 1
+        return self.tribonacci(n - 3) + self.tribonacci(n - 2) + self.tribonacci(n - 1)
+```
+
+<!-- tabs:end -->
