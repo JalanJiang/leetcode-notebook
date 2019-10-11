@@ -155,3 +155,56 @@ class Solution:
 
 - 时间复杂度：$O(l1 + (l2 - l1) * 26)$（$l1$ 为字符串 s1 长度，$l2$ 为字符串 s2 长度）
 - 空间复杂度：$O(1)$
+
+优化一下：
+
+```python
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        length1 = len(s1)
+        length2 = len(s2)
+        if length2 < length1:
+            return False
+        
+        count1 = [0 for _ in range(26)]
+        count2 = [0 for _ in range(26)]
+        
+        ord_a = ord('a')
+        
+        for i in range(length1):
+            c1 = s1[i]
+            c2 = s2[i]
+            count1[ord(c1) - ord_a] += 1
+            count2[ord(c2) - ord_a] += 1
+        
+        # 计算相同字母位数
+        count = 0
+        for i in range(26):
+            if count1[i] == count2[i]:
+                count += 1
+                
+        for i in range(length1, length2):
+            
+            if count == 26:
+                return True
+            
+            left_c = s2[i - length1]
+            left_index = ord(left_c) - ord_a
+            right_c = s2[i]
+            right_index = ord(right_c) - ord_a
+            
+            if count2[left_index] == count1[left_index]:
+                count -= 1
+            if count2[right_index] == count1[right_index]:
+                count -= 1
+            
+            count2[left_index] -= 1
+            count2[right_index] += 1
+            
+            if count2[left_index] == count1[left_index]:
+                count += 1
+            if count2[right_index] == count1[right_index]:
+                count += 1
+            
+        return count == 26
+```
