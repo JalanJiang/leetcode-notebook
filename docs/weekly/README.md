@@ -2425,3 +2425,70 @@ class Solution:
                 
         return res
 ```
+
+### 5225. 最大相等频率
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-158/problems/maximum-equal-frequency/)
+
+#### 思路
+
+分别记录数字出现的**频次总类**和各**频次出现的次数**。
+
+存在组合情况如下：
+
+- 出现的频次总类 > 3：非法
+- 出现的频次总类 = 2（假设分别为 a 频次出现 x 次，b 频次出现 y 次）：
+    - 若其中有出现频次为 1 的数，且频次为 1 的总类仅出现一次：可删除该频次，得到前缀
+    - 若其中 b - a == 1 and y == 1，可删除一个出现频次为 b 的数，得到前缀
+- 出现频次总数 = 1：
+    - 需要频次 == 1 或 频次个数 == 1
+
+一旦找到合法前缀，即可记录下来。遍历到末端即可找到最大前缀。
+
+```python
+class Solution:
+    def maxEqualFreq(self, nums: List[int]) -> int:
+        # num 出现的次数
+        num_map = dict()
+        # 频次出现的次数
+        count_map = dict()
+        res = 0
+        # 计算每个数字出现的次数
+        for i in range(len(nums)):
+            
+            num = nums[i]
+            if num not in num_map:
+                num_map[num] = 1
+                count_map[1] = count_map.get(1, 0) + 1
+            else:
+                num_map[num] += 1
+                count_map[num_map[num]] = count_map.get(num_map[num], 0) + 1
+                pre_count = num_map[num] - 1
+                count_map[pre_count] = count_map.get(pre_count, 0) - 1
+                if count_map[pre_count] == 0:
+                    count_map.pop(pre_count)
+            
+            map_length = len(count_map)
+            
+            if map_length > 2:
+                # 出现的频次数量大于 2：非法
+                continue
+            
+            # value 值排序
+            # a 为频次，b 为频次数量
+            counts = sorted([[a, b] for a, b in count_map.items()])
+            if map_length == 2:
+                # 频次出现的次数
+                if counts[0][0] == 1 and counts[0][1] == 1:
+                    res = i + 1
+                    continue
+                if counts[1][0] - counts[0][0] == 1 and counts[1][1] == 1:
+                    res = i + 1
+                    continue
+            elif map_length == 1:
+                if counts[0][1] == 1 or counts[0][0] == 1:
+                    res = i + 1
+                    continue
+                
+        return res
+```
