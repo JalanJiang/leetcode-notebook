@@ -2492,3 +2492,235 @@ class Solution:
                 
         return res
 ```
+
+## 第 159 场周赛
+
+[点击前往第 159 场周赛](https://leetcode-cn.com/contest/weekly-contest-159)
+
+### 5230. 缀点成线
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-159/problems/check-if-it-is-a-straight-line/)
+
+取出前两个点根据 $y = kx + b$ 求解直线方程，再将后续的点套入方程中判断是否在直线上。
+
+```python
+class Solution:
+    def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
+        x1, y1 = coordinates[0][0], coordinates[0][1]
+        x2, y2 = coordinates[1][0], coordinates[1][1]
+        # 求斜率 k
+        if x1 == x2:
+            k = 0
+        else:
+            k = (y2 - y1) / (x2 - x1)
+        b = y1 - k * x1
+        
+        for i in range(2, len(coordinates)):
+            x = coordinates[i][0]
+            y = coordinates[i][1]
+            if k * x + b != y:
+                return False
+            
+        return True
+```
+
+### 5231. 删除子文件夹
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-159/problems/remove-sub-folders-from-the-filesystem/)
+
+#### 思路
+
+对 `folder` 按字典序排序，如果目录 `x` 在 `folder` 中存在根目录，那么这个根目录必定在 `x` 之前。
+
+1. 将第一个目录作为根目录
+2. 从第二个目录开始遍历，判断 `folder[i]` 是否以当前根目录为前缀：
+    - 是：`folder[i]` 是子目录，跳过该目录，不记录到结果中
+    - 否：将当前根目录更新为 `folder[i]`
+
+ps: 作为根目录时结尾加个 `/`，不然 `"/a/b/c"` 就是 `"/a/b/ca"` 的前缀了。
+
+#### 实现
+
+```python
+class Solution:
+    def removeSubfolders(self, folder: List[str]) -> List[str]:
+        # 排序
+        folder.sort()
+        res = [folder[0]]
+        # 将第一个目录设为当前根目录
+        root = folder[0] + "/"
+        
+        for i in range(1, len(folder)):
+            # 是否以 root 为前缀
+            if not folder[i].startswith(root):
+                # 不是子目录
+                root = folder[i] + "/" # 更新根目录
+                res.append(folder[i])
+                
+        return res
+```
+
+另外一种用字典树的笨方法：
+
+```python
+class Solution:
+    def removeSubfolders(self, folder: List[str]) -> List[str]:
+        folder.sort()
+        print(folder)
+        m = dict()
+        res = []
+        length = len(folder)
+        
+        for i in range(length):
+            letters = folder[i].split('/')
+            is_child = True
+            l_length = len(letters)
+            find = m
+            # 循环每个目录
+            for j in range(1, l_length):
+                letter = letters[j]
+                if letter not in find:
+                    # 不在
+                    find[letter] = dict()
+                    is_child = False
+                    find = find[letter]
+                    break
+                else:
+                    # 在
+                    find = find[letter]
+                    if 'end' in find: # 到达末尾
+                        is_child = True
+                        break
+              
+            j += 1
+            while j < l_length:
+                tmp_letter = letters[j]
+                if tmp_letter not in find:
+                    find[tmp_letter] = dict()
+                find = find[tmp_letter]
+                j += 1
+            
+            find['end'] = True
+            # print(m)
+                    
+            if not is_child:
+                res.append(folder[i])
+                
+        return res
+```
+
+### 5232. 替换子串得到平衡字符串
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-159/problems/replace-the-substring-for-balanced-string/)
+
+#### 思路
+
+题目要求 `QWER` 每个字符都需要出现 `n / 4` 次，那么统计这 4 个字母出现的次数，超出 `n / 4` 部分的即为需要删除的字母，即只要在字符串中找到包含所有多出字母的一个子串即可。用**双指针**圈定最终的子串范围。
+
+#### 实现
+
+```python
+class Solution:
+    def balancedString(self, s: str) -> int:
+        length = len(s)
+        n = length // 4
+        
+        m = {"Q": 0, "W": 1, "E": 2, "R": 3}
+        dp = [[0, 0, 0, 0] for i in range(length)]
+        c_count = [0 for _ in range(4)]
+        need = [0 for _ in range(4)]
+        
+        # 计算每个字母出现的个数
+        for i in range(length):
+            c = s[i]
+            index = m[c]
+            c_count[index] += 1
+            dp[i] = [c_count[0], c_count[1], c_count[2], c_count[3]]
+            
+        # 计算多出来的字母个数（即需要删除的个数）
+        all_zero = True
+        for i in range(4):
+            count = c_count[i]
+            if count > n:
+                need[i] = count - n
+                if need[i] != 0:
+                    all_zero = False
+        # 如果全为 0，说明不需要替换
+        if all_zero:
+            return 0
+                
+        # 双指针，确定右指针所在的最小位置
+        last = length - 1
+        for i in range(length):
+            if dp[i][0] >= need[0] and dp[i][1] >= need[1] and dp[i][2] >= need[2] and dp[i][3] >= need[3]:
+                last = i
+                break  
+        
+        i = 0
+        j = last
+        res = last + 1
+        while i < length and j < length:
+            # 两指针中间区域不满足要求，右指针右移
+            if dp[j][0] - dp[i][0] < need[0] or dp[j][1] - dp[i][1] < need[1] or dp[j][2] - dp[i][2] < need[2] or dp[j][3] - dp[i][3] < need[3]:
+                j += 1
+            # 满足要求，左指针尽量向右移，看是否可以缩短字串长度
+            else:
+                res = min(j - i, res)
+                i += 1
+                
+        return res
+```
+
+### 5233. 规划兼职工作
+
+[原题链接](https://leetcode-cn.com/contest/weekly-contest-159/problems/maximum-profit-in-job-scheduling/)
+
+#### 思路
+
+动态规划。在开始计算之前，先把题目给出的数据整理一下。将 `[startTime[i], endTime[i], profit[i]]` 整理为数组，并按 `startTime[i] - endTime[i] - profit[i]]` 排序。
+
+用 `dp[i]` 表示完成第 `i` 份工作所能获得的最大收益。假设有第 `x` 份工作（`x < i`）：
+
+- 如果 `x` 与 `i` 时间上不重合，表示即可完成工作 `x` 又可以完成工作 `i`，那么有：`dp[i] = max(dp[i], dp[x] + profit[i])`
+- 如果 `x` 与 `i` 在时间上重合了，那么将无法完成工作 `x`
+
+由此可见，`dp[i]` 的值**取决于在它前面所有与之时间不重合的工作收益**，即：
+
+```
+dp[i] = max(dp[0], dp[1], ..., dp[j]) + profit[i] （`j` 为 `i` 之前最后一个与之时间区域不重合的工作）
+```
+
+但是，如果每次都遍历 `0 ~ j` 必然会超时，所以需要记录下时间区域不重合的工作所在的最大位置。
+
+#### 实现
+
+```python
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        length = len(startTime)
+        times = [[0, 0, 0] for _ in range(length)]
+        for i in range(length):
+            times[i][0] = startTime[i]
+            times[i][1] = endTime[i]
+            times[i][2] = profit[i]
+        times.sort() # 排序
+                
+        dp = [0 for i in range(length)]
+        
+        res = 0
+        s = 0
+        pos = 0 # 标记位置
+        for i in range(length):
+            for j in range(pos, i):
+                # 区间不重合
+                if times[i][0] >= times[j][1]:
+                    # 移动 pos 的位置
+                    if j == pos:
+                        pos += 1
+                    s = max(s, dp[j])
+             
+            dp[i] = s + times[i][2]
+            res = max(res, dp[i])
+                              
+        return res
+```
