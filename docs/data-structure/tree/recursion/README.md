@@ -1,3 +1,41 @@
+## 100. 相同的树
+
+[原题链接](https://leetcode-cn.com/problems/same-tree/submissions/)
+
+### 思路
+
+递归：
+
+- 两个节点有一为 `None` 时：返回 `False`
+- 两个节点都为 `None`：返回 `True`
+- 两个节点都存在：
+  - 值不同：返回 `False`
+  - 值相同：返回 `True`
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if p is None and q is None:
+            return True
+        if p is None or q is None:
+            return False
+
+        if p.val != q.val:
+            return False
+            
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+```
+
+- 时间复杂度：$O(n)$
+- 空间复杂度：最优情况（完全平衡二叉树）为$O(log_n)$，最坏情况（完全不平衡二叉树）为$O(n)$
+
 ## 104. 二叉树的最大深度
 
 [原题链接](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
