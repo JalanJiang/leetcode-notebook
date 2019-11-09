@@ -247,6 +247,47 @@ class Solution(object):
 
 ps：看评论有很秀的牛顿迭代法，有空研究下。
 
+## 74. 搜索二维矩阵
+
+[原题链接](https://leetcode-cn.com/problems/search-a-2d-matrix/)
+
+### 解法一
+
+逐行进行二分查找。
+
+```python
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m = len(matrix)
+        if m == 0:
+            return False
+        n = len(matrix[0])
+        if n == 0:
+            return False
+        
+        for i in range(m):
+            left = 0
+            right = n - 1
+            
+            if matrix[i][right] < target:
+                continue
+            if matrix[i][left] > target:
+                return False
+                
+            if matrix[i][right] == target or matrix[i][left] == target:
+                return True
+            
+            while left <= right:
+                middle = left + (right - left) // 2
+                if matrix[i][middle] > target:
+                    right -= 1
+                elif  matrix[i][middle] < target:
+                    left += 1
+                else:
+                    return True
+            
+        return False
+```
 
 ## 162. 寻找峰值
 
