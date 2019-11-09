@@ -17,7 +17,7 @@
   
 欢迎关注我的公众号：`CodeWarrior_`。加入编程世界一起冒险，一起成长！
 
-<center><img src="https://user-gold-cdn.xitu.io/2019/11/5/16e399e909bdd732?w=258&h=258&f=jpeg&s=27669"/></center>
+<center><img src="_img/qrcode.png"/></center>
 
 ### 基本概念
 
