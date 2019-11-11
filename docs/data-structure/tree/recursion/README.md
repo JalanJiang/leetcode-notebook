@@ -148,6 +148,10 @@ class Solution(object):
 2. 构建该根节点的左子树
 3. 构建该根节点的右子树
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 # Definition for a binary tree node.
 # class TreeNode:
@@ -176,6 +180,47 @@ class Solution:
         
         return root
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func buildTree(inorder []int, postorder []int) *TreeNode {
+    postorderLength := len(postorder)
+    if postorderLength == 0 {
+        return nil
+    }
+
+    rootVal := postorder[postorderLength - 1]
+
+    // 找出 root 在中序遍历中的位置
+    index := findIndex(inorder, rootVal)
+    root := new(TreeNode)
+    root.Val = rootVal
+    root.Left = buildTree(inorder[:index], postorder[:index])
+    root.Right = buildTree(inorder[index + 1:], postorder[index:postorderLength - 1])
+
+    return root
+}
+
+func findIndex(array []int, num int) int {
+    for i, a := range array {
+        if a == num {
+            return i
+        }
+    }
+    return 0
+}
+```
+
+<!-- tabs:end -->
 
 ## 110. 平衡二叉树
 
