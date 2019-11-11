@@ -280,9 +280,9 @@ class Solution:
             while left <= right:
                 middle = left + (right - left) // 2
                 if matrix[i][middle] > target:
-                    right -= 1
+                    right = middle - 1
                 elif  matrix[i][middle] < target:
-                    left += 1
+                    left = middle + 1
                 else:
                     return True
             
