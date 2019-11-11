@@ -289,6 +289,45 @@ class Solution:
         return False
 ```
 
+### 解法二
+
+将矩阵拉成直线后进行二分查找。
+
+```go
+func searchMatrix(matrix [][]int, target int) bool {
+    m := len(matrix)
+    if m == 0 {
+        return false
+    }
+    n := len(matrix[0])
+    if n == 0 {
+        return false
+    }
+    
+    length := m * n
+    left := 0
+    right := length - 1
+    
+    for left <= right {
+        middle := left + (right - left) / 2
+        // fmt.Printf("%d", middle)
+        row := middle / n
+        column := middle % n
+        num := matrix[row][column]
+        
+        if num > target {
+            right = middle - 1
+        } else if num < target {
+            left = middle + 1
+        } else {
+            return true
+        }
+    }
+    
+    return false
+}
+```
+
 ## 162. 寻找峰值
 
 [原题链接](https://leetcode-cn.com/problems/find-peak-element/)
