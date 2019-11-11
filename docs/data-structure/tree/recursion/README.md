@@ -117,6 +117,66 @@ class Solution(object):
         return root
 ```
 
+## 106. 从中序与后序遍历序列构造二叉树
+
+[原题链接](https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+
+### 思路
+
+和 [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) 这道题一样的思路。
+
+先看一下什么是中序遍历和后序遍历：
+
+- 中序遍历：左节点 -> 根节点 -> 右节点
+- 后序遍历：左节点 -> 右节点 -> 根节点
+
+我们可以得知：
+
+- 在后序遍历中：最后一个节点为根节点
+- 在中序遍历中：根节点左侧为该树的左子树，右侧为该树的右子树
+
+例如在例题中：
+
+> 中序遍历 inorder = [9,3,15,20,7]
+> 后序遍历 postorder = [9,15,7,20,3]
+
+后序遍历 `postorder` 最后一个节点 `3` 为该树的根节点，`inorder` 中 `3` 的左侧 `[9]` 是树的左子树，右侧 `[15, 20, 7]` 则是树的右子树。
+
+所以可以把问题拆分为：
+
+1. 找到树的根节点 `root`
+2. 构建该根节点的左子树
+3. 构建该根节点的右子树
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        
+        if len(inorder) == 0:
+            return None
+        
+        # 后序遍历最后一个节点为根节点
+        root = TreeNode(postorder[-1])
+        
+        # 根节点在中序遍历中的位置
+        index = inorder.index(postorder[-1])
+        
+        # 构造左子树
+        root.left = self.buildTree(inorder[:index], postorder[:index])
+        
+        # 构造右子树
+        root.right = self.buildTree(inorder[index+1:], postorder[index:len(postorder) - 1])
+        
+        return root
+```
+
 ## 110. 平衡二叉树
 
 [原题链接](https://leetcode-cn.com/problems/balanced-binary-tree/description/)
