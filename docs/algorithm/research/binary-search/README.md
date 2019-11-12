@@ -515,3 +515,64 @@ public class Solution extends GuessGame {
 ```
 
 <!-- tabs:end -->
+
+## 475. 供暖器
+
+[原题链接](https://leetcode-cn.com/problems/heaters/)
+
+### 思路
+
+题目要求计算**供暖器的最小加热半径**，即需要计算：
+
+1. 距离每间房屋最近的供暖器距离
+2. 这些距离中的**最长距离**即为最小加热半径
+
+### 如何获得最近的供暖器？
+
+供暖器和房屋都在一条水平线上，因此我们可以对两者进行排序，然后使用**二分查找**来搜索离房屋最近的供暖器。
+
+由二分查找得出的供暖器位置可能存在三种情况：
+
+1. 和房子的位置相同：说明可以直接供暖，半径 = 0
+2. 小于房子的位置：该供暖器在房子的左侧，此时求出的供暖器是距离房子最近的供暖器
+3. 大于房子的位置：该供暖器在房子的右侧，需要计算房子左侧的供暖器和房子的距离，两者取较小值
+
+### 具体实现
+
+```python
+class Solution:
+    def findRadius(self, houses: List[int], heaters: List[int]) -> int:
+        houses.sort()
+        heaters.sort()
+        res = 0
+        # 每个房子被供暖需要的最小半径
+        for house in houses:
+
+            left = 0
+            right = len(heaters) - 1
+            while left < right:
+                middle = left + (right - left) // 2
+                if heaters[middle] < house:
+                    left = middle + 1
+                else:
+                    right = middle
+            
+            # 供暖器和房子的位置相等
+            if heaters[left] == house:
+                house_res = 0
+            # 此时是最接近房子的供暖器
+            elif heaters[left] < house:
+                house_res = house - heaters[left]
+            # 供暖器不一定是最接近房子的
+            else:
+                # 第一个供暖器
+                if left == 0:
+                    house_res = heaters[left] - house
+                else:
+                    # 这个供暖器和前一个供暖期哪个更接近
+                    house_res = min(heaters[left] - house, house - heaters[left - 1])
+
+            res = max(house_res, res)
+
+        return res
+```
