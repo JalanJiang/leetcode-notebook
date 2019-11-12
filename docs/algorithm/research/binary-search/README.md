@@ -539,6 +539,10 @@ public class Solution extends GuessGame {
 
 ### 具体实现
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def findRadius(self, houses: List[int], heaters: List[int]) -> int:
@@ -576,3 +580,61 @@ class Solution:
 
         return res
 ```
+
+#### **Go**
+
+```go
+func findRadius(houses []int, heaters []int) int {
+    sort.Ints(houses)
+    sort.Ints(heaters)
+    res := 0
+    for _, house := range houses {
+        left := 0
+        right := len(heaters) - 1
+        houseRes := 0
+        // 二分查找
+        for left < right {
+            middle := left + (right - left) / 2
+            if heaters[middle] < house {
+                left = middle + 1
+            } else {
+                right = middle
+            }
+        }
+
+        if heaters[left] == house {
+            houseRes = 0
+        } else if heaters[left] < house { // 供暖器在左侧
+            houseRes = house - heaters[left]
+        } else { // 供暖器在右侧
+            if left == 0 {
+                houseRes = heaters[left] - house
+            } else {
+                houseRes = getMin(heaters[left] - house, house - heaters[left - 1])
+            }
+        }
+
+        res = getMax(res, houseRes)
+    }
+
+    return res
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    } else {
+        return b
+    }
+}
+
+func getMax(a int, b int) int {
+    if a > b {
+        return a
+    } else {
+        return b
+    }
+}
+```
+
+<!-- tabs:end -->
