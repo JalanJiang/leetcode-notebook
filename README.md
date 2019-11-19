@@ -63,6 +63,14 @@
 * [双指针](algorithm/double-pointer/)
 * [其他](algorithm/other/)
 
+## 题解目录
+
+整理中……
+
+| # | Title | Solution | Difficulty	| 
+| ---- | ---- | ---- | ---- |
+| 0027 | [移除元素](https://leetcode-cn.com/problems/remove-element/) | [Python](), [Go]() | Easy |
+
 ## 关于我们
 
 ### 🐱Jalan 
