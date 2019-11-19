@@ -69,7 +69,7 @@
 
 | # | Title | Solution | Difficulty	| 
 | ---- | ---- | ---- | ---- |
-| 0027 | [移除元素](https://leetcode-cn.com/problems/remove-element/) | [Python](), [Go]() | Easy |
+| 0027 | [移除元素](https://leetcode-cn.com/problems/remove-element/) | [Python](https://github.com/JalanJiang/leetcode-notebook/blob/master/answer/0027/main.py), [Go](https://github.com/JalanJiang/leetcode-notebook/blob/master/answer/0027/main.go) | Easy |
 
 ## 关于我们
 

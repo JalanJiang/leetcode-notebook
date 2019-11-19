@@ -67,9 +67,9 @@
 
 整理中……
 
-| # | 标题 | 解决方法 | 思路 | 难度 | 标签 | 
-| ---- | ---- | ---- | ---- | ---- | ---- |
-| 0027 | [移除元素](https://leetcode-cn.com/problems/remove-element/) | [Python](), [Go]() | [思路]() | Easy | 数组/双指针 |
+| # | Title | Solution | Difficulty	| 
+| ---- | ---- | ---- | ---- |
+| 0027 | [移除元素](https://leetcode-cn.com/problems/remove-element/) | [Python](https://github.com/JalanJiang/leetcode-notebook/blob/master/answer/0027/main.py), [Go](https://github.com/JalanJiang/leetcode-notebook/blob/master/answer/0027/main.go) | Easy |
 
 ## 关于我们
 
