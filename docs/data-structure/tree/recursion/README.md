@@ -458,6 +458,43 @@ class Solution(object):
         return result
 ```
 
+## 538. 把二叉搜索树转换为累加树
+
+[原题链接](https://leetcode-cn.com/problems/convert-bst-to-greater-tree/)
+
+### 思路
+
+二叉搜索树有一个特性：它的中序遍历结果是递增序列。由此我们很容易知道，它的**反中序遍历**就是一个递减序列了。
+
+题目要求「使得每个节点的值是原来的节点值加上所有大于它的节点值之和」，那么只要使用该树的反中序遍历，把先遍历到的节点值都加到当前节点上，即可得到一个「累加树」。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+
+    num = 0
+
+    def convertBST(self, root: TreeNode) -> TreeNode:
+
+        # 递归
+        def recursion(root: TreeNode):
+            if root is None:
+                return
+            recursion(root.right)
+            root.val += self.num
+            self.num = root.val
+            recursion(root.left)
+        
+        recursion(root)
+        return root
+```
+
 ## 543. 二叉树的直径
 
 [原题链接](https://leetcode-cn.com/problems/diameter-of-binary-tree/description/)
