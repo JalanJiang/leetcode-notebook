@@ -444,7 +444,90 @@ class Solution(object):
 - 设置快慢指针，当快指针走完时，慢指针刚好走到中点
 - 原地将后半段反转，进行回文
 
+## 237. 删除链表中的节点
 
+[原题链接](https://leetcode-cn.com/problems/delete-node-in-a-linked-list/)
+
+### 思路分析
+
+如果我们要在链表中删除一个节点，一般的操作是：
+
+1. 修改要删除节点的上一个节点的指针
+2. 将该指针指向要删除节点的下一个节点
+
+例如，在链表 `[4, 5, 1, 9]` 中，当我们要删除节点 `5` 时，我们会修改节点 `5` 上一个节点 `4` 的指针，让它指向节点 `5` 的下一个节点，即节点 `1`：
+
+![修改节点 4 的指针，让它指向节点 1](https://pic.leetcode-cn.com/188c3905565b3609d3ce670cf1b73320908de4f6e1bdea61ab3a1b7442359def-file_1574907780588)
+
+**但这道题只告诉我们要删除的节点，我们并不知道该节点的上一个节点是什么**，这时候又该如何是好呢？
+
+既然我们要删除一个节点时需要知道它的上一个节点，如果我们无法得知上一个节点，我们就**找一个可以知道上一个节点的节点，把它变成要删除的节点，然后删除它**。
+
+这样听起来好像有些拗口？没事，直接看一个例子！
+
+还是 `[4, 5, 1, 9]` 链表，还是删除节点 `5`。
+
+首先，我们把节点 `5` 下一个节点的值赋给它，把它变成一个「不需要删除」的节点：
+
+![把节点 5 下一个节点的值赋给它](https://pic.leetcode-cn.com/6e65c25f7a28a7c8900fb0e8b9205b91cda81d920fb0014d606f6468a7008506-file_1574907780596)
+
+这样一来，第二个节点 `1` 和第三个节点 `1`，无论我们删除其中的哪一个，都可以得到最终结果 `[4, 1, 9]`。既然第二个节点不好删除，那我们就果断删除第三个啦~
+
+改变第二个节点 `1` 的指针，将它指向第 4 个节点 `9`，这样一来，第三个节点 `1` 就被删除了：
+
+![改变第 2 个节点的指针，让它指向第 4 个节点](https://pic.leetcode-cn.com/10d4294214a45a545cecb6f072dd6b01a9e090ca67bc8d22003aed2c248a6e49-file_1574907780593)
+
+### 具体实现
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        node.val = node.next.val
+        node.next = node.next.next
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func deleteNode(node *ListNode) {
+    node.Val = node.Next.Val
+    node.Next = node.Next.Next
+}
+```
+
+<!-- tabs:end -->
+
+### 复杂度
+
+- 时间复杂度 `O(1)`
+- 空间复杂度 `O(1)`
+
+### 总结一下
+
+这道题没有给出链表的头节点，而是直接给出要删除的节点，让我们进行原地删除。我们对于该节点的前一个节点一无所知，所以无法直接执行删除操作。因此，**我们将要删除节点的 `next` 节点的值赋值给要删除的节点，转而去删除 `next` 节点，从而达成目的。**
+
+题目中指明了「给定的节点为非末尾节点」且「链表至少包含两个节点」，所以上述方案是切实可行的。
 
 
 ## 328. 奇偶链表
