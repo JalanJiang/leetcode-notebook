@@ -38,13 +38,18 @@ class Solution:
 
 ## 104. 二叉树的最大深度
 
-[原题链接](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
+- [原题链接](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
+- [详解链接](https://juejin.im/post/5de254ce51882523467752d0)
 
 ### 思路
 
 递归求解~
 
 取左右子树最大深度值 + 1（1 为到 root 节点的深度）
+
+<!-- tabs:start -->
+
+#### **Python**
 
 ```python
 class Solution(object):
@@ -58,6 +63,34 @@ class Solution(object):
         else:
             return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func maxDepth(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
+    return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
+}
+
+func max(a int, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 105. 从前序与中序遍历序列构造二叉树

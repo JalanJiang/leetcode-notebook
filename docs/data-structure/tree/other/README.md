@@ -63,29 +63,6 @@ class Solution:
         return self.checkElement(left_root.left, right_root.right) and self.checkElement(left_root.right, right_root.left)
 ```
 
-## 104. 二叉树的最大深度
-
-[原题链接](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
-
-### 思路
-
-递归求解~
-
-取左右子树最大深度值 + 1（1 为到 root 节点的深度）
-
-```python
-class Solution(object):
-    def maxDepth(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
-        if root is None:
-            return 0
-        else:
-            return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
-```
-
 ## 687. 最长同值路径
 
 [原题链接](https://leetcode-cn.com/problems/longest-univalue-path/description/)
