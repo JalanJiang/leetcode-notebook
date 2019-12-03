@@ -182,6 +182,71 @@ class Solution(object):
         return count
 ```
 
+## 289. 生命游戏
+
+[原题链接](https://leetcode-cn.com/problems/game-of-life/)
+
+### 思路
+
+用两位二进制代表示状态：
+
+- 高位：下一个状态
+- 低位：现在的状态
+
+因此，初始状态为 `00` 与 `01`。
+
+步骤：
+
+1. 遍历矩阵，更新高位
+2. 再次遍历矩阵，更新最终值
+
+```python
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        m = len(board)
+        n = len(board[0])
+        # 更新矩阵
+        for i in range(m):
+            for j in range(n):
+                lives = self.getLives(board, i, j)
+                if board[i][j] & 1 == 1:
+                    # 活细胞
+                    if lives == 2 or lives == 3:
+                        board[i][j] = 3 # 01->11
+                else:
+                    # 死细胞
+                    if lives == 3:
+                        board[i][j] = 2 # 00->10
+
+        # 最终矩阵
+        for i in range(m):
+            for j in range(n):
+                board[i][j] = board[i][j] >> 1
+
+    def getLives(self, board, i, j):
+        """
+        计算活细胞个数
+        """
+        m = len(board)
+        n = len(board[0])
+        # 8 个方向
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [-1, -1], [1, -1], [-1, 1]]
+
+        lives = 0
+
+        for direction in directions:
+            d_x = direction[0] + i
+            d_y = direction[1] + j
+
+            if (d_x >= 0 and d_x < m) and (d_y >= 0 and d_y < n):
+                if board[d_x][d_y] & 1 == 1:
+                    lives += 1
+        
+        return lives
+```
 
 ## 371. 两整数之和
 
