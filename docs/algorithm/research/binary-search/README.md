@@ -434,6 +434,87 @@ class Solution(object):
         return left
 ```
 
+## 367. 有效的完全平方数
+
+[原题链接](https://leetcode-cn.com/problems/valid-perfect-square/)
+
+### 解一：暴力破解
+
+#### **Python**
+
+```python
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        i = 1
+        while i * i <= num:
+            if i * i == num:
+                return True
+            i += 1
+        
+        return False
+```
+
+#### **Go**
+
+```go
+func isPerfectSquare(num int) bool {
+    i := 1
+    for i * i <= num {
+        if i * i == num {
+            return true
+        }
+        i++
+    }
+    return false
+}
+```
+
+### 解二：二分查找
+
+#### **Python**
+
+```python
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        left = 1
+        right = num
+
+        while left < right:
+            mid = (left + right) >> 1
+            tmp = mid * mid
+            if tmp < num:
+                left = mid + 1
+            elif tmp > num:
+                right = mid - 1
+            else:
+                return True
+        
+        return left * left == num
+```
+
+#### **Go**
+
+```go
+func isPerfectSquare(num int) bool {
+    left := 0
+    right := num
+
+    for left < right {
+        mid := (left + right) >> 1
+        tmp := mid * mid
+        if tmp < num {
+            left = mid + 1
+        } else if tmp > num {
+            right = mid - 1
+        } else {
+            return true
+        }
+    }
+
+    return left * left == num
+}
+```
+
 ## 374. 猜数字大小
 
 [原题链接](https://leetcode-cn.com/problems/guess-number-higher-or-lower/)
