@@ -2515,6 +2515,89 @@ class Solution:
         return num
 ```
 
+## 807. 保持城市天际线
+
+[原题链接](https://leetcode-cn.com/problems/max-increase-to-keep-city-skyline/)
+
+### 思路
+
+找出每一行、每一列的天际线，每个位置建筑的最大高度不能超过它所在行列的天际线。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
+        res = 0
+        m = len(grid)
+        n = len(grid[0])
+
+        top = [0 for _ in range(n)]
+        left = [0 for _ in range(m)]
+
+        for i in range(m):
+            for j in range(n):
+                g = grid[i][j]
+                left[i] = max(left[i], g)
+                top[j] = max(top[j], g)
+
+        for i in range(m):
+            for j in range(n):
+                g = grid[i][j]
+                res += min(left[i], top[j]) - g
+        
+        return res
+```
+
+#### **Go**
+
+```go
+func maxIncreaseKeepingSkyline(grid [][]int) int {
+    res := 0
+    m := len(grid)
+    n := len(grid[0])
+
+    left := make([]int, m)
+    top := make([]int, n)
+
+    for i := 0; i < m; i++ {
+        for j := 0; j < n; j++ {
+            g := grid[i][j]
+            left[i] = getMax(g, left[i])
+            top[j] = getMax(g, top[j])
+        }
+    }
+
+    for i := 0; i < m; i++ {
+        for j := 0; j < n; j++ {
+            g := grid[i][j]
+            res += getMin(left[i], top[j]) - g
+        }
+    }
+
+    return res
+}
+
+func getMax(a int, b int) int {
+    if a > b {
+        return a
+    } else {
+        return b
+    }
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    } else {
+        return b
+    }
+}
+```
+
+<!-- tabs:end -->
 
 ## 1002. 查找常用字符
 
