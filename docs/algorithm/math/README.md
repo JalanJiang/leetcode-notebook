@@ -483,3 +483,60 @@ class Solution:
             return "No solution"
         return "x=" + str(-num // x_count)
 ```
+
+## 1276. 不浪费原料的汉堡制作方案
+
+[原题链接](https://leetcode-cn.com/problems/number-of-burgers-with-no-waste-of-ingredients/)
+
+### 思路
+
+数学题，解方程。
+
+设有 `x` 个巨无霸，`y` 个小皇堡。那么有：
+
+$$
+4 \times x + 2y = tomatoSlices
+$$
+
+$$
+x + y = cheeseSlices
+$$
+
+约束项：
+
+- `x` 与 `y` 需大于等于 0
+- `tomatoSlices` 需要是偶数
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def numOfBurgers(self, tomatoSlices: int, cheeseSlices: int) -> List[int]:
+        if tomatoSlices % 2 != 0 or tomatoSlices > 4 * cheeseSlices or tomatoSlices < 2 * cheeseSlices:
+            return []
+
+        y = 2 * cheeseSlices - tomatoSlices // 2
+        x = cheeseSlices - y
+
+        return [x, y]
+```
+
+#### **Go**
+
+```go
+func numOfBurgers(tomatoSlices int, cheeseSlices int) []int {
+    if tomatoSlices % 2 != 0 || tomatoSlices > 4 * cheeseSlices || tomatoSlices < 2 * cheeseSlices {
+        return make([]int, 0)
+    }
+
+    res := make([]int, 2)
+    res[1] = 2 * cheeseSlices - tomatoSlices / 2
+    res[0] = cheeseSlices - res[1]
+
+    return res
+}
+```
+
+<!-- tabs:end -->
