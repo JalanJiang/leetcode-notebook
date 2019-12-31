@@ -8,26 +8,29 @@
 
 点击此处：[在线阅读](http://jalan.space/leetcode-notebook/)
 
-## Rum
+## 这是什么？
 
-- 🐱 LeetCode 解题本，基于**算法与数据结构**，对做过的 LeetCode 练习题进行归纳与总结。
-- 🍸 项目代号 [Rum](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)（[朗姆酒](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)），鸡尾酒的热带气息基酒，暗指「算法与数据结构是程序员的基底」。
-- 👩‍💻 题解主要由 Python 书写，包含少量 Java / Go / PHP / Swift 版本
-- ⚔️ 使用 [docsify](https://docsify.js.org/#/) 构建，搭建教程见 [《docsify 入坑指南与我放弃 Gitbook 的那些理由》](http://jalan.space/2019/06/21/2019/begin-docsify/)
-  
-欢迎关注我的公众号：`CodeWarrior_`。加入编程世界一起冒险，一起成长！
+LeetCode 解题本，基于**算法与数据结构**，对做过的 LeetCode 练习题进行归纳与总结。该项目代号为 [Rum](https://zh.wikipedia.org/wiki/%E5%85%B0%E5%A7%86%E9%85%92)，朗姆酒是鸡尾酒的热带气息基酒，暗指「算法与数据结构是程序员的基底」。
 
-<center><img src="_img/qrcode.png"/></center>
+项目内题解主要由 Python 书写，包含少量 Java/Go/PHP/Swift 版本，后续会陆续补充完全。
 
-### 基本概念
+项目使用 [docsify](https://docsify.js.org/#/) 构建，搭建教程见 [《docsify 入坑指南与我放弃 Gitbook 的那些理由》](http://jalan.space/2019/06/21/2019/begin-docsify/)
+
+欢迎关注我的公众号「编程拯救世界」（CodeWarrior_），加入编程世界一起冒险，一起成长！
+
+![](./docs/_img/qrcode.png)
+
+如果你对分享题解或做题感兴趣，欢迎加入[刷题小组](https://github.com/leetcode-notebook)。
+
+## 基本概念
 
 （更新中……）
 
 - [基础算法](concept/base-algorithm/)
 
-### 题解分类
+## 题解分类
 
-#### 数据结构
+### 数据结构
 
 * [数组](data-structure/array/)
 * [字符串](data-structure/string/)
@@ -42,7 +45,7 @@
 * [栈](data-structure/stack/)
 * [哈希表](data-structure/hash/)
 
-#### 算法思想
+### 算法思想
 
 * [递归](algorithm/recursion/)
 * 排序
@@ -62,14 +65,6 @@
 * [回溯](algorithm/backtrack/)
 * [双指针](algorithm/double-pointer/)
 * [其他](algorithm/other/)
-
-## 题解目录
-
-整理中……
-
-| # | Title | Solution | Difficulty	| 
-| ---- | ---- | ---- | ---- |
-| 0027 | [移除元素](https://leetcode-cn.com/problems/remove-element/) | [Python](https://github.com/JalanJiang/leetcode-notebook/blob/master/answer/0027/main.py), [Go](https://github.com/JalanJiang/leetcode-notebook/blob/master/answer/0027/main.go) | Easy |
 
 ## 关于我们
 
