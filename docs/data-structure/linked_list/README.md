@@ -705,5 +705,29 @@ class Solution(object):
         return res_list
 ```
 
+## 876. 链表的中间结点
 
+[原题链接](https://leetcode-cn.com/problems/middle-of-the-linked-list/solution/)
 
+### 快慢指针
+
+fast 比 slow 速度快 2 倍。这样一来，fast 到达链表尾部后，slow 正好到达中间：
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def middleNode(self, head: ListNode) -> ListNode:
+        slow = head
+        fast = head
+
+        while fast is not None and fast.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+            
+        return slow
+```
