@@ -455,9 +455,9 @@ class Solution(object):
 
 ## 206. 反转链表
 
-[原题链接]()
+[原题链接](https://leetcode-cn.com/problems/reverse-linked-list/)
 
-### 思路
+### 迭代法
 
 - 给一个新的链表
 - 让原链表的节点与原链表断开连接
@@ -474,14 +474,64 @@ class Solution(object):
         newList = None #新链表
         pre = None
         curNode = head
+
         while curNode:
             tmp = curNode.next
             curNode.next = newList #让当前节点与原链表断开连接
             newList = curNode #赋值给新链表
             curNode = tmp
+
         return newList
 ```
 
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head is None:
+            return None
+
+        pre = head
+        cur = head.next
+
+        while cur is not None:
+            next_cur = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next_cur
+
+        head.next = None
+        return pre       
+```
+
+### 递归法
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        
+        # 取下一个节点
+        node = self.reverseList(head.next)
+
+        next_node = head.next
+        next_node.next = head
+        head.next = None
+
+        return node
+```
 
 ## 234. 回文链表
 
