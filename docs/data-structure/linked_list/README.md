@@ -286,6 +286,80 @@ class Solution(object):
         return head
 ```
 
+## 92. 反转链表 II
+
+[原题链接](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+
+### 思路
+
+需要找到几个关键节点：
+
+1. 开始翻转的节点 `begin`
+2. 开始翻转节点的前一个节点 `begin_pre`
+3. 结束翻转的节点 `end`
+4. 结束翻转节点的下一个节点 `end_next`
+
+从 `begin` 到 `end` 位置执行反转操作。此段链表翻转后需要：
+
+1. 修改 `begin_pre` 节点的指针，指向 `end` 节点：`begin_pre.next = end`
+2. 修改 `begin` 节点的指针，指向 `end_next` 节点：`begin.next = end_next`
+
+注意：`m` 可能会等于 `n`。
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        if head is None:
+            return head
+
+        if m == n:
+            return head
+
+        index = 0 
+        pre = None
+        cur = head
+        begin_pre = None
+        begin = None
+        end = None
+        end_next = None
+
+        while cur is not None:
+            index += 1
+            next_cur = cur.next
+
+            if index == m:
+                # 记录开始节点
+                begin = cur
+            if index == m - 1:
+                begin_pre = cur
+            if index == n:
+                # 记录结束位置
+                end = cur
+            if index == n + 1:
+                end_next = cur
+            
+            if index > m and index <= n:
+                # 翻转
+                cur.next = pre
+            pre = cur
+            cur = next_cur
+
+        # 修改指针位置
+        begin.next = end_next
+        if begin_pre is None:
+            # 从头开始翻转了
+            return end
+        else:
+            begin_pre.next = end
+            return head
+```
+
 
 ## 138. 复制带随机指针的链表
 
