@@ -199,6 +199,62 @@ class Solution(object):
         return first.next
 ```
 
+## 61. 旋转链表
+
+[原题链接](https://leetcode-cn.com/problems/rotate-list/solution/chuan-zhen-yin-xian-by-liweiwei1419/)
+
+### 思路
+
+双指针
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        # 倒数第 n + 1 个节点变成尾部
+        # 修改导出第 n + 1 个节点的 next 指针，指向 Null
+        # 修改尾节点指针，指向头部
+        if head is None:
+            return None
+        # 计算链表长度
+        tmp = head
+        length = 0
+        while tmp.next is not None:
+            length += 1
+            tmp = tmp.next
+        tail = tmp
+        length += 1
+        
+        # 计算移动位
+        k %= length
+        # 不需要移动
+        if k == 0:
+            return head
+
+        i = head
+        j = head
+
+        # j 先走 k 步
+        for l in range(k):
+            j = j.next
+
+        while j.next is not None:
+            j = j.next
+            i = i.next
+
+        # 得到 i
+        i_next = i.next
+        tail.next = head
+        i.next = None
+
+        return i_next
+```
+
 
 ## 83. 删除排序链表中的重复元素
 
