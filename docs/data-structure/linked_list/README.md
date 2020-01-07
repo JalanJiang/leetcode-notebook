@@ -475,6 +475,59 @@ class Solution:
         return False
 ```
 
+## 148. 排序链表
+
+[原题链接](https://leetcode-cn.com/problems/sort-list/)
+
+### 解一：归并 + 额外空间
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def sortList(self, head: ListNode) -> ListNode:
+        # 只有一个节点或没有节点时，直接返回
+        if head is None or head.next is None:
+            return head
+
+        # 切分
+        slow = head
+        fast = head.next
+        while fast is not None and fast.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+
+        r = slow.next
+        slow.next = None # 切断
+        left = self.sortList(head)
+        right = self.sortList(r)
+
+        # 合并
+        h = ListNode(0) # 构造新链表
+        res = h
+
+        while left is not None and right is not None:
+            if left.val < right.val:
+                h.next = left
+                left = left.next
+            else:
+                h.next = right
+                right = right.next
+            h = h.next
+        
+        # 加入未排序的部分
+        h.next = left if left else right
+
+        return res.next
+```
+
+### 解二：归并（无需额外空间）
+
+@todo
 
 ## 160. 相交链表
 
