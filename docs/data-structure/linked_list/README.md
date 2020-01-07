@@ -475,6 +475,52 @@ class Solution:
         return False
 ```
 
+## 147. 对链表进行插入排序
+
+[原题链接](https://leetcode-cn.com/problems/insertion-sort-list/)
+
+### Tail 优化版
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+
+        # 固定头部
+        new_head = ListNode(float("-inf"))
+
+        cur = head
+        pre = new_head
+
+        # 加入尾部
+        tail = new_head
+
+        while cur is not None:
+            if tail.val < cur.val:
+                tail.next = cur
+                tail = cur
+                cur = cur.next
+            else:
+                cur_next = cur.next
+                # 此时：tail.next = cur，会产生循环，故断开
+                tail.next = cur_next
+                while pre.next is not None and pre.next.val < cur.val:
+                    pre = pre.next
+                cur.next = pre.next
+                pre.next = cur
+                cur = cur_next
+                pre = new_head
+
+        return new_head.next
+```
+
 ## 148. 排序链表
 
 [原题链接](https://leetcode-cn.com/problems/sort-list/)
