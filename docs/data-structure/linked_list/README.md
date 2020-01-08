@@ -910,8 +910,6 @@ class Solution(object):
         return l1.next
 ```
 
-
-
 ## 445. 两数相加 II
 
 ### 解法一
@@ -985,6 +983,59 @@ class Solution(object):
 
 考虑不反转链表实现，可以用栈，Python 中就用 list `append()` 和 `pop()` 来即可。
 
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        stack1 = list()
+        stack2 = list()
+
+        while l1 is not None:
+            stack1.append(l1.val)
+            l1 = l1.next
+        
+        while l2 is not None:
+            stack2.append(l2.val)
+            l2 = l2.next
+
+        add_num = 0
+        res = None
+        while len(stack1) > 0 or len(stack2) > 0:
+            num1, num2 = 0, 0
+
+            if len(stack1) > 0:
+                num1 = stack1.pop()
+            
+            if len(stack2) > 0:
+                num2 = stack2.pop()
+
+            num = num1 + num2 + add_num
+            if num > 9:
+                add_num = 1
+            else:
+                add_num = 0
+            num %= 10
+
+            cur = ListNode(num)
+            cur.next = res
+            res = cur
+
+        if add_num == 1:
+            cur = ListNode(1)
+            cur.next = res
+            res = cur
+
+        return res
+```
+
+### 解法三
+
+递归
 
 ## 725. 分隔链表
 
