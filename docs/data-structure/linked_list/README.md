@@ -620,7 +620,9 @@ class Solution:
 
 [原题链接](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/description/)
 
-### 思路
+核心思想：消除长度差。
+
+### 解法一
 
 - 找出两个链表的长度差值 step
 - 快慢指针，长的链表先走 step 步，然后循环两个链表
@@ -666,6 +668,41 @@ class Solution(object):
         return a
 ```
 
+### 解法二
+
+设两个指针 `pa` 和 `pb` 分别指向 A 链表和 B 链表的表头，然后开始遍历。
+
+当 `pa` 到达末尾时，将 `pa` 重置到链表 B 的头部；当 `pb` 到达尾部时，将 `pb` 重置到链表 A 的头部。用这种方法来消除 `pa` 和 `pb` 走过长度的长度差，如果 A 和 B 相交，那么 `pa` 和 `pb` 必定相遇。
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        pa = headA
+        pb = headB
+
+        while pa != pb:
+            # 不相交就继续走
+            if pa is None:
+                pa = headB
+            else:
+                pa = pa.next
+            
+            if pb is None:
+                pb = headA
+            else:
+                pb = pb.next
+
+        return pa
+```
+
+- 时间复杂度：$O(m + n)$
+- 空间复杂度：$O(1)$
 
 ## 206. 反转链表
 
