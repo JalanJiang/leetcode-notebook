@@ -475,6 +475,72 @@ class Solution:
         return False
 ```
 
+## 143. 重排链表
+
+[原题链接](https://leetcode-cn.com/problems/reorder-list/)
+
+### 思路
+
+1. 找到链表中点
+2. 拆分链表
+3. 将拆分出的链表后半部分反转
+4. 将两个链表穿插变为一个链表
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if head is None or head.next is None:
+            return head
+
+        i = head
+        j = head.next
+
+        # 找中点
+        while j is not None and j.next is not None:
+            j = j.next.next
+            i = i.next
+
+        mid = i
+        right = i.next
+        i.next = None # 断开链表
+
+        # 右边链表反转
+        pre = None
+        while right is not None:
+            right_next = right.next
+            right.next = pre
+            pre = right
+            right = right_next
+
+        # 获取反转后的表头
+        right = pre
+        left = head
+
+        # 穿插操作
+        while left is not None and right is not None:
+            left_next = left.next
+            right_next = right.next
+
+            # 插入节点
+            left.next = right
+            right.next = left_next
+
+            left = left_next
+            right = right_next
+            
+        
+        return head
+```
+
 ## 147. 对链表进行插入排序
 
 [原题链接](https://leetcode-cn.com/problems/insertion-sort-list/)
