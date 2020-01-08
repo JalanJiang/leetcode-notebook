@@ -286,6 +286,47 @@ class Solution(object):
         return head
 ```
 
+## 86. 分隔链表
+
+[原题链接](https://leetcode-cn.com/problems/partition-list/)
+
+### 思路
+
+创建两个链表。比 `x` 小的节点放在左链表中，比 `x` 大的节点放在右链表中，最后将两个链表连接。
+
+⚠️注：记得把链表尾部置空。
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        left = ListNode(0)
+        right = ListNode(0)
+
+        res = left
+        right_head = right
+
+        while head is not None:
+            if head.val < x:
+                left.next = head
+                left = left.next
+            else:
+                right.next = head
+                right = right.next
+            head = head.next
+        
+        # 拼接链表
+        left.next = right_head.next
+        right.next = None # 防止形成环
+    
+        return res.next
+```
+
 ## 92. 反转链表 II
 
 [原题链接](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
