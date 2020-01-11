@@ -691,6 +691,42 @@ class Solution(object):
         return a
 ```
 
+## 203. 移除链表元素
+
+[原题链接](https://leetcode-cn.com/problems/remove-linked-list-elements/submissions/)
+
+### 思路
+
+同移除链表节点。
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        pre = None
+        p = head
+
+        while p is not None:
+            p_next = p.next
+            if p.val == val:
+                # 移除操作
+                if pre is None:
+                    # 移除的是第一个节点
+                    head = p_next
+                else:
+                    pre.next = p_next
+                    p.next = None
+            else:
+                pre = p
+            p = p_next
+
+        return head
+```
 
 ## 206. 反转链表
 
