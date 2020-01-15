@@ -153,6 +153,74 @@ class MinStack(object):
         return self.stack[len(self.stack) - 1]
 ```
 
+## 173. 二叉搜索树迭代器
+
+[原题链接](https://leetcode-cn.com/problems/binary-search-tree-iterator/)
+
+### 解法一
+
+在构造函数中使用中序遍历将二叉搜索树转为升序序列，然后在 `next` 时依次出列。
+
+但时间复杂度不符合题目要求。
+
+### 解法二
+
+不需要一次性生成整个序列，可以用栈模拟递归过程。
+
+1. 在构造函数中：将树的所有左节点压入栈（这样最左的节点就在栈顶了）
+2. 调用 `next` 时，弹出栈顶元素，此时判断该节点是否存在右节点，若存在则将右节点入栈，且将该节点的所有左节点依次入栈（中序遍历的顺序为 左->中->右，弹出的栈顶元素相当于中间节点，遍历到中间节点后就要遍历右节点了）
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.stack = []
+        # 左节点依次入栈
+        while root is not None:
+            self.stack.append(root)
+            root = root.left
+
+    def next(self) -> int:
+        """
+        @return the next smallest number
+        """
+        # 弹出栈顶
+        cur = self.stack.pop()
+        # 判断是否存在右子树
+        right = cur.right
+        while right is not None:
+            self.stack.append(right)
+            right = right.left
+        return cur.val
+
+
+    def hasNext(self) -> bool:
+        """
+        @return whether we have a next smallest number
+        """
+        return len(self.stack) > 0
+
+
+
+# Your BSTIterator object will be instantiated and called as such:
+# obj = BSTIterator(root)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
+```
+
+关于复杂度的分析截取一下[这篇题解](https://leetcode-cn.com/problems/binary-search-tree-iterator/solution/nextshi-jian-fu-za-du-wei-o1-by-user5707f/)：
+
+> 但是很多小伙伴会对next()中的循环操作的复杂度感到疑惑，认为既然加入了循环在里面，那时间复杂度肯定是大于O(1)不满足题目要求的。
+> 仔细分析一下，该循环只有在节点有右子树的时候才需要进行，也就是不是每一次操作都需要循环的，循环的次数加上初始化的循环总共会有O(n)次操作，均摊到每一次 `next()` 的话平均时间复杂度则是 `O(n)/n=O(1)`，因此可以确定该实现方式满足 `O(1)` 的要求。
+>这种分析方式称为摊还分析，详细的学习可以看看《算法导论》- 第17章 摊还分析
+
 ## 232. 用栈实现队列
 
 [原题链接](https://leetcode-cn.com/problems/implement-queue-using-stacks/comments/)
