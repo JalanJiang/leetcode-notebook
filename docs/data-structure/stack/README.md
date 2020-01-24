@@ -401,6 +401,44 @@ class MyStack:
             return True
 ```
 
+## 331. 验证二叉树的前序序列化
+
+[原题链接](https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/)
+
+### 解一：用栈辅助
+
+按字符顺序依次入栈。如果入栈元素为 `#`，就判断栈顶能否凑成 `n##` 格式（`n` 为数字），如果可以就弹出 `n##`，让 `#` 入栈。因为 `n##` 表示一个叶节点，用 `#` 替代它以便让它的父节点达成叶节点条件（以此证明它是合法节点）。
+
+```python
+class Solution:
+    def isValidSerialization(self, preorder: str) -> bool:
+
+        stack = list()
+        nodes = preorder.split(",")
+
+        for node in nodes:
+            self.add_item(stack, node)
+            # print(stack)
+            
+        return True if len(stack) == 1 and stack[-1] == "#" else False
+
+    def add_item(self, stack, node):
+        if node == "#":
+            if len(stack) > 1:
+                # 判断能否凑成 x##
+                if stack[-1] == "#" and stack[-2] != "#":
+                    stack.pop()
+                    stack.pop()
+                    # 加入新的 #
+                    self.add_item(stack, "#")
+                else:
+                    stack.append(node)
+            else:
+                stack.append(node)
+        else:
+            stack.append(node)
+```
+
 ## 503. 下一个更大元素 II
 
 [原题链接](https://leetcode-cn.com/problems/next-greater-element-ii/submissions/)
