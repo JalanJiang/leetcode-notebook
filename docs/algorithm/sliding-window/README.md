@@ -1,3 +1,84 @@
+### Sliding Window Approach 
+
+
+```
+1. Fixed window length k
+2. dynamic
+3. dynamic with hashmap
+4. max update during window increase, 
+   min update during window size decrease
+```
+
+- **Longest Continuous Increasing Subsequence** | LeetCode 674.
+
+```
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        res = left = 0
+        for right in range(len(nums)):
+            if right and nums[right]<=nums[right-1]:
+                left = right
+            res = max(res, right - left + 1)
+        return [res]
+```
+
+
+-  **Permutation in String** | LeetCode 567. 
+ 
+
+ 
+```
+# the nice thing about this pieces of code is that it represents \
+# fix window_size sliding window technique.
+
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        l1 = len(s1)
+        l2 = len(s2)
+        if s1 == s2:
+            return True
+        if l1 > l2:
+            return False
+
+        dict1 = dict(zip(list('abcdefghijklmnopqrstuvwxyz'), [0]*26))
+        dict2 = dict(zip(list('abcdefghijklmnopqrstuvwxyz'), [0]*26))
+
+        for i in range(l1):
+            dict1[s1[i]] += 1
+            dict2[s2[i]] += 1
+        
+        if dict1 == dict2:
+            return True
+        
+        for i in range(l2 - l1):
+            dict2[s2[i]] -= 1
+            dict2[s2[i + l1]] += 1
+            if dict2 == dict1:
+                return True
+        return False
+```
+
+- Maximum Average Subarray I |  643.
+```
+# 定长的先处理0-k-1，在处理k-length-1，用 for range 处理
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        res = 0.0
+        for i in range(k):
+            res += nums[i]
+        max_ = res
+        for i in range(k, len(nums)):
+            res += nums[i]-nums[i-k]
+            max_ = max(max_,res)
+
+        return max_/k
+```
+- [https://medium.com/@zengruiwang/sliding-window-technique-360d840d5740](https://medium.com/@zengruiwang/sliding-window-technique-360d840d5740)
+- [https://www.youtube.com/watch?v=MK-NZ4hN7rs](https://www.youtube.com/watch?v=MK-NZ4hN7rs)
+
+
+
 ## 219. 存在重复元素 II
 
 [原题链接](https://leetcode-cn.com/problems/contains-duplicate-ii/)
@@ -38,6 +119,8 @@ class Solution(object):
 ### 解一：暴力
 
 不断对比得出每个窗口的最大值。
+
+
 
 ```python
 class Solution:
