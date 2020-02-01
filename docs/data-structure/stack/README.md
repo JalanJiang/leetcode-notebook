@@ -559,4 +559,31 @@ class Solution(object):
         return res_list
 ```
 
+## 946. 验证栈序列
 
+[原题链接](https://leetcode-cn.com/problems/validate-stack-sequences/)
+
+模拟栈序列。
+
+```python
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = []
+        push_i = 0
+        pop_i = 0
+        length = len(pushed)
+
+        while 1:
+            # 判断栈顶元素是否为 pop 元素
+            if len(stack) > 0 and stack[-1] == popped[pop_i]:
+                stack.pop()
+                pop_i += 1
+            else:
+                # 压入新的元素
+                if push_i >= length:
+                    break
+                stack.append(pushed[push_i])
+                push_i += 1
+
+        return len(stack) == 0
+```
