@@ -153,3 +153,29 @@ class MyCircularQueue:
 # param_5 = obj.isEmpty()
 # param_6 = obj.isFull()
 ```
+
+## 933. 最近的请求次数
+
+[原题链接](https://leetcode-cn.com/problems/number-of-recent-calls/)
+
+### 思路
+
+```python
+class RecentCounter:
+
+    def __init__(self):
+        self.ping_list = []
+        
+    def ping(self, t: int) -> int:        
+        first = t - 3000
+        self.ping_list.append(t)
+        while first > self.ping_list[0]:
+            del(self.ping_list[0])
+        
+        return len(self.ping_list)
+
+
+# Your RecentCounter object will be instantiated and called as such:
+# obj = RecentCounter()
+# param_1 = obj.ping(t)
+```
