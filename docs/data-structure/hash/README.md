@@ -440,4 +440,52 @@ class Solution(object):
         return max_length
 ```
 
+## 705. 设计哈希集合
 
+[原题链接](https://leetcode-cn.com/problems/design-hashset/)
+
+### 思路
+
+此题应当要用普通的数据结构实现哈希集合。
+
+题目指出「所有的值都在 `[0, 1000000]` 的范围内」，因此我们可以设计 100 个桶，每个桶内容纳 10000 个值，正好可以容纳下所有的数据。
+
+哈希函数的映射规则：`hash_table[key % bucket][key // bucket]`
+
+```python
+class MyHashSet:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        # 给出 100 个桶
+        self.bucket = 100
+        # 桶内元素
+        self.bucket_num = 10000
+        # 初始化
+        self.hash_table = [[] for _ in range(self.bucket)]
+        
+    def add(self, key: int) -> None:
+        if not self.hash_table[key % self.bucket]:
+            self.hash_table[key % self.bucket] = [0] * self.bucket_num
+        self.hash_table[key % self.bucket][key // self.bucket] = 1
+
+    def remove(self, key: int) -> None:
+        if self.hash_table[key % self.bucket]:
+            self.hash_table[key % self.bucket][key // self.bucket] = 0
+
+    def contains(self, key: int) -> bool:
+        """
+        Returns true if this set contains the specified element
+        """
+        if not self.hash_table[key % self.bucket]:
+            return False
+        return self.hash_table[key%self.bucket][key//self.bucket] == 1
+        
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)
+```
