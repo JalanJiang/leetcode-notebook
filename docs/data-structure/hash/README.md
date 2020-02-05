@@ -444,7 +444,7 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/problems/design-hashset/)
 
-### 思路
+### 解一：数组模拟
 
 此题应当要用普通的数据结构实现哈希集合。
 
@@ -489,3 +489,5 @@ class MyHashSet:
 # obj.remove(key)
 # param_3 = obj.contains(key)
 ```
+
+### 解二：链表模拟
