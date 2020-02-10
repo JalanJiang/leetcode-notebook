@@ -253,6 +253,52 @@ class MyCircularDeque:
 # param_8 = obj.isFull()
 ```
 
+## 752. 打开转盘锁
+
+[原题链接](https://leetcode-cn.com/problems/open-the-lock/)
+
+### 思路
+
+BFS
+
+```python
+class Solution:
+    def openLock(self, deadends: List[str], target: str) -> int:
+        queue = list()
+        queue.append(('0000', 0)) # 0000 也有可能是死亡数字
+        already = {'0000'} # 节点是否已经遍历过
+        while len(queue): # 当队列不为空时，循环队列
+            # 取第一个元素
+            node = queue[0]
+            del queue[0]
+            # 节点判断
+            if node[0] == target:
+                return node[1]
+            if node[0] in deadends:
+                continue
+            # 获取周边节点
+            negihbors = self.get_neighbors(node)
+            for n in negihbors:
+                if n[0] not in already:
+                    already.add(n[0])
+                    queue.append(n)
+        return -1
+
+    def get_neighbors(self, node):
+        number = node[0]
+        # print(number)
+        depth = node[1]
+        negihbors = []
+        directions = {1, -1}
+        for i in range(len(number)):
+            # 循环位
+            for d in directions:
+                new_position = str((int(number[i]) + d) % 10)
+                item = (number[:i] + new_position + number[i+1:], depth + 1)
+                negihbors.append(item)
+        return negihbors
+```
+
 ## 933. 最近的请求次数
 
 [原题链接](https://leetcode-cn.com/problems/number-of-recent-calls/)
