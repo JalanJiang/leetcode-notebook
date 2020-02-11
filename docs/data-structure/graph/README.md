@@ -1,3 +1,82 @@
+## 133. 克隆图
+
+[原题链接](https://leetcode-cn.com/problems/clone-graph/)
+
+### DFS
+
+用字典 `mark` 记录遍历过的节点，`mark[node] = clone` 用于对应 `node` 的拷贝节点 `clone`。
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = []):
+        self.val = val
+        self.neighbors = neighbors
+"""
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        # 记录访问过的节点
+        mark = dict()
+
+        def dfs(node):
+            if node is None:
+                return node
+            if node in mark:
+                return mark[node]
+
+            clone = Node(node.val, [])
+            mark[node] = clone # node 对应的克隆节点为 clone，记录在字典中
+            for n in node.neighbors:
+                clone.neighbors.append(dfs(n))
+
+            # 返回克隆节点
+            return clone
+
+        return dfs(node)
+```
+
+### BFS
+
+用辅助队列实现 BFS。
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = []):
+        self.val = val
+        self.neighbors = neighbors
+"""
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        if node is None:
+            return node
+
+        # 记录 node 对应的拷贝
+        mark = dict()
+        # 辅助队列
+        queue = list()
+        queue.append(node)
+        clone = Node(node.val, [])
+
+        mark[node] = clone
+
+        while len(queue) > 0:
+            # 取出一个节点
+            node = queue[0]
+            del queue[0]
+            # 遍历邻接节点
+            for n in node.neighbors:
+                if n not in mark:
+                    mark[n] = Node(n.val, [])
+                    # 新节点入队列
+                    queue.append(n)
+                mark[node].neighbors.append(mark[n])
+
+        return clone
+```
+
 ## 997. 找到小镇的法官
 
 [原题链接](https://leetcode-cn.com/problems/find-the-town-judge)
