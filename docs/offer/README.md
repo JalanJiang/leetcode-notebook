@@ -177,3 +177,49 @@ func reversePrint(head *ListNode) []int {
 
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$
+
+## 面试题24. 反转链表
+
+[原题链接](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
+
+### 解一
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        pre = None
+        while head:
+            next_node = head.next
+            head.next = pre
+            pre = head
+            head = next_node
+        return pre
+```
+
+### 解二：递归法
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        # 自顶向下，把 head 的后面的头传进去翻转，得到的是翻转链表的尾巴，后面链表翻转完的尾巴就是 head.next
+        cur = self.reverseList(head.next)
+        # 翻转最后一个 head。由于链表翻转完的尾巴就是 head.next，要让 head 变为最后一个，那就是 head.next.next = head
+        head.next.next = head
+        # 断开链接
+        head.next = None
+        return cur
+```
