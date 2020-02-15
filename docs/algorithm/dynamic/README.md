@@ -1027,6 +1027,136 @@ class Solution(object):
         return cash
 ```
 
+## 494. 目标和
+
+[原题链接](https://leetcode-cn.com/problems/target-sum/)
+
+### 解一：递归遍历所有情况
+
+**本方法超出时间限制**。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    
+    res = 0
+
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        length = len(nums)
+
+        def helper(index, cur):
+            if index == length:
+                print('res' + str(cur))
+                if cur == S:
+                    self.res += 1
+                    pass
+                return
+            for op in ["+", "-"]:
+                helper(index + 1, eval(str(cur) + op + str(nums[index])))
+
+            # 或直接调用两次递归：
+            # helper(index + 1, cur + nums[index])
+            # helper(index + 1, cur - nums[index])
+
+        helper(0, 0)
+        return self.res
+```
+
+#### **Go**
+
+```go
+var count int = 0
+
+func findTargetSumWays(nums []int, S int) int {
+    helper(nums, 0, 0, S)
+    return count
+}
+
+func helper(nums []int, cur int, index int, S int) {
+    if index == len(nums) {
+        if cur == S {
+            count += 1
+        }
+        return
+    }
+    helper(nums, cur + nums[index], index + 1, S)
+    helper(nums, cur - nums[index], index + 1, S)
+}
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：$O(2^n)$
+- 空间复杂度：$O(n)$（递归调用栈）
+
+### 解二：动态规划
+
+`dp[i][j]` 带表前 `i` 个数可得到和为 `j` 的组合数量。那么有推导式：
+
+```
+dp[i][j] = dp[i - 1][j - nums[i]] + dp[i - 1][j + nums[i]]
+```
+
+也可写作：
+
+```
+dp[i][j + nums[i]] += dp[i - 1][j]
+dp[i][j - nums[i]] += dp[i - 1][j]
+```
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        # 初始化
+        length = len(nums)
+        dp = [[0 for _ in range(2001)] for _ in range(length)]
+        dp[0][nums[0] + 1000] = 1
+        dp[0][-nums[0] + 1000] += 1
+        
+        for i in range(1, length):
+            for s in range(-1000, 1001):
+                if dp[i - 1][s + 1000] > 0:
+                    # 防止越界
+                    dp[i][s + nums[i] + 1000] += dp[i - 1][s + 1000]
+                    dp[i][s - nums[i] + 1000] += dp[i - 1][s + 1000]
+        
+        return 0 if S > 1000 else dp[length - 1][S + 1000]
+```
+
+#### **Go**
+
+```go
+func findTargetSumWays(nums []int, S int) int {
+    length := len(nums)
+    var dp [21][2001]int
+    dp[0][nums[0] + 1000] = 1
+    dp[0][-nums[0] + 1000] += 1
+    for i := 1; i < length; i++ {
+        for j := -1000; j < 1001; j++ {
+            if dp[i - 1][j + 1000] > 0 {
+                dp[i][j + nums[i] + 1000] += dp[i - 1][j + 1000]
+                dp[i][j - nums[i] + 1000] += dp[i - 1][j + 1000]
+            }
+        } 
+    }
+    if S > 1000 {
+        return 0
+    }
+    return dp[length - 1][S + 1000]
+}
+```
+
+<!-- tabs:end -->
+
+### 【TODO】解三：01 背包
+
 ## 740. 删除与获得点数
 
 [原题链接](https://leetcode-cn.com/problems/delete-and-earn/)
