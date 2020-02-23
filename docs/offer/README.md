@@ -52,7 +52,6 @@ func findRepeatNumber(nums []int) int {
 
 <!-- tabs:end -->
 
-
 ## 面试题06. 从尾到头打印链表
 
 [原题链接](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)

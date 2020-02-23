@@ -185,7 +185,10 @@ class Solution(object):
 
 ### 解法二
 
-非递归，使用 list 模拟栈。
+非递归，使用栈辅助。
+
+- 将 root 右节点、左节点依次压入栈
+- 循环弹出栈顶节点，再按节点的右、左节点依次入栈
 
 ```python
 class Solution(object):
