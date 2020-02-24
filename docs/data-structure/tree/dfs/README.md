@@ -14,6 +14,10 @@ void dfs(TreeNode root) {
 }
 ```
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def inorderTraversal(self, root):
@@ -33,11 +37,46 @@ class Solution(object):
         self.visitNode(root.right, l)
 ```
 
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res []int
+
+func inorderTraversal(root *TreeNode) []int {
+    res = make([]int, 0)
+    handler(root)
+    return res
+}
+
+func handler(root *TreeNode) {
+    if root == nil {
+        return
+    }
+    handler(root.Left)
+    res = append(res, root.Val)
+    handler(root.Right)
+}
+```
+
+<!-- tabs:end -->
+
 ### 解法二
 
 非递归法。
 
 - 寻找当前节点的左节点，依次入栈
+
+#### **Python**
+
+<!-- tabs:start -->
 
 ```python
 class Solution(object):
@@ -55,10 +94,46 @@ class Solution(object):
                 cur = cur.left
             node = stack.pop()
             res.append(node.val)
+            # 下一个节点轮到右节点（左 -> 中 -> 右）
             cur = node.right
         return res
 ```
 
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+
+func inorderTraversal(root *TreeNode) []int {
+    if root == nil {
+        return nil
+    }
+    stack := make([]*TreeNode, 0)
+    res := make([]int, 0)
+    for root != nil || len(stack) > 0 {
+        for root != nil {
+            stack = append(stack, root)
+            root = root.Left
+        }
+        // 取栈顶
+        top := stack[len(stack) - 1]
+        res = append(res, top.Val)
+        // 删除栈顶
+        stack = stack[:len(stack) - 1]
+        root = top.Right
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 ## 98. 验证二叉搜索树
 
