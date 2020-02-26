@@ -11,42 +11,76 @@
     - 若该节点的左节点不为空：左节点入队列
     - 若该节点的右节点不为空：右节点入队列
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
-    def levelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
-        if root is None:
-            return []
-        
-        q = list()
-        res = list()
-        q.append(root)
-        while q:
-            tmp = list()
-            # 此时队列中的节点为同层节点
-            for i in range(len(q)):
-                node = q[0]
-                del q[0]
-                #if node is not None:
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        queue = []
+        queue.append(root)
+        res = []
+        while len(queue) > 0:
+            length = len(queue)
+            tmp = []
+            for i in range(length):
+                node = queue[0]
+                del queue[0]
+                if node is None:
+                    continue
                 tmp.append(node.val)
-                if node.left is not None:
-                    q.append(node.left)
-                if node.right is not None:
-                    q.append(node.right)
-                    
-            res.append(tmp)
+                queue.append(node.left)
+                queue.append(node.right)
+            if len(tmp) > 0:
+                res.append(tmp)
         return res 
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func levelOrder(root *TreeNode) [][]int {
+    queue := make([]*TreeNode, 0)
+    queue = append(queue, root)
+    res := make([][]int, 0)
+    for len(queue) > 0 {
+        tmp := make([]int, 0)
+        length := len(queue)
+        for i := 0; i < length; i++ {
+            q := queue[0]
+            queue = queue[1:]
+            if q == nil {
+                continue
+            }
+            tmp = append(tmp, q.Val)
+            queue = append(queue, q.Left)
+            queue = append(queue, q.Right)
+        }
+        if len(tmp) > 0 {
+            res = append(res, tmp)
+        }
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 ## 108. 将有序数组转换为二叉搜索树
    
