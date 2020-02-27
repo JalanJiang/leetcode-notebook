@@ -41,9 +41,71 @@ class Solution:
 - [原题链接](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
 - [详解链接](https://juejin.im/post/5de254ce51882523467752d0)
 
-### 思路
+### 自顶向下
 
-递归求解~
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    depth = 0
+    def maxDepth(self, root: TreeNode) -> int:
+        self.depth = 0
+        self.handler(root, 1)
+        return self.depth
+        
+    def handler(self, root, depth):
+        if root is None:
+            return
+        self.depth = max(self.depth, depth)
+        self.handler(root.left, depth + 1)
+        self.handler(root.right, depth + 1)
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+
+var depth int
+func maxDepth(root *TreeNode) int {
+    depth = 0
+    handler(root, 1)
+    return depth
+}
+
+func handler(root *TreeNode, curDepth int) {
+    if root == nil {
+        return
+    }
+    if curDepth > depth {
+        depth = curDepth
+    }
+    handler(root.Left, curDepth + 1)
+    handler(root.Right, curDepth + 1)
+}
+```
+
+<!-- tabs:end -->
+
+### 自底向上
+
+「自底向上」：我们首先对所有子节点递归地调用函数，然后根据返回值和根节点本身的值得到答案。
 
 取左右子树最大深度值 + 1（1 为到 root 节点的深度）
 
