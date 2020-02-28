@@ -96,6 +96,100 @@ func symmetric(left *TreeNode, right *TreeNode) bool {
 
 <!-- tabs:end -->
 
+### 解二：迭代
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if root is None:
+            return True
+        queue = []
+        queue.append(root.left)
+        queue.append(root.right)
+        while len(queue) > 0:
+            left = queue[0]
+            del queue[0]
+            right = queue[0]
+            del queue[0]
+
+            if left is None:
+                if right is None:
+                    pass
+                else:
+                    return False
+            else:
+                if right is None:
+                    return False
+                else:
+                    queue.append(left.left)
+                    queue.append(right.right)
+                    queue.append(left.right)
+                    queue.append(right.left)
+                    if left.val != right.val:
+                        return False
+
+        return True
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSymmetric(root *TreeNode) bool {
+    queue := make([]*TreeNode, 0)
+    if root == nil {
+        return true
+    }
+    queue = append(queue, root.Left)
+    queue = append(queue, root.Right)
+    for len(queue) > 0 {
+        left := queue[0]
+        queue = queue[1:]
+        right := queue[0]
+        queue = queue[1:]
+
+        if left == nil {
+            if right != nil {
+                return false
+            }
+        } else {
+            if right == nil {
+                return false
+            } else {
+                queue = append(queue, left.Left)
+                queue = append(queue, right.Right)
+                queue = append(queue, left.Right)
+                queue = append(queue, right.Left)
+                if left.Val != right.Val {
+                    return false
+                }
+            }
+        }
+    }
+    return true
+}
+```
+
+<!-- tabs:end -->
+
 ## 687. 最长同值路径
 
 [原题链接](https://leetcode-cn.com/problems/longest-univalue-path/description/)
