@@ -2,7 +2,7 @@
 
 [原题链接](https://leetcode-cn.com/problems/symmetric-tree/description/)
 
-### 思路
+### 解一：递归
 
 递归法，判断二叉树是否为镜像对称。
 
@@ -34,7 +34,9 @@ else:
 - A节点的左节点与B节点的右节点
 - A节点的右节点与B节点的左节点
 
-### python 实现
+<!-- tabs:start -->
+
+#### **Python**
 
 ```python
 # Definition for a binary tree node.
@@ -62,6 +64,37 @@ class Solution:
             return False
         return self.checkElement(left_root.left, right_root.right) and self.checkElement(left_root.right, right_root.left)
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSymmetric(root *TreeNode) bool {
+    if root == nil {
+        return true
+    }
+    return symmetric(root.Left, root.Right)
+}
+
+func symmetric(left *TreeNode, right *TreeNode) bool {
+    if left == nil || right == nil {
+        return left == right
+    }
+    if left.Val != right.Val {
+        return false
+    }
+    return symmetric(left.Left, right.Right) && symmetric(left.Right, right.Left)
+}
+```
+
+<!-- tabs:end -->
 
 ## 687. 最长同值路径
 
