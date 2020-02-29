@@ -392,6 +392,10 @@ class Solution(object):
     - 最终相加和为 sum
 - False 的条件为：一直找到叶子节点了还是没有找到那个节点
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def hasPathSum(self, root, sum):
@@ -401,11 +405,38 @@ class Solution(object):
         :rtype: bool
         """
         if root is None:
+            # 如果传入节点为空则直接返回 False
             return False
         if root.left is None and root.right is None and root.val == sum:
             return True
         return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func hasPathSum(root *TreeNode, sum int) bool {
+    if root == nil {
+        return false
+    }
+    // 该节点为叶子节点
+    if root.Left == nil && root.Right == nil {
+        return sum == root.Val
+    }
+    // 递归
+    return hasPathSum(root.Left, sum - root.Val) || hasPathSum(root.Right, sum - root.Val)
+}
+```
+
+<!-- tabs:end -->
 
 ## 226. 翻转二叉树
 
