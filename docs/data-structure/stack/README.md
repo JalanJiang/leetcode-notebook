@@ -401,6 +401,443 @@ class MyStack:
             return True
 ```
 
+### 双队列解法一
+
+定义两个辅助队列 `queue1` 与 `queue2`，使用一个变量 `top_element` 记录栈顶元素。
+
+- `push()`：将元素入队 `queue1`
+- `pop()`：
+  - 将 `queue1` 内所有元素全部出队，除最后一个元素外，其余入队 `queue2`，而后删除最后一个元素并返回
+  - 更新 `top_element`
+  - 调换 `queue1` 与 `queue2`
+- `top()`：返回 `top_elenemt`
+- `empty()`：判断 `queue1` 的长度
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queue1 = []
+        self.queue2 = []
+        self.top_element = 0
+        
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.queue1.append(x)
+        self.top_element = x
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        # 把 queue1 里的元素取出，留下一个，其余塞入 queue2 中
+        length1 = len(self.queue1)
+        for i in range(length1 - 1):
+            item = self.queue1[0]
+            del self.queue1[0]
+            self.queue2.append(item)
+        self.top = item
+        target = self.queue1[0]
+        del self.queue1[0]
+        # 交换 queue1 与 queue2
+        self.queue1 = self.queue2
+        self.queue2 = []
+        return target
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        # length1 = len(self.queue1)
+        # for i in range(length1):
+        #     item = self.queue1[0]
+        #     del self.queue1[0]
+        #     self.queue2.append(item)
+        # self.queue1 = self.queue2
+        # self.queue2 = []
+        # return item
+        return self.top_element
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.queue1) == 0
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+```
+
+#### **Go**
+
+```go
+type MyStack struct {
+    Queue1 []int
+    Queue2 []int
+    TopElement int
+}
+
+
+/** Initialize your data structure here. */
+func Constructor() MyStack {
+    var myStack MyStack
+    return myStack
+}
+
+
+/** Push element x onto stack. */
+func (this *MyStack) Push(x int)  {
+    this.Queue1 = append(this.Queue1, x)
+    this.TopElement = x
+}
+
+
+/** Removes the element on top of the stack and returns that element. */
+func (this *MyStack) Pop() int {
+    length1 := len(this.Queue1)
+    for i := 0; i < length1 - 1; i++ {
+        // 取出每个元素
+        item := this.Queue1[0]
+        this.TopElement = item
+        // 删除元素
+        this.Queue1 = this.Queue1[1:]
+        // 入队列 2
+        this.Queue2 = append(this.Queue2, item)
+    }
+    target := this.Queue1[0]
+    // 交换
+    this.Queue1 = this.Queue2
+    this.Queue2 = make([]int, 0)
+    return target
+}
+
+
+/** Get the top element. */
+func (this *MyStack) Top() int {
+    return this.TopElement
+}
+
+
+/** Returns whether the stack is empty. */
+func (this *MyStack) Empty() bool {
+    return len(this.Queue1) == 0
+}
+
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * param_2 := obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.Empty();
+ */
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：压入 $O(1)$，弹出 $O(n)$
+
+### 双队列解法二
+
+定义两个辅助队列 `queue1` 与 `queue2`，使用一个变量 `top_element` 记录栈顶元素。
+
+- `push()`: 
+  - 将元素入队 `queue2`，此时 `queue2` 中的首个元素为栈顶元素
+  - 更新 `top_element`
+  - 此时若 `queue1` 不为空，则让 `queue1` 中的元素逐个出队并加入 `queue2` 中
+- `pop()`: `queue1` 首个元素出队，更新 `top_element`
+- `top()`: 返回 `top_element`
+- `empty()`: 判断 `queue1` 长度
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queue1 = []
+        self.queue2 = []
+        self.top_element = 0
+
+
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        # 更新栈顶元素
+        self.top_element = x
+        # 加入 queue2 中
+        self.queue2.append(x)
+        if not self.empty():
+            # 如果 queue1 不为空，取出元素并加入 queue2
+            length1 = len(self.queue1)
+            for i in range(length1):
+                self.queue2.append(self.queue1[0])
+                del self.queue1[0]
+        # 交换
+        self.queue1 = self.queue2
+        self.queue2 = []
+
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        target = self.queue1[0]
+        del self.queue1[0]
+        # 更新 top_element
+        if not self.empty():
+            self.top_element = self.queue1[0]
+        return target
+
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        return self.top_element
+
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.queue1) == 0
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+```
+
+#### **Go**
+
+```go
+type MyStack struct {
+    Queue1 []int
+    Queue2 []int
+    TopElement int
+}
+
+
+/** Initialize your data structure here. */
+func Constructor() MyStack {
+    var myStack MyStack
+    return myStack
+}
+
+
+/** Push element x onto stack. */
+func (this *MyStack) Push(x int)  {
+    this.Queue2 = append(this.Queue2, x)
+    // 更新栈顶元素
+    this.TopElement = x
+    if !this.Empty() {
+        length1 := len(this.Queue1)
+        for i := 0; i < length1; i++ {
+            this.Queue2 = append(this.Queue2, this.Queue1[0])
+            // 删除元素
+            this.Queue1 = this.Queue1[1:]
+        }
+    }
+    // 交换
+    this.Queue1 = this.Queue2
+    this.Queue2 = make([]int, 0)
+}
+
+
+/** Removes the element on top of the stack and returns that element. */
+func (this *MyStack) Pop() int {
+    target := this.Queue1[0]
+    this.Queue1 = this.Queue1[1:]
+    if !this.Empty() {
+        // 更新栈顶元素
+        this.TopElement = this.Queue1[0]
+    }
+    return target
+}
+
+
+/** Get the top element. */
+func (this *MyStack) Top() int {
+    return this.TopElement
+}
+
+
+/** Returns whether the stack is empty. */
+func (this *MyStack) Empty() bool {
+    return len(this.Queue1) == 0
+}
+
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * param_2 := obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.Empty();
+ */
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：压入 $O(n)$，弹出 $O(1)$
+
+### 单队列解法三
+
+定义辅助队列 `queue`。
+
+- `push()`：
+  - 将元素入队
+  - 除新入队元素，将其他元素从队首取出，再从队尾入队（完成反序）。此时队首元素即为新入队元素
+- `pop()`：`queue` 首个元素出队 
+- `top()`：获取 `queue` 首个元素
+- `empty()`：判断 `queue` 长度
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queue = []
+
+
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.queue.append(x)
+        # 队列反序
+        length = len(self.queue)
+        for i in range(length - 1):
+            first = self.queue[0]
+            del self.queue[0]
+            self.queue.append(first)
+
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        target = self.queue[0]
+        del self.queue[0]
+        return target
+
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        return self.queue[0]
+
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.queue) == 0
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+```
+
+#### **Go**
+
+```go
+type MyStack struct {
+    Queue []int
+}
+
+
+/** Initialize your data structure here. */
+func Constructor() MyStack {
+    var myStack MyStack
+    return myStack
+}
+
+
+/** Push element x onto stack. */
+func (this *MyStack) Push(x int)  {
+    this.Queue = append(this.Queue, x)
+    length := len(this.Queue)
+    for i := 0; i < length - 1; i++ {
+        // 反序操作
+        first := this.Queue[0]
+        this.Queue = this.Queue[1:]
+        this.Queue = append(this.Queue, first)
+    }
+}
+
+
+/** Removes the element on top of the stack and returns that element. */
+func (this *MyStack) Pop() int {
+    target := this.Queue[0]
+    this.Queue = this.Queue[1:]
+    return target
+}
+
+
+/** Get the top element. */
+func (this *MyStack) Top() int {
+    return this.Queue[0]
+}
+
+
+/** Returns whether the stack is empty. */
+func (this *MyStack) Empty() bool {
+    return len(this.Queue) == 0
+}
+
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * param_2 := obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.Empty();
+ */
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：压入 $O(n)$，弹出 $O(1)$
+
 ## 331. 验证二叉树的前序序列化
 
 [原题链接](https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/)
