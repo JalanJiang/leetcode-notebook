@@ -183,6 +183,10 @@ func max(a int, b int) int {
 
 整个过程我们可以用递归来完成。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -211,6 +215,45 @@ class Solution(object):
         
         return root
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func buildTree(preorder []int, inorder []int) *TreeNode {
+    if len(preorder) == 0 {
+        return nil
+    }
+    root := new(TreeNode)
+    // 前序遍历第一个是根元素
+    root.Val = preorder[0]
+    // 找到位置
+    rootIndex := findRootIndex(inorder, root.Val)
+    // 构造左右子树
+    root.Left = buildTree(preorder[1:1+rootIndex], inorder[:rootIndex])
+    root.Right = buildTree(preorder[1+rootIndex:], inorder[rootIndex+1:])
+
+    return root
+}
+
+func findRootIndex(inorder []int, rootVal int) int {
+    for i, val := range inorder {
+        if val == rootVal {
+            return i
+        }
+    }
+    return 0
+}
+```
+
+<!-- tabs:end -->
 
 ## 106. 从中序与后序遍历序列构造二叉树
 
