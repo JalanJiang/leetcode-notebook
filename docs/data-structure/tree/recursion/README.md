@@ -481,6 +481,48 @@ func hasPathSum(root *TreeNode, sum int) bool {
 
 <!-- tabs:end -->
 
+## 116. 填充每个节点的下一个右侧节点指针
+
+[原题链接](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/)
+
+### 解一：递归
+
+- `root.left.next = root.right`
+- 利用已经处理好的 `next` 指针：`root.right.next = root.next.left`
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        self.handler(root)
+        return root
+
+    def handler(self, root):
+        if root is None or root.left is None:
+            return None
+        root.left.next = root.right
+        if root.next is not None:
+            root.right.next = root.next.left
+        # 关联节点
+        self.connect(root.left)
+        # 关联右节点
+        self.connect(root.right)
+```
+
+<!-- tabs:end -->
+
 ## 226. 翻转二叉树
 
 [原题链接](https://leetcode-cn.com/problems/invert-binary-tree/description/)
