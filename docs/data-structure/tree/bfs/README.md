@@ -125,7 +125,7 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/)
 
-### 思路
+### 解一：实用了额外空间
 
 层次遍历的变种考点。
 
@@ -169,6 +169,66 @@ class Solution(object):
                 
         return root
 ```
+
+### 解二：常数空间 + 递归
+
+- 不断找到下一个可关联的右侧不为空节点
+- 注意：先构造右子树
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        self.handler(root)
+        return root
+
+    def handler(self, root):
+        if root is None or (root.left is None and root.right is None):
+            return
+
+        # 处理左节点
+        if root.left is not None:
+            if root.right is not None:
+                # 如果存在右节点：指向右节点
+                root.left.next = root.right
+            else:
+                # 如果不存在右节点；一直往下找到第一个存在的右侧节点
+                root.left.next = self.get_next(root)
+        
+        # 处理右节点
+        # 使用 next 指针
+        if root.right is not None:
+            root.right.next = self.get_next(root)
+        
+        # 先递归右子树
+        self.handler(root.right)
+        self.handler(root.left)
+        
+
+    def get_next(self, root):
+        next_node = root.next
+        while next_node is not None:
+            if next_node.left is not None:
+                return next_node.left
+            if next_node.right is not None:
+                return next_node.right
+            next_node = next_node.next
+        return None
+```
+
+<!-- tabs:end -->
 
 ## 513. 找树左下角的值
 
