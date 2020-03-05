@@ -484,6 +484,53 @@ class Solution:
         return "x=" + str(-num // x_count)
 ```
 
+## 1103. 分糖果 II
+
+[原题链接](https://leetcode-cn.com/problems/distribute-candies-to-people/)
+
+### 等差数列
+
+```python
+class Solution:
+    def distributeCandies(self, candies: int, num_people: int) -> List[int]:
+        s = 0
+        x = 1
+        people = 0
+        while s + x < candies:
+            people += 1
+            s += x
+            x += 1
+        # 只够发到 x - 1 个人，第 x 个人可能没有足额糖果
+
+        # 计算可以发几轮（总轮数）
+        r = people // num_people
+        # print(people, r)
+        # 多发一排人数
+        other = people % num_people
+        # 最后可能有剩余糖果分给最后一个人
+
+        # 等差数列 d = n
+        # 给每个小朋友发
+        res = [0 for _ in range(num_people)]
+        for i in range(num_people):
+            res[i] = (i + 1) * r + (r * (r - 1) * num_people) // 2
+
+        # 给最后一排分糖果
+        other_begin = r * num_people + 1
+        for i in range(other):
+            res[i] += other_begin
+            other_begin += 1
+
+        if s < candies:
+            index = i + 1
+            if i + 1 == num_people:
+                index = 0
+            res[index] += candies - s
+
+        # print(res)
+        return res
+```
+
 ## 1276. 不浪费原料的汉堡制作方案
 
 [原题链接](https://leetcode-cn.com/problems/number-of-burgers-with-no-waste-of-ingredients/)

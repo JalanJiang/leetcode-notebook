@@ -420,7 +420,7 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/contest/weekly-contest-124/problems/rotting-oranges/)
 
-### 思路
+#### 思路
 
 基本思路：从 `1` 出发搜索，返回找到 `2` 需要走的步数（即分钟数），求得该步数的最大值。
 
@@ -473,6 +473,82 @@ class Solution(object):
                         return s + 1
         return float('inf')
 ```
+
+#### 20200304 重写
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        bad_queue = []
+        bad = 0
+        good = 0
+        # 计算橘子情况
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 1:
+                    good += 1
+                elif grid[i][j] == 2:
+                    bad += 1
+                    # 入队
+                    bad_queue.append([i, j])
+        
+        # 根据统计情况返回
+        if good == 0:
+            # 没有新鲜的橘子
+            return 0
+        if bad == 0:
+            # 没有坏的橘子
+            return -1
+
+        res = 0
+        i_length = len(grid)
+        j_length = len(grid[0])
+        while len(bad_queue) > 0:
+            # 分钟数
+            res += 1
+            # 取出第一批橘子
+            for i in range(len(bad_queue)):
+                first = bad_queue[0]
+                del bad_queue[0]
+                # 开始感染其他橘子
+                i = first[0]
+                j = first[1]
+
+                if i - 1 >= 0 and grid[i - 1][j] == 1:
+                    good -= 1
+                    grid[i - 1][j] = 2 
+                    bad_queue.append([i - 1, j])
+                if i + 1 < i_length and grid[i + 1][j] == 1:
+                    good -= 1
+                    grid[i + 1][j] = 2 
+                    bad_queue.append([i + 1, j])
+                if j - 1 >= 0 and grid[i][j - 1] == 1:
+                    good -= 1
+                    grid[i][j - 1] = 2 
+                    bad_queue.append([i, j - 1])
+                if j + 1 < j_length and grid[i][j + 1] == 1:
+                    good -= 1
+                    grid[i][j + 1] = 2
+                    bad_queue.append([i, j + 1])
+                # 是否已经没有新鲜橘子
+                if good <= 0:
+                    return res
+        
+        return -1 if good > 0 else res
+```
+
+#### **Go**
+
+```go
+
+
+```
+
+<!-- tabs:end -->
 
 ----
 
