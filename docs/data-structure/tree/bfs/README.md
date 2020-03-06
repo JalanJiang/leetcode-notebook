@@ -230,6 +230,103 @@ class Solution:
 
 <!-- tabs:end -->
 
+## 297. 二叉树的序列化与反序列化
+
+[原题链接](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)
+
+### BFS：层序遍历
+
+- 序列化：将题中二叉树利用辅助队列层序遍历为 `1,2,3,null,null,4,5`
+- 反序列化：字符串转为数组，将第一个节点入队列，依旧以队列的方式进行反序列化
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        str_list = []
+        queue = []
+        queue.append(root)
+        while len(queue) > 0:
+            q_length = len(queue)
+            for i in range(q_length):
+                # 取出队列头部节点
+                first = queue[0]
+                del queue[0]
+                if first is None:
+                    str_list.append("N")
+                    continue
+                str_list.append(str(first.val))
+                # 左右节点入队列
+                queue.append(first.left)
+                queue.append(first.right)
+        # print(str_list)
+        return ','.join(str_list)
+        
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        str_list = data.split(',')
+        # 取出第一个节点
+        first = str_list[0]
+        root = self.get_node(first)
+        queue = []
+        queue.append(root)
+        del str_list[0]
+        while len(queue) > 0:
+            q_length = len(queue)
+            for i in range(q_length):
+                first = queue[0]
+                del queue[0]
+                if first is None:
+                    continue
+                # 构造它的左右节点
+                str_list_length = len(str_list)
+                if str_list_length >= 2:
+                    left_node = self.get_node(str_list[0])
+                    del str_list[0]
+                    right_node = self.get_node(str_list[0])
+                    del str_list[0]
+                elif str_list_length == 1:
+                    left_node = self.get_node(str_list[0])
+                    right_node = None
+                    del str_list[0]
+                else:
+                    left_node = None
+                    right_node = None
+                first.left = left_node
+                first.right = right_node
+                if left_node is not None:
+                    queue.append(left_node)
+                if right_node is not None:
+                    queue.append(right_node)
+
+        return root
+        
+    def get_node(self, root_val):
+        if root_val == 'N':
+            return None
+        else:
+            return TreeNode(int(root_val))
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
+```
+
 ## 513. 找树左下角的值
 
 [原题链接](https://leetcode-cn.com/problems/find-bottom-left-tree-value/comments/)

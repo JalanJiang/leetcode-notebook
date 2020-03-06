@@ -222,3 +222,26 @@ class Solution:
         head.next = None
         return cur
 ```
+
+## 面试题57 - II. 和为s的连续正数序列
+
+[原题链接](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
+
+### 滑动窗口法
+
+```python
+class Solution:
+    def findContinuousSequence(self, target: int) -> List[List[int]]:
+        s = 0
+        tmp = []
+        res = []
+        for i in range(1, target):
+            s += i
+            tmp.append(i)
+            while s >= target:
+                if s == target:
+                    res.append(tmp[:])
+                s -= tmp[0]
+                del tmp[0]
+        return res
+```
