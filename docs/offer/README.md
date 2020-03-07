@@ -245,3 +245,113 @@ class Solution:
                 del tmp[0]
         return res
 ```
+
+## 面试题59 - II. 队列的最大值
+
+[原题链接](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
+
+### 思路
+
+用一个双端队列，将队列最大值永远放在双端队列的队首。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class MaxQueue:
+
+    def __init__(self):
+        self.m = 0
+        self.queue = []
+        self.deque = []
+
+    def max_value(self) -> int:
+        if len(self.queue) == 0:
+            return -1
+        return self.deque[0]
+
+    def push_back(self, value: int) -> None:
+        self.queue.append(value)
+        # 维护 deque
+        while len(self.deque) > 0 and self.deque[-1] < value:
+            # 从尾部删除这个值
+            self.deque.pop()
+        self.deque.append(value)
+
+    def pop_front(self) -> int:
+        if len(self.queue) == 0:
+            return -1
+        first = self.queue[0]
+        del self.queue[0]
+        if first == self.deque[0]:
+            del self.deque[0]
+        return first
+
+# Your MaxQueue object will be instantiated and called as such:
+# obj = MaxQueue()
+# param_1 = obj.max_value()
+# obj.push_back(value)
+# param_3 = obj.pop_front()
+```
+
+#### **Go**
+
+```go
+type MaxQueue struct {
+    Queue []int
+    Deque []int
+}
+
+
+func Constructor() MaxQueue {
+    var maxQueue MaxQueue
+    maxQueue.Queue = make([]int, 0)
+    maxQueue.Deque = make([]int, 0)
+    return maxQueue
+}
+
+
+func (this *MaxQueue) Max_value() int {
+    if len(this.Queue) == 0 {
+        return -1
+    }
+    return this.Deque[0]
+}
+
+
+func (this *MaxQueue) Push_back(value int)  {
+    // 维护双端队列
+    this.Queue = append(this.Queue, value)
+    for len(this.Deque) > 0 && value > this.Deque[len(this.Deque) - 1] {
+        // 最后一个值出队
+        this.Deque = this.Deque[:len(this.Deque) - 1]
+    }
+    this.Deque = append(this.Deque, value)
+}
+
+
+func (this *MaxQueue) Pop_front() int {
+    if len(this.Queue) == 0 {
+        return -1
+    }
+    first := this.Queue[0]
+    if first == this.Deque[0] {
+        // 删除第一个元素
+        this.Deque = this.Deque[1:]
+    }
+    this.Queue = this.Queue[1:]
+    return first
+}
+
+
+/**
+ * Your MaxQueue object will be instantiated and called as such:
+ * obj := Constructor();
+ * param_1 := obj.Max_value();
+ * obj.Push_back(value);
+ * param_3 := obj.Pop_front();
+ */
+```
+
+<!-- tabs:end -->
