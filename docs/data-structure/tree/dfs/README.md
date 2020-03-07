@@ -139,7 +139,7 @@ func inorderTraversal(root *TreeNode) []int {
 
 [原题链接](https://leetcode-cn.com/problems/validate-binary-search-tree/submissions/)
 
-### 思路
+### 解一：中序遍历
 
 中序遍历为升序
 
@@ -173,6 +173,65 @@ class Solution(object):
         else:
             return
 ```
+
+### 解二：递归
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        return self.helper(root, None, None)
+
+    def helper(self, root, low, high):
+        if root is None:
+            return True
+        if low is not None and root.val <= low:
+            return False
+        if high is not None and root.val >= high:
+            return False
+        return self.helper(root.left, low, root.val) and self.helper(root.right, root.val, high)
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isValidBST(root *TreeNode) bool {
+    return helper(root, -1<<63, 1<<63-1)
+}
+
+func helper(root *TreeNode, low int, high int) bool {
+    if root == nil {
+        return true
+    }
+    if root.Val <= low {
+        return false
+    }
+    if root.Val >= high {
+        return false
+    }
+    return helper(root.Left, low, root.Val) && helper(root.Right, root.Val, high)
+}
+```
+
+<!-- tabs:end -->
 
 ## 105. 从前序与中序遍历序列构造二叉树
 
