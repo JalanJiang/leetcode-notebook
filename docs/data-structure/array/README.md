@@ -1028,6 +1028,10 @@ class Solution:
 
 2019.01.05 复盘打卡
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def maxProfit(self, prices):
@@ -1051,7 +1055,30 @@ class Solution(object):
         return max_val
 ```
 
+#### **Go**
 
+```go
+func maxProfit(prices []int) int {
+    dayCount := len(prices)
+    if dayCount == 0 {
+        return 0
+    }
+    res := 0
+    min := prices[0]
+    for i := 1; i < dayCount; i++ {
+        get := prices[i] - min
+        if get > res {
+            res = get
+        }
+        if prices[i] < min {
+            min = prices[i]
+        }       
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 167. 两数之和 II - 输入有序数组
