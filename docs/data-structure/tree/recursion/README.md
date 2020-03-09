@@ -935,6 +935,73 @@ class Solution(object):
             return l_val
 ```
 
+## 700. 二叉搜索树中的搜索
+
+[原题链接](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)
+
+### 递归
+
+递归设计：
+
+- 递归函数作用：返回目标节点
+- 函数返回时机：
+  - 节点为空
+  - 找到目标节点
+- 递归调用时机：搜索左子树或右子树时
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if root is None:
+            return None
+        root_val = root.val
+        if root_val == val:
+            return root
+        if val < root.val:
+            return self.searchBST(root.left, val)
+        if val > root.val:
+            return self.searchBST(root.right, val)
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func searchBST(root *TreeNode, val int) *TreeNode {
+    if root == nil {
+        return nil
+    }
+    rootVal := root.Val
+    if rootVal == val {
+        return root
+    } else if rootVal < val {
+        return searchBST(root.Right, val)
+    } else {
+        return searchBST(root.Left, val)
+    }
+}
+```
+
+<!-- tabs:end -->
+
 ## 783. 二叉搜索树结点最小距离
 
 [原题链接](https://leetcode-cn.com/problems/minimum-distance-between-bst-nodes/)
