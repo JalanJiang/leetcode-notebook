@@ -760,6 +760,10 @@ class Solution:
 
 和 [104](/tree/104.md) 的套路一样，加上取 max 逻辑而已。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     max_length = 0
@@ -782,6 +786,45 @@ class Solution(object):
                 self.max_length = cur_length
             return max(l, r) + 1
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res int
+
+func diameterOfBinaryTree(root *TreeNode) int {
+    helper(root)
+    return res
+}
+
+func helper(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
+    leftDepth := helper(root.Left)
+    rightDepth := helper(root.Right)
+    length := leftDepth + rightDepth
+    res = getMax(res, length)
+    return getMax(leftDepth, rightDepth) + 1
+}
+
+func getMax(a int, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+```
+
+<!-- tabs:end -->
 
 ## 572. 另一个树的子树
 
