@@ -715,6 +715,69 @@ class Solution(object):
         return result
 ```
 
+## 450. 删除二叉搜索树中的节点
+
+[原题链接](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
+
+### 思路
+
+要删除的节点共有三种情况：
+
+1. 是叶节点：直接删除
+2. 有右子树：找它的后继节点交换（值）并删除后继节点
+3. 有左子树：找到它的前驱节点交换（值）并删除前驱节点
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+        # 找到节点
+        if root is None:
+            return None
+        if key > root.val:
+            # 找右子树
+            root.right = self.deleteNode(root.right, key)
+        elif key < root.val:
+            # 找左子树
+            root.left = self.deleteNode(root.left, key)
+        else:
+            # 找到节点
+            if root.left is None and root.right is None:
+                # 删除的节点是叶子节点
+                root = None
+            elif root.right is not None:
+                # 有右子树，找后继节点
+                root.val = self.successor(root)
+                # 删除这个后继节点
+                root.right = self.deleteNode(root.right, root.val)
+            else:
+                # 有左子树，找前驱节点
+                root.val = self.predecessor(root)
+                root.left = self.deleteNode(root.left, root.val)
+
+        return root
+
+    def successor(self, root):
+        # 后继节点：比节点大的最小节点
+        root = root.right
+        while root.left is not None:
+            root = root.left
+        return root.val
+
+    def predecessor(self, root):
+        # 前驱节点
+        root = root.left
+        while root.right is not None:
+            root = root.right
+        return root.val
+```
+
 ## 538. 把二叉搜索树转换为累加树
 
 [原题链接](https://leetcode-cn.com/problems/convert-bst-to-greater-tree/)
