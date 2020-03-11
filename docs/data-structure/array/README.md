@@ -2663,4 +2663,49 @@ class Solution(object):
         return tmp_string
 ```
 
+## 1013. 将数组分成和相等的三个部分
 
+[原题链接](https://leetcode-cn.com/problems/partition-array-into-three-parts-with-equal-sum/)
+
+### 思路
+
+1. 数组求和，看是否可以整除三，不能整除则直接返回 `false`
+2. 双指针指向数组前后，前后都分别开始找累加和等于目标值的部分，如果前后都能找到，则中间的自动就找到了
+
+注意问题：
+
+1. 存在 `[1,-1,1,-1]` 这样的用例，需要判断双指针最终位置，相距是否大于 1，即中间是否还有位置
+2. 目标值可以为 0，所以左右区间的数据应当初始化为 `A[0]` 与 `A[length - 1]`
+
+```python
+class Solution:
+    def canThreePartsEqualSum(self, A: List[int]) -> bool:
+        # 求总和
+        s = sum(A)
+        if s % 3 != 0:
+            return False
+        part = s // 3
+
+        # 双指针
+        i = 0
+        j = len(A) - 1
+        # 计算左右区间和
+        left_part = A[i]
+        right_part = A[j]
+        res = False
+        while i < j:
+            if left_part != part:
+                i += 1
+                left_part += A[i]
+                
+            if right_part != part:
+                j -= 1
+                right_part += A[j]
+                
+            if left_part == part and right_part == part:
+                res = True
+                break
+        # print(i, j)
+        # 处理特殊情况：[1,-1,1,-1]
+        return res and j - i > 1
+```
