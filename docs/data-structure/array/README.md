@@ -2709,3 +2709,32 @@ class Solution:
         # 处理特殊情况：[1,-1,1,-1]
         return res and j - i > 1
 ```
+
+## 1071. 字符串的最大公因子
+
+[原题链接](https://leetcode-cn.com/problems/greatest-common-divisor-of-strings/)
+
+### 暴力枚举
+
+最大公因子必定是 `str1` 或 `str2` 的前缀，因此枚举前缀的长度并截取前缀进行匹配即可。
+
+```python
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        length1 = len(str1)
+        length2 = len(str2)
+        for i in range(min(length1, length2), 0, -1):
+            # 枚举
+            if length1 % i == 0 and length2 % i == 0:
+                # 是否可构成前缀
+                if str1[:i] * (length1 // i) == str1 and str1[:i] * (length2 // i) == str2:
+                    return str1[:i]
+        return ''
+```
+
+- 时间复杂度：
+- 空间复杂度：
+
+### 数学法
+
+若存在 `X`，那么有 `str1 + str2 = str2 + str1`。
