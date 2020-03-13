@@ -548,6 +548,55 @@ class Solution(object):
         return root
 ```
 
+## 235. 二叉搜索树的最近公共祖先
+
+[原题链接](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+### 解一：递归
+
+分为几种情况：
+
+1. `p` 与 `q` 分列 `root` 节点两个子树，则直接返回 `root`
+2. `p` 与 `q` 其中之一等于 `root`，则直接返回 `root`
+3. 如果 `p` 和 `q` 都在 `root` 左子树，则递归左子树
+4. 如果 `p` 和 `q` 都在 `root` 右子树，则递归右子树
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root is None:
+            return root
+        # 当前节点为 p 或 q
+        if p.val == root.val or q.val == root.val:
+            return root
+        # 两个节点分别在左右两个子树
+        if (p.val < root.val and q.val > root.val) or (p.val > root.val and q.val < root.val):
+            return root
+        # 两个节点都在左子树
+        if p.val < root.val and q.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        # 两个节点都在右子树
+        if p.val > root.val and q.val > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+```
+
+<!-- tabs:end -->
+
+### 解二：迭代
+
+@TODO
+
 ## 236. 二叉树的最近公共祖先
 
 [原题链接](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)（同 [面试题68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)）

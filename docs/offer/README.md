@@ -355,3 +355,7 @@ func (this *MaxQueue) Pop_front() int {
 ```
 
 <!-- tabs:end -->
+
+## 面试题68 - I. 二叉搜索树的最近公共祖先
+
+同：235. 二叉搜索树的最近公共祖先
