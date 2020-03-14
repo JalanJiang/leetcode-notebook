@@ -822,15 +822,11 @@ class Solution(object):
 
 论动态规划，这题和 [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) 思路挺像的。
 
-
-
 ## 300. 最长上升子序列
 
 [原题链接](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
 
-### 思路
-
-动态规划。
+### 解一：动态规划
 
 设到某位置 n 的最长上升子序列为 `f(n)`，那么有：
 
@@ -838,25 +834,103 @@ class Solution(object):
 f(n) = max(f(n), f(x) + 1) (nums[n] > numx[x] and n > x)
 ```
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
-class Solution(object):
-    def lengthOfLIS(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
         length = len(nums)
         if length == 0:
             return 0
-        
         dp = [1 for _ in range(length)]
-        
-        for i in range(1, length):
+        for i in range(length):
             for j in range(i):
-                if nums[i] > nums[j]:
+                if nums[j] < nums[i]:
                     dp[i] = max(dp[i], dp[j] + 1)
-        
         return max(dp)
+```
+
+#### **Go**
+
+```go
+func lengthOfLIS(nums []int) int {
+    length := len(nums)
+    // 初始化
+    dp := make([]int, length)
+    for i := 0; i < length; i++ {
+        dp[i] = 1
+    }
+    
+    for i := 0; i < length; i++ {
+        for j := 0; j < i; j++ {
+            if nums[j] < nums[i] {
+                // dp
+                if dp[j] + 1 > dp[i] {
+                    dp[i] = dp[j] + 1
+                }
+            }
+        }
+    }
+
+    // 返回最大 dp
+    res := 0
+    for i := 0; i < length; i++ {
+        if dp[i] > res {
+            res = dp[i]
+        }
+    }
+
+    return res
+}
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(n)$
+
+### 解二：贪心 + 二分
+
+- 贪心：尾部元素尽可能小才更「有机会上升」
+- 二分：使用二分查找找到要更新的元素
+
+使用一个辅助列表 `tails`，用 `tails[i]` 表示长度为 `i` 的上升队列尾部最小元素，`tails` 为递增序列。
+
+那么：
+
+- 如果 `num > tails[-1]`，直接追加 `num` 到 `tails` 尾部，且上升序列长度加 1
+- 否则在 `tails` 使用二分查找，找到第一个比 `num` 小的元素 `tails[k]`，并更新 `tails[k + 1] = num`
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        # 当前长度
+        res = 0
+        length = len(nums)
+        # tails[i] 代表上升子序列长度为 i 时尾部数字
+        tails = []
+        for num in nums:
+            if len(tails) == 0 or num > tails[-1]:
+                # 如果 tails 为空，或 num 大于 tails 最后一位数，追加 num
+                tails.append(num)
+            else:
+                # 使用二分查找，找到第一个比 num 小的数
+                left = 0
+                right = len(tails) - 1
+                loc = right
+                while left <= right:
+                    mid = (left + right) // 2
+                    if tails[mid] >= num:
+                        # 找左区间
+                        loc = mid
+                        right = mid - 1
+                    else:
+                        # 找右区间
+                        left = mid + 1
+                tails[loc] = num
+        return len(tails)
 ```
 
 ## 309. 最佳买卖股票时机含冷冻期

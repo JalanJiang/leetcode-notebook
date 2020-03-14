@@ -1121,13 +1121,11 @@ class Solution(object):
         return [i + 1, j + 1]     
 ```
 
-
-
-## 169. 求众数
+## 169. 多数元素
 
 [原题链接](https://leetcode-cn.com/problems/majority-element/)
 
-### 解法一
+### 解法一：哈希表
 
 计算每个数出现的个数，使用了额外空间。
 
@@ -1152,7 +1150,7 @@ class Solution(object):
                 return n
 ```
 
-### 解法二
+### 解法二：摩尔投票法
 
 摩尔投票法，相互抵消。
 
@@ -1179,6 +1177,14 @@ class Solution(object):
         
         return major
 ```
+
+### 解法三：分治
+
+@TODO
+
+### 解法四：排序
+
+@TODO
 
 
 ## 189. 旋转数组
