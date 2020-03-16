@@ -364,34 +364,122 @@ func findIndex(array []int, num int) int {
 
 [原题链接](https://leetcode-cn.com/problems/balanced-binary-tree/description/)
 
-### 思路
-
 和 [104](/tree/104.md) 的套路一样，加上对比逻辑而已。
 
+### 解一：自顶向下
+
+对每个节点都计算它左右子树的高度，判断是否为平衡二叉树。
+
 ```python
-class Solution(object):
-    
-    result = True
-    
-    def isBalanced(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
-        self.depth(root)
-        return self.result
-        
-    def depth(self, root):
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
         if root is None:
-            return 0
-        else:
-            left_depth = self.depth(root.left)
-            right_depth = self.depth(root.right)
-            if (abs(left_depth - right_depth) > 1):
-                self.result = False
-                
-        return max(left_depth, right_depth) + 1
+            return True
+        left_depth = self.helper(root.left, 0)
+        right_depth = self.helper(root.right, 0)
+        if abs(left_depth - right_depth) > 1:
+            # 不平衡
+            return False
+        return self.isBalanced(root.left) and self.isBalanced(root.right)
+
+    def helper(self, root, depth):
+        """
+        返回节点高度
+        """
+        if root is None:
+            return depth
+        left_depth = self.helper(root.left, depth + 1)
+        right_depth = self.helper(root.right, depth + 1)
+        return max(left_depth, right_depth)
 ```
+
+- 时间复杂度：$O(nlogn)$。最差情况需要遍历树的所有节点，判断每个节点的最大高度又需要遍历该节点的所有子节点。详见[题解中的复杂度分析](https://leetcode-cn.com/problems/balanced-binary-tree/solution/ping-heng-er-cha-shu-by-leetcode/)。
+- 空间复杂度：$O(n)$。如果树完全倾斜（退化成链），递归栈将包含所有节点。
+
+### 解二：自底向上
+
+自顶向下的高度计算存在大量冗余，每次计算高度时，同时都要计算子树的高度。
+
+从底自顶返回二叉树高度，如果某子树不是平衡树，提前进行枝剪。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    res = True
+    def isBalanced(self, root: TreeNode) -> bool:
+        self.helper(root, 0)
+        return self.res
+
+    def helper(self, root, depth):
+        if root is None:
+            return depth
+        left_depth = self.helper(root.left, depth + 1)
+        right_depth = self.helper(root.right, depth + 1)
+        if abs(left_depth - right_depth) > 1:
+            self.res = False
+            # 提前返回
+            return 0 
+        return max(left_depth, right_depth)
+```
+
+- 时间复杂度：$O(n)$。n 为树的节点数，最坏情况需要遍历所有节点。
+- 空间复杂度：$O(n)$。完全不平衡时需要的栈空间。
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res bool
+
+func isBalanced(root *TreeNode) bool {
+    res = true
+    helper(root, 0)
+    return res
+}
+
+func helper(root *TreeNode, depth int) int {
+    if root == nil {
+        return depth
+    }
+    leftDepth := helper(root.Left, depth + 1)
+    rightDepth := helper(root.Right, depth + 1)
+    if leftDepth - rightDepth > 1 || leftDepth - rightDepth < -1 {
+        res = false
+        return 0
+    }
+    if leftDepth > rightDepth {
+        return leftDepth
+    } else {
+        return rightDepth
+    }
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 111. 二叉树的最小深度
