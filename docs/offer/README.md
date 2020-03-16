@@ -32,6 +32,11 @@ class Solution:
 
 #### **Go**
 
+Go 字符串相关知识点：
+
+- `rune` -> `string`：`string(rune)`
+- `int` -> `string`: `strconv.Itoa(int)`
+
 ```go
 func compressString(S string) string {
     sLength := len(S)
