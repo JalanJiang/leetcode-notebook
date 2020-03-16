@@ -1,3 +1,68 @@
+## 面试题 01.06. 字符串压缩
+
+[原题链接](https://leetcode-cn.com/problems/compress-string-lcci/)
+
+### 思路
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def compressString(self, S: str) -> str:
+        s_length = len(S)
+        if s_length == 0:
+            return S
+        res = ''
+        cur = ''
+        count = 0
+        for s in S:
+            if s != cur:
+                if cur != '':
+                    res += cur + str(count)
+                cur = s
+                count = 1
+            else:
+                count += 1
+        # 尾部处理
+        res += cur + str(count)
+        return res if len(res) < s_length else S
+```
+
+#### **Go**
+
+```go
+func compressString(S string) string {
+    sLength := len(S)
+    if sLength == 0 {
+        return S
+    }
+    var res string
+    var cur rune
+    var empty rune
+    var count int
+    for _, s := range S {
+        if s != cur {
+            if cur != empty {
+                res += string(cur) + strconv.Itoa(count)
+            }
+            cur = s
+            count = 1
+        } else {
+            count += 1
+        }
+    }
+    res += string(cur) + strconv.Itoa(count)
+    if len(res) < sLength {
+        return res
+    }
+    return S
+}
+```
+
+<!-- tabs:end -->
+
 ## 面试题03. 数组中重复的数字
 
 [原题链接](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
