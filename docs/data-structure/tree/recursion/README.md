@@ -400,7 +400,7 @@ class Solution:
         return max(left_depth, right_depth)
 ```
 
-- 时间复杂度：$O(nlogn)$。最差情况需要遍历树的所有节点，判断每个节点的最大高度又需要遍历该节点的所有子节点。详见[题解中的复杂度分析](https://leetcode-cn.com/problems/balanced-binary-tree/solution/ping-heng-er-cha-shu-by-leetcode/)。
+- 时间复杂度：$O(nlogn)$。最差情况需要遍历树的所有节点，判断每个节点的最大高度又需要遍历该节点的所有子节点。如果树是倾斜的，则会到达 $O(n^2)$ 复杂度。详见[题解中的复杂度分析](https://leetcode-cn.com/problems/balanced-binary-tree/solution/ping-heng-er-cha-shu-by-leetcode/)。
 - 空间复杂度：$O(n)$。如果树完全倾斜（退化成链），递归栈将包含所有节点。
 
 ### 解二：自底向上
