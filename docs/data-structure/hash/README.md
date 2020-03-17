@@ -491,3 +491,95 @@ class MyHashSet:
 ```
 
 ### 解二：链表模拟
+
+## 1160. 拼写单词
+
+[原题链接](https://leetcode-cn.com/problems/find-words-that-can-be-formed-by-characters/)
+
+### 思路
+
+使用哈希表存储 `chars` 中每个字符出现的次数，在遍历 `words` 时判断每个单词的字母是否可以命中 `chars` 的哈希表。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def countCharacters(self, words: List[str], chars: str) -> int:
+        res = 0
+        word_dict = dict()
+        # 词汇统计
+        for c in chars:
+            if c not in word_dict:
+                word_dict[c] = 0
+            word_dict[c] += 1
+        
+        # 开始拼写
+        for word in words:
+            tmp_word_dict = word_dict.copy()
+            get = True
+            for c in word:
+                if c in tmp_word_dict:
+                    if tmp_word_dict[c] == 0:
+                        get = False
+                        break
+                    else:
+                        tmp_word_dict[c] -= 1
+                else:
+                    get = False
+                    break
+            if get:
+                res += len(word)
+
+        return res
+```
+
+#### **Go**
+
+```go
+func countCharacters(words []string, chars string) int {
+    var res int
+    var wordMap = make(map[string]int)
+    // 统计 chars
+    for _, c := range chars {
+        if _, ok := wordMap[string(c)]; !ok {
+            // 不存在
+            wordMap[string(c)] = 0
+        }
+        wordMap[string(c)] += 1
+    }
+
+    // 统计 word 单词数，与统计比较
+    for _, word :=  range words {
+        everyWordMap := make(map[string]int)
+        for _, c := range word {
+            if _, ok := everyWordMap[string(c)]; !ok {
+                everyWordMap[string(c)] = 0
+            }
+            everyWordMap[string(c)] += 1
+        }
+
+        // 判断是否命中
+        get := true
+        for c, count := range everyWordMap {
+            if mapCount, ok := wordMap[string(c)]; ok {
+                // 存在
+                if count > mapCount {
+                    get = false
+                    break
+                }
+            } else {
+                get = false
+                break
+            }
+        }
+        if get {
+            res += len(word)
+        }
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
