@@ -484,6 +484,27 @@ class Solution:
         return "x=" + str(-num // x_count)
 ```
 
+## 836. 矩形重叠
+
+[原题链接](https://leetcode-cn.com/problems/rectangle-overlap/)
+
+### 思路
+
+判断「不相交」的条件。
+
+```python
+class Solution:
+    def isRectangleOverlap(self, rec1: List[int], rec2: List[int]) -> bool:
+        ax1, ay1 = rec1[0], rec1[1]
+        ax2, ay2 = rec1[2], rec1[3]
+        bx1, by1 = rec2[0], rec2[1]
+        bx2, by2 = rec2[2], rec2[3]
+        # 判断是否相交
+        if ax2 <= bx1 or ax1 >= bx2 or ay2 <= by1 or ay1 >= by2:
+            return False
+        return True
+```
+
 ## 1103. 分糖果 II
 
 [原题链接](https://leetcode-cn.com/problems/distribute-candies-to-people/)
