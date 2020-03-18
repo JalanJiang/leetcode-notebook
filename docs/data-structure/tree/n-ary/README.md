@@ -1,0 +1,62 @@
+## 589. N叉树的前序遍历
+
+[原题链接](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/)
+
+### 解一：递归
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        res = []
+        self.helper(root, res)
+        return res
+
+    def helper(self, root, res):
+        if root is None:
+            return
+        res.append(root.val)
+        children = root.children
+        for child in children:
+            self.helper(child, res)
+```
+
+### 解二：遍历
+
+用栈辅助。
+
+1. 首先，将 `root` 压入栈中
+2. 在栈不为空时，对栈进行遍历，每次弹出栈顶元素
+3. 若栈顶元素节点不为空，则将该节点值放入结果集中，且将该节点的子节点**从右至左**压入栈中（这样弹出时就是从左至右，符合前序遍历的顺序）
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        stack = []
+        stack.append(root)
+        res = []
+        while len(stack) > 0:
+            top = stack.pop()
+            if top is None:
+                continue
+            res.append(top.val)
+            # 反序插入子节点
+            children = top.children
+            for i in range(len(children) - 1, -1, -1):
+                child = children[i]
+                stack.append(child)
+        return res
+```
