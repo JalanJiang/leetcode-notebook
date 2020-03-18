@@ -492,6 +492,10 @@ class Solution:
 
 判断「不相交」的条件。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def isRectangleOverlap(self, rec1: List[int], rec2: List[int]) -> bool:
@@ -504,6 +508,23 @@ class Solution:
             return False
         return True
 ```
+
+#### **Go**
+
+```go
+func isRectangleOverlap(rec1 []int, rec2 []int) bool {
+    ax1, ay1 := rec1[0], rec1[1]
+    ax2, ay2 := rec1[2], rec1[3]
+    bx1, by1 := rec2[0], rec2[1]
+    bx2, by2 := rec2[2], rec2[3]
+    if ax2 <= bx1 || ax1 >= bx2 || ay2 <= by1 || ay1 >= by2 {
+        return false
+    }
+    return true
+}
+```
+
+<!-- tabs:end -->
 
 ## 1103. 分糖果 II
 
