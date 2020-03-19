@@ -60,3 +60,61 @@ class Solution:
                 stack.append(child)
         return res
 ```
+
+## 590. N叉树的后序遍历
+
+[原题链接](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/)
+
+### 解一：递归
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        res = []
+        self.healper(root, res)
+        return res
+
+    def healper(self, root, res):
+        if root is None:
+            return
+        children = root.children
+        for child in children:
+            self.healper(child, res)
+        res.append(root.val)
+```
+
+### 解二：迭代
+
+用一个辅助栈。
+
+后序遍历的顺序是：子节点从左至右 -> 根节点。因此我们可以先把「根节点 -> 子节点从右至左」写入结果集中，在返回时再将结果集反序。
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        res = []
+        stack = []
+        stack.append(root)
+        while len(stack):
+            top = stack.pop()
+            if top is None:
+                continue
+            res.append(top.val)
+            for child in top.children:
+                stack.append(child)
+        return res[::-1]
+```
