@@ -1246,6 +1246,68 @@ class Solution(object):
         return length + num
 ```
 
+----
+
+2020.03.19 二刷
+
+在最后返回时可以判断下结果长度和最初字符串的长度，如果结果长度短，则将结果长度 +1（即加上任何一个字符构成奇数回文串）。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        length = len(s)
+        c_map = dict()
+        for c in s:
+            if c not in c_map:
+                c_map[c] = 0
+            c_map[c] += 1
+        res = 0
+        for v in c_map.values():
+            if v % 2 == 0:
+                # 偶数处理
+                res += v
+            else:
+                # 奇数处理
+                res += (v - 1)
+        return res + 1 if res < length else res
+```
+
+#### **Go**
+
+```go
+func longestPalindrome(s string) int {
+    res := 0
+    cMap := make(map[string]int)
+    // 数据统计
+    for _, c := range s {
+        if _, ok := cMap[string(c)]; !ok {
+            cMap[string(c)] = 0
+        }
+        cMap[string(c)] += 1
+    }
+
+    // 判断奇偶
+    for _, value := range cMap {
+        if value % 2 == 0 {
+            res += value
+        } else {
+            res += (value - 1)
+        }
+    }
+
+    if res < len(s) {
+        return res + 1
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
+
 
 ## 459. 重复的子字符串
 
