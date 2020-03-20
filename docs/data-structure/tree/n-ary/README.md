@@ -1,3 +1,72 @@
+## 429. N叉树的层序遍历
+
+[原题链接](https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/)
+
+### 解一：迭代
+
+用队列辅助。
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def levelOrder(self, root: 'Node') -> List[List[int]]:
+        queue = []
+        res = []
+        queue.append(root)
+        while len(queue) > 0:
+            q_length = len(queue)
+            tmp = []
+            for i in range(q_length):
+                first = queue[0]
+                del queue[0]
+                if first is None:
+                    continue
+                tmp.append(first.val)
+                for child in first.children:
+                    queue.append(child)
+            if len(tmp) > 0:
+                res.append(tmp)
+        return res
+```
+
+- 时间复杂度：$O(n)$，n 为节点数量
+- 空间复杂度：$O(n)$
+
+### 解二：递归
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def levelOrder(self, root: 'Node') -> List[List[int]]:
+        res = []
+        self.helper(res, root, 0)
+        return res
+    
+    def helper(self, res, root, level):
+        if root is None:
+            return
+        if len(res) == level:
+            res.append([])
+        res[level].append(root.val)
+        for child in root.children:
+            self.helper(res, child, level + 1)
+```
+
+- 时间复杂度：$O(n)$
+- 空间复杂度：最坏 $O(n)$，最好 $O(logn)$
+
 ## 589. N叉树的前序遍历
 
 [原题链接](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/)
