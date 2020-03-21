@@ -119,6 +119,54 @@ class Solution(object):
             self.dfs(target - nums[i], i + 1, tmp_list + [nums[i]], res, nums)
 ```
 
+## 365. 水壶问题
+
+[原题链接](https://leetcode-cn.com/problems/water-and-jug-problem/)
+
+### 解一：深度优先搜索
+
+列举每次倒水的几种情况：
+
+1. 把 x 倒空
+2. 把 x 倒满
+3. 把 y 倒空
+4. 把 y 倒满
+5. 把 x 倒入 y，直到 y 满或 x 空
+6. 把 y 倒入 x，直到 x 满或 y 空
+
+因为 Python 中会超过最大递归次数，所以用栈模拟递归过程。
+
+```python
+class Solution:
+    def canMeasureWater(self, x: int, y: int, z: int) -> bool:
+        # (x 剩余，y 剩余)
+        stack = [(0, 0)]
+        # 标记重复
+        mark = set()
+        while len(stack) > 0:
+            remain_x, remain_y = stack.pop()
+            if remain_x == z or remain_y == z or remain_x + remain_y == z:
+                return True
+            # 是否已标记过该情况
+            if (remain_x, remain_y) in mark:
+                continue
+            mark.add((remain_x, remain_y))
+            # 分情况讨论
+            # 倒满 x
+            stack.append((x, remain_y))
+            # 倒满 y
+            stack.append((remain_x, y))
+            # 清空 x
+            stack.append((0, remain_y))
+            # 清空 y
+            stack.append((remain_x, 0))
+            # 把 x 倒进 y，直到 y 满或 x 空
+            stack.append((remain_x - min(remain_x, y - remain_y), remain_y + min(remain_x, y - remain_y)))
+            # 把 y 倒进 x，直到 x 满或 y 空
+            stack.append((remain_x + min(remain_y, x - remain_x), remain_y - min(remain_y, x - remain_x)))
+        return False
+```
+
 ## 695. 岛屿的最大面积
 
 [原题链接](https://leetcode-cn.com/problems/max-area-of-island/)
