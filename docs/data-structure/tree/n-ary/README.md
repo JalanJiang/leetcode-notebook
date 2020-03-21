@@ -67,6 +67,32 @@ class Solution:
 - 时间复杂度：$O(n)$
 - 空间复杂度：最坏 $O(n)$，最好 $O(logn)$
 
+## 559. N叉树的最大深度
+
+[原题链接](https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/)
+
+### 递归
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+class Solution:
+    def maxDepth(self, root: 'Node') -> int:
+        if root is None:
+            return 0
+        if len(root.children) == 0:
+            return 1
+        max_depth = 0
+        for child in root.children:
+            max_depth = max(max_depth, self.maxDepth(child))
+        return max_depth + 1
+```
+
 ## 589. N叉树的前序遍历
 
 [原题链接](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/)
