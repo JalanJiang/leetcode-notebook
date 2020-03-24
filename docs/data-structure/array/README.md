@@ -2630,6 +2630,49 @@ func getMin(a int, b int) int {
 }
 ```
 
+## 945. 使数组唯一的最小增量
+
+[原题链接](https://leetcode-cn.com/problems/minimum-increment-to-make-array-unique/)
+
+### 解一：计数
+
+一开始暴力破解超时了，优化一下采用以下写法：
+
+1. 先把重复出现的数字存储起来
+2. 遍历 0~80000 的数字（最坏情况出现 40000 个 40000，最多可以叠加到 80000）
+    - 如果发现数字是重复出现过的：
+      - 将记录重复出现数字的 `repeat` 变量 + 1
+      - 在结果 `res` 提前减去 `重复个数 * 重复数字`
+    - 如果发现是空的位置：
+      - 用空的位置处理一个重复出现的数字：`repeat -= 1`
+      - 在 `res` 加上空位的数字  
+
+```python
+class Solution:
+    def minIncrementForUnique(self, A: List[int]) -> int:
+        count = [0 for _ in range(80000)]
+        for x in A:
+            count[x] += 1
+        
+        # 总数
+        res = 0
+        # 重复数量
+        repeat = 0
+
+        for i in range(80000):
+            if count[i] > 1:
+                # 出现重复
+                repeat += count[i] - 1
+                # 减去多余的数
+                res -= i * (count[i] - 1)
+            # 没有出现过的数
+            if count[i] == 0 and repeat > 0:
+                repeat -= 1 # 处理一个重复的数
+                res += i
+            
+        return res
+```
+
 <!-- tabs:end -->
 
 ## 1002. 查找常用字符

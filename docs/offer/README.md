@@ -247,6 +247,33 @@ func reversePrint(head *ListNode) []int {
 - 时间复杂度：$O(n)$
 - 空间复杂度：$O(n)$
 
+## 面试题 17.16. 按摩师
+
+[原题链接](https://leetcode-cn.com/problems/the-masseuse-lcci/)
+
+### 动态规划
+
+- 用 `dp[0][i]` 表示不接 i 预约可以获得的最长预约时间
+- 用 `dp[1][i]` 表示接 i 预约可以获得的最长预约时间
+
+```python
+class Solution:
+    def massage(self, nums: List[int]) -> int:
+        # dp[0][i] 不接
+        # dp[1][i] 接
+        length = len(nums)
+        if length == 0:
+            return 0
+        dp = [[0 for _ in range(length)] for _ in range(2)]
+        # 转移方程：dp[0][i] = max(dp[1][i - 1], dp[0][i - 1])
+        # dp[1][i] = max(dp[0][i - 1] + nums[i])
+        dp[1][0] = nums[0]
+        for i in range(1, length):
+            dp[0][i] = max(dp[1][i - 1], dp[0][i - 1])
+            dp[1][i] = dp[0][i - 1] + nums[i]
+        return max(dp[0][length - 1], dp[1][length - 1])
+```
+
 ## 面试题24. 反转链表
 
 [原题链接](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
