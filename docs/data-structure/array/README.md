@@ -2673,6 +2673,61 @@ class Solution:
         return res
 ```
 
+## 999. 车的可用捕获量
+
+[原题链接](https://leetcode-cn.com/problems/available-captures-for-rook/)
+
+### 思路
+
+找车的四个方向是否能直接碰到卒。
+
+```python
+class Solution:
+    def numRookCaptures(self, board: List[List[str]]) -> int:
+        # 找到车的位置（R）
+        m = len(board)
+        if m == 0:
+            return 0
+        n = len(board[0])
+        r_x, r_y = -1, -1
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == 'R':
+                    r_x, r_y = i, j
+                    break
+        res = 0
+        # 找左侧
+        for j in range(r_y - 1, -1, -1):
+            if board[r_x][j] == 'B':
+                break
+            if board[r_x][j] == 'p':
+                res += 1
+                break
+        # 找右侧
+        for j in range(r_y + 1, n):
+            if board[r_x][j] == 'B':
+                break
+            if board[r_x][j] == 'p':
+                res += 1
+                break
+        # 找上侧
+        for i in range(r_x - 1, -1, -1):
+            if board[i][r_y] == 'B':
+                break
+            if board[i][r_y] == 'p':
+                res += 1
+                break
+        # 找下侧
+        for i in range(r_x + 1, m):
+            if board[i][r_y] == 'B':
+                break
+            if board[i][r_y] == 'p':
+                res += 1
+                break
+        
+        return res
+```
+
 <!-- tabs:end -->
 
 ## 1002. 查找常用字符
