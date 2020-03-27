@@ -2630,6 +2630,52 @@ func getMin(a int, b int) int {
 }
 ```
 
+## 914. 卡牌分组
+
+[原题链接](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)
+
+### 解一：暴力枚举
+
+```python
+class Solution:
+    def hasGroupsSizeX(self, deck: List[int]) -> bool:
+        if len(deck) == 0:
+            return False
+        min_num = 10000
+        max_num = 0
+        num_map = dict()
+        for d in deck:
+            if d not in num_map:
+                num_map[d] = 0
+            num_map[d] += 1
+        
+        for num_count in num_map.values():
+            min_num = min(min_num, num_count)
+            max_num = max(max_num, num_count)
+
+        if min_num < 2:
+            return False
+
+        for i in range(2, max_num + 1):
+            mark = True
+            for num_count in num_map.values():
+                if num_count < i or num_count % i != 0:
+                    mark = False
+                    break
+            if mark:
+                return True
+        return False
+```
+
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(n)$
+
+### 解二：求最大公约数
+
+要求的 x 必须是所有卡牌数量的约数。
+
+@TODO
+
 ## 945. 使数组唯一的最小增量
 
 [原题链接](https://leetcode-cn.com/problems/minimum-increment-to-make-array-unique/)
