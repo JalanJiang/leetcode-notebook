@@ -74,6 +74,34 @@ class Solution:
 - 时间复杂度：$O(\sum w_{i}^2)$（$w_{i}$ 为 `words[i]` 的长度），遍历每个单词 + 截取后缀
 - 空间复杂度：$O(\sum w_{i})$，所有后缀存储的空间开销
 
+2020.03.28 复盘：
+
+```python
+class Solution:
+    def minimumLengthEncoding(self, words: List[str]) -> int:
+        if len(words) == 1:
+            return len(words[0]) + 1
+        # 单词整合
+        # 结果：剩余单词长度 + 剩余单词数量（# 数量）
+        # 倒过来比较
+        reverse_words = [word[::-1] for word in words]
+        # 排序
+        reverse_words.sort()
+        res = 0
+        for i in range(1, len(reverse_words)):
+            pre_word = reverse_words[i - 1]
+            cur_word = reverse_words[i]
+            # 双指针
+            for j in range(len(pre_word)):
+                if pre_word[j] != cur_word[j]:
+                    # pre_word 需要单独处理
+                    res += len(pre_word) + 1
+                    break
+        # 需要加上最后一个 cur_word
+        res += len(cur_word) + 1
+        return res
+```
+
 #### **Java**
 
 ```java
