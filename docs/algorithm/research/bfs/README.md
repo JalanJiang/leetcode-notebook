@@ -61,3 +61,59 @@ class Solution(object):
                     
         return res
 ```
+
+## 1162. 地图分析
+
+[原题链接](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)
+
+### 解一：广度优先搜索
+
+- 先遍历 `grid` 一次，把陆地都存入队列，作为 BFS 第一层
+- 将队列中的陆地元素取出，分别向上下左右走一步，如果遇到了海洋则继续加入队列，作为 BFS 下一层
+  - 遇到的海洋标记为 `2` 防止重复遍历
+
+这样以来，BFS 走的最大层数就是最后要求的最远距离（将 曼哈顿距离 转为步数处理）。  
+
+```python
+class Solution:
+    def maxDistance(self, grid: List[List[int]]) -> int:
+        m = len(grid)
+        if m == 0:
+            return -1
+        n = len(grid[0])
+        queue = []
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    # 发现陆地，加入队列
+                    queue.append([i, j])
+
+        if len(queue) == 0 or len(queue) == m * n:
+            return -1
+
+        distance = -1
+        while len(queue) > 0:
+            distance += 1
+            length = len(queue)
+            for i in range(length):
+                # 取出所有位置
+                first = queue[0]
+                x, y = first[0], first[1]
+                del queue[0]
+                # 上下左右四个方向
+                if x - 1 >= 0 and grid[x - 1][y] == 0:
+                    # 避免重复判断
+                    grid[x - 1][y] = 2
+                    queue.append([x - 1, y])
+                if x + 1 < m and grid[x + 1][y] == 0:
+                    grid[x + 1][y] = 2
+                    queue.append([x + 1, y])
+                if y - 1 >= 0 and grid[x][y - 1] == 0:
+                    grid[x][y - 1] = 2
+                    queue.append([x, y - 1])
+                if y + 1 < n and grid[x][y + 1] == 0:
+                    grid[x][y + 1] = 2 
+                    queue.append([x, y + 1])
+        
+        return distance
+```
