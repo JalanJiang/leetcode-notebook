@@ -1024,3 +1024,27 @@ class Solution:
 
         return len(stack) == 0
 ```
+
+## 1111. 有效括号的嵌套深度
+
+[原题链接](https://leetcode-cn.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/)
+
+### 解一：栈匹配
+
+1. 通过栈匹配来计算每个括号所属的深度
+2. 把同一深度的括号平均分配给 A 和 B
+
+```python
+class Solution:
+    def maxDepthAfterSplit(self, seq: str) -> List[int]:
+        depth = 0
+        ans = []
+        for s in seq:
+            if s == '(':
+                depth += 1
+                ans.append(depth % 2)
+            else:
+                ans.append(depth % 2)
+                depth -= 1
+        return ans
+```

@@ -490,6 +490,83 @@ class MyHashSet:
 # param_3 = obj.contains(key)
 ```
 
+## 706. 设计哈希映射
+
+[原题链接](https://leetcode-cn.com/problems/design-hashmap/)
+
+### 思路
+
+1. 哈希映射设计：如何通过 `key` 找到合适的桶
+2. 哈希碰撞处理：许多 `key` 都映射在一个桶里，如何进行这些值的存储与查找
+
+```python
+class Bucket:
+    def __init__(self):
+        self.bucket = []
+    
+    def put(self, key, value):
+        for i in range(len(self.bucket)):
+            k, v = self.bucket[i][0], self.bucket[i][1]
+            if k == key:
+                self.bucket[i] = (key, value)
+                return
+        self.bucket.append((key, value))
+    
+    def get(self, key):
+        for i in range(len(self.bucket)):
+            k, v = self.bucket[i][0], self.bucket[i][1]
+            if k == key:
+                return v
+        return -1
+
+    def remove(self, key):
+        for i, kv in enumerate(self.bucket):
+            if key == kv[0]:
+                # 删除元素问题
+                del self.bucket[i]
+
+class MyHashMap:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.bucket_count = 2069
+        self.hash_map = [Bucket() for _ in range(self.bucket_count)]
+        
+
+    def put(self, key: int, value: int) -> None:
+        """
+        value will always be non-negative.
+        """
+        bucket_num = key % self.bucket_count
+        self.hash_map[bucket_num].put(key, value)
+
+
+    def get(self, key: int) -> int:
+        """
+        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
+        """
+        bucket_num = key % self.bucket_count
+        return self.hash_map[bucket_num].get(key)
+        
+
+    def remove(self, key: int) -> None:
+        """
+        Removes the mapping of the specified value key if this map contains a mapping for the key
+        """
+        bucket_num = key % self.bucket_count
+        self.hash_map[bucket_num].remove(key)
+        
+
+
+# Your MyHashMap object will be instantiated and called as such:
+# obj = MyHashMap()
+# obj.put(key,value)
+# param_2 = obj.get(key)
+# obj.remove(key)
+```
+
 ### 解二：链表模拟
 
 ## 1160. 拼写单词
