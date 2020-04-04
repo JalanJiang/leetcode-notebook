@@ -565,6 +565,50 @@ class Solution(object):
         return area
 ```
 
+### 解二：单调栈
+
+维护一个单调栈：即从栈底到栈顶元素逐渐减小。
+
+在遍历墙的过程中：
+
+1. 墙的高度小于或等于栈顶元素：入栈，此时不会产生积水
+2. 墙的高度大于栈顶元素：栈顶元素出栈，此时栈顶元素处会产生积水，产生积水的面积为：（该位置左右墙体的最小高度 - 栈顶元素高度）* 左右墙体距离差
+
+```python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        length = len(height)
+        if length == 0:
+            return 0
+        
+        stack = []
+        # 第一个元素入栈
+        stack.append(0)
+        ans = 0
+        for i in range(1, length):
+            # 栈顶元素
+            top = stack[-1]
+            h = height[i]
+            # 循环 pop
+            while len(stack) != 0 and height[stack[-1]] < h:
+                # 弹出栈顶元素
+                tmp = stack.pop()
+                # 存在墙才计算积水
+                if len(stack) == 0:
+                    break
+                # 计算左右两侧高度 min
+                diff = min(height[stack[-1]], h)
+                distance = i - stack[-1] - 1
+                ans += distance * (diff - height[tmp])
+
+            stack.append(i)
+
+        return ans
+```
+
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
 
 ## 48. 旋转图像
 
