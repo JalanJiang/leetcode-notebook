@@ -444,6 +444,45 @@ class Solution(object):
         return cur
 ```
 
+## 72. 编辑距离
+
+[原题链接](https://leetcode-cn.com/problems/edit-distance/)
+
+### 动态规划
+
+用 `dp[i][j]` 表示 `words1` 前 `i` 个字符到 `words2` 前 `j` 个字符的编辑距离。
+
+```python
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        length1 = len(word1)
+        length2 = len(word2)
+        # 如果有字符串为空
+        if length1 == 0 or length2 == 0:
+            return length1 + length2
+
+        dp = [[0 for _ in range(length2 + 1)] for _ in range(length1 + 1)]
+
+        # 初始化边界值
+        for i in range(length1 + 1):
+            dp[i][0] = i
+        for j in range(length2 + 1):
+            dp[0][j] = j
+
+        # 计算 dp
+        # 从字符串末尾插入或更新字符
+        # 状态转移方程：
+        # 末尾相同时：dp[i][j] = dp[i - 1][j - 1]
+        # 末尾不同时（替换或插入操作）：dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1)
+        for i in range(1, length1 + 1):
+            for j in range(1, length2 + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
+
+        return dp[length1][length2]
+```
 
 ## 95. 不同的二叉搜索树 II
 
