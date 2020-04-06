@@ -452,6 +452,10 @@ class Solution(object):
 
 用 `dp[i][j]` 表示 `words1` 前 `i` 个字符到 `words2` 前 `j` 个字符的编辑距离。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
@@ -483,6 +487,47 @@ class Solution:
 
         return dp[length1][length2]
 ```
+
+#### **Go**
+
+```go
+func minDistance(word1 string, word2 string) int {
+    length1 := len(word1)
+    length2 := len(word2)
+    var dp = make([][]int, length1 + 1)
+    for i := 0; i < length1 + 1; i++ {
+        dp[i] = make([]int, length2 + 1)
+    }
+    // 初始化
+    for i := 0; i < length1 + 1; i++ {
+        dp[i][0] = i
+    }
+    for j := 0; j < length2 + 1; j++ {
+        dp[0][j] = j
+    }
+    // 计算 dp
+    for i := 1; i < length1 + 1; i ++ {
+        for j := 1; j < length2 + 1; j++ {
+            if word1[i - 1] == word2[j - 1] {
+                dp[i][j] = dp[i - 1][j - 1]
+            } else {
+                dp[i][j] = getMin(dp[i - 1][j - 1], getMin(dp[i - 1][j], dp[i][j - 1])) + 1
+            }
+        }
+    }
+    return dp[length1][length2]
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+```
+
+<!-- tabs:end -->
+
 
 ## 95. 不同的二叉搜索树 II
 
