@@ -1355,6 +1355,97 @@ class Solution:
         return dp[nums_list[-1]]
 ```
 
+## 887. 鸡蛋掉落
+
+[原题链接](https://leetcode-cn.com/problems/super-egg-drop/)
+
+### 动态规划
+
+`(K, N)` 中 `K` 表示鸡蛋数，`N` 表示楼层数量。那么从 `X` 层楼扔鸡蛋时：
+
+- 鸡蛋碎了：状态变为 `(K-1, X-1)`
+- 鸡蛋没碎：状态变为 `(K, N - X)`
+
+有状态转移方程如下：
+
+$dp(K, N) = 1 + min(max(dp(K - 1, X - 1), dp(K, N - X)))$
+
+初始化值：
+
+1. 当只有 1 个鸡蛋时，有几层楼就要扔几次
+2. 当只有 1 层楼时，只要扔一次
+3. 0 层或 0 个鸡蛋时均初始化为 0
+4. 因为要求「最小值」，所以初始化其他数值时尽量给到最大值，可以赋值楼层数量 + 1
+
+```go
+func superEggDrop(K int, N int) int {
+    var dp [][]int
+    // 初始化
+    for i := 0; i <= K; i++ {
+        tmp := make([]int, N + 1)
+        for j := 0; j <= N; j++ {
+            tmp[j] = j + 1
+            if i == 0 {
+                // 0 个蛋
+                tmp[j] = 0
+            }
+            if i == 1 {
+                // 1 个蛋
+                tmp[j] = j
+            }
+            if j == 0 {
+                // 0 层楼
+                tmp[j] = 0
+            }
+            if j == 1 {
+                // 1 层楼
+                tmp[j] = 1
+            }
+        }
+        dp = append(dp, tmp)
+    }
+
+    for i:=2; i <= K; i++ {
+        for j := 2; j <= N; j++ {
+            left := 1
+            right := j
+            for left <= right {
+                mid := (left + right) / 2
+                if dp[i][j - mid] < dp[i - 1][mid - 1] {
+                    right = mid - 1
+                } else {
+                    left = mid + 1
+                }
+            }
+            t1 := j + 1
+            t2 := j + 1
+            if left <= j {
+                t1 = getMax(dp[i][j - left], dp[i - 1][left - 1])
+            }
+            if right >= 1 {
+                t2 = getMax(dp[i][j - right], dp[i - 1][right - 1])
+            }
+            dp[i][j] = getMin(t1, t2) + 1
+        }
+    }
+    return dp[K][N]
+}
+
+func getMax(a int, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+```
+
 ## 898. 子数组按位或操作
 
 [原题链接](https://leetcode-cn.com/problems/bitwise-ors-of-subarrays/)
