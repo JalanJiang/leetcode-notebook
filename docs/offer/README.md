@@ -300,6 +300,89 @@ class Solution:
         return max(dp[0][length - 1], dp[1][length - 1])
 ```
 
+## 面试题 16.03. 交点
+
+[原题链接](https://leetcode-cn.com/problems/intersection-lcci/)
+
+### 思路
+
+解方程题目。。。就是代码写得太丑了。
+
+```python
+class Solution:
+    def intersection(self, start1: List[int], end1: List[int], start2: List[int], end2: List[int]) -> List[float]:
+        # kx + b = y
+        # 调换位置：x1 < x2, x3 < x4，避免后续判断
+        x1, y1 = start1[0], start1[1]
+        x2, y2 = end1[0], end1[1]
+        if x1 > x2:
+            x1, x2 = x2, x1
+            y1, y2 = y2, y1
+        x3, y3 = start2[0], start2[1]
+        x4, y4 = end2[0], end2[1]
+        if x3 > x4:
+            x3, x4 = x4, x3
+            y3, y4 = y4, y3
+
+        # 判断是否有交点
+        if x2 < x3 or x4 < x1 or max(y1, y2) < min(y3, y4) or max(y3, y4) < min(y1, y2):
+            # 此时两线段不会有交点
+            return ans
+
+        # 计算斜率和参数
+        b1, b2 = 0, 0
+        if x1 == x2:
+            k1 = None
+        else:
+            k1 = (y2 - y1) / (x2 - x1)
+            b1 = y1 - k1 * x1
+        if x3 == x4:
+            k2 = None
+        else:
+            k2 = (y4 - y3) / (x4 - x3)
+            b2 = y3 - k2 * x3
+
+        # print(k1, b1, k2, b2)
+
+        # 判断具体条件
+        if k1 is None and k2 is None:
+            if x1 == x3:
+                # 垂直重合，判断 y 的交点
+                if min(y1, y2) <= max(y3, y4):
+                    return [x1, min(y1, y2)]
+                if min(y3, y4) <= max(y1, y2):
+                    return [x1, min(y3, y4)]
+            return []
+
+        if k1 is None:
+            return [x1, k2 * x1 + b2]
+
+        if k2 is None:
+            return [x3, k1 * x3 + b1]
+        
+        if k1 == k2:
+            # 平行或重叠
+            if b1 == b2:
+                # 相交
+                # 找 x 区间的相交点
+                if x3 >= x1 and x3 <= x2:
+                    return [x3, y3]
+                if x4 >= x1 and x4 <= x2:
+                    return [x4, y4]
+                if x1 >= x3 and x1 <= x4:
+                    return [x1, y1]
+                if x2 >= x3 and x2 <= x4:
+                    return [x2, y2]
+            return []
+
+        # 相交，求交点
+        x = (b2 - b1) / (k1 - k2)
+        y = k1 * x + b1
+        if x < x1 or x < x3 or x > x2 or x > x4 or y < min(y1, y2) or y < min(y3, y4) or y > max(y1, y2) or y > max(y3, y4):
+            return []
+        return [x, y]
+```
+
 ## 面试题24. 反转链表
 
 [原题链接](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
