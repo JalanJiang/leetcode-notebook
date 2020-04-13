@@ -195,6 +195,100 @@ class Solution(object):
 
 排序 + 双指针，不需要额外空间。
 
+## 355. 设计推特
+
+[原题链接](https://leetcode-cn.com/problems/design-twitter/)
+
+### 偷懒排序法
+
+```python
+class Node:
+    def __init__(self, time, tweet_id, nxt):
+        """
+        链表节点
+        """
+        self.time = 0
+        self.nxt = nxt
+        self.tweet_id = tweet_id
+
+class Twitter:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.time = 0
+        # 用户哈希
+        self.tweets = dict()
+        self.followers = dict()
+        
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        """
+        Compose a new tweet.
+        """
+        # node = Node(self.time, tweetId, None)
+        # if userId in self.tweets:
+        #     head = self.tweet[userId]
+        #     node.nxt = head
+        # self.tweets[userId] = node
+        # self.time += 1
+        if userId not in self.tweets:
+            self.tweets[userId] = []
+        self.tweets[userId].append([self.time, tweetId])
+        self.time += 1
+
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        """
+        Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
+        """
+        ans = []
+        # 取出关注的用户
+        followers = self.followers.get(userId, set())
+        # print(self.tweets)
+        tweets = []
+        if userId in self.tweets:
+            tweets = self.tweets[userId]
+        # print(tweets)
+        # print(followers)
+        for follower in followers:
+            # tweets.extend(self.tweets[follower])
+            if follower in self.tweets:
+                tweets = tweets + self.tweets[follower]
+        tweets.sort(key=lambda x: x[0], reverse=True)
+        # print(tweets)
+        # print(tweets)
+        # print([x[1] for x in tweets[:10]])
+        return [x[1] for x in tweets[:10]]
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower follows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId == followeeId:
+            # 不允许自己关注自己
+            return
+        if followerId not in self.followers:
+            self.followers[followerId] = set()
+        self.followers[followerId].add(followeeId)
+
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower unfollows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId not in self.followers:
+            return
+        self.followers[followerId].discard(followeeId)
+
+# Your Twitter object will be instantiated and called as such:
+# obj = Twitter()
+# obj.postTweet(userId,tweetId)
+# param_2 = obj.getNewsFeed(userId)
+# obj.follow(followerId,followeeId)
+# obj.unfollow(followerId,followeeId)
+```
 
 ## 454. 四数相加 II
 
