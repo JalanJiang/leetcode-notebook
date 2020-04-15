@@ -62,6 +62,93 @@ class Solution(object):
         return res
 ```
 
+## 542. 01 矩阵
+
+[原题链接](https://leetcode-cn.com/problems/01-matrix/)
+
+### BFS：以 1 为源（超时）
+
+```python
+class Solution:
+    def updateMatrix(self, matrix: List[List[int]]) -> List[List[int]]:
+        m = len(matrix)
+        if m == 0:
+            return []
+        n = len(matrix[0])
+
+        ans = [[0 for _ in range(n)] for _ in range(m)]
+
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0:
+                    # 0 不处理
+                    continue
+                mark = [[0 for _ in range(n)] for _ in range(m)]
+                step = 0
+                queue = [(i, j, step)]
+                while len(queue) > 0:
+                    # bfs
+                    x, y, s = queue[0][0], queue[0][1], queue[0][2]
+                    del queue[0]
+                    if mark[x][y]:
+                        # 已经访问过，跳过
+                        continue
+                    # 处理
+                    mark[x][y] = 1 # 访问标记
+                    if matrix[x][y] == 0:
+                        # 找到 0，进行标记，不继续遍历
+                        ans[i][j] = s
+                        break
+                    
+                    # 否则加入上下左右
+                    directions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
+                    for d in directions:
+                        n_x, n_y = x + d[0], y + d[1]
+                        if n_x >= 0 and n_x < m and n_y >= 0 and n_y < n and mark[n_x][n_y] == 0:
+                            # 坐标符合要求
+                            # print(n_x, n_y, s + 1)
+                            queue.append((n_x, n_y, s + 1))
+        
+        return ans
+```
+
+### BFS：以 0 为源
+
+把所有 0 放入队列，每个 0 逐个向外 BFS 一圈标记相邻的 1，再把 BFS 到的 1 入队列……
+
+```python
+class Solution:
+    def updateMatrix(self, matrix: List[List[int]]) -> List[List[int]]:
+        m = len(matrix)
+        if m == 0:
+            return []
+        n = len(matrix[0])
+
+        queue = []
+
+        for i in range(m):
+            for j in range(n):
+                # 把 0 放入队列
+                if matrix[i][j] == 0:
+                    queue.append((i, j))
+                else:
+                    # 把 1 标记为未访问过的结点
+                    matrix[i][j] = -1
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while len(queue) > 0:
+            x, y = queue[0][0], queue[0][1]
+            del queue[0]
+            for d in directions:
+                n_x, n_y = x + d[0], y + d[1]
+                if n_x >= 0 and n_x < m and n_y >= 0 and n_y < n and matrix[n_x][n_y] == -1:
+                    matrix[n_x][n_y] = matrix[x][y] + 1
+                    queue.append((n_x, n_y))
+
+        return matrix
+```
+
+- 时间复杂度：$O(m * n)$
+
 ## 1162. 地图分析
 
 [原题链接](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)
