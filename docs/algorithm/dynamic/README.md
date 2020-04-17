@@ -192,7 +192,7 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/problems/jump-game/comments/)
 
-### 思路
+### 思路一
 
 数组从后往前遍历：
 
@@ -215,6 +215,7 @@ class Solution(object):
         end = length - 1
         for i in reversed(range(length - 1)):
             if i + nums[i] >= end:
+                # 把最后一个位置不断往前推
                 end = i
         
         if end == 0:
@@ -223,6 +224,31 @@ class Solution(object):
             return False
 ```
 
+### 思路二
+
+用 `mark[i]` 标记是否可以到达位置 `i`。
+
+```python
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        length = len(nums)
+        mark = [False for _ in range(length)]
+        mark[0] = True
+        begin = 1
+        for i in range(length):
+            n = nums[i]
+            if mark[i]:
+                # 可以到达
+                for j in range(begin - i, n + 1):
+                    jump = i + j
+                    if jump == length - 1:
+                        return True
+                    if jump >= length:
+                        break
+                    mark[jump] = True
+                begin = i + n + 1 if i + n + 1 < length else length - 1
+        return mark[length - 1]
+```
 
 ## 62. 不同路径
 
