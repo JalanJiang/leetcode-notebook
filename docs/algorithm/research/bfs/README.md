@@ -2,7 +2,7 @@
 
 [原题链接](https://leetcode-cn.com/problems/number-of-islands/)
 
-### 思路
+### BFS
 
 广度优先搜索 BFS。总结一下思想就是：一旦发现岛屿就找到与它相邻的岛屿并将它们沉没，那么下次再发现的岛屿就是新大陆了。
 
@@ -14,6 +14,10 @@
    2. 将岛屿加入队列
    3. 将岛屿沉没（"1" -> "0"），防止后续重复计算
    4. 使用广度优先遍历，查找该岛屿的四个相邻位置上是否还有岛屿，如果发现了岛屿就把它加入队列并且沉没
+
+<!-- tabs:start -->
+
+#### **Python**
 
 ```python
 class Solution(object):
@@ -61,6 +65,65 @@ class Solution(object):
                     
         return res
 ```
+
+#### **Go**
+
+```go
+func numIslands(grid [][]byte) int {
+    var ans int
+    
+    m := len(grid)
+    if m == 0 {
+        return ans
+    }
+    n := len(grid[0])
+
+    for i := 0; i < m; i++ {
+        for j := 0; j < n; j++ {
+            if grid[i][j] == '1' {
+                ans += 1
+                // 是岛屿，bfs
+                tmp := []int{i, j}
+                queue := make([][]int, 0)
+                queue = append(queue, tmp)
+                for len(queue) > 0 {
+                    position := queue[0]
+                    // 删除第一个元素
+                    queue = queue[1:]
+                    x := position[0]
+                    y := position[1]
+                    // 四个方向 (1, 0) (-1, 0) (0, 1) (0, -1)
+                    if x + 1 < m && grid[x + 1][y] == '1' {
+                        tmp := []int{x + 1, y}
+                        grid[x + 1][y] = '0'
+                        queue = append(queue, tmp)
+                    } 
+                    if x - 1 >= 0 && grid[x - 1][y] == '1' {
+                        tmp := []int{x - 1, y}
+                        grid[x - 1][y] = '0'
+                        queue = append(queue, tmp)
+                    }
+                    if y + 1 < n && grid[x][y + 1] == '1' {
+                        tmp := []int{x, y + 1}
+                        grid[x][y + 1] = '0'
+                        queue = append(queue, tmp)
+                    }
+                    if y - 1 >= 0 && grid[x][y - 1] == '1' {
+                        tmp := []int{x, y - 1}
+                        grid[x][y - 1] = '0'
+                        queue = append(queue, tmp)
+                    }
+                }
+                // print(queue)
+            }
+        }
+    }
+
+    return ans
+}
+```
+
+<!-- tabs:end -->
 
 ## 542. 01 矩阵
 
