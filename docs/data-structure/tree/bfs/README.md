@@ -230,6 +230,44 @@ class Solution:
 
 <!-- tabs:end -->
 
+## 199. 二叉树的右视图
+
+[原题链接](https://leetcode-cn.com/problems/binary-tree-right-side-view/)
+
+### BFS 层级别离
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        ans = []
+        queue = [root]
+        while len(queue) > 0:
+            q_length = len(queue)
+            for i in range(q_length):
+                first = queue[0] 
+                del queue[0]
+                if first is None:
+                    continue
+                if i == q_length - 1:
+                    ans.append(first.val)
+                if first.left is not None:
+                    queue.append(first.left)
+                if first.right is not None:
+                    queue.append(first.right)
+
+        return ans
+```
+
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
 ## 297. 二叉树的序列化与反序列化
 
 [原题链接](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)
