@@ -300,6 +300,27 @@ class Solution:
         return max(dp[0][length - 1], dp[1][length - 1])
 ```
 
+## 面试题 08.11. 硬币
+
+[原题链接](https://leetcode-cn.com/problems/coin-lcci/)
+
+### 思路
+
+1. 遍历所有硬币
+2. `dp[i - coin]` 表示去掉 coin 面额后的组合数量
+
+```python
+class Solution:
+    def waysToChange(self, n: int) -> int:
+        coins = [1, 5, 10, 25]
+        dp = [0 for _ in range(n + 1)]
+        dp[0] = 1
+        for coin in coins:
+            for i in range(coin, n + 1):
+                dp[i] = (dp[i] + dp[i - coin]) % 1000000007
+        return dp[n]
+```
+
 ## 面试题 16.03. 交点
 
 [原题链接](https://leetcode-cn.com/problems/intersection-lcci/)
