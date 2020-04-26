@@ -1,3 +1,53 @@
+## 23. 合并K个排序链表
+
+[原题链接](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+
+### 解一：顺序合并
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        length = len(lists)
+        i = 0
+        ans = ListNode(0)
+        head = ans
+        while len(lists) > 0:
+            min_index = 0
+            min_val = float('inf')
+            min_node = None
+            for i in range(len(lists)):
+                # 遍历数组
+                node = lists[i]
+                if node is None:
+                    continue
+                if node.val < min_val:
+                    min_index = i
+                    min_val = node.val
+                    min_node = node
+            # 最小值进入链表
+            if head is not None:
+                head.next = min_node
+                head = head.next
+            # 处理最小值
+            # next_node = min_node.next
+            if min_node is None or min_node.next is None:
+                del lists[min_index]
+            else:
+                lists[min_index] = min_node.next
+        return ans.next
+```
+
+k 个链表，n 个节点
+
+- 时间复杂度：$O(k*n)$
+- 空间复杂度：$O(n)$
+
 ## 241. 为运算表达式设计优先级
 
 [原题链接](https://leetcode-cn.com/problems/different-ways-to-add-parentheses/)
