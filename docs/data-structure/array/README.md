@@ -419,6 +419,10 @@ func removeElement(nums []int, val int) int {
 - 有序：使用二分查找
 - 无序：继续划分
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def search(self, nums, target):
@@ -446,6 +450,88 @@ class Solution(object):
                     right = mid - 1
                 else:
                     left = mid + 1 
+        return -1
+```
+
+#### **Go**
+
+```go
+func search(nums []int, target int) int {
+    length := len(nums)
+    left := 0
+    right := length - 1
+    for left <= right {
+        mid := (left + right) / 2
+        // fmt.Println(left, right, mid)
+        if nums[mid] == target {
+            return mid
+        }
+        if nums[mid] <= nums[right] {
+            // 右边是顺序数组
+            if nums[mid] <= target && target <= nums[right] {
+                // 判断是否在右边
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        } else {
+            // 左边是顺序数组
+            if nums[left] <= target && target <= nums[mid] {
+                // 判断是否在左边
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        }
+    }
+
+    return -1
+}
+```
+
+<!-- tabs:end -->
+
+----
+
+2020.04.27 复盘：
+
+想复杂了：
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        length = len(nums)
+        left = 0
+        right = length - 1
+        while left <= right:
+            mid = (left + right) // 2
+            # print(left, right, mid)
+            if nums[mid] == target:
+                return mid
+            if nums[left] <= nums[right]:
+                # 顺序数组
+                if nums[mid] > target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                # 非顺序数组：左侧的值比右边的大，说明旋转点在中间
+                if target < nums[left] and target > nums[right]:
+                    # 这种情况找不到
+                    return -1
+                if nums[mid] >= nums[left]:
+                    # 旋转点在右边
+                    if target <= nums[right] or target > nums[mid]:
+                        # 寻找的点比中间值大或比右侧点小
+                        left = mid + 1
+                    else:
+                        right = mid - 1
+                else:
+                    # 旋转点在左边
+                    if target < nums[mid] or target >= nums[left]:
+                        right = mid - 1
+                    else:
+                        left = mid + 1
         return -1
 ```
 
