@@ -450,6 +450,37 @@ class Solution:
         return cur
 ```
 
+## 面试题56 - I. 数组中数字出现的次数
+
+[原题链接](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
+
+### 思路：异或
+
+1. 求出所有数异或的结果
+2. 结果中为 1 的位表示两个数不同数字的位
+3. 根据这个为 1 的位置把 `nums` 分成两组分别异或就可以得出结果
+
+```python
+class Solution:
+    def singleNumbers(self, nums: List[int]) -> List[int]:
+        ret = 0
+        for n in nums:
+            ret ^= n
+        # 找出从右到左第一个为 1 的数
+        index = 0
+        while ret & 1 == 0:
+            # 右移 1 位
+            ret >>= 1
+            index += 1
+        a, b = 0, 0
+        for n in nums:
+            if (n >> index) & 1 == 0:
+                a ^= n
+            else:
+                b ^= n
+        return [a, b]
+```
+
 ## 面试题57 - II. 和为s的连续正数序列
 
 [原题链接](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
