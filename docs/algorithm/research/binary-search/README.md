@@ -719,3 +719,70 @@ func getMax(a int, b int) int {
 ```
 
 <!-- tabs:end -->
+
+## 1095. 山脉数组中查找目标值
+
+[原题链接](https://leetcode-cn.com/problems/find-in-mountain-array/)
+
+### 思路
+
+核心思想二分法：
+
+1. 通过二分法寻找峰值
+2. 二分法在峰值左侧寻找目标
+3. 如果目标不在左侧，使用二分法在峰值右侧寻找目标
+
+```python
+# """
+# This is MountainArray's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+#class MountainArray:
+#    def get(self, index: int) -> int:
+#    def length(self) -> int:
+
+class Solution:
+    def findInMountainArray(self, target: int, mountain_arr: 'MountainArray') -> int:
+        length = mountain_arr.length()
+        # print(length)
+        # 找到峰值
+        left = 0
+        right = length - 1
+        while left < right:
+            mid = (left + right) // 2
+            if mountain_arr.get(mid + 1) > mountain_arr.get(mid):
+                # 峰值在右侧
+                left = mid + 1
+            else:
+                right = mid
+        # 峰值
+        peak = left
+
+        # 左侧二分查找
+        left = 0
+        right = peak
+        while left <= right:
+            mid = (left + right) // 2
+            cur = mountain_arr.get(mid)
+            if cur == target:
+                return mid
+            elif cur > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        # 右边二分查找：递减数组
+        left = peak + 1
+        right = length - 1
+        while left <= right:
+            mid = (left + right) // 2
+            cur = mountain_arr.get(mid)
+            if cur == target:
+                return mid
+            elif cur > target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return -1
+```
