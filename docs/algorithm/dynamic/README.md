@@ -187,6 +187,20 @@ class Solution(object):
         return max_num
 ```
 
+2020.05.03 复盘：
+
+```python
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        length = len(nums)
+        if length == 0:
+            return 0
+        dp = [0 for _ in range(length)]
+        dp[0] = nums[0]
+        for i in range(1, length):
+            dp[i] = max(dp[i - 1] + nums[i], nums[i])
+        return max(dp)
+```
 
 ## 55. 跳跃游戏
 
