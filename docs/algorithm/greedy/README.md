@@ -74,6 +74,37 @@ class Solution(object):
         return res
 ```
 
+2020.05.04 复盘：
+
+```python
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        # 每次跳到能跳到最远的位置
+        ans = 0
+        length = len(nums)
+        i = 0
+        while i < length - 1:
+            num = nums[i]
+            max_index = i
+            max_jump = 0
+            for j in range(1, num + 1):
+                # 跳跃到的位置
+                next_i = i + j
+                if next_i >= length:
+                    break
+                if next_i == length - 1:
+                    # 已经跳到了最后一位
+                    max_index = next_i
+                    break
+                if i + next_i + nums[next_i] > max_jump:
+                    max_jump = i + next_i + nums[next_i]
+                    max_index = next_i
+            # print(i, max_jump)
+            i = max_index
+            ans += 1
+        return ans
+```
+
 ## 122. 买卖股票的最佳时机 II
 
 [原题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
