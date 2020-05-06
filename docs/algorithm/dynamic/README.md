@@ -1508,6 +1508,35 @@ class Solution:
         return len(res)
 ```
 
+## 983. 最低票价
+
+[原题链接](https://leetcode-cn.com/problems/minimum-cost-for-tickets/)
+
+### 解一：动态规划
+
+从后往前进行动态规划，用 `dp[i]` 代表从第 `i` 天到最后一天需要的最低票价。
+
+- 当 `i` 无需出行时，依据贪心法则：`dp[i] = dp[i + 1]`，即在第 `i` 天无需购票
+- 当 `i` 需要出行，`dp[i] = min(costs[j] + dp[i + j])`，`j` 的取值是 1/7/30。如果第 `i` 天出行，我们买了 `j` 天的票，那么后续 `j` 天都不需要购票事宜了，所以只要加上 `dp[i + j]` 的票价即可。
+
+```python
+class Solution:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        ans = 0
+        dp = [0 for _ in range(400)]
+        for i in range(365, 0, -1):
+            if i in days:
+                # 需要出行
+                min_dp = float('inf')
+                min_dp = min(costs[0] + dp[i + 1], costs[1] + dp[i + 7], costs[2] + dp[i + 30])
+                dp[i] = min_dp
+            else:
+                # 不需要出行
+                dp[i] = dp[i + 1]
+        # print(dp[20])
+        return dp[1]
+```
+
 ## 1137. 第 N 个泰波那契数
 
 [原题链接](https://leetcode-cn.com/problems/n-th-tribonacci-number/)
