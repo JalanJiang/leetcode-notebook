@@ -1519,6 +1519,10 @@ class Solution:
 - 当 `i` 无需出行时，依据贪心法则：`dp[i] = dp[i + 1]`，即在第 `i` 天无需购票
 - 当 `i` 需要出行，`dp[i] = min(costs[j] + dp[i + j])`，`j` 的取值是 1/7/30。如果第 `i` 天出行，我们买了 `j` 天的票，那么后续 `j` 天都不需要购票事宜了，所以只要加上 `dp[i + j]` 的票价即可。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
@@ -1536,6 +1540,42 @@ class Solution:
         # print(dp[20])
         return dp[1]
 ```
+
+#### **Go**
+
+```go
+func mincostTickets(days []int, costs []int) int {
+    dp := make([]int, 400)
+    dayMap := make(map[int]int)
+    for _, day := range days {
+        dayMap[day] = 1
+    }
+    for i := 365; i > 0; i-- {
+        // 从后向前动态规划
+        if _, ok := dayMap[i]; ok {
+            // 该天出行
+            cost0 := costs[0] + dp[i + 1]
+            cost1 := costs[1] + dp[i + 7]
+            cost2 := costs[2] + dp[i + 30]
+            dp[i] = getMin(getMin(cost0, cost1), cost2)
+        } else {
+            // 该天不出行
+            dp[i] = dp[i + 1]
+        }
+    }
+
+    return dp[1]
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+```
+
+<!-- tabs:end -->
 
 ## 1137. 第 N 个泰波那契数
 
