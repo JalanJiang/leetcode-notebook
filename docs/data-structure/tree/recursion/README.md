@@ -1034,6 +1034,12 @@ func getMax(a int, b int) int {
 
 与 [437](/tree/437.md) 递归思路类似。
 
+`t` 是否为 `s` 的子树，存在三种情况：
+
+- `t` 与 `s` 相同
+- `t` 是 `s` 的左子树
+- `t` 是 `s` 的右子树
+
 ```python
 class Solution(object):
     def isSubtree(self, s, t):
@@ -1047,6 +1053,9 @@ class Solution(object):
         return self.isSubtreeWithRoot(s, t) or self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
         
     def isSubtreeWithRoot(self, s, t):
+        """
+        t 与 s 是否相同
+        """
         if s is None and t is None:
             return True
         if s is None or t is None:
