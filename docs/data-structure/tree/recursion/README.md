@@ -1065,6 +1065,36 @@ class Solution(object):
         return self.isSubtreeWithRoot(s.left, t.left) and self.isSubtreeWithRoot(s.right, t.right)
 ```
 
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSubtree(s *TreeNode, t *TreeNode) bool {
+    if s == nil {
+        return false
+    }
+    return isSubtree(s.Left, t) || isSubtree(s.Right, t) || isSubtreeWithRoot(s, t)
+}
+
+func isSubtreeWithRoot(s *TreeNode, t *TreeNode) bool {
+    if s == nil && t == nil {
+        return true
+    }
+    if s == nil || t == nil {
+        return false
+    }
+    if s.Val != t.Val {
+        return false
+    }
+    return isSubtreeWithRoot(s.Left, t.Left) && isSubtreeWithRoot(s.Right, t.Right)
+}
+```
+
 ## 617. 合并二叉树
 
 [原题链接](https://leetcode-cn.com/problems/merge-two-binary-trees/description/)
