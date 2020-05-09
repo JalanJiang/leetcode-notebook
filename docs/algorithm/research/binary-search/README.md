@@ -219,6 +219,10 @@ class Solution(object):
 
 二分查找，注意边界值的处理。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def mySqrt(self, x):
@@ -244,6 +248,30 @@ class Solution(object):
                 return mid
 
 ```
+
+#### **Go**
+
+```go
+func mySqrt(x int) int {
+    left := 0
+    right := x
+    ans := 0
+    for left <= right {
+        mid := (left + right) / 2
+        // fmt.Println(mid)
+        if mid * mid <= x {
+            // 可能出现结果
+            ans = mid
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+    return ans
+}
+```
+
+<!-- tabs:end -->
 
 ps：看评论有很秀的牛顿迭代法，有空研究下。
 
