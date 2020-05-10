@@ -729,6 +729,41 @@ class Solution:
         return root
 ```
 
+#### **Go**
+
+```go
+/**
+ * Definition for TreeNode.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *ListNode
+ *     Right *ListNode
+ * }
+ */
+ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+     if root == nil || root == p || root == q {
+         return root
+     }
+
+     // 寻找左子树
+     left := lowestCommonAncestor(root.Left, p, q)
+     // 寻找右子树
+     right := lowestCommonAncestor(root.Right, p, q)
+
+     if left == nil && right == nil {
+         return nil
+     }
+     if left == nil {
+         return right
+     }
+     if right == nil {
+         return left
+     }
+     
+     return root
+}
+```
+
 <!-- tabs:end -->
 
 ## 337. 打家劫舍 III
