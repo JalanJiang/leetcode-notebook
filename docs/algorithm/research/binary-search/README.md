@@ -210,6 +210,39 @@ class Solution(object):
         return left
 ```
 
+## 50. Pow(x, n)
+
+[原题链接](https://leetcode-cn.com/problems/powx-n/)
+
+### 思路：二分
+
+利用分治的思想，$x^2n$ 均可以写作 $x^n * x^n$。
+
+递归：
+
+```go
+func myPow(x float64, n int) float64 {
+    if n >= 0 {
+        return quickMul(x, n)
+    }
+    return 1 / quickMul(x, -n)
+}
+
+func quickMul(x float64, n int) float64 {
+    if n == 0 {
+        return 1
+    }
+    if n == 1 {
+        return x
+    }
+    y := quickMul(x, n / 2)
+    if n % 2 == 0 {
+        return y * y
+    } else {
+        return y * y * x
+    }
+}
+```
 
 ## 69. x 的平方根
 
