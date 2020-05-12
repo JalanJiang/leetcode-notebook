@@ -103,6 +103,10 @@ class Solution(object):
 
 - 每次入栈两个值：当前入栈元素、栈内最小值，保证栈内最小值永远在栈顶
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class MinStack(object):
 
@@ -152,6 +156,82 @@ class MinStack(object):
         """
         return self.stack[len(self.stack) - 1]
 ```
+
+#### **Go**
+
+```go
+type MinStack struct {
+    Stack1 []int // 存放数据栈
+    Stack2 []int // 递减栈
+}
+
+
+/** initialize your data structure here. */
+func Constructor() MinStack {
+    var minStack MinStack
+    minStack.Stack1 = make([]int, 0)
+    minStack.Stack2 = make([]int, 0)
+    return minStack
+}
+
+
+func (this *MinStack) Push(x int)  {
+    // 入栈
+    this.Stack1 = append(this.Stack1, x)
+    // 维护递减栈
+    stack2Length := len(this.Stack2)
+    if stack2Length == 0 {
+        this.Stack2 = append(this.Stack2, x)
+    } else {
+        // 与栈顶元素对比
+        top := this.Stack2[stack2Length - 1]
+        if x < top {
+            this.Stack2 = append(this.Stack2, x)
+        } else {
+            this.Stack2 = append(this.Stack2, top)
+        }
+    }
+    // fmt.Println(this.Stack1)
+    // fmt.Println(this.Stack2)
+}
+
+
+func (this *MinStack) Pop()  {
+    // 弹出元素
+    stack1Length := len(this.Stack1)
+    this.Stack1 = this.Stack1[:stack1Length - 1]
+    stack2Length := len(this.Stack2)
+    this.Stack2 = this.Stack2[:stack2Length - 1]
+    // fmt.Println(this.Stack1)
+    // fmt.Println(this.Stack2)
+}
+
+
+func (this *MinStack) Top() int {
+    // 返回栈顶元素
+    stack1Length := len(this.Stack1)
+    return this.Stack1[stack1Length - 1]
+}
+
+
+func (this *MinStack) GetMin() int {
+    // 返回 stack2 栈顶元素
+    stack2Length := len(this.Stack2)
+    return this.Stack2[stack2Length - 1]
+}
+
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.GetMin();
+ */
+```
+
+<!-- tabs:end -->
 
 ## 173. 二叉搜索树迭代器
 
