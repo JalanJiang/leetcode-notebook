@@ -772,7 +772,7 @@ class Solution:
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         if head is None or head.next is None:
-            return head 
+            return head
         
         # 取下一个节点
         node = self.reverseList(head.next)

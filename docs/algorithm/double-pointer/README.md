@@ -220,3 +220,77 @@ class Solution {
 ```
 
 <!-- tabs:end -->
+
+## 面试题 10.01. 合并排序的数组
+
+[原题链接](https://leetcode-cn.com/problems/sorted-merge-lcci/)
+
+### 逆向双指针
+
+- 定义两个指针 `cur_a` 与 `cur_b`，分别指向 A 数组与 B 数组的尾部，再定义一个指针 `cur` 指向 A 数组当前可以赋值的元素位置
+- 比较 `cur_a` 与 `cur_b` 指向的两个元素，把较大的元素赋值给 `cur` 所在位置
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def merge(self, A: List[int], m: int, B: List[int], n: int) -> None:
+        """
+        Do not return anything, modify A in-place instead.
+        """
+        # 双指针：指向两个比较的数
+        cur_a = m - 1
+        cur_b = n - 1
+        # 指向要赋值的位置
+        cur = len(A) - 1
+
+        while cur_a >= 0 and cur_b >= 0:
+            a = A[cur_a]
+            b = B[cur_b]
+            # 取较大的放在后面
+            if a >= b:
+                A[cur] = a
+                cur_a -= 1
+            else:
+                A[cur] = b
+                cur_b -= 1
+            cur -= 1
+        
+        while cur_b >= 0:
+            A[cur] = B[cur_b]
+            cur_b -= 1
+            cur -= 1
+```
+
+#### **Go**
+
+```go
+func merge(A []int, m int, B []int, n int)  {
+    curA := m - 1
+    curB := n - 1
+    cur := len(A) - 1
+
+    for curA >= 0 && curB >= 0 {
+        a := A[curA]
+        b := B[curB]
+        if a >= b {
+            A[cur] = a
+            curA -= 1
+        } else {
+            A[cur] = b
+            curB -= 1
+        }
+        cur -= 1
+    }
+
+    for curB >= 0 {
+        A[cur] = B[curB]
+        curB -= 1
+        cur -= 1
+    }
+}
+```
+
+<!-- tabs:end -->

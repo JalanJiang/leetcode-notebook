@@ -37,7 +37,9 @@
     * [双指针](algorithm/double-pointer/)
     * [滑动窗口](algorithm/sliding-window/)
     * [其他](algorithm/other/)
+  * [3.3 设计](design/README.md)
   * 3.3 竞赛
     * [周赛](weekly/)
     * [双周赛](biweekly/)
     * [其他](other/)
+  * [3.4 剑指 offer 系列](offer/)

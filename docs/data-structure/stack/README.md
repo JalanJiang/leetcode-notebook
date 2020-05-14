@@ -103,6 +103,10 @@ class Solution(object):
 
 - 每次入栈两个值：当前入栈元素、栈内最小值，保证栈内最小值永远在栈顶
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class MinStack(object):
 
@@ -152,6 +156,150 @@ class MinStack(object):
         """
         return self.stack[len(self.stack) - 1]
 ```
+
+#### **Go**
+
+```go
+type MinStack struct {
+    Stack1 []int // 存放数据栈
+    Stack2 []int // 递减栈
+}
+
+
+/** initialize your data structure here. */
+func Constructor() MinStack {
+    var minStack MinStack
+    minStack.Stack1 = make([]int, 0)
+    minStack.Stack2 = make([]int, 0)
+    return minStack
+}
+
+
+func (this *MinStack) Push(x int)  {
+    // 入栈
+    this.Stack1 = append(this.Stack1, x)
+    // 维护递减栈
+    stack2Length := len(this.Stack2)
+    if stack2Length == 0 {
+        this.Stack2 = append(this.Stack2, x)
+    } else {
+        // 与栈顶元素对比
+        top := this.Stack2[stack2Length - 1]
+        if x < top {
+            this.Stack2 = append(this.Stack2, x)
+        } else {
+            this.Stack2 = append(this.Stack2, top)
+        }
+    }
+    // fmt.Println(this.Stack1)
+    // fmt.Println(this.Stack2)
+}
+
+
+func (this *MinStack) Pop()  {
+    // 弹出元素
+    stack1Length := len(this.Stack1)
+    this.Stack1 = this.Stack1[:stack1Length - 1]
+    stack2Length := len(this.Stack2)
+    this.Stack2 = this.Stack2[:stack2Length - 1]
+    // fmt.Println(this.Stack1)
+    // fmt.Println(this.Stack2)
+}
+
+
+func (this *MinStack) Top() int {
+    // 返回栈顶元素
+    stack1Length := len(this.Stack1)
+    return this.Stack1[stack1Length - 1]
+}
+
+
+func (this *MinStack) GetMin() int {
+    // 返回 stack2 栈顶元素
+    stack2Length := len(this.Stack2)
+    return this.Stack2[stack2Length - 1]
+}
+
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.GetMin();
+ */
+```
+
+<!-- tabs:end -->
+
+## 173. 二叉搜索树迭代器
+
+[原题链接](https://leetcode-cn.com/problems/binary-search-tree-iterator/)
+
+### 解法一
+
+在构造函数中使用中序遍历将二叉搜索树转为升序序列，然后在 `next` 时依次出列。
+
+但时间复杂度不符合题目要求。
+
+### 解法二
+
+不需要一次性生成整个序列，可以用栈模拟递归过程。
+
+1. 在构造函数中：将树的所有左节点压入栈（这样最左的节点就在栈顶了）
+2. 调用 `next` 时，弹出栈顶元素，此时判断该节点是否存在右节点，若存在则将右节点入栈，且将该节点的所有左节点依次入栈（中序遍历的顺序为 左->中->右，弹出的栈顶元素相当于中间节点，遍历到中间节点后就要遍历右节点了）
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.stack = []
+        # 左节点依次入栈
+        while root is not None:
+            self.stack.append(root)
+            root = root.left
+
+    def next(self) -> int:
+        """
+        @return the next smallest number
+        """
+        # 弹出栈顶
+        cur = self.stack.pop()
+        # 判断是否存在右子树
+        right = cur.right
+        while right is not None:
+            self.stack.append(right)
+            right = right.left
+        return cur.val
+
+
+    def hasNext(self) -> bool:
+        """
+        @return whether we have a next smallest number
+        """
+        return len(self.stack) > 0
+
+
+
+# Your BSTIterator object will be instantiated and called as such:
+# obj = BSTIterator(root)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()
+```
+
+关于复杂度的分析截取一下[这篇题解](https://leetcode-cn.com/problems/binary-search-tree-iterator/solution/nextshi-jian-fu-za-du-wei-o1-by-user5707f/)：
+
+> 但是很多小伙伴会对next()中的循环操作的复杂度感到疑惑，认为既然加入了循环在里面，那时间复杂度肯定是大于O(1)不满足题目要求的。
+> 仔细分析一下，该循环只有在节点有右子树的时候才需要进行，也就是不是每一次操作都需要循环的，循环的次数加上初始化的循环总共会有O(n)次操作，均摊到每一次 `next()` 的话平均时间复杂度则是 `O(n)/n=O(1)`，因此可以确定该实现方式满足 `O(1)` 的要求。
+>这种分析方式称为摊还分析，详细的学习可以看看《算法导论》- 第17章 摊还分析
 
 ## 232. 用栈实现队列
 
@@ -333,6 +481,481 @@ class MyStack:
             return True
 ```
 
+### 双队列解法一
+
+定义两个辅助队列 `queue1` 与 `queue2`，使用一个变量 `top_element` 记录栈顶元素。
+
+- `push()`：将元素入队 `queue1`
+- `pop()`：
+  - 将 `queue1` 内所有元素全部出队，除最后一个元素外，其余入队 `queue2`，而后删除最后一个元素并返回
+  - 更新 `top_element`
+  - 调换 `queue1` 与 `queue2`
+- `top()`：返回 `top_elenemt`
+- `empty()`：判断 `queue1` 的长度
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queue1 = []
+        self.queue2 = []
+        self.top_element = 0
+        
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.queue1.append(x)
+        self.top_element = x
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        # 把 queue1 里的元素取出，留下一个，其余塞入 queue2 中
+        length1 = len(self.queue1)
+        for i in range(length1 - 1):
+            item = self.queue1[0]
+            del self.queue1[0]
+            self.queue2.append(item)
+        self.top = item
+        target = self.queue1[0]
+        del self.queue1[0]
+        # 交换 queue1 与 queue2
+        self.queue1 = self.queue2
+        self.queue2 = []
+        return target
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        # length1 = len(self.queue1)
+        # for i in range(length1):
+        #     item = self.queue1[0]
+        #     del self.queue1[0]
+        #     self.queue2.append(item)
+        # self.queue1 = self.queue2
+        # self.queue2 = []
+        # return item
+        return self.top_element
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.queue1) == 0
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+```
+
+#### **Go**
+
+```go
+type MyStack struct {
+    Queue1 []int
+    Queue2 []int
+    TopElement int
+}
+
+
+/** Initialize your data structure here. */
+func Constructor() MyStack {
+    var myStack MyStack
+    return myStack
+}
+
+
+/** Push element x onto stack. */
+func (this *MyStack) Push(x int)  {
+    this.Queue1 = append(this.Queue1, x)
+    this.TopElement = x
+}
+
+
+/** Removes the element on top of the stack and returns that element. */
+func (this *MyStack) Pop() int {
+    length1 := len(this.Queue1)
+    for i := 0; i < length1 - 1; i++ {
+        // 取出每个元素
+        item := this.Queue1[0]
+        this.TopElement = item
+        // 删除元素
+        this.Queue1 = this.Queue1[1:]
+        // 入队列 2
+        this.Queue2 = append(this.Queue2, item)
+    }
+    target := this.Queue1[0]
+    // 交换
+    this.Queue1 = this.Queue2
+    this.Queue2 = make([]int, 0)
+    return target
+}
+
+
+/** Get the top element. */
+func (this *MyStack) Top() int {
+    return this.TopElement
+}
+
+
+/** Returns whether the stack is empty. */
+func (this *MyStack) Empty() bool {
+    return len(this.Queue1) == 0
+}
+
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * param_2 := obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.Empty();
+ */
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：压入 $O(1)$，弹出 $O(n)$
+
+### 双队列解法二
+
+定义两个辅助队列 `queue1` 与 `queue2`，使用一个变量 `top_element` 记录栈顶元素。
+
+- `push()`: 
+  - 将元素入队 `queue2`，此时 `queue2` 中的首个元素为栈顶元素
+  - 更新 `top_element`
+  - 此时若 `queue1` 不为空，则让 `queue1` 中的元素逐个出队并加入 `queue2` 中
+- `pop()`: `queue1` 首个元素出队，更新 `top_element`
+- `top()`: 返回 `top_element`
+- `empty()`: 判断 `queue1` 长度
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queue1 = []
+        self.queue2 = []
+        self.top_element = 0
+
+
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        # 更新栈顶元素
+        self.top_element = x
+        # 加入 queue2 中
+        self.queue2.append(x)
+        if not self.empty():
+            # 如果 queue1 不为空，取出元素并加入 queue2
+            length1 = len(self.queue1)
+            for i in range(length1):
+                self.queue2.append(self.queue1[0])
+                del self.queue1[0]
+        # 交换
+        self.queue1 = self.queue2
+        self.queue2 = []
+
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        target = self.queue1[0]
+        del self.queue1[0]
+        # 更新 top_element
+        if not self.empty():
+            self.top_element = self.queue1[0]
+        return target
+
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        return self.top_element
+
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.queue1) == 0
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+```
+
+#### **Go**
+
+```go
+type MyStack struct {
+    Queue1 []int
+    Queue2 []int
+    TopElement int
+}
+
+
+/** Initialize your data structure here. */
+func Constructor() MyStack {
+    var myStack MyStack
+    return myStack
+}
+
+
+/** Push element x onto stack. */
+func (this *MyStack) Push(x int)  {
+    this.Queue2 = append(this.Queue2, x)
+    // 更新栈顶元素
+    this.TopElement = x
+    if !this.Empty() {
+        length1 := len(this.Queue1)
+        for i := 0; i < length1; i++ {
+            this.Queue2 = append(this.Queue2, this.Queue1[0])
+            // 删除元素
+            this.Queue1 = this.Queue1[1:]
+        }
+    }
+    // 交换
+    this.Queue1 = this.Queue2
+    this.Queue2 = make([]int, 0)
+}
+
+
+/** Removes the element on top of the stack and returns that element. */
+func (this *MyStack) Pop() int {
+    target := this.Queue1[0]
+    this.Queue1 = this.Queue1[1:]
+    if !this.Empty() {
+        // 更新栈顶元素
+        this.TopElement = this.Queue1[0]
+    }
+    return target
+}
+
+
+/** Get the top element. */
+func (this *MyStack) Top() int {
+    return this.TopElement
+}
+
+
+/** Returns whether the stack is empty. */
+func (this *MyStack) Empty() bool {
+    return len(this.Queue1) == 0
+}
+
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * param_2 := obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.Empty();
+ */
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：压入 $O(n)$，弹出 $O(1)$
+
+### 单队列解法三
+
+定义辅助队列 `queue`。
+
+- `push()`：
+  - 将元素入队
+  - 除新入队元素，将其他元素从队首取出，再从队尾入队（完成反序）。此时队首元素即为新入队元素
+- `pop()`：`queue` 首个元素出队 
+- `top()`：获取 `queue` 首个元素
+- `empty()`：判断 `queue` 长度
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class MyStack:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queue = []
+
+
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.queue.append(x)
+        # 队列反序
+        length = len(self.queue)
+        for i in range(length - 1):
+            first = self.queue[0]
+            del self.queue[0]
+            self.queue.append(first)
+
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        target = self.queue[0]
+        del self.queue[0]
+        return target
+
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        return self.queue[0]
+
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.queue) == 0
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+```
+
+#### **Go**
+
+```go
+type MyStack struct {
+    Queue []int
+}
+
+
+/** Initialize your data structure here. */
+func Constructor() MyStack {
+    var myStack MyStack
+    return myStack
+}
+
+
+/** Push element x onto stack. */
+func (this *MyStack) Push(x int)  {
+    this.Queue = append(this.Queue, x)
+    length := len(this.Queue)
+    for i := 0; i < length - 1; i++ {
+        // 反序操作
+        first := this.Queue[0]
+        this.Queue = this.Queue[1:]
+        this.Queue = append(this.Queue, first)
+    }
+}
+
+
+/** Removes the element on top of the stack and returns that element. */
+func (this *MyStack) Pop() int {
+    target := this.Queue[0]
+    this.Queue = this.Queue[1:]
+    return target
+}
+
+
+/** Get the top element. */
+func (this *MyStack) Top() int {
+    return this.Queue[0]
+}
+
+
+/** Returns whether the stack is empty. */
+func (this *MyStack) Empty() bool {
+    return len(this.Queue) == 0
+}
+
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * param_2 := obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.Empty();
+ */
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：压入 $O(n)$，弹出 $O(1)$
+
+## 331. 验证二叉树的前序序列化
+
+[原题链接](https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/)
+
+### 解一：用栈辅助
+
+按字符顺序依次入栈。如果入栈元素为 `#`，就判断栈顶能否凑成 `n##` 格式（`n` 为数字），如果可以就弹出 `n##`，让 `#` 入栈。因为 `n##` 表示一个叶节点，用 `#` 替代它以便让它的父节点达成叶节点条件（以此证明它是合法节点）。
+
+```python
+class Solution:
+    def isValidSerialization(self, preorder: str) -> bool:
+
+        stack = list()
+        nodes = preorder.split(",")
+
+        for node in nodes:
+            self.add_item(stack, node)
+            # print(stack)
+            
+        return True if len(stack) == 1 and stack[-1] == "#" else False
+
+    def add_item(self, stack, node):
+        if node == "#":
+            if len(stack) > 1:
+                # 判断能否凑成 x##
+                if stack[-1] == "#" and stack[-2] != "#":
+                    stack.pop()
+                    stack.pop()
+                    # 加入新的 #
+                    self.add_item(stack, "#")
+                else:
+                    stack.append(node)
+            else:
+                stack.append(node)
+        else:
+            stack.append(node)
+```
+
 ## 503. 下一个更大元素 II
 
 [原题链接](https://leetcode-cn.com/problems/next-greater-element-ii/submissions/)
@@ -453,4 +1076,55 @@ class Solution(object):
         return res_list
 ```
 
+## 946. 验证栈序列
 
+[原题链接](https://leetcode-cn.com/problems/validate-stack-sequences/)
+
+模拟栈序列。
+
+```python
+class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = []
+        push_i = 0
+        pop_i = 0
+        length = len(pushed)
+
+        while 1:
+            # 判断栈顶元素是否为 pop 元素
+            if len(stack) > 0 and stack[-1] == popped[pop_i]:
+                stack.pop()
+                pop_i += 1
+            else:
+                # 压入新的元素
+                if push_i >= length:
+                    break
+                stack.append(pushed[push_i])
+                push_i += 1
+
+        return len(stack) == 0
+```
+
+## 1111. 有效括号的嵌套深度
+
+[原题链接](https://leetcode-cn.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/)
+
+### 解一：栈匹配
+
+1. 通过栈匹配来计算每个括号所属的深度
+2. 把同一深度的括号平均分配给 A 和 B
+
+```python
+class Solution:
+    def maxDepthAfterSplit(self, seq: str) -> List[int]:
+        depth = 0
+        ans = []
+        for s in seq:
+            if s == '(':
+                depth += 1
+                ans.append(depth % 2)
+            else:
+                ans.append(depth % 2)
+                depth -= 1
+        return ans
+```

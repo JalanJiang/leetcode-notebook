@@ -484,6 +484,95 @@ class Solution:
         return "x=" + str(-num // x_count)
 ```
 
+## 836. 矩形重叠
+
+[原题链接](https://leetcode-cn.com/problems/rectangle-overlap/)
+
+### 思路
+
+判断「不相交」的条件。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def isRectangleOverlap(self, rec1: List[int], rec2: List[int]) -> bool:
+        ax1, ay1 = rec1[0], rec1[1]
+        ax2, ay2 = rec1[2], rec1[3]
+        bx1, by1 = rec2[0], rec2[1]
+        bx2, by2 = rec2[2], rec2[3]
+        # 判断是否相交
+        if ax2 <= bx1 or ax1 >= bx2 or ay2 <= by1 or ay1 >= by2:
+            return False
+        return True
+```
+
+#### **Go**
+
+```go
+func isRectangleOverlap(rec1 []int, rec2 []int) bool {
+    ax1, ay1 := rec1[0], rec1[1]
+    ax2, ay2 := rec1[2], rec1[3]
+    bx1, by1 := rec2[0], rec2[1]
+    bx2, by2 := rec2[2], rec2[3]
+    if ax2 <= bx1 || ax1 >= bx2 || ay2 <= by1 || ay1 >= by2 {
+        return false
+    }
+    return true
+}
+```
+
+<!-- tabs:end -->
+
+## 1103. 分糖果 II
+
+[原题链接](https://leetcode-cn.com/problems/distribute-candies-to-people/)
+
+### 等差数列
+
+```python
+class Solution:
+    def distributeCandies(self, candies: int, num_people: int) -> List[int]:
+        s = 0
+        x = 1
+        people = 0
+        while s + x < candies:
+            people += 1
+            s += x
+            x += 1
+        # 只够发到 x - 1 个人，第 x 个人可能没有足额糖果
+
+        # 计算可以发几轮（总轮数）
+        r = people // num_people
+        # print(people, r)
+        # 多发一排人数
+        other = people % num_people
+        # 最后可能有剩余糖果分给最后一个人
+
+        # 等差数列 d = n
+        # 给每个小朋友发
+        res = [0 for _ in range(num_people)]
+        for i in range(num_people):
+            res[i] = (i + 1) * r + (r * (r - 1) * num_people) // 2
+
+        # 给最后一排分糖果
+        other_begin = r * num_people + 1
+        for i in range(other):
+            res[i] += other_begin
+            other_begin += 1
+
+        if s < candies:
+            index = i + 1
+            if i + 1 == num_people:
+                index = 0
+            res[index] += candies - s
+
+        # print(res)
+        return res
+```
+
 ## 1276. 不浪费原料的汉堡制作方案
 
 [原题链接](https://leetcode-cn.com/problems/number-of-burgers-with-no-waste-of-ingredients/)

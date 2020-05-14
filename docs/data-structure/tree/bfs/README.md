@@ -11,42 +11,76 @@
     - 若该节点的左节点不为空：左节点入队列
     - 若该节点的右节点不为空：右节点入队列
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
-    def levelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
-        if root is None:
-            return []
-        
-        q = list()
-        res = list()
-        q.append(root)
-        while q:
-            tmp = list()
-            # 此时队列中的节点为同层节点
-            for i in range(len(q)):
-                node = q[0]
-                del q[0]
-                #if node is not None:
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        queue = []
+        queue.append(root)
+        res = []
+        while len(queue) > 0:
+            length = len(queue)
+            tmp = []
+            for i in range(length):
+                node = queue[0]
+                del queue[0]
+                if node is None:
+                    continue
                 tmp.append(node.val)
-                if node.left is not None:
-                    q.append(node.left)
-                if node.right is not None:
-                    q.append(node.right)
-                    
-            res.append(tmp)
+                queue.append(node.left)
+                queue.append(node.right)
+            if len(tmp) > 0:
+                res.append(tmp)
         return res 
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func levelOrder(root *TreeNode) [][]int {
+    queue := make([]*TreeNode, 0)
+    queue = append(queue, root)
+    res := make([][]int, 0)
+    for len(queue) > 0 {
+        tmp := make([]int, 0)
+        length := len(queue)
+        for i := 0; i < length; i++ {
+            q := queue[0]
+            queue = queue[1:]
+            if q == nil {
+                continue
+            }
+            tmp = append(tmp, q.Val)
+            queue = append(queue, q.Left)
+            queue = append(queue, q.Right)
+        }
+        if len(tmp) > 0 {
+            res = append(res, tmp)
+        }
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 ## 108. 将有序数组转换为二叉搜索树
    
@@ -91,7 +125,7 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/)
 
-### 思路
+### 解一：实用了额外空间
 
 层次遍历的变种考点。
 
@@ -134,6 +168,201 @@ class Solution(object):
                     q.append(node.right)
                 
         return root
+```
+
+### 解二：常数空间 + 递归
+
+- 不断找到下一个可关联的右侧不为空节点
+- 注意：先构造右子树
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        self.handler(root)
+        return root
+
+    def handler(self, root):
+        if root is None or (root.left is None and root.right is None):
+            return
+
+        # 处理左节点
+        if root.left is not None:
+            if root.right is not None:
+                # 如果存在右节点：指向右节点
+                root.left.next = root.right
+            else:
+                # 如果不存在右节点；一直往下找到第一个存在的右侧节点
+                root.left.next = self.get_next(root)
+        
+        # 处理右节点
+        # 使用 next 指针
+        if root.right is not None:
+            root.right.next = self.get_next(root)
+        
+        # 先递归右子树
+        self.handler(root.right)
+        self.handler(root.left)
+        
+
+    def get_next(self, root):
+        next_node = root.next
+        while next_node is not None:
+            if next_node.left is not None:
+                return next_node.left
+            if next_node.right is not None:
+                return next_node.right
+            next_node = next_node.next
+        return None
+```
+
+<!-- tabs:end -->
+
+## 199. 二叉树的右视图
+
+[原题链接](https://leetcode-cn.com/problems/binary-tree-right-side-view/)
+
+### BFS 层级别离
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        ans = []
+        queue = [root]
+        while len(queue) > 0:
+            q_length = len(queue)
+            for i in range(q_length):
+                first = queue[0] 
+                del queue[0]
+                if first is None:
+                    continue
+                if i == q_length - 1:
+                    ans.append(first.val)
+                if first.left is not None:
+                    queue.append(first.left)
+                if first.right is not None:
+                    queue.append(first.right)
+
+        return ans
+```
+
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
+
+## 297. 二叉树的序列化与反序列化
+
+[原题链接](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)
+
+### BFS：层序遍历
+
+- 序列化：将题中二叉树利用辅助队列层序遍历为 `1,2,3,null,null,4,5`
+- 反序列化：字符串转为数组，将第一个节点入队列，依旧以队列的方式进行反序列化
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        str_list = []
+        queue = []
+        queue.append(root)
+        while len(queue) > 0:
+            q_length = len(queue)
+            for i in range(q_length):
+                # 取出队列头部节点
+                first = queue[0]
+                del queue[0]
+                if first is None:
+                    str_list.append("N")
+                    continue
+                str_list.append(str(first.val))
+                # 左右节点入队列
+                queue.append(first.left)
+                queue.append(first.right)
+        # print(str_list)
+        return ','.join(str_list)
+        
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        str_list = data.split(',')
+        # 取出第一个节点
+        first = str_list[0]
+        root = self.get_node(first)
+        queue = []
+        queue.append(root)
+        del str_list[0]
+        while len(queue) > 0:
+            q_length = len(queue)
+            for i in range(q_length):
+                first = queue[0]
+                del queue[0]
+                if first is None:
+                    continue
+                # 构造它的左右节点
+                str_list_length = len(str_list)
+                if str_list_length >= 2:
+                    left_node = self.get_node(str_list[0])
+                    del str_list[0]
+                    right_node = self.get_node(str_list[0])
+                    del str_list[0]
+                elif str_list_length == 1:
+                    left_node = self.get_node(str_list[0])
+                    right_node = None
+                    del str_list[0]
+                else:
+                    left_node = None
+                    right_node = None
+                first.left = left_node
+                first.right = right_node
+                if left_node is not None:
+                    queue.append(left_node)
+                if right_node is not None:
+                    queue.append(right_node)
+
+        return root
+        
+    def get_node(self, root_val):
+        if root_val == 'N':
+            return None
+        else:
+            return TreeNode(int(root_val))
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
 ```
 
 ## 513. 找树左下角的值

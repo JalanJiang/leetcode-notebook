@@ -213,3 +213,33 @@ class Solution:
 
 - 时间复杂度：$O(l1 + (l2 - l1))$（$l1$ 为字符串 s1 长度，$l2$ 为字符串 s2 长度）
 - 空间复杂度：$O(1)$
+
+## 1248. 统计「优美子数组」
+
+[原题链接](https://leetcode-cn.com/problems/count-number-of-nice-subarrays/)
+
+### 滑动窗口
+
+记录奇数的位置。固定 k 个奇数，子数组的个数 = 第一个奇数左边偶数的个数 * 最后一个奇数右边偶数的个数。
+
+```python
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        ans = 0
+        # 开始位置
+        odd = [-1]
+        # 记录奇数下标
+        for i in range(len(nums)):
+            if nums[i] % 2 == 1:
+                odd.append(i)
+        # 添加结束位置
+        odd.append(len(nums))
+        
+        # 遍历奇数数组
+        for j in range(1, len(odd) - k):
+            # 从第 i 个到 i + k - 1
+            # 第 i 个奇数前面的偶数个数 * 第 i + k - 1 后面的偶数个数
+            ans += (odd[j] - odd[j - 1]) * (odd[j + k] - odd[j + k - 1])
+
+        return ans
+```

@@ -187,12 +187,26 @@ class Solution(object):
         return max_num
 ```
 
+2020.05.03 复盘：
+
+```python
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        length = len(nums)
+        if length == 0:
+            return 0
+        dp = [0 for _ in range(length)]
+        dp[0] = nums[0]
+        for i in range(1, length):
+            dp[i] = max(dp[i - 1] + nums[i], nums[i])
+        return max(dp)
+```
 
 ## 55. 跳跃游戏
 
 [原题链接](https://leetcode-cn.com/problems/jump-game/comments/)
 
-### 思路
+### 思路一
 
 数组从后往前遍历：
 
@@ -215,6 +229,7 @@ class Solution(object):
         end = length - 1
         for i in reversed(range(length - 1)):
             if i + nums[i] >= end:
+                # 把最后一个位置不断往前推
                 end = i
         
         if end == 0:
@@ -223,6 +238,31 @@ class Solution(object):
             return False
 ```
 
+### 思路二
+
+用 `mark[i]` 标记是否可以到达位置 `i`。
+
+```python
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        length = len(nums)
+        mark = [False for _ in range(length)]
+        mark[0] = True
+        begin = 1
+        for i in range(length):
+            n = nums[i]
+            if mark[i]:
+                # 可以到达
+                for j in range(begin - i, n + 1):
+                    jump = i + j
+                    if jump == length - 1:
+                        return True
+                    if jump >= length:
+                        break
+                    mark[jump] = True
+                begin = i + n + 1 if i + n + 1 < length else length - 1
+        return mark[length - 1]
+```
 
 ## 62. 不同路径
 
@@ -443,6 +483,90 @@ class Solution(object):
             
         return cur
 ```
+
+## 72. 编辑距离
+
+[原题链接](https://leetcode-cn.com/problems/edit-distance/)
+
+### 动态规划
+
+用 `dp[i][j]` 表示 `words1` 前 `i` 个字符到 `words2` 前 `j` 个字符的编辑距离。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        length1 = len(word1)
+        length2 = len(word2)
+        # 如果有字符串为空
+        if length1 == 0 or length2 == 0:
+            return length1 + length2
+
+        dp = [[0 for _ in range(length2 + 1)] for _ in range(length1 + 1)]
+
+        # 初始化边界值
+        for i in range(length1 + 1):
+            dp[i][0] = i
+        for j in range(length2 + 1):
+            dp[0][j] = j
+
+        # 计算 dp
+        # 从字符串末尾插入或更新字符
+        # 状态转移方程：
+        # 末尾相同时：dp[i][j] = dp[i - 1][j - 1]
+        # 末尾不同时（替换或插入操作）：dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1)
+        for i in range(1, length1 + 1):
+            for j in range(1, length2 + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
+
+        return dp[length1][length2]
+```
+
+#### **Go**
+
+```go
+func minDistance(word1 string, word2 string) int {
+    length1 := len(word1)
+    length2 := len(word2)
+    var dp = make([][]int, length1 + 1)
+    for i := 0; i < length1 + 1; i++ {
+        dp[i] = make([]int, length2 + 1)
+    }
+    // 初始化
+    for i := 0; i < length1 + 1; i++ {
+        dp[i][0] = i
+    }
+    for j := 0; j < length2 + 1; j++ {
+        dp[0][j] = j
+    }
+    // 计算 dp
+    for i := 1; i < length1 + 1; i ++ {
+        for j := 1; j < length2 + 1; j++ {
+            if word1[i - 1] == word2[j - 1] {
+                dp[i][j] = dp[i - 1][j - 1]
+            } else {
+                dp[i][j] = getMin(dp[i - 1][j - 1], getMin(dp[i - 1][j], dp[i][j - 1])) + 1
+            }
+        }
+    }
+    return dp[length1][length2]
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 95. 不同的二叉搜索树 II
@@ -822,15 +946,11 @@ class Solution(object):
 
 论动态规划，这题和 [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) 思路挺像的。
 
-
-
 ## 300. 最长上升子序列
 
 [原题链接](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
 
-### 思路
-
-动态规划。
+### 解一：动态规划
 
 设到某位置 n 的最长上升子序列为 `f(n)`，那么有：
 
@@ -838,25 +958,103 @@ class Solution(object):
 f(n) = max(f(n), f(x) + 1) (nums[n] > numx[x] and n > x)
 ```
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
-class Solution(object):
-    def lengthOfLIS(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
         length = len(nums)
         if length == 0:
             return 0
-        
         dp = [1 for _ in range(length)]
-        
-        for i in range(1, length):
+        for i in range(length):
             for j in range(i):
-                if nums[i] > nums[j]:
+                if nums[j] < nums[i]:
                     dp[i] = max(dp[i], dp[j] + 1)
-        
         return max(dp)
+```
+
+#### **Go**
+
+```go
+func lengthOfLIS(nums []int) int {
+    length := len(nums)
+    // 初始化
+    dp := make([]int, length)
+    for i := 0; i < length; i++ {
+        dp[i] = 1
+    }
+    
+    for i := 0; i < length; i++ {
+        for j := 0; j < i; j++ {
+            if nums[j] < nums[i] {
+                // dp
+                if dp[j] + 1 > dp[i] {
+                    dp[i] = dp[j] + 1
+                }
+            }
+        }
+    }
+
+    // 返回最大 dp
+    res := 0
+    for i := 0; i < length; i++ {
+        if dp[i] > res {
+            res = dp[i]
+        }
+    }
+
+    return res
+}
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(n)$
+
+### 解二：贪心 + 二分
+
+- 贪心：尾部元素尽可能小才更「有机会上升」
+- 二分：使用二分查找找到要更新的元素
+
+使用一个辅助列表 `tails`，用 `tails[i]` 表示长度为 `i` 的上升队列尾部最小元素，`tails` 为递增序列。
+
+那么：
+
+- 如果 `num > tails[-1]`，直接追加 `num` 到 `tails` 尾部，且上升序列长度加 1
+- 否则在 `tails` 使用二分查找，找到第一个比 `num` 小的元素 `tails[k]`，并更新 `tails[k + 1] = num`
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        # 当前长度
+        res = 0
+        length = len(nums)
+        # tails[i] 代表上升子序列长度为 i 时尾部数字
+        tails = []
+        for num in nums:
+            if len(tails) == 0 or num > tails[-1]:
+                # 如果 tails 为空，或 num 大于 tails 最后一位数，追加 num
+                tails.append(num)
+            else:
+                # 使用二分查找，找到第一个比 num 小的数
+                left = 0
+                right = len(tails) - 1
+                loc = right
+                while left <= right:
+                    mid = (left + right) // 2
+                    if tails[mid] >= num:
+                        # 找左区间
+                        loc = mid
+                        right = mid - 1
+                    else:
+                        # 找右区间
+                        left = mid + 1
+                tails[loc] = num
+        return len(tails)
 ```
 
 ## 309. 最佳买卖股票时机含冷冻期
@@ -1027,6 +1225,136 @@ class Solution(object):
         return cash
 ```
 
+## 494. 目标和
+
+[原题链接](https://leetcode-cn.com/problems/target-sum/)
+
+### 解一：递归遍历所有情况
+
+**本方法超出时间限制**。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    
+    res = 0
+
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        length = len(nums)
+
+        def helper(index, cur):
+            if index == length:
+                print('res' + str(cur))
+                if cur == S:
+                    self.res += 1
+                    pass
+                return
+            for op in ["+", "-"]:
+                helper(index + 1, eval(str(cur) + op + str(nums[index])))
+
+            # 或直接调用两次递归：
+            # helper(index + 1, cur + nums[index])
+            # helper(index + 1, cur - nums[index])
+
+        helper(0, 0)
+        return self.res
+```
+
+#### **Go**
+
+```go
+var count int = 0
+
+func findTargetSumWays(nums []int, S int) int {
+    helper(nums, 0, 0, S)
+    return count
+}
+
+func helper(nums []int, cur int, index int, S int) {
+    if index == len(nums) {
+        if cur == S {
+            count += 1
+        }
+        return
+    }
+    helper(nums, cur + nums[index], index + 1, S)
+    helper(nums, cur - nums[index], index + 1, S)
+}
+```
+
+<!-- tabs:end -->
+
+- 时间复杂度：$O(2^n)$
+- 空间复杂度：$O(n)$（递归调用栈）
+
+### 解二：动态规划
+
+`dp[i][j]` 带表前 `i` 个数可得到和为 `j` 的组合数量。那么有推导式：
+
+```
+dp[i][j] = dp[i - 1][j - nums[i]] + dp[i - 1][j + nums[i]]
+```
+
+也可写作：
+
+```
+dp[i][j + nums[i]] += dp[i - 1][j]
+dp[i][j - nums[i]] += dp[i - 1][j]
+```
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], S: int) -> int:
+        # 初始化
+        length = len(nums)
+        dp = [[0 for _ in range(2001)] for _ in range(length)]
+        dp[0][nums[0] + 1000] = 1
+        dp[0][-nums[0] + 1000] += 1
+        
+        for i in range(1, length):
+            for s in range(-1000, 1001):
+                if dp[i - 1][s + 1000] > 0:
+                    # 防止越界
+                    dp[i][s + nums[i] + 1000] += dp[i - 1][s + 1000]
+                    dp[i][s - nums[i] + 1000] += dp[i - 1][s + 1000]
+        
+        return 0 if S > 1000 else dp[length - 1][S + 1000]
+```
+
+#### **Go**
+
+```go
+func findTargetSumWays(nums []int, S int) int {
+    length := len(nums)
+    var dp [21][2001]int
+    dp[0][nums[0] + 1000] = 1
+    dp[0][-nums[0] + 1000] += 1
+    for i := 1; i < length; i++ {
+        for j := -1000; j < 1001; j++ {
+            if dp[i - 1][j + 1000] > 0 {
+                dp[i][j + nums[i] + 1000] += dp[i - 1][j + 1000]
+                dp[i][j - nums[i] + 1000] += dp[i - 1][j + 1000]
+            }
+        } 
+    }
+    if S > 1000 {
+        return 0
+    }
+    return dp[length - 1][S + 1000]
+}
+```
+
+<!-- tabs:end -->
+
+### 【TODO】解三：01 背包
+
 ## 740. 删除与获得点数
 
 [原题链接](https://leetcode-cn.com/problems/delete-and-earn/)
@@ -1067,6 +1395,97 @@ class Solution:
         return dp[nums_list[-1]]
 ```
 
+## 887. 鸡蛋掉落
+
+[原题链接](https://leetcode-cn.com/problems/super-egg-drop/)
+
+### 动态规划
+
+`(K, N)` 中 `K` 表示鸡蛋数，`N` 表示楼层数量。那么从 `X` 层楼扔鸡蛋时：
+
+- 鸡蛋碎了：状态变为 `(K-1, X-1)`
+- 鸡蛋没碎：状态变为 `(K, N - X)`
+
+有状态转移方程如下：
+
+$dp(K, N) = 1 + min(max(dp(K - 1, X - 1), dp(K, N - X)))$
+
+初始化值：
+
+1. 当只有 1 个鸡蛋时，有几层楼就要扔几次
+2. 当只有 1 层楼时，只要扔一次
+3. 0 层或 0 个鸡蛋时均初始化为 0
+4. 因为要求「最小值」，所以初始化其他数值时尽量给到最大值，可以赋值楼层数量 + 1
+
+```go
+func superEggDrop(K int, N int) int {
+    var dp [][]int
+    // 初始化
+    for i := 0; i <= K; i++ {
+        tmp := make([]int, N + 1)
+        for j := 0; j <= N; j++ {
+            tmp[j] = j + 1
+            if i == 0 {
+                // 0 个蛋
+                tmp[j] = 0
+            }
+            if i == 1 {
+                // 1 个蛋
+                tmp[j] = j
+            }
+            if j == 0 {
+                // 0 层楼
+                tmp[j] = 0
+            }
+            if j == 1 {
+                // 1 层楼
+                tmp[j] = 1
+            }
+        }
+        dp = append(dp, tmp)
+    }
+
+    for i:=2; i <= K; i++ {
+        for j := 2; j <= N; j++ {
+            left := 1
+            right := j
+            for left <= right {
+                mid := (left + right) / 2
+                if dp[i][j - mid] < dp[i - 1][mid - 1] {
+                    right = mid - 1
+                } else {
+                    left = mid + 1
+                }
+            }
+            t1 := j + 1
+            t2 := j + 1
+            if left <= j {
+                t1 = getMax(dp[i][j - left], dp[i - 1][left - 1])
+            }
+            if right >= 1 {
+                t2 = getMax(dp[i][j - right], dp[i - 1][right - 1])
+            }
+            dp[i][j] = getMin(t1, t2) + 1
+        }
+    }
+    return dp[K][N]
+}
+
+func getMax(a int, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+```
+
 ## 898. 子数组按位或操作
 
 [原题链接](https://leetcode-cn.com/problems/bitwise-ors-of-subarrays/)
@@ -1088,6 +1507,75 @@ class Solution:
             res |= cur
         return len(res)
 ```
+
+## 983. 最低票价
+
+[原题链接](https://leetcode-cn.com/problems/minimum-cost-for-tickets/)
+
+### 解一：动态规划
+
+从后往前进行动态规划，用 `dp[i]` 代表从第 `i` 天到最后一天需要的最低票价。
+
+- 当 `i` 无需出行时，依据贪心法则：`dp[i] = dp[i + 1]`，即在第 `i` 天无需购票
+- 当 `i` 需要出行，`dp[i] = min(costs[j] + dp[i + j])`，`j` 的取值是 1/7/30。如果第 `i` 天出行，我们买了 `j` 天的票，那么后续 `j` 天都不需要购票事宜了，所以只要加上 `dp[i + j]` 的票价即可。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        ans = 0
+        dp = [0 for _ in range(400)]
+        for i in range(365, 0, -1):
+            if i in days:
+                # 需要出行
+                min_dp = float('inf')
+                min_dp = min(costs[0] + dp[i + 1], costs[1] + dp[i + 7], costs[2] + dp[i + 30])
+                dp[i] = min_dp
+            else:
+                # 不需要出行
+                dp[i] = dp[i + 1]
+        # print(dp[20])
+        return dp[1]
+```
+
+#### **Go**
+
+```go
+func mincostTickets(days []int, costs []int) int {
+    dp := make([]int, 400)
+    dayMap := make(map[int]int)
+    for _, day := range days {
+        dayMap[day] = 1
+    }
+    for i := 365; i > 0; i-- {
+        // 从后向前动态规划
+        if _, ok := dayMap[i]; ok {
+            // 该天出行
+            cost0 := costs[0] + dp[i + 1]
+            cost1 := costs[1] + dp[i + 7]
+            cost2 := costs[2] + dp[i + 30]
+            dp[i] = getMin(getMin(cost0, cost1), cost2)
+        } else {
+            // 该天不出行
+            dp[i] = dp[i + 1]
+        }
+    }
+
+    return dp[1]
+}
+
+func getMin(a int, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+```
+
+<!-- tabs:end -->
 
 ## 1137. 第 N 个泰波那契数
 

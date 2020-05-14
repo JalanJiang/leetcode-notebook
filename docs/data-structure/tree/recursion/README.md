@@ -41,9 +41,71 @@ class Solution:
 - [原题链接](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
 - [详解链接](https://juejin.im/post/5de254ce51882523467752d0)
 
-### 思路
+### 自顶向下
 
-递归求解~
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    depth = 0
+    def maxDepth(self, root: TreeNode) -> int:
+        self.depth = 0
+        self.handler(root, 1)
+        return self.depth
+        
+    def handler(self, root, depth):
+        if root is None:
+            return
+        self.depth = max(self.depth, depth)
+        self.handler(root.left, depth + 1)
+        self.handler(root.right, depth + 1)
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+
+var depth int
+func maxDepth(root *TreeNode) int {
+    depth = 0
+    handler(root, 1)
+    return depth
+}
+
+func handler(root *TreeNode, curDepth int) {
+    if root == nil {
+        return
+    }
+    if curDepth > depth {
+        depth = curDepth
+    }
+    handler(root.Left, curDepth + 1)
+    handler(root.Right, curDepth + 1)
+}
+```
+
+<!-- tabs:end -->
+
+### 自底向上
+
+「自底向上」：我们首先对所有子节点递归地调用函数，然后根据返回值和根节点本身的值得到答案。
 
 取左右子树最大深度值 + 1（1 为到 root 节点的深度）
 
@@ -121,6 +183,10 @@ func max(a int, b int) int {
 
 整个过程我们可以用递归来完成。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -149,6 +215,45 @@ class Solution(object):
         
         return root
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func buildTree(preorder []int, inorder []int) *TreeNode {
+    if len(preorder) == 0 {
+        return nil
+    }
+    root := new(TreeNode)
+    // 前序遍历第一个是根元素
+    root.Val = preorder[0]
+    // 找到位置
+    rootIndex := findRootIndex(inorder, root.Val)
+    // 构造左右子树
+    root.Left = buildTree(preorder[1:1+rootIndex], inorder[:rootIndex])
+    root.Right = buildTree(preorder[1+rootIndex:], inorder[rootIndex+1:])
+
+    return root
+}
+
+func findRootIndex(inorder []int, rootVal int) int {
+    for i, val := range inorder {
+        if val == rootVal {
+            return i
+        }
+    }
+    return 0
+}
+```
+
+<!-- tabs:end -->
 
 ## 106. 从中序与后序遍历序列构造二叉树
 
@@ -259,34 +364,122 @@ func findIndex(array []int, num int) int {
 
 [原题链接](https://leetcode-cn.com/problems/balanced-binary-tree/description/)
 
-### 思路
-
 和 [104](/tree/104.md) 的套路一样，加上对比逻辑而已。
 
+### 解一：自顶向下
+
+对每个节点都计算它左右子树的高度，判断是否为平衡二叉树。
+
 ```python
-class Solution(object):
-    
-    result = True
-    
-    def isBalanced(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
-        self.depth(root)
-        return self.result
-        
-    def depth(self, root):
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
         if root is None:
-            return 0
-        else:
-            left_depth = self.depth(root.left)
-            right_depth = self.depth(root.right)
-            if (abs(left_depth - right_depth) > 1):
-                self.result = False
-                
-        return max(left_depth, right_depth) + 1
+            return True
+        left_depth = self.helper(root.left, 0)
+        right_depth = self.helper(root.right, 0)
+        if abs(left_depth - right_depth) > 1:
+            # 不平衡
+            return False
+        return self.isBalanced(root.left) and self.isBalanced(root.right)
+
+    def helper(self, root, depth):
+        """
+        返回节点高度
+        """
+        if root is None:
+            return depth
+        left_depth = self.helper(root.left, depth + 1)
+        right_depth = self.helper(root.right, depth + 1)
+        return max(left_depth, right_depth)
 ```
+
+- 时间复杂度：$O(nlogn)$。最差情况需要遍历树的所有节点，判断每个节点的最大高度又需要遍历该节点的所有子节点。如果树是倾斜的，则会到达 $O(n^2)$ 复杂度。详见[题解中的复杂度分析](https://leetcode-cn.com/problems/balanced-binary-tree/solution/ping-heng-er-cha-shu-by-leetcode/)。
+- 空间复杂度：$O(n)$。如果树完全倾斜（退化成链），递归栈将包含所有节点。
+
+### 解二：自底向上
+
+自顶向下的高度计算存在大量冗余，每次计算高度时，同时都要计算子树的高度。
+
+从底自顶返回二叉树高度，如果某子树不是平衡树，提前进行枝剪。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    res = True
+    def isBalanced(self, root: TreeNode) -> bool:
+        self.helper(root, 0)
+        return self.res
+
+    def helper(self, root, depth):
+        if root is None:
+            return depth
+        left_depth = self.helper(root.left, depth + 1)
+        right_depth = self.helper(root.right, depth + 1)
+        if abs(left_depth - right_depth) > 1:
+            self.res = False
+            # 提前返回
+            return 0 
+        return max(left_depth, right_depth)
+```
+
+- 时间复杂度：$O(n)$。n 为树的节点数，最坏情况需要遍历所有节点。
+- 空间复杂度：$O(n)$。完全不平衡时需要的栈空间。
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res bool
+
+func isBalanced(root *TreeNode) bool {
+    res = true
+    helper(root, 0)
+    return res
+}
+
+func helper(root *TreeNode, depth int) int {
+    if root == nil {
+        return depth
+    }
+    leftDepth := helper(root.Left, depth + 1)
+    rightDepth := helper(root.Right, depth + 1)
+    if leftDepth - rightDepth > 1 || leftDepth - rightDepth < -1 {
+        res = false
+        return 0
+    }
+    if leftDepth > rightDepth {
+        return leftDepth
+    } else {
+        return rightDepth
+    }
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 111. 二叉树的最小深度
@@ -330,6 +523,10 @@ class Solution(object):
     - 最终相加和为 sum
 - False 的条件为：一直找到叶子节点了还是没有找到那个节点
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def hasPathSum(self, root, sum):
@@ -339,11 +536,80 @@ class Solution(object):
         :rtype: bool
         """
         if root is None:
+            # 如果传入节点为空则直接返回 False
             return False
         if root.left is None and root.right is None and root.val == sum:
             return True
         return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func hasPathSum(root *TreeNode, sum int) bool {
+    if root == nil {
+        return false
+    }
+    // 该节点为叶子节点
+    if root.Left == nil && root.Right == nil {
+        return sum == root.Val
+    }
+    // 递归
+    return hasPathSum(root.Left, sum - root.Val) || hasPathSum(root.Right, sum - root.Val)
+}
+```
+
+<!-- tabs:end -->
+
+## 116. 填充每个节点的下一个右侧节点指针
+
+[原题链接](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/)
+
+### 解一：递归
+
+- `root.left.next = root.right`
+- 利用已经处理好的 `next` 指针：`root.right.next = root.next.left`
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        self.handler(root)
+        return root
+
+    def handler(self, root):
+        if root is None or root.left is None:
+            return None
+        root.left.next = root.right
+        if root.next is not None:
+            root.right.next = root.next.left
+        # 关联节点
+        self.connect(root.left)
+        # 关联右节点
+        self.connect(root.right)
+```
+
+<!-- tabs:end -->
 
 ## 226. 翻转二叉树
 
@@ -369,6 +635,136 @@ class Solution(object):
             root.left = r
         return root
 ```
+
+## 235. 二叉搜索树的最近公共祖先
+
+[原题链接](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+### 解一：递归
+
+分为几种情况：
+
+1. `p` 与 `q` 分列 `root` 节点两个子树，则直接返回 `root`
+2. `p` 与 `q` 其中之一等于 `root`，则直接返回 `root`
+3. 如果 `p` 和 `q` 都在 `root` 左子树，则递归左子树
+4. 如果 `p` 和 `q` 都在 `root` 右子树，则递归右子树
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root is None:
+            return root
+        # 当前节点为 p 或 q
+        if p.val == root.val or q.val == root.val:
+            return root
+        # 两个节点分别在左右两个子树
+        if (p.val < root.val and q.val > root.val) or (p.val > root.val and q.val < root.val):
+            return root
+        # 两个节点都在左子树
+        if p.val < root.val and q.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        # 两个节点都在右子树
+        if p.val > root.val and q.val > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+```
+
+<!-- tabs:end -->
+
+### 解二：迭代
+
+@TODO
+
+## 236. 二叉树的最近公共祖先
+
+[原题链接](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)（同 [面试题68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)）
+
+### 递归法
+
+因为找两个节点的公共祖先，所以从上往下递归遍历。
+
+- 如果 `root` 等于 `q` 或 `p` 其中之一，则直接返回 `root`
+- 接着查找 `root` 的左右子树
+- 如果 `p` 与 `q` 不在左子树中，则必定在右子树中
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        if root is None or root == p or root == q:
+            return root
+        
+        # 在左子树找
+        left = self.lowestCommonAncestor(root.left, p, q)
+        # 在右子树找
+        right = self.lowestCommonAncestor(root.right, p, q)
+
+        if left is None and right is None:
+            return None
+        if left is None:
+            return right
+        if right is None:
+            return left
+
+        return root
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for TreeNode.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *ListNode
+ *     Right *ListNode
+ * }
+ */
+ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+     if root == nil || root == p || root == q {
+         return root
+     }
+
+     // 寻找左子树
+     left := lowestCommonAncestor(root.Left, p, q)
+     // 寻找右子树
+     right := lowestCommonAncestor(root.Right, p, q)
+
+     if left == nil && right == nil {
+         return nil
+     }
+     if left == nil {
+         return right
+     }
+     if right == nil {
+         return left
+     }
+     
+     return root
+}
+```
+
+<!-- tabs:end -->
 
 ## 337. 打家劫舍 III
 
@@ -491,6 +887,69 @@ class Solution(object):
         return result
 ```
 
+## 450. 删除二叉搜索树中的节点
+
+[原题链接](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
+
+### 思路
+
+要删除的节点共有三种情况：
+
+1. 是叶节点：直接删除
+2. 有右子树：找它的后继节点交换（值）并删除后继节点
+3. 有左子树：找到它的前驱节点交换（值）并删除前驱节点
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+        # 找到节点
+        if root is None:
+            return None
+        if key > root.val:
+            # 找右子树
+            root.right = self.deleteNode(root.right, key)
+        elif key < root.val:
+            # 找左子树
+            root.left = self.deleteNode(root.left, key)
+        else:
+            # 找到节点
+            if root.left is None and root.right is None:
+                # 删除的节点是叶子节点
+                root = None
+            elif root.right is not None:
+                # 有右子树，找后继节点
+                root.val = self.successor(root)
+                # 删除这个后继节点
+                root.right = self.deleteNode(root.right, root.val)
+            else:
+                # 有左子树，找前驱节点
+                root.val = self.predecessor(root)
+                root.left = self.deleteNode(root.left, root.val)
+
+        return root
+
+    def successor(self, root):
+        # 后继节点：比节点大的最小节点
+        root = root.right
+        while root.left is not None:
+            root = root.left
+        return root.val
+
+    def predecessor(self, root):
+        # 前驱节点
+        root = root.left
+        while root.right is not None:
+            root = root.right
+        return root.val
+```
+
 ## 538. 把二叉搜索树转换为累加树
 
 [原题链接](https://leetcode-cn.com/problems/convert-bst-to-greater-tree/)
@@ -536,6 +995,10 @@ class Solution:
 
 和 [104](/tree/104.md) 的套路一样，加上取 max 逻辑而已。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     max_length = 0
@@ -559,6 +1022,45 @@ class Solution(object):
             return max(l, r) + 1
 ```
 
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res int
+
+func diameterOfBinaryTree(root *TreeNode) int {
+    helper(root)
+    return res
+}
+
+func helper(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
+    leftDepth := helper(root.Left)
+    rightDepth := helper(root.Right)
+    length := leftDepth + rightDepth
+    res = getMax(res, length)
+    return getMax(leftDepth, rightDepth) + 1
+}
+
+func getMax(a int, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+```
+
+<!-- tabs:end -->
+
 ## 572. 另一个树的子树
 
 [原题链接](https://leetcode-cn.com/problems/subtree-of-another-tree/description/)
@@ -566,6 +1068,12 @@ class Solution(object):
 ### 思路
 
 与 [437](/tree/437.md) 递归思路类似。
+
+`t` 是否为 `s` 的子树，存在三种情况：
+
+- `t` 与 `s` 相同
+- `t` 是 `s` 的左子树
+- `t` 是 `s` 的右子树
 
 ```python
 class Solution(object):
@@ -580,6 +1088,9 @@ class Solution(object):
         return self.isSubtreeWithRoot(s, t) or self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
         
     def isSubtreeWithRoot(self, s, t):
+        """
+        t 与 s 是否相同
+        """
         if s is None and t is None:
             return True
         if s is None or t is None:
@@ -587,6 +1098,36 @@ class Solution(object):
         if s.val != t.val:
             return False
         return self.isSubtreeWithRoot(s.left, t.left) and self.isSubtreeWithRoot(s.right, t.right)
+```
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSubtree(s *TreeNode, t *TreeNode) bool {
+    if s == nil {
+        return false
+    }
+    return isSubtree(s.Left, t) || isSubtree(s.Right, t) || isSubtreeWithRoot(s, t)
+}
+
+func isSubtreeWithRoot(s *TreeNode, t *TreeNode) bool {
+    if s == nil && t == nil {
+        return true
+    }
+    if s == nil || t == nil {
+        return false
+    }
+    if s.Val != t.Val {
+        return false
+    }
+    return isSubtreeWithRoot(s.Left, t.Left) && isSubtreeWithRoot(s.Right, t.Right)
+}
 ```
 
 ## 617. 合并二叉树
@@ -710,6 +1251,73 @@ class Solution(object):
         else:
             return l_val
 ```
+
+## 700. 二叉搜索树中的搜索
+
+[原题链接](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)
+
+### 递归
+
+递归设计：
+
+- 递归函数作用：返回目标节点
+- 函数返回时机：
+  - 节点为空
+  - 找到目标节点
+- 递归调用时机：搜索左子树或右子树时
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if root is None:
+            return None
+        root_val = root.val
+        if root_val == val:
+            return root
+        if val < root.val:
+            return self.searchBST(root.left, val)
+        if val > root.val:
+            return self.searchBST(root.right, val)
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func searchBST(root *TreeNode, val int) *TreeNode {
+    if root == nil {
+        return nil
+    }
+    rootVal := root.Val
+    if rootVal == val {
+        return root
+    } else if rootVal < val {
+        return searchBST(root.Right, val)
+    } else {
+        return searchBST(root.Left, val)
+    }
+}
+```
+
+<!-- tabs:end -->
 
 ## 783. 二叉搜索树结点最小距离
 

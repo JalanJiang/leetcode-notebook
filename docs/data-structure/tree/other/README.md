@@ -2,7 +2,7 @@
 
 [原题链接](https://leetcode-cn.com/problems/symmetric-tree/description/)
 
-### 思路
+### 解一：递归
 
 递归法，判断二叉树是否为镜像对称。
 
@@ -34,7 +34,9 @@ else:
 - A节点的左节点与B节点的右节点
 - A节点的右节点与B节点的左节点
 
-### python 实现
+<!-- tabs:start -->
+
+#### **Python**
 
 ```python
 # Definition for a binary tree node.
@@ -62,6 +64,131 @@ class Solution:
             return False
         return self.checkElement(left_root.left, right_root.right) and self.checkElement(left_root.right, right_root.left)
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSymmetric(root *TreeNode) bool {
+    if root == nil {
+        return true
+    }
+    return symmetric(root.Left, root.Right)
+}
+
+func symmetric(left *TreeNode, right *TreeNode) bool {
+    if left == nil || right == nil {
+        return left == right
+    }
+    if left.Val != right.Val {
+        return false
+    }
+    return symmetric(left.Left, right.Right) && symmetric(left.Right, right.Left)
+}
+```
+
+<!-- tabs:end -->
+
+### 解二：迭代
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if root is None:
+            return True
+        queue = []
+        queue.append(root.left)
+        queue.append(root.right)
+        while len(queue) > 0:
+            left = queue[0]
+            del queue[0]
+            right = queue[0]
+            del queue[0]
+
+            if left is None:
+                if right is None:
+                    pass
+                else:
+                    return False
+            else:
+                if right is None:
+                    return False
+                else:
+                    queue.append(left.left)
+                    queue.append(right.right)
+                    queue.append(left.right)
+                    queue.append(right.left)
+                    if left.val != right.val:
+                        return False
+
+        return True
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSymmetric(root *TreeNode) bool {
+    queue := make([]*TreeNode, 0)
+    if root == nil {
+        return true
+    }
+    queue = append(queue, root.Left)
+    queue = append(queue, root.Right)
+    for len(queue) > 0 {
+        left := queue[0]
+        queue = queue[1:]
+        right := queue[0]
+        queue = queue[1:]
+
+        if left == nil {
+            if right != nil {
+                return false
+            }
+        } else {
+            if right == nil {
+                return false
+            } else {
+                queue = append(queue, left.Left)
+                queue = append(queue, right.Right)
+                queue = append(queue, left.Right)
+                queue = append(queue, right.Left)
+                if left.Val != right.Val {
+                    return false
+                }
+            }
+        }
+    }
+    return true
+}
+```
+
+<!-- tabs:end -->
 
 ## 687. 最长同值路径
 

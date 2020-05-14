@@ -76,7 +76,34 @@ if __name__ == '__main__':
 
 [原题链接](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/)
 
-### 思路
+### 解一：暴力求解
+
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        length = len(s)
+        ans = 0
+        for i in range(length):
+            tmp = 1
+            nums = dict()
+            nums[s[i]] = True
+            for j in range(i + 1, length):
+                c = s[j]
+                if c in nums:
+                    # 已经存在
+                    break
+                else:
+                    # 不存在，继续
+                    tmp += 1
+                    nums[c] = True
+            ans = max(ans, tmp)
+        return ans
+```
+
+- 时间复杂度：`O(n^2)`
+- 空间复杂度：`O(m)`
+
+### 解二
 
 - 用 hash 记录每个字符出现的位置
 - 当前字符：
@@ -108,6 +135,28 @@ class Solution(object):
         return max_length
 ```
 
+2020.05.02 复盘：
+
+```python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ans = 0
+        # 滑动窗口，左侧：start，右侧：i
+        start = 0
+        length = len(s)
+        # 记录字符所在下标
+        nums = dict()
+        for i in range(length):
+            cur_c = s[i]
+            # print(start)
+            if cur_c in nums:
+                if nums[cur_c] >= start:
+                    start = nums[cur_c] + 1
+            # 替换字符所在位置
+            nums[cur_c] = i
+            ans = max(ans, i - start + 1)
+        return ans
+```
 
 ## 6. Z 字形变换
 
@@ -1245,6 +1294,68 @@ class Solution(object):
                 num = 1
         return length + num
 ```
+
+----
+
+2020.03.19 二刷
+
+在最后返回时可以判断下结果长度和最初字符串的长度，如果结果长度短，则将结果长度 +1（即加上任何一个字符构成奇数回文串）。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        length = len(s)
+        c_map = dict()
+        for c in s:
+            if c not in c_map:
+                c_map[c] = 0
+            c_map[c] += 1
+        res = 0
+        for v in c_map.values():
+            if v % 2 == 0:
+                # 偶数处理
+                res += v
+            else:
+                # 奇数处理
+                res += (v - 1)
+        return res + 1 if res < length else res
+```
+
+#### **Go**
+
+```go
+func longestPalindrome(s string) int {
+    res := 0
+    cMap := make(map[string]int)
+    // 数据统计
+    for _, c := range s {
+        if _, ok := cMap[string(c)]; !ok {
+            cMap[string(c)] = 0
+        }
+        cMap[string(c)] += 1
+    }
+
+    // 判断奇偶
+    for _, value := range cMap {
+        if value % 2 == 0 {
+            res += value
+        } else {
+            res += (value - 1)
+        }
+    }
+
+    if res < len(s) {
+        return res + 1
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 459. 重复的子字符串

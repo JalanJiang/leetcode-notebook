@@ -195,6 +195,100 @@ class Solution(object):
 
 排序 + 双指针，不需要额外空间。
 
+## 355. 设计推特
+
+[原题链接](https://leetcode-cn.com/problems/design-twitter/)
+
+### 偷懒排序法
+
+```python
+class Node:
+    def __init__(self, time, tweet_id, nxt):
+        """
+        链表节点
+        """
+        self.time = 0
+        self.nxt = nxt
+        self.tweet_id = tweet_id
+
+class Twitter:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.time = 0
+        # 用户哈希
+        self.tweets = dict()
+        self.followers = dict()
+        
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        """
+        Compose a new tweet.
+        """
+        # node = Node(self.time, tweetId, None)
+        # if userId in self.tweets:
+        #     head = self.tweet[userId]
+        #     node.nxt = head
+        # self.tweets[userId] = node
+        # self.time += 1
+        if userId not in self.tweets:
+            self.tweets[userId] = []
+        self.tweets[userId].append([self.time, tweetId])
+        self.time += 1
+
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        """
+        Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
+        """
+        ans = []
+        # 取出关注的用户
+        followers = self.followers.get(userId, set())
+        # print(self.tweets)
+        tweets = []
+        if userId in self.tweets:
+            tweets = self.tweets[userId]
+        # print(tweets)
+        # print(followers)
+        for follower in followers:
+            # tweets.extend(self.tweets[follower])
+            if follower in self.tweets:
+                tweets = tweets + self.tweets[follower]
+        tweets.sort(key=lambda x: x[0], reverse=True)
+        # print(tweets)
+        # print(tweets)
+        # print([x[1] for x in tweets[:10]])
+        return [x[1] for x in tweets[:10]]
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower follows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId == followeeId:
+            # 不允许自己关注自己
+            return
+        if followerId not in self.followers:
+            self.followers[followerId] = set()
+        self.followers[followerId].add(followeeId)
+
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower unfollows a followee. If the operation is invalid, it should be a no-op.
+        """
+        if followerId not in self.followers:
+            return
+        self.followers[followerId].discard(followeeId)
+
+# Your Twitter object will be instantiated and called as such:
+# obj = Twitter()
+# obj.postTweet(userId,tweetId)
+# param_2 = obj.getNewsFeed(userId)
+# obj.follow(followerId,followeeId)
+# obj.unfollow(followerId,followeeId)
+```
 
 ## 454. 四数相加 II
 
@@ -440,4 +534,223 @@ class Solution(object):
         return max_length
 ```
 
+## 705. 设计哈希集合
 
+[原题链接](https://leetcode-cn.com/problems/design-hashset/)
+
+### 解一：数组模拟
+
+此题应当要用普通的数据结构实现哈希集合。
+
+题目指出「所有的值都在 `[0, 1000000]` 的范围内」，因此我们可以设计 100 个桶，每个桶内容纳 10000 个值，正好可以容纳下所有的数据。
+
+哈希函数的映射规则：`hash_table[key % bucket][key // bucket]`
+
+```python
+class MyHashSet:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        # 给出 100 个桶
+        self.bucket = 100
+        # 桶内元素
+        self.bucket_num = 10000
+        # 初始化
+        self.hash_table = [[] for _ in range(self.bucket)]
+        
+    def add(self, key: int) -> None:
+        if not self.hash_table[key % self.bucket]:
+            self.hash_table[key % self.bucket] = [0] * self.bucket_num
+        self.hash_table[key % self.bucket][key // self.bucket] = 1
+
+    def remove(self, key: int) -> None:
+        if self.hash_table[key % self.bucket]:
+            self.hash_table[key % self.bucket][key // self.bucket] = 0
+
+    def contains(self, key: int) -> bool:
+        """
+        Returns true if this set contains the specified element
+        """
+        if not self.hash_table[key % self.bucket]:
+            return False
+        return self.hash_table[key%self.bucket][key//self.bucket] == 1
+        
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)
+```
+
+## 706. 设计哈希映射
+
+[原题链接](https://leetcode-cn.com/problems/design-hashmap/)
+
+### 思路
+
+1. 哈希映射设计：如何通过 `key` 找到合适的桶
+2. 哈希碰撞处理：许多 `key` 都映射在一个桶里，如何进行这些值的存储与查找
+
+```python
+class Bucket:
+    def __init__(self):
+        self.bucket = []
+    
+    def put(self, key, value):
+        for i in range(len(self.bucket)):
+            k, v = self.bucket[i][0], self.bucket[i][1]
+            if k == key:
+                self.bucket[i] = (key, value)
+                return
+        self.bucket.append((key, value))
+    
+    def get(self, key):
+        for i in range(len(self.bucket)):
+            k, v = self.bucket[i][0], self.bucket[i][1]
+            if k == key:
+                return v
+        return -1
+
+    def remove(self, key):
+        for i, kv in enumerate(self.bucket):
+            if key == kv[0]:
+                # 删除元素问题
+                del self.bucket[i]
+
+class MyHashMap:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.bucket_count = 2069
+        self.hash_map = [Bucket() for _ in range(self.bucket_count)]
+        
+
+    def put(self, key: int, value: int) -> None:
+        """
+        value will always be non-negative.
+        """
+        bucket_num = key % self.bucket_count
+        self.hash_map[bucket_num].put(key, value)
+
+
+    def get(self, key: int) -> int:
+        """
+        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
+        """
+        bucket_num = key % self.bucket_count
+        return self.hash_map[bucket_num].get(key)
+        
+
+    def remove(self, key: int) -> None:
+        """
+        Removes the mapping of the specified value key if this map contains a mapping for the key
+        """
+        bucket_num = key % self.bucket_count
+        self.hash_map[bucket_num].remove(key)
+        
+
+
+# Your MyHashMap object will be instantiated and called as such:
+# obj = MyHashMap()
+# obj.put(key,value)
+# param_2 = obj.get(key)
+# obj.remove(key)
+```
+
+### 解二：链表模拟
+
+## 1160. 拼写单词
+
+[原题链接](https://leetcode-cn.com/problems/find-words-that-can-be-formed-by-characters/)
+
+### 思路
+
+使用哈希表存储 `chars` 中每个字符出现的次数，在遍历 `words` 时判断每个单词的字母是否可以命中 `chars` 的哈希表。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def countCharacters(self, words: List[str], chars: str) -> int:
+        res = 0
+        word_dict = dict()
+        # 词汇统计
+        for c in chars:
+            if c not in word_dict:
+                word_dict[c] = 0
+            word_dict[c] += 1
+        
+        # 开始拼写
+        for word in words:
+            tmp_word_dict = word_dict.copy()
+            get = True
+            for c in word:
+                if c in tmp_word_dict:
+                    if tmp_word_dict[c] == 0:
+                        get = False
+                        break
+                    else:
+                        tmp_word_dict[c] -= 1
+                else:
+                    get = False
+                    break
+            if get:
+                res += len(word)
+
+        return res
+```
+
+#### **Go**
+
+```go
+func countCharacters(words []string, chars string) int {
+    var res int
+    var wordMap = make(map[string]int)
+    // 统计 chars
+    for _, c := range chars {
+        if _, ok := wordMap[string(c)]; !ok {
+            // 不存在
+            wordMap[string(c)] = 0
+        }
+        wordMap[string(c)] += 1
+    }
+
+    // 统计 word 单词数，与统计比较
+    for _, word :=  range words {
+        everyWordMap := make(map[string]int)
+        for _, c := range word {
+            if _, ok := everyWordMap[string(c)]; !ok {
+                everyWordMap[string(c)] = 0
+            }
+            everyWordMap[string(c)] += 1
+        }
+
+        // 判断是否命中
+        get := true
+        for c, count := range everyWordMap {
+            if mapCount, ok := wordMap[string(c)]; ok {
+                // 存在
+                if count > mapCount {
+                    get = false
+                    break
+                }
+            } else {
+                get = false
+                break
+            }
+        }
+        if get {
+            res += len(word)
+        }
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->

@@ -419,6 +419,10 @@ func removeElement(nums []int, val int) int {
 - 有序：使用二分查找
 - 无序：继续划分
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def search(self, nums, target):
@@ -446,6 +450,88 @@ class Solution(object):
                     right = mid - 1
                 else:
                     left = mid + 1 
+        return -1
+```
+
+#### **Go**
+
+```go
+func search(nums []int, target int) int {
+    length := len(nums)
+    left := 0
+    right := length - 1
+    for left <= right {
+        mid := (left + right) / 2
+        // fmt.Println(left, right, mid)
+        if nums[mid] == target {
+            return mid
+        }
+        if nums[mid] <= nums[right] {
+            // 右边是顺序数组
+            if nums[mid] <= target && target <= nums[right] {
+                // 判断是否在右边
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        } else {
+            // 左边是顺序数组
+            if nums[left] <= target && target <= nums[mid] {
+                // 判断是否在左边
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        }
+    }
+
+    return -1
+}
+```
+
+<!-- tabs:end -->
+
+----
+
+2020.04.27 复盘：
+
+想复杂了：
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        length = len(nums)
+        left = 0
+        right = length - 1
+        while left <= right:
+            mid = (left + right) // 2
+            # print(left, right, mid)
+            if nums[mid] == target:
+                return mid
+            if nums[left] <= nums[right]:
+                # 顺序数组
+                if nums[mid] > target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                # 非顺序数组：左侧的值比右边的大，说明旋转点在中间
+                if target < nums[left] and target > nums[right]:
+                    # 这种情况找不到
+                    return -1
+                if nums[mid] >= nums[left]:
+                    # 旋转点在右边
+                    if target <= nums[right] or target > nums[mid]:
+                        # 寻找的点比中间值大或比右侧点小
+                        left = mid + 1
+                    else:
+                        right = mid - 1
+                else:
+                    # 旋转点在左边
+                    if target < nums[mid] or target >= nums[left]:
+                        right = mid - 1
+                    else:
+                        left = mid + 1
         return -1
 ```
 
@@ -564,6 +650,50 @@ class Solution(object):
         
         return area
 ```
+
+### 解二：单调栈
+
+维护一个单调栈：即从栈底到栈顶元素逐渐减小。
+
+在遍历墙的过程中：
+
+1. 墙的高度小于或等于栈顶元素：入栈，此时不会产生积水
+2. 墙的高度大于栈顶元素：栈顶元素出栈，此时栈顶元素处会产生积水，产生积水的面积为：（该位置左右墙体的最小高度 - 栈顶元素高度）* 左右墙体距离差
+
+```python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        length = len(height)
+        if length == 0:
+            return 0
+        
+        stack = []
+        # 第一个元素入栈
+        stack.append(0)
+        ans = 0
+        for i in range(1, length):
+            # 栈顶元素
+            top = stack[-1]
+            h = height[i]
+            # 循环 pop
+            while len(stack) != 0 and height[stack[-1]] < h:
+                # 弹出栈顶元素
+                tmp = stack.pop()
+                # 存在墙才计算积水
+                if len(stack) == 0:
+                    break
+                # 计算左右两侧高度 min
+                diff = min(height[stack[-1]], h)
+                distance = i - stack[-1] - 1
+                ans += distance * (diff - height[tmp])
+
+            stack.append(i)
+
+        return ans
+```
+
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
 
 
 ## 48. 旋转图像
@@ -773,6 +903,10 @@ class Solution(object):
         return res
 ```
 
+复杂度：
+
+- 时间复杂度：$O(nlogn)$
+- 空间复杂度：$O(n)$
 
 ## 66. 加一
 
@@ -1028,6 +1162,10 @@ class Solution:
 
 2019.01.05 复盘打卡
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def maxProfit(self, prices):
@@ -1051,7 +1189,30 @@ class Solution(object):
         return max_val
 ```
 
+#### **Go**
 
+```go
+func maxProfit(prices []int) int {
+    dayCount := len(prices)
+    if dayCount == 0 {
+        return 0
+    }
+    res := 0
+    min := prices[0]
+    for i := 1; i < dayCount; i++ {
+        get := prices[i] - min
+        if get > res {
+            res = get
+        }
+        if prices[i] < min {
+            min = prices[i]
+        }       
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 167. 两数之和 II - 输入有序数组
@@ -1094,13 +1255,11 @@ class Solution(object):
         return [i + 1, j + 1]     
 ```
 
-
-
-## 169. 求众数
+## 169. 多数元素
 
 [原题链接](https://leetcode-cn.com/problems/majority-element/)
 
-### 解法一
+### 解法一：哈希表
 
 计算每个数出现的个数，使用了额外空间。
 
@@ -1125,7 +1284,7 @@ class Solution(object):
                 return n
 ```
 
-### 解法二
+### 解法二：摩尔投票法
 
 摩尔投票法，相互抵消。
 
@@ -1152,6 +1311,14 @@ class Solution(object):
         
         return major
 ```
+
+### 解法三：分治
+
+@TODO
+
+### 解法四：排序
+
+@TODO
 
 
 ## 189. 旋转数组
@@ -2597,6 +2764,150 @@ func getMin(a int, b int) int {
 }
 ```
 
+## 914. 卡牌分组
+
+[原题链接](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)
+
+### 解一：暴力枚举
+
+```python
+class Solution:
+    def hasGroupsSizeX(self, deck: List[int]) -> bool:
+        if len(deck) == 0:
+            return False
+        min_num = 10000
+        max_num = 0
+        num_map = dict()
+        for d in deck:
+            if d not in num_map:
+                num_map[d] = 0
+            num_map[d] += 1
+        
+        for num_count in num_map.values():
+            min_num = min(min_num, num_count)
+            max_num = max(max_num, num_count)
+
+        if min_num < 2:
+            return False
+
+        for i in range(2, max_num + 1):
+            mark = True
+            for num_count in num_map.values():
+                if num_count < i or num_count % i != 0:
+                    mark = False
+                    break
+            if mark:
+                return True
+        return False
+```
+
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(n)$
+
+### 解二：求最大公约数
+
+要求的 x 必须是所有卡牌数量的约数。
+
+@TODO
+
+## 945. 使数组唯一的最小增量
+
+[原题链接](https://leetcode-cn.com/problems/minimum-increment-to-make-array-unique/)
+
+### 解一：计数
+
+一开始暴力破解超时了，优化一下采用以下写法：
+
+1. 先把重复出现的数字存储起来
+2. 遍历 0~80000 的数字（最坏情况出现 40000 个 40000，最多可以叠加到 80000）
+    - 如果发现数字是重复出现过的：
+      - 将记录重复出现数字的 `repeat` 变量 + 1
+      - 在结果 `res` 提前减去 `重复个数 * 重复数字`
+    - 如果发现是空的位置：
+      - 用空的位置处理一个重复出现的数字：`repeat -= 1`
+      - 在 `res` 加上空位的数字  
+
+```python
+class Solution:
+    def minIncrementForUnique(self, A: List[int]) -> int:
+        count = [0 for _ in range(80000)]
+        for x in A:
+            count[x] += 1
+        
+        # 总数
+        res = 0
+        # 重复数量
+        repeat = 0
+
+        for i in range(80000):
+            if count[i] > 1:
+                # 出现重复
+                repeat += count[i] - 1
+                # 减去多余的数
+                res -= i * (count[i] - 1)
+            # 没有出现过的数
+            if count[i] == 0 and repeat > 0:
+                repeat -= 1 # 处理一个重复的数
+                res += i
+            
+        return res
+```
+
+## 999. 车的可用捕获量
+
+[原题链接](https://leetcode-cn.com/problems/available-captures-for-rook/)
+
+### 思路
+
+找车的四个方向是否能直接碰到卒。
+
+```python
+class Solution:
+    def numRookCaptures(self, board: List[List[str]]) -> int:
+        # 找到车的位置（R）
+        m = len(board)
+        if m == 0:
+            return 0
+        n = len(board[0])
+        r_x, r_y = -1, -1
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == 'R':
+                    r_x, r_y = i, j
+                    break
+        res = 0
+        # 找左侧
+        for j in range(r_y - 1, -1, -1):
+            if board[r_x][j] == 'B':
+                break
+            if board[r_x][j] == 'p':
+                res += 1
+                break
+        # 找右侧
+        for j in range(r_y + 1, n):
+            if board[r_x][j] == 'B':
+                break
+            if board[r_x][j] == 'p':
+                res += 1
+                break
+        # 找上侧
+        for i in range(r_x - 1, -1, -1):
+            if board[i][r_y] == 'B':
+                break
+            if board[i][r_y] == 'p':
+                res += 1
+                break
+        # 找下侧
+        for i in range(r_x + 1, m):
+            if board[i][r_y] == 'B':
+                break
+            if board[i][r_y] == 'p':
+                res += 1
+                break
+        
+        return res
+```
+
 <!-- tabs:end -->
 
 ## 1002. 查找常用字符
@@ -2636,4 +2947,78 @@ class Solution(object):
         return tmp_string
 ```
 
+## 1013. 将数组分成和相等的三个部分
 
+[原题链接](https://leetcode-cn.com/problems/partition-array-into-three-parts-with-equal-sum/)
+
+### 思路
+
+1. 数组求和，看是否可以整除三，不能整除则直接返回 `false`
+2. 双指针指向数组前后，前后都分别开始找累加和等于目标值的部分，如果前后都能找到，则中间的自动就找到了
+
+注意问题：
+
+1. 存在 `[1,-1,1,-1]` 这样的用例，需要判断双指针最终位置，相距是否大于 1，即中间是否还有位置
+2. 目标值可以为 0，所以左右区间的数据应当初始化为 `A[0]` 与 `A[length - 1]`
+
+```python
+class Solution:
+    def canThreePartsEqualSum(self, A: List[int]) -> bool:
+        # 求总和
+        s = sum(A)
+        if s % 3 != 0:
+            return False
+        part = s // 3
+
+        # 双指针
+        i = 0
+        j = len(A) - 1
+        # 计算左右区间和
+        left_part = A[i]
+        right_part = A[j]
+        res = False
+        while i < j:
+            if left_part != part:
+                i += 1
+                left_part += A[i]
+                
+            if right_part != part:
+                j -= 1
+                right_part += A[j]
+                
+            if left_part == part and right_part == part:
+                res = True
+                break
+        # print(i, j)
+        # 处理特殊情况：[1,-1,1,-1]
+        return res and j - i > 1
+```
+
+## 1071. 字符串的最大公因子
+
+[原题链接](https://leetcode-cn.com/problems/greatest-common-divisor-of-strings/)
+
+### 暴力枚举
+
+最大公因子必定是 `str1` 或 `str2` 的前缀，因此枚举前缀的长度并截取前缀进行匹配即可。
+
+```python
+class Solution:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        length1 = len(str1)
+        length2 = len(str2)
+        for i in range(min(length1, length2), 0, -1):
+            # 枚举
+            if length1 % i == 0 and length2 % i == 0:
+                # 是否可构成前缀
+                if str1[:i] * (length1 // i) == str1 and str1[:i] * (length2 // i) == str2:
+                    return str1[:i]
+        return ''
+```
+
+- 时间复杂度：
+- 空间复杂度：
+
+### 数学法
+
+若存在 `X`，那么有 `str1 + str2 = str2 + str1`。

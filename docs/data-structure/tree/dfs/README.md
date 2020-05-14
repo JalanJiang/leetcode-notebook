@@ -14,6 +14,10 @@ void dfs(TreeNode root) {
 }
 ```
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution(object):
     def inorderTraversal(self, root):
@@ -33,11 +37,46 @@ class Solution(object):
         self.visitNode(root.right, l)
 ```
 
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res []int
+
+func inorderTraversal(root *TreeNode) []int {
+    res = make([]int, 0)
+    handler(root)
+    return res
+}
+
+func handler(root *TreeNode) {
+    if root == nil {
+        return
+    }
+    handler(root.Left)
+    res = append(res, root.Val)
+    handler(root.Right)
+}
+```
+
+<!-- tabs:end -->
+
 ### 解法二
 
 非递归法。
 
 - 寻找当前节点的左节点，依次入栈
+
+#### **Python**
+
+<!-- tabs:start -->
 
 ```python
 class Solution(object):
@@ -55,16 +94,52 @@ class Solution(object):
                 cur = cur.left
             node = stack.pop()
             res.append(node.val)
+            # 下一个节点轮到右节点（左 -> 中 -> 右）
             cur = node.right
         return res
 ```
 
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+
+func inorderTraversal(root *TreeNode) []int {
+    if root == nil {
+        return nil
+    }
+    stack := make([]*TreeNode, 0)
+    res := make([]int, 0)
+    for root != nil || len(stack) > 0 {
+        for root != nil {
+            stack = append(stack, root)
+            root = root.Left
+        }
+        // 取栈顶
+        top := stack[len(stack) - 1]
+        res = append(res, top.Val)
+        // 删除栈顶
+        stack = stack[:len(stack) - 1]
+        root = top.Right
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 ## 98. 验证二叉搜索树
 
 [原题链接](https://leetcode-cn.com/problems/validate-binary-search-tree/submissions/)
 
-### 思路
+### 解一：中序遍历
 
 中序遍历为升序
 
@@ -98,6 +173,65 @@ class Solution(object):
         else:
             return
 ```
+
+### 解二：递归
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        return self.helper(root, None, None)
+
+    def helper(self, root, low, high):
+        if root is None:
+            return True
+        if low is not None and root.val <= low:
+            return False
+        if high is not None and root.val >= high:
+            return False
+        return self.helper(root.left, low, root.val) and self.helper(root.right, root.val, high)
+```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isValidBST(root *TreeNode) bool {
+    return helper(root, -1<<63, 1<<63-1)
+}
+
+func helper(root *TreeNode, low int, high int) bool {
+    if root == nil {
+        return true
+    }
+    if root.Val <= low {
+        return false
+    }
+    if root.Val >= high {
+        return false
+    }
+    return helper(root.Left, low, root.Val) && helper(root.Right, root.Val, high)
+}
+```
+
+<!-- tabs:end -->
 
 ## 105. 从前序与中序遍历序列构造二叉树
 
@@ -185,7 +319,10 @@ class Solution(object):
 
 ### 解法二
 
-非递归，使用 list 模拟栈。
+非递归，使用栈辅助。
+
+- 将 root 右节点、左节点依次压入栈
+- 循环弹出栈顶节点，再按节点的右、左节点依次入栈
 
 ```python
 class Solution(object):
@@ -213,64 +350,144 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
 
-### 解法一
+### 解法一：递归
 
-- 递归
+后序遍历。
 
-后序遍历：
+<!-- tabs:start -->
 
+#### **Python**
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        self.handler(root, res)
+        return res
+
+    def handler(self, root, res):
+        if root is None:
+            return
+        self.handler(root.left, res)
+        self.handler(root.right, res)
+        res.append(root.val)
 ```
-void dfs(TreeNode root) {
-    dfs(root.left);
-    dfs(root.right);
-    visit(root);
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res []int
+
+func postorderTraversal(root *TreeNode) []int {
+    res = make([]int, 0)
+    handler(root)
+    return res
+}
+
+func handler(root *TreeNode) {
+    if root == nil {
+        return
+    }
+    handler(root.Left)
+    handler(root.Right)
+    res = append(res, root.Val)
 }
 ```
 
-```python
-class Solution(object):
-    def postorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
-        l = []
-        self.visitRoot(root, l)
-        return l
-    
-    def visitRoot(self, root, l):
-        if root is None:
-            return
-        self.visitRoot(root.left, l)
-        self.visitRoot(root.right, l)
-        l.append(root.val)
-```
+<!-- tabs:end -->
 
-### 解法二
+### 解法二：迭代
 
 - 后序遍历顺序为 left->right->root，反序后为：root->right->left
 - 用栈实现 root->right->left 的顺序，再将列表反序
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
-class Solution(object):
-    def postorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        # 后序遍历：左 -> 右 -> 中
+        # 反过来：中 -> 右 -> 左
         stack = []
         stack.append(root)
         res = []
-        while stack:
-            node = stack.pop()
-            if node is None:
+        while len(stack) > 0:
+            top = stack.pop()
+            if top is None:
                 continue
-            stack.append(node.left)
-            stack.append(node.right)
-            res.append(node.val)
+            # 用栈先将左节点入栈
+            stack.append(top.left)
+            stack.append(top.right)
+            res.append(top.val)
         res.reverse()
         return res
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var res []int
+
+func postorderTraversal(root *TreeNode) []int {
+    res := make([]int, 0)
+    stack := make([]*TreeNode, 0)
+    stack = append(stack, root)
+    for len(stack) > 0 {
+        top := stack[len(stack) - 1]
+        // 删除栈顶
+        stack = stack[:len(stack) - 1]
+        if top == nil {
+            continue
+        }
+        stack = append(stack, top.Left)
+        stack = append(stack, top.Right)
+        res = append(res, top.Val)
+    }
+    res = reverse(res)
+    return res
+}
+
+func reverse(res []int) []int {
+    for i, j := 0, len(res) - 1; i < j; i, j = i + 1, j - 1 {
+        res[i], res[j] = res[j], res[i]
+    }
+    return res
+}
+```
+
+<!-- tabs:end -->
 
 ## 230. 二叉搜索树中第K小的元素
 

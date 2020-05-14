@@ -53,3 +53,34 @@ class Solution(object):
             else:
                 return
 ```
+
+## 46. 全排列
+
+[原题链接](https://leetcode-cn.com/problems/permutations/)
+
+### 思路：回溯
+
+[参考题解](https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/)
+
+```python
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def track_back(nums, track):
+            if len(nums) == len(track):
+                ans.append(track[:])
+            # 遍历集合
+            for n in nums:
+                if n in track:
+                    # 已经在决策树中
+                    continue
+                # 加入决策
+                track.append(n)
+                track_back(nums, track)
+                # 回溯
+                track.pop()
+            
+        ans = []
+        track = []
+        track_back(nums, track)
+        return ans
+```
