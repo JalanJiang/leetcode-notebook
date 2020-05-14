@@ -39,6 +39,10 @@ class Solution(object):
 - 相同为 0，不同为 1
 - 0 与任何数异或都等于该数本身
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def singleNumber(self, nums):
@@ -51,6 +55,20 @@ class Solution:
             a = a ^ num
         return a
 ```
+
+#### **Go**
+
+```go
+func singleNumber(nums []int) int {
+    ans := 0
+    for _, n := range nums {
+        ans ^= n
+    }
+    return ans
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 190. 颠倒二进制位
