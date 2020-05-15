@@ -325,6 +325,83 @@ class Solution(object):
         return count
 ```
 
+## 560. 和为K的子数组
+
+[原题链接](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
+
+### 思路一：暴力破解
+
+1. 固定左边界
+2. 枚举右边界
+
+```go
+func subarraySum(nums []int, k int) int {
+    length := len(nums)
+    ans := 0
+    for left := 0; left < length; left++ {
+        s := 0
+        for right := left; right < length; right++ {
+            s += nums[right]
+            if s == k {
+                ans += 1
+            }
+        }
+    }
+    return ans
+}
+```
+
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(1)$
+
+### 思路二：前缀和 + 哈希
+
+用 `pre[i]` 表示 `[0, ..., i]` 的和。
+
+因此，`[j, ..., i]` 的和为 k 可以表示为：`pre[i] - pre[j - 1] == k`。
+
+移项后：`pre[j - 1] == pre[i] - k`，因此，只要统计 `pre[i] - k` 即可。
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        ans, pre = 0, 0
+        nums_dict = dict()
+        nums_dict[0] = 1
+        for i in range(len(nums)):
+            pre += nums[i]
+            ans += nums_dict.get(pre - k, 0)
+            nums_dict[pre] = nums_dict.get(pre, 0) + 1
+        return ans
+```
+
+#### **Go**
+
+```go
+func subarraySum(nums []int, k int) int {
+    length := len(nums)
+    pre := 0
+    ans := 0
+    m := map[int]int{}
+    m[0] = 1
+    for i := 0; i < length; i++ {
+        pre += nums[i]
+        if _, ok := m[pre - k]; ok {
+            ans += m[pre - k]
+        }
+        m[pre] += 1
+    }
+    return ans
+}
+```
+
+<!-- tabs:end -->
+
+
 ## 575. 分糖果
 
 [原题链接](https://leetcode-cn.com/problems/distribute-candies/)
