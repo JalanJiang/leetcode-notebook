@@ -199,6 +199,73 @@ class Solution(object):
         return first.next
 ```
 
+## 25. K 个一组翻转链表
+
+[原题链接](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+
+### 思路
+
+模拟过程。
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        cur_idx = 0
+        ans = ListNode(0)
+
+        # 计算链表长度
+        length = 0
+        tmp = head
+        while tmp is not None:
+            length += 1
+            tmp = tmp.next
+
+        # 上一个节点
+        pre = None
+        pre_range_tail, range_head = ans, ans
+        while head is not None and cur_idx + k <= length:
+            for i in range(k):
+                if i == 0:
+                    # 记录头部指针
+                    range_head = head
+                if i == k - 1:
+                    # 记录尾部节点
+                    range_tail = head
+                # 记录已遍历节点数量
+                cur_idx += 1
+                # 获取下一个节点
+                next_node = head.next
+                # 反转链表，指向上一个节点
+                head.next = pre
+                # 当前节点成为下一轮的「上一个节点」
+                pre = head
+                # 继续遍历下一个节点
+                head = next_node
+            # 前后两个链表相连
+            pre_range_tail.next = range_tail
+            # print(ans)
+            pre_range_tail = range_head
+            # print(ans)
+            # 一轮结束，改变指针连接
+            # range_head.next = head
+            # 一轮结束后，改变 pre 指向
+            pre = None
+
+        # 如果有剩余节点，继续连接
+        range_head.next = head
+
+        return ans.next
+```
+
+- 事件复杂度：O(n)
+- 空间复杂度：O(1)
+
 ## 61. 旋转链表
 
 [原题链接](https://leetcode-cn.com/problems/rotate-list/solution/chuan-zhen-yin-xian-by-liweiwei1419/)
