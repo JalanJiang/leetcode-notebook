@@ -132,9 +132,6 @@ class Solution(object):
         return head
 ```
 
-
-
-
 ## 21. 合并两个有序链表
 
 [原题链接](https://leetcode-cn.com/problems/merge-two-sorted-lists/description/)
@@ -166,7 +163,6 @@ class Solution(object):
             head.next = self.mergeTwoLists(l1, l2.next)
         return head
 ```
-
 
 ## 24. 两两交换链表中的节点
 

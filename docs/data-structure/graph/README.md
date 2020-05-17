@@ -77,6 +77,59 @@ class Solution:
         return clone
 ```
 
+## 210. 课程表 II
+
+[原题链接](https://leetcode-cn.com/problems/course-schedule-ii/)
+
+### 思路
+
+在图中找到循环。
+
+```python
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        length = len(prerequisites)
+        if length == 0:
+            return [i for i in range(numCourses)]
+        # n = len(prerequisites[0])
+
+        # 存储依赖关系
+        degree = [0 for _ in range(numCourses)]
+        relations = dict()
+        for pre in prerequisites:
+            nxt = pre[0]
+            cur = pre[1]
+            # 依赖关系
+            if cur not in relations:
+                relations[cur] = [nxt]
+            else:
+                relations[cur].append(nxt)
+            # nxt 课程的度 + 1
+            degree[nxt] += 1
+
+
+        # 入度为 0 的入队
+        queue = []
+        for i in range(numCourses):
+            if degree[i] == 0:
+                queue.append(i)
+        
+        # 遍历队列
+        ans = []
+        while len(queue) > 0:
+            first = queue[0]
+            del queue[0]
+            # if first not in ans:
+            ans.append(first)
+            # 获取下一批度为 0 的课程入队
+            for course in relations.get(first, []):
+                degree[course] -= 1
+                if degree[course] == 0:
+                    queue.append(course)
+
+        return ans if len(ans) == numCourses else []
+```
+
 ## 997. 找到小镇的法官
 
 [原题链接](https://leetcode-cn.com/problems/find-the-town-judge)
