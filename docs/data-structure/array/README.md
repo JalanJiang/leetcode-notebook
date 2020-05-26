@@ -1720,6 +1720,9 @@ class Solution:
 
 将数组看成链表，val 是结点值也是下个节点的地址。因此这个问题就可以转换成判断链表有环，且找出入口节点。
 
+1. 如果有环：快慢指针在某一点相遇
+2. 此时再把其中一个指针移到起点，另一个指针移到相遇点（开始绕环跑），那么两个指针必然会在入口相遇
+
 ```python
 class Solution(object):
     def findDuplicate(self, nums):
