@@ -991,6 +991,38 @@ class Solution:
         return ''.join(stack)
 ```
 
+优化：
+
+1. 将数字记录在 `multi` 中，字母记录在 `res` 中
+2. 遇到 `[` 时，将 `[multi, res]` 入栈，并重置 `multi` 和 `res`
+3. 遇到 `]` 时，从栈顶取元素 `[num, string]`，并计算 `res = string + num * res`
+
+```python
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        # 存放字符串和数字
+        res, multi = '', 0
+        # ans = ''
+        for c in s:
+            if c == '[':
+                # 已经统计的 res 和 multi 入栈
+                stack.append([res, multi])
+                res, multi = '', 0
+            elif c == ']':
+                # 出栈并计算结果
+                string, num = stack.pop()
+                res = string + res * num
+            elif '0' <= c and c <= '9':
+                # 记录数字
+                multi = 10 * multi + int(c)
+            else:
+                # 遇到字母
+                res += c
+            # print(stack)
+        return res
+```
+
 ## 503. 下一个更大元素 II
 
 [原题链接](https://leetcode-cn.com/problems/next-greater-element-ii/submissions/)
