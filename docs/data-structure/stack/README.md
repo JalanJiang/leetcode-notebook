@@ -956,6 +956,41 @@ class Solution:
             stack.append(node)
 ```
 
+## 394. 字符串解码
+
+[原题链接](https://leetcode-cn.com/problems/decode-string/)
+
+### 解一：栈
+
+1. 遇到非 `]` 元素先压入栈中
+2. 遇到 `]` 时，逐个弹出栈中元素，组成需要重复的字符串 `string`，直到遇到 `[`
+3. 继续弹出 `[` 前的数字 `num`
+4. 将 `string` 重复 `num` 压入栈中
+5. 重复上述过程，直到栈空
+
+```python
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        for c in s:
+            if c != ']':
+                stack.append(c)
+            else:
+                # 从栈中弹出 [] 内的元素与字母，并做乘法操作
+                string = ''
+                while len(stack) > 0 and stack[-1] != '[':
+                    string = stack.pop() + string
+                # 弹出 [
+                stack.pop()
+                # 弹出重复数字
+                num_string = ''
+                while len(stack) > 0 and stack[-1].isdigit():
+                    num_string = stack.pop() + num_string
+                num = int(num_string)
+                stack.append(string * num)
+        return ''.join(stack)
+```
+
 ## 503. 下一个更大元素 II
 
 [原题链接](https://leetcode-cn.com/problems/next-greater-element-ii/submissions/)
