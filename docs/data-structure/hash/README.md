@@ -2,7 +2,22 @@
 
 [原题链接](https://leetcode-cn.com/problems/two-sum/submissions/)
 
-### 解法一
+### 解法一：暴力
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        length = len(nums)
+        for i in range(length):
+            for j in range(i + 1, length):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+```
+
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(1)$
+
+### 解法二：一遍哈希
 
 利用哈希表，时间复杂度 O(n)，空间复杂度 O(n)。
 
@@ -34,15 +49,20 @@ class Solution(object):
         return res_list
 ```
 
-### 解法二
+2020.06.02 复盘：
 
-时间复杂度 O(nlogn)，空间复杂度 O(1)。
-
-- 排序
-- 二分查找
-
-
-
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        table = dict()
+        for i in range(len(nums)):
+            n = nums[i]
+            tmp = target - n
+            if tmp in table:
+                return [i, table[tmp]]
+            else:
+                table[n] = i
+```
 
 ## 128. 最长连续序列
 
