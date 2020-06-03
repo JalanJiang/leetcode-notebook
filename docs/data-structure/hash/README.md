@@ -133,6 +133,38 @@ class Solution(object):
         return max_length
 ```
 
+## 205. 同构字符串
+
+[原题链接](https://leetcode-cn.com/problems/isomorphic-strings/)
+
+### 思路
+
+双哈希表 + 双指针。
+
+```python
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        length1 = len(s)
+        length2 = len(t)
+        if length1 != length2:
+            return False
+        table1 = dict()
+        table2 = dict()
+        for i in range(length1):
+            if s[i] not in table1:
+                # 没有映射过
+                table1[s[i]] = t[i]
+                # 判断是否进行了相同映射
+                if t[i] in table2:
+                    return False
+                table2[t[i]] = s[i]
+            else:
+                # 映射过了
+                if t[i] != table1[s[i]]:
+                    # 映射的字母不同
+                    return False
+        return True
+```
 
 ## 217. 存在重复元素
 
