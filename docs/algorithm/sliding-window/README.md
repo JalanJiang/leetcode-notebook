@@ -31,6 +31,23 @@ class Solution(object):
         return False
 ```
 
+超时方法：
+
+```python
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        length = len(nums)
+        i = 0
+        while i < length:
+            j = i + 1
+            while j < length and j <= i + k:
+                if nums[i] == nums[j]:
+                    return True
+                j += 1
+            i += 1
+        return False
+```
+
 ## 239. 滑动窗口最大值
 
 [原题链接](https://leetcode-cn.com/problems/sliding-window-maximum/)
