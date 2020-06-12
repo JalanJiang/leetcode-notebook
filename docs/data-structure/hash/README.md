@@ -663,6 +663,39 @@ class Solution(object):
         return max_length
 ```
 
+# 599. 两个列表的最小索引总和
+
+[原题链接](https://leetcode-cn.com/problems/minimum-index-sum-of-two-lists/)
+
+## 解一：哈希表
+
+```python
+class Solution:
+    def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
+        table1 = dict()
+        table2 = dict()
+        length1 = len(list1)
+        length2 = len(list2)
+        for i in range(length1):
+            word = list1[i]
+            table1[word] = i
+        
+        min_index = float('inf')
+        for j in range(length2):
+            word = list2[j]
+            if word in table1:
+                table2[word] = j + table1.get(word)
+                if table2[word] < min_index:
+                    min_index = table2[word]
+
+        ans = []
+        for k, v in table2.items():
+            if v == min_index:
+                ans.append(k)
+
+        return ans
+```
+
 ## 705. 设计哈希集合
 
 [原题链接](https://leetcode-cn.com/problems/design-hashset/)
