@@ -696,6 +696,39 @@ class Solution:
         return ans
 ```
 
+## 652. 寻找重复的子树
+
+[原题链接](https://leetcode-cn.com/problems/find-duplicate-subtrees/)
+
+### 解一：序列化，结果存放在哈希表中
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    
+    def findDuplicateSubtrees(self, root: TreeNode) -> List[TreeNode]:
+        count = dict()
+        ans = list()
+        def collect(node):
+            if node is None:
+                return '#'
+            left_serial = collect(node.left)
+            right_serial = collect(node.right)
+            serial = "{},{},{}".format(node.val, left_serial, right_serial)
+            count[serial] = count.get(serial, 0) + 1
+            if count[serial] == 2:
+                ans.append(node)
+            return serial
+        
+        collect(root)
+        return ans
+```
+
 ## 705. 设计哈希集合
 
 [原题链接](https://leetcode-cn.com/problems/design-hashset/)
