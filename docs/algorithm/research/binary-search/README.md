@@ -121,7 +121,7 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
-### 思路
+### 解一：二分 + 线性查找
 
 先使用二分查找法找到 target 值，然后从找到 target 值的位置往左右两侧延伸，直到寻找到两侧的边界值。
 
@@ -160,6 +160,43 @@ class Solution(object):
         return res
 ```
 
+### 解二：两侧都使用二分查找
+
+```python
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        res = [-1, -1]
+        if len(nums) == 0:
+            return res
+
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
+            else:
+                right = mid
+        if nums[left] == target:
+            res[0] = left
+
+        left = 0
+        right = len(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid
+            else:
+                left = mid + 1
+        if nums[left - 1] == target:
+            res[1] = left - 1
+
+        return res
+```
 
 ## 35. 搜索插入位置
 
