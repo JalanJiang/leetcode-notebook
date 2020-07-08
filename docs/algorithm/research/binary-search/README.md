@@ -389,6 +389,28 @@ func searchMatrix(matrix [][]int, target int) bool {
 }
 ```
 
+## 153. 寻找旋转排序数组中的最小值
+
+[原题链接](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
+
+### 思路
+
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] < nums[right]:
+                # mid 可能是最小值
+                right = mid
+            else:
+                # 最小值在 mid 右侧
+                left = mid + 1
+        return nums[left]
+```
+
 ## 162. 寻找峰值
 
 [原题链接](https://leetcode-cn.com/problems/find-peak-element/)
