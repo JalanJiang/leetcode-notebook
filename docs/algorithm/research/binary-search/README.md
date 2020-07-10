@@ -183,7 +183,7 @@ class Solution:
             res[0] = left
 
         left = 0
-        right = len(nums)
+        right = len(nums) # 只有一个数的时候需要取到右边界
         while left < right:
             mid = (left + right) // 2
             if nums[mid] < target:
