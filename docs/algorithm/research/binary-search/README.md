@@ -840,6 +840,44 @@ func getMax(a int, b int) int {
 
 <!-- tabs:end -->
 
+## 658. 找到 K 个最接近的元素
+
+[原题链接](https://leetcode-cn.com/problems/find-k-closest-elements/)
+
+### 解一：二分查找
+
+在 `[0, length - k]` 区间查找最终答案的最左边界，对比方法是比较 `arr[mid] - x`（记作 `diff_left`） 和 `arr[mid + k] - x` （记作 `diff_right`）的大小：
+
+1. `diff_left < diff_right`：说明此时 `arr[mid]` 距离 `x` 更近些，可以继续向左边扩展（但保留此 `mid` 位置），`right = mid`
+2. `diff_left == diff_right`：此时两处一样近，可以继续向左边扩展（但保留此 `mid` 位置），`right = mid`
+3. `diff_left > diff_right`：说明 `arr[mid + k]` 距离 `x` 更近些，向右边扩展，`left = mid + 1`
+
+```python
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        length = len(arr)
+        left = 0
+        right = length - k
+        # 找到距离 k 最近的左边界
+        while left < right:
+            mid = (left + right) // 2
+            left_diff = x - arr[mid]
+            right_diff = arr[mid + k] - x
+            print(left, right, left_diff, right_diff)
+            if left_diff < right_diff:
+                # 左边离 x 比较近，区间可以继续向左扩张
+                right = mid
+                # pass
+            elif left_diff == right_diff:
+                # 两边一样近，可以往左（取小值）
+                right = mid
+            else:
+                # 右边离 x 比较近，区间向右扩张
+                left = mid + 1
+
+        return arr[left:left + k]
+```
+
 ## 1095. 山脉数组中查找目标值
 
 [原题链接](https://leetcode-cn.com/problems/find-in-mountain-array/)
