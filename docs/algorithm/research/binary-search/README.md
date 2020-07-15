@@ -116,6 +116,43 @@ class Solution(object):
         return (c1 + c2) / 2.0
 ```
 
+二分法递归写法：
+
+思想：转变为求**第 K 小数**。
+
+Tips：因为长度要分奇偶讨论，因此直接取 `(m + n + 1) / 2` 与 `(m + n + 2) / 2` 的平均值，奇偶就一样了。
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        def findKthElement(arr1, arr2, k):
+            # 默认 2 比 1 长
+            length1, length2 = len(arr1), len(arr2)
+            if length1 > length2:
+                return findKthElement(arr2, arr1, k)
+
+            # 如果 arr1 没有元素，直接返回 arr2 的第 k 小
+            if length1 == 0:
+                return arr2[k - 1] 
+
+            # 等于 1 时单独处理
+            if k == 1:
+                return min(arr1[0], arr2[0])
+
+            # 两者都有元素，对比 k/2 位置，但不超过数组长度
+            mid1 = min(k//2, length1) - 1
+            mid2 = min(k//2, length2) - 1
+            if arr1[mid1] > arr2[mid2]:
+                # 删除 arr 的部分
+                return findKthElement(arr1, arr2[mid2+1:], k - mid2 - 1)
+            else:
+                return findKthElement(arr1[mid1+1:], arr2, k - mid1 - 1)
+
+        l1, l2 = len(nums1), len(nums2)
+        left, right = (l1 + l2 + 1)//2, (l1 + l2 + 2)//2
+        return (findKthElement(nums1, nums2, left) + findKthElement(nums1, nums2, right)) / 2
+```
+
 
 ## 34. 在排序数组中查找元素的第一个和最后一个位置
 
