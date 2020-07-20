@@ -937,6 +937,62 @@ class Solution:
         return arr[left:left + k]
 ```
 
+## 744. 寻找比目标字母大的最小字母
+
+[原题链接](https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/)
+
+### 思路
+
+给你一个**排序后的字符列表**，和一个**目标字母**，要查找比这个字母**大**的**最小字母**，很容易就想到**二分查找**。
+
+因为「在比较时，字母是依序循环出现的」，所以我们可以先处理特殊情况：**当我们要查找的字母大于等于列表的最后一个字母时，直接返回列表第一字母**。
+
+下面说说二分查找。
+
+首先定义好模板：
+
+```python
+left = 0
+right = length
+
+while left < right:
+    mid = (left + rigt) // 2
+    letter = letters[mid]
+    # 其他逻辑……
+```
+
+此处我们取到的中间值 `letter` 与 `target` 存在三种大小关系：
+
+- `letter == target`：两者相等。此时说明我们已经找到了目标字母，但我们要找的是比目标字母大的最小字母，所以我们需要把查找范围变成 `mid` 右侧，继续向更大的字母范围处查找，即 `left = mid + 1`
+- `letter < target`：当前字母小于目标字母，说明目标值在 `mid` 右侧，同上 `left = mid + 1`
+- `letter > target`：当前字母大于目标字母。此时当前字母可能就是我们要找的最终答案了，但也有可能答案在左侧范围，所以 `right = mid`，**保留当前字母位置**，且继续向左侧查找
+
+### 具体实现
+
+```python
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        length = len(letters)
+        # 循环的特殊情况
+        if letters[length - 1] <= target:
+            return letters[0]
+        left = 0
+        right = length - 1
+        while left < right:
+            mid = (left + right) // 2
+            letter = letters[mid]
+            if letter == target:
+                # 等于目标值，往右找
+                left = mid + 1
+            elif letter < target:
+                # 比目标值小，往右找
+                left = mid + 1
+            else:
+                # 比目标值大，可能就是要找的数！
+                right = mid
+        return letters[left]
+```
+
 ## 1095. 山脉数组中查找目标值
 
 [原题链接](https://leetcode-cn.com/problems/find-in-mountain-array/)
