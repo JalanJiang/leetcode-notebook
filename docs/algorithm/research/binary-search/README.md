@@ -485,6 +485,33 @@ class Solution:
         return nums[left]
 ```
 
+## 154. 寻找旋转排序数组中的最小值 II
+
+[原题链接](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
+
+## 思路
+
+同 153，重点在于如何处理相等情况。
+
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        length = len(nums)
+        left = 0
+        right = length - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] < nums[right]:
+                # 在左侧
+                right = mid
+            elif nums[mid] > nums[right]:
+                # 在右侧
+                left = mid + 1
+            else:
+                right -= 1
+        return nums[left]
+```
+
 ## 162. 寻找峰值
 
 [原题链接](https://leetcode-cn.com/problems/find-peak-element/)
