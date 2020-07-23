@@ -207,14 +207,43 @@ class Solution:
             return True
 ```
 
+## 349. 两个数组的交集
+
+[原题链接](https://leetcode-cn.com/problems/intersection-of-two-arrays/)
+
+### 解一：内置函数
+
+```python
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list(set(nums1) & set(nums2))
+```
+
+#### 复杂度
+
+- 时间复杂度：将数组转为 `set` 的复杂度为 `O(n)`，转化两个数组时间复杂度 `O(m) + O(n)`
+  - 平均情况下：`O(m + n)`
+  - 最坏情况下：`O(m * n)`
+- 空间复杂度：最坏情况 `O(m + n)`（数组元素都不同的情况）
+
+### 解二：排序 + 双指针
+
+先对二者排序，使用双指针滑动查找。
+
+### 解三：排序 + 二分查找
+
+一个数组排序（短数组？），另一数组内的元素使用二分查找。
 
 ## 350. 两个数组的交集 II
 
 [原题链接](https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/)
 
-### 解法一
+### 解法一：哈希
 
 使用 hash 表的方式。
+
+- 遍历较短数组，将数据存储在哈希表中，存储的值为数字出现的次数
+- 遍历较长数组，查询数据是否在哈希表出现过
 
 空间复杂度 `O(n)`，时间复杂度 `O(n)`。
 
@@ -243,9 +272,41 @@ class Solution(object):
         return res
 ```
 
-### 解法二
+#### 复杂度
+
+- 时间复杂度：`O(m + n)`
+- 空间复杂度：`O(min(m, n))`（不会超过短数组长度）
+
+### 解法二：排序 + 双指针
 
 排序 + 双指针，不需要额外空间。
+
+```python
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        i = 0
+        j = 0
+        length1 = len(nums1)
+        length2 = len(nums2)
+        res = []
+        while i < length1 and j < length2:
+            if nums1[i] == nums2[j]:
+                res.append(nums1[i])
+                i += 1
+                j += 1
+            elif nums1[i] < nums2[j]:
+                i += 1
+            else:
+                j += 1
+        return res
+```
+
+#### 复杂度
+
+- 事件复杂度：`mO(logm) + nO(logn)`
+- 空间复杂度：`O(len(res))`（结果答案长度）
 
 ## 355. 设计推特
 
