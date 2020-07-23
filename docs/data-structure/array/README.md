@@ -1255,6 +1255,35 @@ class Solution(object):
         return [i + 1, j + 1]     
 ```
 
+- 时间复杂度 `O(n)`
+- 空间复杂度 `O(1)`
+
+### 解二：二分查找
+
+```python
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        length = len(numbers)
+        i = 0
+        while i < length:
+            j = i + 1
+            target_j = target - numbers[i]
+            left = j
+            right = length - 1
+            while left <= right:
+                mid = (left + right) // 2
+                if numbers[mid] == target_j:
+                    return [i + 1, mid + 1]
+                elif numbers[mid] < target_j:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            i += 1
+```
+
+- 时间复杂度 `O(nlogn)`
+- 空间复杂度：`O(1)`
+
 ## 169. 多数元素
 
 [原题链接](https://leetcode-cn.com/problems/majority-element/)
