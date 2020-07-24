@@ -803,6 +803,50 @@ public class Solution extends GuessGame {
 
 <!-- tabs:end -->
 
+## 410. 分割数组的最大值
+
+[原题链接](https://leetcode-cn.com/problems/split-array-largest-sum/)
+
+### 解一：二分查找
+
+想不到的神思路：对比分割次数，不断缩小最终答案范围。
+
+在不考虑 `m` 的情况下，我们可知道最终的答案一定落在 `[max(nums), sum(nums)]` 区间内。因此，我们可以使用二分查找，在该范围内不断缩小最终答案的范围。
+
+设 `left = max(nums)`，`right = sum(nums)`，`mid = (left + right) // 2`，此时假设 `mid` 是已求出的答案，即所谓「最大值」。我们可以用 `mid` 反推数组需要分割的数量 `cnt`：
+
+- `cnt <= m`：分割的数量过少，说明 `mid` 太大，`right = mid`
+- `cnt > m`：分割数量过多，说明 `mid` 太小，`left = mid + 1`
+
+```python
+class Solution:
+    def splitArray(self, nums: List[int], m: int) -> int:
+        # 最终结果范围：[max(nums), sum(nums)]
+        left = max(nums)
+        right = sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            # 根据此 mid 反求划分数量
+            cnt, total = 1, 0
+            for num in nums:
+                total += num
+                if total > mid:
+                    # 划分
+                    cnt += 1
+                    total = num
+            
+            if cnt < m:
+                # 划分少了，mid 太大，往左边找
+                right = mid
+            elif cnt == m:
+                right = mid
+            else:
+                # 划分多了，mid 太小，往右边找
+                left = mid + 1
+                
+        return left
+```
+
 ## 475. 供暖器
 
 [原题链接](https://leetcode-cn.com/problems/heaters/)
