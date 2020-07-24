@@ -1656,3 +1656,31 @@ class Solution:
 ```
 
 <!-- tabs:end -->
+
+## 1025. 除数博弈
+
+[原题链接](https://leetcode-cn.com/problems/divisor-game/)
+
+### 思路
+
+当 `N = 1` 时Alice 会输，当 `N = 2` 时 Alice 会赢……
+
+以 `dp(N)` 代表 `N` 时先手的输赢。
+
+在 `N` 中找到约数 `j`，若 `dp(N - j) == False`（Bob 输） 则说明 Alice 获胜。
+
+```python
+class Solution:
+    def divisorGame(self, N: int) -> bool:
+        dp = [False for _ in range(N + 1)]
+        if N <= 1:
+            return False
+        dp[1] = False
+        dp[2] = True
+        for i in range(3, N + 1):
+            for j in range(1, i // 2):
+                # i 的约数是否存在 dp[j] 为 False，此时 Alice 获胜
+                if i % j == 0 and dp[i - j] is False:
+                    dp[i] = True
+        return dp[N]
+```
