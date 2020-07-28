@@ -1008,6 +1008,45 @@ class Solution:
         return arr[left:left + k]
 ```
 
+## 719. 找出第 k 小的距离对
+
+[原题链接](https://leetcode-cn.com/problems/find-k-th-smallest-pair-distance/)
+
+### 解一：二分查找 + 双指针
+
+- k 值落在 `[0, max(nums) - min(nums)]` 中，此为二分查找范围
+- 以此范围内的值查找小于该值的距离对数量
+
+```python
+class Solution:
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        nums.sort()
+
+        def get_mid_count(target):
+            # 双指针
+            i, count = 0, 0
+            for j in range(1, len(nums)):
+                while nums[j] - nums[i] > target:
+                    i += 1
+                count += j - i
+            return count
+
+        # 第 k 小距离在 [left, right] 之间
+        left = 0
+        right = nums[-1] - nums[0]
+        while left < right:
+            mid = (left + right) // 2
+            # 计算小于等于 mid 的数量
+            count = get_mid_count(mid)
+            if count >= k:
+                # 如果数量大于 k，说明 mid 大了或就是结果
+                right = mid
+            else:
+                # 如果数量小于 k，说明 mid 小了
+                left = mid + 1
+        return left
+```
+
 ## 744. 寻找比目标字母大的最小字母
 
 [原题链接](https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target/)
