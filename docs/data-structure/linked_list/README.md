@@ -166,13 +166,11 @@ class Solution(object):
 
 ## 24. 两两交换链表中的节点
 
-### 思路
+### 解一：迭代
 
 - 为方便统一化创建空节点 `cur`
 - 交换呗，没啥好说
 - 注意返回头节点
-
-### Python
 
 ```python
 class Solution(object):
@@ -193,6 +191,56 @@ class Solution(object):
             n1.next = n3
             cur = n1
         return first.next
+```
+
+### 解二：递归
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        def helper(node, pre):
+            if node is None or node.next is None:
+                return 
+            next_node = node.next
+            # 指针交换
+            node.next = next_node.next
+            next_node.next = node
+            pre.next = next_node
+            helper(node.next, node)
+         
+        ans = ListNode(0)
+        ans.next = head
+        helper(head, ans)
+        return ans.next
+```
+
+优雅递归：
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+
+        first_node = head
+        second_node = head.next
+
+        first_node.next = self.swapPairs(second_node.next)
+        second_node.next = first_node
+
+        return second_node
 ```
 
 ## 25. K 个一组翻转链表
