@@ -1140,7 +1140,7 @@ for key, value in c_dict.items():
 
 [原题链接](https://leetcode-cn.com/problems/reverse-string/)
 
-### 思路
+### 解一：双指针
 
 头尾双指针，不停交换并往中间靠拢。
 
@@ -1161,6 +1161,48 @@ class Solution(object):
             i = i + 1
             j = j - 1
 ```
+
+### 解二：递归
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        def helper(left, right):
+            if left >= right:
+                return
+            s[left], s[right] = s[right], s[left]
+            helper(left + 1, right - 1)
+        
+        helper(0, len(s) - 1)
+```
+
+#### **Go**
+
+```go
+func reverseString(s []byte)  {
+    helper(0, len(s) - 1, s)
+}
+
+func helper(left int, right int, s []byte) {
+    if left >= right {
+        return
+    }
+    
+    tmp := s[left]
+    s[left] = s[right]
+    s[right] = tmp
+    helper(left + 1, right - 1, s)
+}
+```
+
+<!-- tabs:end -->
 
 
 ## 345. 反转字符串中的元音字母
