@@ -222,6 +222,10 @@ class Solution:
 
 优雅递归：
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:
@@ -242,6 +246,33 @@ class Solution:
 
         return second_node
 ```
+
+#### **Go**
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func swapPairs(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
+    }
+    
+    firstNode := head
+    secondNode := head.Next
+    
+    firstNode.Next = swapPairs(secondNode.Next)
+    secondNode.Next = firstNode
+    
+    return secondNode
+}
+```
+
+<!-- tabs:end -->
 
 ## 25. K 个一组翻转链表
 
