@@ -1089,6 +1089,23 @@ class Solution(object):
 
 优化：
 
+#### **Python**
+
+```python
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        ans = []
+        for i in range(numRows):
+            tmp = [1 for _ in range(i + 1)]
+            for j in range(1, i):
+                tmp[j] = ans[i - 1][j - 1] + ans[i - 1][j]
+            ans.append(tmp)
+
+        return ans
+```
+
+#### **Go**
+
 ```go
 func generate(numRows int) [][]int {
     var res [][]int = make([][]int, numRows)
