@@ -1087,6 +1087,27 @@ class Solution(object):
         return res
 ```
 
+优化：
+
+```go
+func generate(numRows int) [][]int {
+    var res [][]int = make([][]int, numRows)
+
+    for i := 0; i < numRows; i++ {
+        res[i] = make([]int, i + 1)
+        for j := 0; j < i + 1; j++ {
+            if j == 0 || j == i {
+                res[i][j] = 1
+            } else {
+                res[i][j] = res[i - 1][j - 1] + res[i - 1][j]
+            }
+        }
+    }
+
+    return res
+}
+```
+
 
 ## 119. 杨辉三角 II
 
@@ -1124,6 +1145,32 @@ class Solution(object):
         return cur
 ```
 
+### 解二：递归
+
+```python
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        ans = []
+        # 递归：输入上一行，返回下一行
+        def helper(pre):
+            length = len(pre)
+            if length == numRows:
+                return
+            if length == 0:
+                nxt = [1]
+            elif length == 1:
+                nxt = [1, 1]
+            else:
+                nxt = [1]
+                for i in range(length - 1):
+                    nxt.append(pre[i] + pre[i + 1])
+                nxt.append(1)
+            ans.append(nxt)
+            helper(nxt)
+        
+        helper([])
+        return ans
+```
 
 ## 121. 买卖股票的最佳时机
 
