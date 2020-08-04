@@ -288,11 +288,34 @@ class Solution(object):
 
 [原题链接](https://leetcode-cn.com/problems/powx-n/)
 
-### 思路：二分
+### 思路：快速幂
 
 利用分治的思想，$x^2n$ 均可以写作 $x^n * x^n$。
 
 递归：
+
+<!-- tabs:start -->
+
+#### **Python**
+
+```python
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        def fast_pow(x, n):
+            if n == 0:
+                return 1
+            
+            fast_res = fast_pow(x, n//2)
+            if n % 2 == 0:
+                return fast_res * fast_res
+            else:
+                return fast_res * fast_res * x
+        
+        res = fast_pow(x, abs(n))
+        return res if n > 0 else 1/res
+```
+
+#### **Go**
 
 ```go
 func myPow(x float64, n int) float64 {
@@ -317,6 +340,8 @@ func quickMul(x float64, n int) float64 {
     }
 }
 ```
+
+<!-- tabs:end -->
 
 ## 69. x 的平方根
 
