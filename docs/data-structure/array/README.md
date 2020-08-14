@@ -260,6 +260,20 @@ class Solution:
             return i + 1
 ```
 
+优化
+
+```python
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        i = 0
+        for j in range(1, len(nums)):
+            # 两者不想等时
+            if nums[i] != nums[j]:
+                i += 1
+                nums[i] = nums[j]
+        return i + 1
+```
+
 ## 27. 移除元素
 
 [原题链接](https://leetcode-cn.com/problems/remove-element/description/)
