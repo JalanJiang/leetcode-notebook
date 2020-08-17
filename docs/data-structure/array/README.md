@@ -1016,23 +1016,14 @@ class Solution(object):
 
 ```python
 # 这个好理解一些
-class Solution(object):
-    def removeDuplicates(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        length = len(nums)
-        
-        if length <= 2:
-            return length
-        
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
         i = 0
-        for j in range(2, length):
+        for j in range(2, len(nums)):
             if nums[i] != nums[j]:
                 nums[i + 2] = nums[j]
-                i = i + 1
-        
+                i += 1
+        # i 指向最后一个被交换的元素
         return i + 2
 ```
 
