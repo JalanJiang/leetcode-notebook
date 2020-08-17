@@ -1015,6 +1015,7 @@ class Solution(object):
 - 此时要删除 `nums[i + 2]` 就要向后找到一个 `nums[j]`（满足 `nums[j] != nums[i]`）替换 `nums[i + 2]`
 
 ```python
+# 这个好理解一些
 class Solution(object):
     def removeDuplicates(self, nums):
         """
@@ -1032,7 +1033,27 @@ class Solution(object):
                 nums[i + 2] = nums[j]
                 i = i + 1
         
-        return i+2
+        return i + 2
+```
+
+补充解法：
+
+```python
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        i, count = 1, 1
+        for j in range(1, len(nums)):
+            if nums[j] == nums[j - 1]:
+                count += 1
+            else:
+                count = 1
+
+            if count <= 2:
+                # 相同的数 <= 2，跳过 i
+                nums[i] = nums[j]
+                i += 1
+
+        return i
 ```
 
 
