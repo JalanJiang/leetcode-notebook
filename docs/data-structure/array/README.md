@@ -1323,9 +1323,7 @@ func maxProfit(prices []int) int {
 
 [原题链接](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/comments/)
 
-### 思路
-
-双指针
+### 解一：双指针
 
 - 指针 i 指向最左端，从左到右依次循环
 - 指针 j 指向最右端，从右到左依次循环

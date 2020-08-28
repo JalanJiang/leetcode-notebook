@@ -924,6 +924,38 @@ class Solution(object):
         return True
 ```
 
+复盘：
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        length = len(s)
+        i = 0
+        j = length - 1
+
+        while i < j:
+            if self.isValid(s[i]) and self.isValid(s[j]):
+                if s[i].lower() != s[j].lower():
+                    return False
+                i += 1
+                j -= 1
+            
+            if not self.isValid(s[i]):
+                i += 1
+            
+            if not self.isValid(s[j]):
+                j -= 1
+        return True
+
+    def isValid(self, c):
+        if c.isdigit() or c.isalpha():
+            return True
+        return False
+```
+
+- 时间复杂度：`O(n)`
+- 空间复杂度：`O(1)`
+
 
 ## 139. 单词拆分
 
