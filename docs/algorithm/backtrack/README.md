@@ -84,3 +84,55 @@ class Solution:
         track_back(nums, track)
         return ans
 ```
+
+## 216. 组合总和 III
+
+[原题链接](https://leetcode-cn.com/problems/combination-sum-iii/)
+
+回溯模板：
+
+```
+backtracking() {
+    if (终止条件) {
+        存放结果;
+    }
+
+    for (选择：选择列表（可以想成树中节点孩子的数量）) {
+        递归，处理节点;
+        backtracking();
+        回溯，撤销处理结果
+    }
+}
+```
+
+### 题解
+
+```python
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        ans = []
+        '''
+        element: 数组内答案
+        start: 遍历的开始位置
+        num: 剩余数字
+        '''
+        def dfs(element, start, num):
+            # 符合条件，加入最终答案，结束递归
+            if len(element) == k or num < 0:
+                if len(element) == k and num == 0:
+                    # print(element)
+                    # 深拷贝
+                    ans.append(element[:])
+                return
+
+            for i in range(start, 10):
+                # 加入当前值
+                element.append(i)
+                # 递归
+                dfs(element, i + 1, num - i)
+                # 撤销选择，即回溯
+                element.pop()
+
+        dfs([], 1, n)
+        return ans
+```
