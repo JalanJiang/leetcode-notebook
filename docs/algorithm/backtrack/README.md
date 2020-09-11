@@ -107,6 +107,10 @@ backtracking() {
 
 ### 题解
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
@@ -136,3 +140,32 @@ class Solution:
         dfs([], 1, n)
         return ans
 ```
+
+#### **Go**
+
+```go
+func combinationSum3(k int, n int) [][]int {
+    ans := [][]int{}
+    dfs(&ans, []int{}, 1, n, k)
+    return ans
+}
+
+func dfs(ans *[][]int, element []int, start int, num int, k int) {
+    if len(element) == k || num <= 0 {
+        if len(element) == k && num == 0 {
+            temp := make([]int, k)
+            copy(temp, element)
+            *ans = append(*ans, temp)
+        }
+        return
+    }
+
+    for i:=start; i < 10; i++ {
+        element = append(element, i)
+        dfs(ans, element, i + 1, num - i, k)
+        element = element[:len(element) - 1]
+    }
+}
+```
+
+<!-- tabs:end -->
