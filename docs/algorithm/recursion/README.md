@@ -1,3 +1,34 @@
+## 226. 翻转二叉树
+
+[原题链接](https://leetcode-cn.com/problems/invert-binary-tree/)
+
+### 思路
+
+递归。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if root is None:
+            return root
+        
+        # 翻转左子树
+        left = self.invertTree(root.left)
+        # 翻转右子树
+        right = self.invertTree(root.right)
+
+        root.left, root.right = right, left
+
+        return root
+```
+
 ## 341. 扁平化嵌套列表迭代器
 
 [原题链接](https://leetcode-cn.com/problems/flatten-nested-list-iterator/)
