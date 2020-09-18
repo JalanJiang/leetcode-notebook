@@ -169,3 +169,77 @@ func dfs(ans *[][]int, element []int, start int, num int, k int) {
 ```
 
 <!-- tabs:end -->
+
+## 357. 计算各个位数不同的数字个数
+
+[原题链接](https://leetcode-cn.com/problems/count-numbers-with-unique-digits/)
+
+### 解法一：回溯
+
+用 `tags` 数组标记 0~9 数字出现的次数，再调用递归后进行回溯。注意对 0 进行特殊处理。
+
+```python
+class Solution:
+    ans = 0
+    tags = [] # 记录数字出现的次数
+    def countNumbersWithUniqueDigits(self, n: int) -> int:
+        # 0-9 的数字
+        self.tags = [0 for _ in range(10)]
+        # 枚举所有数字：回溯
+        """
+        r: 轮次
+        num: 数字
+        """
+        def dfs(r, num = 0):
+            if r <= 0:
+                # 结束递归
+                return
+
+            for i in range(10):
+                # 循环 0-9
+                if num % 10 != i and self.tags[i] == 0:
+                    # 条件枝剪
+                    self.ans += 1
+                    # 数字出现标记
+                    self.tags[i] = 1
+                    dfs(r - 1, num * 10 + i)
+                    # 回溯
+                    self.tags[i] = 0
+
+        dfs(n)
+        # 补充 0
+        return self.ans + 1
+```
+
+### 解法二：动态规划
+
+排列组合。
+
+- `f(0) = 1`
+- `f(1) = 9`
+- `f(2) = 9 * 9 + f(1)`
+  - 第一个数字选择 1~9
+  - 第二个数在 0~9 中选择和第一个数不同的数
+- `f(3) = 9 * 9 * 8 + f(2)`
+
+可以推出动态规划方程：
+
+```
+dp[i] = sum + dp[i - 1]
+```
+
+```python
+class Solution:
+    def countNumbersWithUniqueDigits(self, n: int) -> int:
+        dp = [0 for _ in range(n + 1)]
+        # n = 1 时
+        dp[0] = 1
+
+        for i in range(1, n + 1):
+            s = 9
+            for j in range(1, i):
+                s *= (10 - j)
+            dp[i] = s + dp[i - 1]
+
+        return dp[n]
+```
