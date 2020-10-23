@@ -219,6 +219,49 @@ class Solution {
 }
 ```
 
+## 763. 划分字母区间
+
+[原题链接](https://leetcode-cn.com/problems/partition-labels/)
+
+### 思路
+
+- 哈希
+- 双指针
+
+```python
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        # 字母最后出现的位置
+        letter_ends = dict()
+        for i in range(len(S)):
+            s = S[i]
+            letter_ends[s] = i
+        
+        ans = list()
+        start = 0
+
+        while start < len(S):
+            begin = start
+            # 字母最后出现的位置
+            end = letter_ends[S[start]]
+            while start < end:
+                letter = S[start]
+                letter_end = letter_ends[letter]
+                # 如果字母最后出现位置大于 end，对 end 进行更新
+                if letter_end > end:
+                    end = letter_end
+                start += 1
+            ans.append(end - begin + 1)
+            start = end + 1
+
+        return ans
+```
+
+### 复杂度
+
+- 时间复杂度：`O(n)`
+- 空间复杂度：`O(26)`
+
 <!-- tabs:end -->
 
 ## 面试题 10.01. 合并排序的数组
