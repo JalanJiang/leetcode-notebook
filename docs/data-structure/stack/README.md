@@ -47,6 +47,96 @@ class Solution(object):
             return True
 ```
 
+## 84. 柱状图中最大的矩形
+
+[原题链接](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
+
+### 解法一
+
+- 单调栈
+- 逐个遍历
+- 结果：超时
+
+```python
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        stack = [] # 单调递增栈
+        ans = 0
+        for h in heights:
+            stack.append(h)
+            # if len(stack) == 0:
+            #     stack.append(h)
+            # else:
+            #     while stack[-1] > h:
+            #     # 对比栈顶元素
+            #     top = stack[-1]
+            #     # 左侧更大的数字被化为小数
+            #     if top > h:
+            #         stack[-1] = h
+            #     stack.append(h)
+            # print(stack)
+            # 计算实际面积
+            stack_length = len(stack)
+            for i in range(stack_length):
+                # element = stack[i]
+                if stack[i] > h:
+                    stack[i] = h
+                area = (stack_length - i) * stack[i]
+                ans = max(ans, area)
+                # print(ans)
+
+        return ans
+```
+
+### 解法二
+
+面积计算方式：
+
+- 找到 `heights[i]` 左侧第一个小于它的元素位置 `left`
+- 找到 `heights[i]` 右侧第一个小于它的元素位置 `right`
+- `area = (right - left - 1) * heights[i]`
+
+利用维护单调递增栈得出元素的左右边界：
+
+- 左侧边界（左侧第一个小于当前位置的元素）可以在元素入栈时确认
+- 右侧边界（右侧第一个小于当前位置的元素）可以在元素出栈时确认
+
+```python
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        # 找左侧第一个小于 h 的位置 left
+        # 右侧第一个小于 h 的位置 right
+        # area = (right - left) * h
+
+        # 维护单调栈
+        length = len(heights)
+        stack = []
+        lefts = [-1 for _ in range(length)]
+        rights = [length for _ in range(length)]
+        for i in range(length):
+            h = heights[i]
+            if len(stack) == 0:
+                stack.append((i, h))
+            else:
+                # 维护单调栈
+                while len(stack) > 0 and stack[-1][1] >= h:
+                    # 弹出时能确认右侧最小元素
+                    min_element = stack.pop()
+                    rights[min_element[0]] = i
+                # 入栈，确认左侧最小元素
+                if len(stack) > 0:
+                    lefts[i] = stack[-1][0]
+                stack.append((i, h))
+
+        ans = 0
+        for i in range(length):
+            area = (rights[i] - lefts[i] - 1) * heights[i]
+            # print((rights[i] - lefts[i] + 1))
+            ans = max(area, ans)
+            
+        return ans
+```
+
 ## 150. 逆波兰表达式求值
 
 [原题链接](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
