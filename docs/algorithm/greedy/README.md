@@ -664,6 +664,49 @@ class Solution {
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
 
+## 860. 柠檬水找零
+
+[原题链接](https://leetcode-cn.com/problems/lemonade-change/)
+
+### 思路
+
+按顺序模拟找零顺序即可。
+
+```python
+class Solution:
+    def lemonadeChange(self, bills: List[int]) -> bool:
+        count_5 = 0
+        count_10 = 0
+
+        for bill in bills:
+            if bill == 5:
+                count_5 += 1
+            elif bill == 10:
+                if count_5 == 0:
+                    return False
+                count_5 -= 1
+                count_10 += 1
+            else:
+                if count_10 == 0:
+                    if count_5 < 3:
+                        return False
+                    else:
+                        count_5 -= 3
+                else:
+                    if count_5 == 0:
+                        return False
+                    else:
+                        count_10 -= 1
+                        count_5 -= 1
+                        
+        return True
+```
+
+### 复杂度
+
+- 时间复杂度：O(n)
+- 空间复杂度：O(1)
+
 ## 955. 删列造序 II
 
 [原题链接](https://leetcode-cn.com/problems/delete-columns-to-make-sorted-ii/)
