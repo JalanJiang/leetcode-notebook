@@ -816,6 +816,24 @@ class Solution(object):
         return ans.values()
 ```
 
+普通写法，序列化为字符串：
+
+```python
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        table = dict()
+        for string in strs:
+            sort_string = "".join(sorted(string))
+            if sort_string not in table:
+                table[sort_string] = []
+            table[sort_string].append(string)
+        ans = [x for x in table.values()]
+        return ans
+```
+
+- 时间复杂度：O(n*klogk)（`n` 是 `strs` 长度，`k` 是 `strs` 中字符串的最大长度）
+- 空间复杂度：O(n*k)，存储在 `ans` 中的所有信息内容
+
 ### 参考资料
 
 - [Python中collections.defaultdict()使用](https://www.jianshu.com/p/26df28b3bfc8)
