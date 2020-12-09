@@ -1109,7 +1109,7 @@ class Solution(object):
    
 [原题链接](https://leetcode-cn.com/problems/valid-anagram/)
 
-### 思路
+### 解法一：哈希
 
 - 统计 s 和 t 中所有字母出现的次数
 - 判断是否相同
@@ -1141,6 +1141,22 @@ class Solution(object):
             
         return True
 ```
+
+- 时间复杂度：O(n)
+- 空间复杂度：O(n)
+
+### 解法二：排序
+
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        s = sorted(s)
+        t = sorted(t)
+        return s == t
+```
+
+- 时间复杂度：O(nlogn)
+- 空间复杂度：O(1)
 
 ### 顺便复习 Python 字典
 
