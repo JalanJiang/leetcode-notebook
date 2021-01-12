@@ -80,6 +80,41 @@ func levelOrder(root *TreeNode) [][]int {
 }
 ```
 
+## 107. 二叉树的层序遍历 II
+
+[原题链接](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
+
+与 106 类似，只是结果输出顺序不同。
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        ans = []
+        q = [root]
+        while len(q) != 0:
+            # 遍历一层
+            tmp = []
+            for i in range(len(q)):
+                top = q[0]
+                del q[0]
+                if top is None:
+                    continue
+                tmp.append(top.val)
+                q.append(top.left)
+                q.append(top.right)
+            if len(tmp) != 0:
+                ans.append(tmp)
+        
+        return ans[::-1]
+```
+
 <!-- tabs:end -->
 
 ## 108. 将有序数组转换为二叉搜索树
