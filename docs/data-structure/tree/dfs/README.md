@@ -231,6 +231,35 @@ func helper(root *TreeNode, low int, high int) bool {
 }
 ```
 
+### 解三：栈辅助中序遍历
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        stack = []
+        pre = float('-inf')
+        while root is not None or len(stack) > 0:
+            # 左侧压入栈
+            while root is not None:
+                stack.append(root)
+                root = root.left
+            # 弹出栈顶
+            top = stack.pop()
+            # 判断终序遍历前 1 个数是否小于当前数
+            if top.val <= pre:
+                return False
+            pre = top.val
+            root = top.right
+
+        return True
+```
+
 <!-- tabs:end -->
 
 ## 105. 从前序与中序遍历序列构造二叉树
