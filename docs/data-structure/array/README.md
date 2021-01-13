@@ -2935,6 +2935,32 @@ func getMin(a int, b int) int {
 }
 ```
 
+## 830. 较大分组的位置
+
+[原题链接](https://leetcode-cn.com/problems/positions-of-large-groups/)
+
+### 顺序遍历
+
+判断前后两个连续字母是否相同，若字母连续且当前字母连续出现次数已 >=3，那么加入结果集中。
+
+```python
+class Solution:
+    def largeGroupPositions(self, s: str) -> List[List[int]]:
+        length = len(s)        
+        ans = []
+        count = 1
+        for i in range(length):
+            if i == length - 1 or s[i] != s[i + 1]:
+                # 出现不连续字母
+                if count >= 3:
+                    ans.append([i - count + 1, i])
+                count = 1
+            else:
+                count += 1
+    
+        return ans
+```
+
 ## 914. 卡牌分组
 
 [原题链接](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)
