@@ -2961,6 +2961,31 @@ class Solution:
         return ans
 ```
 
+## 832. 翻转图像
+
+[原题链接](https://leetcode-cn.com/problems/flipping-an-image/)
+
+### 思路
+
+遍历二维数组，利用双指针进行元素的原地替换。
+
+```python
+class Solution:
+    def flipAndInvertImage(self, A: List[List[int]]) -> List[List[int]]:
+        for line in A:
+            line_length = len(line)
+            for i in range(line_length):
+                j = line_length - 1 - i
+                if i < j:
+                    line[i], line[j] = line[j], line[i]
+                    line[i] = 1 - line[i]
+                    line[j] = 1 - line[j]
+                elif i == j:
+                    line[i] = 1 - line[i]
+                
+        return A
+```
+
 ## 914. 卡牌分组
 
 [原题链接](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)
