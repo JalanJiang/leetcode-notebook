@@ -2994,6 +2994,10 @@ class Solution:
 
 模拟矩阵转置过程，即二维数组下标参数兑换：`ans[j][i] = matrix[i][j]`。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class Solution:
     def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
@@ -3007,6 +3011,34 @@ class Solution:
         
         return ans
 ```
+
+#### **Go**
+
+```go
+func transpose(matrix [][]int) [][]int {
+    m := len(matrix)
+    n := len(matrix[0])
+    ans := make([][]int, n)
+    // 初始化
+    for i := range ans {
+        ans[i] = make([]int, m)
+        for j := range ans[i] {
+            ans[i][j] = 0
+        }
+    }
+
+    // 赋值
+    for i, row:= range matrix {
+        for j, v := range row {
+            ans[j][i] = v
+        }
+    }
+
+    return ans
+}
+```
+
+<!-- tabs:end -->
 
 ## 914. 卡牌分组
 
