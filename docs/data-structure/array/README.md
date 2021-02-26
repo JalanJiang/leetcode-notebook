@@ -2986,6 +2986,28 @@ class Solution:
         return A
 ```
 
+## 867. 转置矩阵
+
+[原题链接](https://leetcode-cn.com/problems/transpose-matrix/)
+
+### 思路
+
+模拟矩阵转置过程，即二维数组下标参数兑换：`ans[j][i] = matrix[i][j]`。
+
+```python
+class Solution:
+    def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
+        m = len(matrix)
+        n = len(matrix[0])
+        ans = [[0 for _ in range(m)] for _ in range(n)]
+        
+        for i in range(m):
+            for j in range(n):
+                ans[j][i] = matrix[i][j]
+        
+        return ans
+```
+
 ## 914. 卡牌分组
 
 [原题链接](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)
