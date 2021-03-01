@@ -1057,6 +1057,39 @@ class Solution:
         return len(tails)
 ```
 
+## 303. 区域和检索 - 数组不可变
+
+[原题链接](https://leetcode-cn.com/problems/range-sum-query-immutable/)
+
+### 思路
+
+动态规划前缀和。
+
+```python
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        length = len(nums)
+        self.sum_nums = [0 for _ in range(length)]
+        for i in range(length):
+            if i == 0:
+                self.sum_nums[i] = nums[i]
+            else:
+                self.sum_nums[i] = self.sum_nums[i - 1] + nums[i]
+
+
+    def sumRange(self, i: int, j: int) -> int:
+        if i == 0:
+            return self.sum_nums[j]
+        else:
+            return self.sum_nums[j] - self.sum_nums[i - 1]
+
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(i,j)
+```
+
 ## 309. 最佳买卖股票时机含冷冻期
 
 [原题链接](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
