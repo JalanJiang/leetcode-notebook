@@ -1065,6 +1065,10 @@ class Solution:
 
 动态规划前缀和。
 
+<!-- tabs:start -->
+
+#### **Python**
+
 ```python
 class NumArray:
 
@@ -1089,6 +1093,46 @@ class NumArray:
 # obj = NumArray(nums)
 # param_1 = obj.sumRange(i,j)
 ```
+
+#### **Go**
+
+```go
+type NumArray struct {
+    sums []int
+}
+
+
+func Constructor(nums []int) NumArray {
+    length := len(nums)
+    sums := make([]int, length)
+    for i, num := range nums {
+        if i == 0 {
+            sums[i] = num
+        } else {
+            sums[i] = sums[i - 1] + num
+        }
+    }
+    return NumArray{sums}
+}
+
+
+func (this *NumArray) SumRange(i int, j int) int {
+    if i == 0 {
+        return this.sums[j]
+    } else {
+        return this.sums[j] - this.sums[i - 1]
+    }
+}
+
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * obj := Constructor(nums);
+ * param_1 := obj.SumRange(i,j);
+ */
+```
+
+<!-- tabs:end -->
 
 ## 309. 最佳买卖股票时机含冷冻期
 
