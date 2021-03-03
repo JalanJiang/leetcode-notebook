@@ -1316,12 +1316,11 @@ class Solution(object):
             return res[amount]
 ```
 
-
 ## 338. 比特位计数
 
 [原题链接](https://leetcode-cn.com/problems/counting-bits/description/)
 
-### 思路
+### 解法一
 
 动态规划无疑了
 
@@ -1348,6 +1347,49 @@ class Solution(object):
  
         return List1[:num+1]
 ```
+
+### 解法二
+
+奇偶数的二进制规律：
+
+- 奇数二进制数总比前一个偶数二进制数多 1 个 1（即最后 1 位）
+- 偶数二进制数 `x` 中 1 的个数总等于 `x / 2` 中 1 的个数（除 2 等于右移 1 位，即抹去最后一位 0）
+
+<!-- tabs:start -->
+
+c
+
+```python
+class Solution:
+    def countBits(self, num: int) -> List[int]:
+        ans = [0 for _ in range(num + 1)]
+        for i in range(num + 1):
+            if i % 2 == 0:
+                # 偶数
+                ans[i] = ans[i // 2]
+            else:
+                # 奇数
+                ans[i] = ans[i - 1] + 1
+        return ans
+```
+
+#### **Go**
+
+```go
+func countBits(num int) []int {
+    ans := make([]int, num + 1)
+    for i := 0; i <= num; i++ {
+        if i % 2 == 0 {
+            ans[i] = ans[i / 2]
+        } else {
+            ans[i] = ans[i - 1] + 1
+        }
+    }
+    return ans
+}
+```
+
+<!-- tabs:end -->
 
 ## 714. 买卖股票的最佳时机含手续费
 
