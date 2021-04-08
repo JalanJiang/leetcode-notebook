@@ -488,6 +488,53 @@ func searchMatrix(matrix [][]int, target int) bool {
 }
 ```
 
+## 81. 搜索旋转排序数组 II
+
+[原题链接](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+
+### 思路
+
+划分出有序数组进行二分查找。
+
+当出现重复元素时，即 `nums[left] == nums[mid] && nums[right] == nums[mid]`，无法判断数组哪侧有序，应从两端往中间缩短查找范围。
+
+```go
+func search(nums []int, target int) bool {
+    length := len(nums)
+    left := 0
+    right := length - 1
+
+    for left <= right {
+        mid := (left + right) / 2
+        if nums[mid] == target {
+            return true
+        }
+        if nums[left] == nums[mid] && nums[right] == nums[mid] {
+            left++
+            right--
+        } else if nums[left] <= nums[mid] {
+            // 左侧更小
+            // 左侧区间是否连续
+            if target >= nums[left] && target < nums[mid] {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        } else {
+            // 左侧更大
+            // 右侧区间是否连续
+            if target > nums[mid] && target <= nums[length - 1] {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+    }
+
+    return false
+}
+```
+
 ## 153. 寻找旋转排序数组中的最小值
 
 [原题链接](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
