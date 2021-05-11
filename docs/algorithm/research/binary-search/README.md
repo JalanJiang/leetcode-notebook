@@ -1241,3 +1241,57 @@ class Solution:
         
         return -1
 ```
+
+## 1283. 使结果不超过阈值的最小除数
+
+[原题链接](https://leetcode-cn.com/problems/find-the-smallest-divisor-given-a-threshold/)
+
+### 读题
+
+简单得说，就是找到一个正整数 `x`，把 `nums` 中的数依次除以该数，相加之和 `total` 需要小于阈值 `threshold`，且要求 `x` 最小。可知当 `total` 越接近 `threshold` 时，`x` 越小。
+
+### 思路
+
+因为数据量的原因（1 <= nums.length <= 5 * 10^4），我们不能通过暴力破解枚举所有可能的 `x`，可以想到应当使用二分查找，那么二分查找的区间如何定义呢？
+
+左侧值 `left` 选取最小正整数 1，而右侧值 `right` 可以选择数组 `nums` 中的最大数 `max(nums)`。当 `x` 取值为 `max(nums)` 时，结果和 `total` 等于数组长度，若此时 `x` 再继续增加，`total` 则始终保持不变。因此右侧区间取值 `max(nums)`，再取更大的值则没有意义。
+
+### 实现
+
+```go
+func smallestDivisor(nums []int, threshold int) int {
+    // 寻找最大数
+    maxNum := 1
+    for _, num := range nums {
+        if num > maxNum {
+            maxNum = num
+        }
+    }
+
+    left := 1
+    right := maxNum
+    ans := 0
+    for left <= right {
+        mid := (left + right) / 2
+        // 计算总数
+        total := 0
+        for _, num := range nums {
+            total += num / mid
+            if num % mid > 0 {
+                total += 1
+            }
+        }
+
+        if total <= threshold {
+            // 找到满足条件的 mid 了，但还希望能找到更小的：往左边找
+            right = mid - 1
+            ans = mid
+        } else {
+            // total 太大了，应该要提高 mid：往右边找
+            left = mid + 1
+        }
+    }
+
+    return ans
+}
+```
