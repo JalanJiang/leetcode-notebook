@@ -757,6 +757,53 @@ class Solution:
         return ans
 ```
 
+## 609. 在系统中查找重复文件
+
+[原题链接](https://leetcode-cn.com/problems/find-duplicate-file-in-system/)
+
+### 思路
+
+使用哈希表实现。将文件内容作为哈希 key 值，文件路径数组作为 value。
+
+使用 Go 语言的哈希 + 数组表示：`contentMap := make(map[string][]string)`。
+
+### 实现
+
+```go
+import "strings"
+
+func findDuplicate(paths []string) [][]string {
+    contentMap := make(map[string][]string)
+    ans := make([][]string, 0)
+    for _, pathString := range paths {
+        // 路径分割
+        paths := strings.Split(pathString, " ")
+        document := ""
+        for idx, path := range paths {
+            if idx == 0 {
+                document = path
+            } else {
+                // 按括号切分
+                contents := strings.Split(path, "(")
+                filePath := contents[0]
+                content := contents[1][:len(contents[1]) - 1]
+
+                fullPath := document + "/" + filePath
+                contentMap[content] = append(contentMap[content], fullPath)
+            }
+        }
+    }
+
+    for _, contents := range contentMap {
+        if len(contents) >= 2 {
+            ans = append(ans, contents)
+        }
+    }
+
+    return ans
+}
+```
+
 ## 652. 寻找重复的子树
 
 [原题链接](https://leetcode-cn.com/problems/find-duplicate-subtrees/)
